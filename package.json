@@ -1,0 +1,30 @@
+{
+  "name": "coffee-home",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@vx/axis": "0.0.146",
+    "@vx/gradient": "0.0.143",
+    "@vx/grid": "0.0.146",
+    "@vx/mock-data": "0.0.144",
+    "@vx/responsive": "0.0.143",
+    "@vx/scale": "0.0.143",
+    "chart.js": "^2.7.1",
+    "d3-scale": "^1.0.6",
+    "koa-static": "^4.0.1",
+    "material-ui": "^0.19.4",
+    "query-string": "^5.0.1",
+    "r-script": "0.0.3",
+    "react": "^16.0.0",
+    "react-chartjs-2": "^2.6.4",
+    "react-dom": "^16.0.0",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.0.16"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
