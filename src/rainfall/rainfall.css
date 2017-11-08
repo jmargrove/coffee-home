@@ -1,0 +1,100 @@
+.stat-body{
+  width: 100vw;
+  height: 200vh;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.rainfall-container{
+  background-color: red;
+  width: 100%;
+  height: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.soil-title{
+  flex: .75;;
+  background-color: blue;
+  text-align: center;
+  font-size: 300%;
+  font-family: Roboto;
+}
+
+.general-data{
+  flex: 1.5;
+  background-color: red;
+  font-size: 30px;
+}
+
+
+.top-data{
+  flex: 4;
+  background-color: green;
+  display: flex;
+  justify-content: center;
+}
+
+
+
+.top-soil-pie{
+  flex: 2;
+  background-color: DarkKhaki;
+}
+.top-soil-info{
+  flex: 1;
+  background-color: green;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-soil-pH{
+  flex:1;
+  background-color:Crimson ;
+}
+.top-soil-Carbon{
+  flex:1;
+  background-color:Cyan ;
+}
+.top-soil-BD{
+  flex:1;
+  background-color:DarkGray ;
+}
+
+.sub-data{
+  flex: 4;
+  background-color: DarkOrange;
+}
+
+@keyframes example {
+    from {left: -1000px;}
+    to {left: 1%;}
+}
+
+.data-dashboard2{
+  position: relative;
+  margin-top: 5%;
+  height: 100%;
+  width: 95%;
+  animation-name: example;
+  animation-duration: 0.6s;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.data-dashboard1{
+  position: relative;
+  margin-top: 5%;
+  height: 100%;
+  width: 95%;
+  animation-name: example;
+  animation-duration: 0.6s;
+  display: flex;
+  flex-direction: column;
+}

@@ -1,0 +1,32 @@
+.container3{
+  width: 100vw;
+  height: 80vw;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.select-location-text{
+  font-size: 22px;
+  margin-top: 2%;
+}
+
+.header-logo{
+  height: 90px;
+  width: 85px;
+  margin-left: 5%;
+  background-image: url("./../images/logo.png");
+  background-size: contain;
+  filter: invert(100%);
+}
+
+.coord-box{
+  margin-top: 20px;
+  width: 500px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.button{
+  height: 20px;
+}

@@ -1,0 +1,13 @@
+{
+  "appbarStyle":{
+  "backgroundColor": "black",
+  "height": "100px"
+},
+ "style":{
+  "height": 600,
+  "width": 920,
+  "marginTop": "2%",
+  "textAlign": "center",
+  "display": "inline-block"
+}
+}

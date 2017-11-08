@@ -1,0 +1,55 @@
+#map{
+  width: 920px;
+  height: 600px;
+  background-color: grey;
+  border: solid;
+  border: 10px;
+  border-color: black;
+  border-radius: 10px;
+  position: absolute;
+}
+
+#global{
+
+}
+
+
+
+.controler-box{
+  background-color: transparent;
+  position: absolute;
+  left:530px;
+  z-index: 1;
+  width: 400px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+#pac-input {
+  position: absolute;
+  z-index: 1;
+  margin-top: 10px;
+  background-color: #fff;
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: 300;
+  margin-right: 100px;
+  text-overflow: ellipsis;
+  width: 400px;
+}
+
+input:focus, textarea:focus {
+  box-shadow: 2px 2px 20px #000000;
+  border: 1px solid #000000;
+}
+
+input[type=text], textarea {
+  -webkit-transition: all 0.50s ease-in-out;
+  -moz-transition: all 0.50s ease-in-out;
+  -ms-transition: all 0.50s ease-in-out;
+  -o-transition: all 0.50s ease-in-out;
+  outline: none;
+  border: 1px solid #DDDDDD;
+}
