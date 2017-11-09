@@ -1,6 +1,6 @@
 .stat-body{
   width: 100vw;
-  height: 200vh;
+  height: 300vh;
   background-color: white;
   display: flex;
   justify-content: center;
@@ -53,7 +53,7 @@
 }
 
 .top-soil-pie{
-  flex: 2;
+  flex: 5;
   /*background-color: DarkKhaki;*/
   border-bottom: solid;
   border-width: thin;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Doughnut} from 'react-chartjs-2';
+import { Doughnut } from 'react-chartjs-2';
 import { connect } from 'react-redux';
 
 const mapStateData = (state) => ({
@@ -7,20 +7,6 @@ const mapStateData = (state) => ({
 })
 
 class LineChart extends Component {
- options = {
-  // circumference: 10,
-  title: {
-    display: true,
-    text: "    ",
-  },
-  legend: {
-    display: true,
-    position:'right'
-  },
-  animation: {
-    duration: 3000,
-  }
-}
 
   render() {
     return (

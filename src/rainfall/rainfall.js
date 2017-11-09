@@ -38,8 +38,22 @@ class Rainfall extends Component {
    },
    animation: {
      duration: 3000,
-   }
- }
+   },
+   layout: {
+    padding: {
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0
+      },
+      margin: {
+          left: 0,
+          right: 0,
+          top: 0,
+          bottom: 0
+        }
+    }
+  }
 
   postCoords(coords){
     fetch('http://localhost:8080/Rcode', {
@@ -135,6 +149,46 @@ class Rainfall extends Component {
 
               </div>
             </Paper>
+
+
+            <Paper className="data-dashboard1" zDepth={1}>
+              <div className="soil-title">Temperature</div>
+              <div className="general-data">
+                <div className="soil-type-box">
+
+                  <div className="soil-type"> Key data</div>
+                </div>
+              </div>
+              <div className="soil-sep"> some - temperature - data </div>
+              <div className="top-data">
+                <div className="top-soil-pie">
+                  <div className="pie-box">
+                    // main graph
+                  </div>
+                </div>
+                <div className="top-soil-info">
+                  <div className="top-soil-pH">pH: {this.props.data.TpH}</div>
+                  <div className="top-soil-Carbon">OC: {this.props.data.TOC}</div>
+                  <div className="top-soil-BD">Bulk density: {this.props.data.top_bulk_density}</div>
+                </div>
+              </div>
+
+              <div className="soil-sep-sub">  somemore - temperature - data </div>
+
+              <div className="sub-data">
+                <div className="sub-soil-info">
+                  <div className="sub-soil-pH">pH: {this.props.data.SpH}</div>
+                  <div className="sub-soil-Carbon">OC: {this.props.data.SOC}</div>
+                  <div className="sub-soil-BD">Bulk density: {this.props.data.sub_bulk_density}</div>
+                </div>
+                <div className="sub-soil-pie">
+                  // the pie
+                </div>
+
+              </div>
+            </Paper>
+
+
 
             <Paper className="data-dashboard2" zDepth={1}>
               <div className="soil-title">Rainfall</div>

@@ -38,7 +38,7 @@ class MainPage extends Component {
       return <RaisedButton
 
         label="Model"
-        href={`/rainfall?lat=${this.props.coords.lat}&lng=${this.props.coords.lng}`}
+        href={`/user-input?lat=${this.props.coords.lat}&lng=${this.props.coords.lng}`}
         />;
     } else {
       return <RaisedButton label="Model" disabled />;

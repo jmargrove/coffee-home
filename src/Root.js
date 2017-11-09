@@ -5,9 +5,8 @@ import PropTypes from 'prop-types'
 import App from './App.js'
 import MainPage from './mainpage/mainpage.js'
 import Rainfall from './rainfall/rainfall.js'
-
-
-
+import UserInput from './user-input/user-input.js'
+import Model from './model/model.js'
 
 const Routing = ({ store }) => (
   <BrowserRouter>
@@ -16,6 +15,8 @@ const Routing = ({ store }) => (
         <Route exact path="/" component={App}/>
         <Route path="/home" component={MainPage}/>
         <Route path="/rainfall" component={Rainfall}/>
+        <Route path="/user-input" component={UserInput}/>
+        <Route path="/model" component={Model}/>
       </Switch>
     </div>
   </BrowserRouter>
@@ -26,20 +27,3 @@ Routing.propTypes = {
 }
 
 export default Routing
-
-// class Routing extends Component {
-//   render(){
-//     return(
-//       <BrowserRouter>
-//         <div>
-//           <Route exact path="/" component={App}/>
-//           <Route path="/home" component={MainPage}/>
-//           <Route path="/rainfall" component={Rainfall}/>
-//         </div>
-//       </BrowserRouter>
-//     )
-//   }
-// }
-//
-//
-// export default Routing
