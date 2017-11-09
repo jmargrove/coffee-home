@@ -89,7 +89,7 @@ export default ({
      />
      <stop
        offset="100%"
-       stopColor="#FFFFFF"
+       stopColor="#ffffff"
        stopOpacity={0.2}
      />
    </linearGradient>
@@ -102,7 +102,8 @@ export default ({
           x={(i) => i.month}
           y={(i) => i.rain}
           curve={curveMonotoneX}
-          stroke={"black"}
+          stroke={"#A63A50"}
+          strokeWidth={1}
           strokeLinecap="round"
           />
         <AreaClosed

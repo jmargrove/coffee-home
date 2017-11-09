@@ -4,8 +4,8 @@
   "height": "100px"
 },
  "style":{
-  "height": 600,
-  "width": 920,
+  "height": "80%",
+  "width": "80%",
   "marginTop": "2%",
   "textAlign": "center",
   "display": "inline-block"

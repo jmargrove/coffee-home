@@ -6,6 +6,9 @@ import App from './App.js'
 import MainPage from './mainpage/mainpage.js'
 import Rainfall from './rainfall/rainfall.js'
 
+
+
+
 const Routing = ({ store }) => (
   <BrowserRouter>
     <div>

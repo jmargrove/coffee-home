@@ -8,9 +8,10 @@ const mapStateData = (state) => ({
 
 class LineChart extends Component {
  options = {
+  // circumference: 10,
   title: {
     display: true,
-    text: "Soil texture fractions",
+    text: "    ",
   },
   legend: {
     display: true,
@@ -35,8 +36,8 @@ class LineChart extends Component {
                   this.props.data.top_soil_fraction[1].percentage, // sand
                   this.props.data.top_soil_fraction[2].percentage, // silt
                   this.props.data.top_soil_fraction[3].percentage], // clay
-                backgroundColor: ['#AB9B96', '#808080', '#A63A50', '#FFFFFF'],
-                borderColor: "black",
+                backgroundColor: ['#AB9B96', '#808080', '#A63A50', '#000000'],
+                // borderColor: "black",
                 borderWidth: 1,
               }
             ]

@@ -8,68 +8,155 @@
   flex-direction: column;
 }
 
-.rainfall-container{
-  background-color: red;
-  width: 100%;
-  height: 40%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 
 .soil-title{
-  flex: .75;;
-  background-color: blue;
-  text-align: center;
-  font-size: 300%;
+  flex: .75;
+  color: white;
+  background-color: #808080;
+
+  font-size: 200%;
   font-family: Roboto;
+  border: solid;
+  border-color: black;
+  border-width: thin;
+}
+
+.soil-type-box{
+  /*display: flex;*/
+  /*justify-content: space-around;
+  align-items: baseline;*/
+}
+.soil-type-label{
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.soil-type{
+  text-align: right;
+  margin-right: 10%
 }
 
 .general-data{
-  flex: 1.5;
-  background-color: red;
+  flex: .75;
+  /*background-color: red;*/
   font-size: 30px;
+  border-bottom: solid;
+  border-width: thin;
 }
 
 
 .top-data{
   flex: 4;
-  background-color: green;
+  /*background-color: green;*/
   display: flex;
   justify-content: center;
 }
 
-
-
 .top-soil-pie{
   flex: 2;
-  background-color: DarkKhaki;
+  /*background-color: DarkKhaki;*/
+  border-bottom: solid;
+  border-width: thin;
 }
+
+
 .top-soil-info{
   flex: 1;
-  background-color: green;
+  /*background-color: green;*/
   display: flex;
   flex-direction: column;
 }
 
 .top-soil-pH{
+  text-align: center;
   flex:1;
-  background-color:Crimson ;
+  /*background-color:Crimson ;*/
+  border-bottom: solid;
+  border-width: thin;
 }
 .top-soil-Carbon{
+  text-align: center;
   flex:1;
-  background-color:Cyan ;
+  /*background-color:Cyan ;*/
+  border-bottom: solid;
+  border-width: thin;
 }
 .top-soil-BD{
+  text-align: center;
   flex:1;
-  background-color:DarkGray ;
+  /*background-color:DarkGray ;*/
+  border-bottom: solid;
+  border-width: thin;
+}
+.soil-sep{
+  display: flex;
+  align-self: flex-start;
+  text-align: center;
+  font-family: Roboto;
+  border-bottom: solid;
+  border-width: thin;
+  width: 77%;
+  margin-left: 5%;
+  flex:.4;
+}
+
+.soil-sep-sub{
+  text-align: center;
+  display: flex;
+  align-self: flex-end;
+  flex:.4;
+  font-family: Roboto;
+  border-bottom: solid;
+  border-width: thin;
+  width: 77%;
+  margin-right: 5%;
 }
 
 .sub-data{
   flex: 4;
-  background-color: DarkOrange;
+  /*background-color: DarkOrange;*/
+  display: flex;
+  justify-content: center;
+  border-bottom: solid;
+  border-width: thin;
 }
+
+.sub-soil-pie{
+  flex: 2;
+  /*background-color: DarkKhaki;*/
+
+}
+
+.sub-soil-info{
+  flex: 1;
+  /*background-color: orange;*/
+  display: flex;
+  flex-direction: column;
+}
+
+.sub-soil-pH{
+  text-align: center;
+  flex:1;
+  /*background-color:Crimson ;*/
+  border-bottom: solid;
+  border-width: thin;
+}
+.sub-soil-Carbon{
+  text-align: center;
+  flex:1;
+  /*background-color:Cyan ;*/
+  border-bottom: solid;
+  border-width: thin;
+}
+.sub-soil-BD{
+  text-align: center;
+  flex:1;
+  /*background-color:DarkGray ;*/
+
+}
+
+
+
 
 @keyframes example {
     from {left: -1000px;}
@@ -79,7 +166,7 @@
 .data-dashboard2{
   position: relative;
   margin-top: 5%;
-  height: 100%;
+  height: 70%;
   width: 95%;
   animation-name: example;
   animation-duration: 0.6s;
@@ -91,10 +178,19 @@
 .data-dashboard1{
   position: relative;
   margin-top: 5%;
-  height: 100%;
+  height: 40%;
   width: 95%;
   animation-name: example;
   animation-duration: 0.6s;
   display: flex;
   flex-direction: column;
+}
+
+.rainfall-container{
+  background-color: red;
+  width: 100%;
+  height: 40%;
+  /*display: flex;
+  justify-content: center;
+  align-items: center;*/
 }

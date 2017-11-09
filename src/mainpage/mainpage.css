@@ -1,14 +1,37 @@
-.container3{
-  width: 100vw;
-  height: 80vw;
+.search-location-body{
+  width: 100%;
+  height: 150vw;
+  background-color: transparent;
   display: flex;
-  align-items: center;
   flex-direction: column;
+}
+
+.container3{
+  flex: .5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+}
+
+.map-div{
+  flex: 3
+}
+
+.coord-box{
+  flex: 1;
 }
 
 .select-location-text{
   font-size: 22px;
   margin-top: 2%;
+  text-align: center;
+  background-color: transparent;
+  border-top: solid;
+  border-bottom: solid;
+  border-width: thin;
+
 }
 
 .header-logo{
@@ -22,11 +45,36 @@
 
 .coord-box{
   margin-top: 20px;
-  width: 500px;
+  width: 100%;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: transparent;
 }
 
-.button{
+.the-coords{
+  flex: .5;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+}
+.go-buttons{
+  flex: .5;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.lat-input{
+  width: 33%;
   height: 20px;
+  font-size: 150%;
+}
+.lng-input{
+  width: 33%;
+  height: 20px;
+  font-size: 150%;
 }

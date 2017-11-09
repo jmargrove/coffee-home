@@ -12,15 +12,25 @@ const defaultState = {
   { month: 10, rain: 72 },
   { month: 11, rain: 59 },
   { month: 12, rain: 46 } ],
-  dom_soil_type: 'Cambisol',
+  dom_soil_type: 'soil type',
   TpH: 7.745,
-  TOC: 0.62,
-  top_bulk_density: 1.422,
+  TOC: 0.50,
+  top_bulk_density: 1.00,
   top_soil_fraction: [
-    { soil_fraction: 'gravel', percentage: 9.6 },
-    { soil_fraction: 'sand', percentage: 27.6 },
-    { soil_fraction: 'silt', percentage: 42.25 },
-    { soil_fraction: 'clay', percentage: 20.55 } ]
+    { soil_fraction: 'gravel', percentage: 25 },
+    { soil_fraction: 'sand', percentage: 25 },
+    { soil_fraction: 'silt', percentage: 25 },
+    { soil_fraction: 'clay', percentage: 25}
+  ],
+  SpH: 7.745,
+  SOC: 0.50,
+  sub_bulk_density: 1.00,
+  sub_soil_fraction: [
+    { soil_fraction: 'gravel', percentage: 25 },
+    { soil_fraction: 'sand', percentage: 25 },
+    { soil_fraction: 'silt', percentage: 25 },
+    { soil_fraction: 'clay', percentage: 25 }
+  ]
   },
   coords: {lat: 41.459, lng: 1.6369, zoom: 7}
 }
@@ -42,7 +52,16 @@ const reducer = (state = defaultState, action) => {
           {...action.data['top_soil_fraction'][0]},
           {...action.data['top_soil_fraction'][1]},
           {...action.data['top_soil_fraction'][2]},
-          {...action.data['top_soil_fraction'][3]}, 
+          {...action.data['top_soil_fraction'][3]},
+        ],
+        SpH: action.data['SUB_pH'],
+        SOC: action.data['SUB_OC'],
+        sub_bulk_density: action.data['SUB_BD'],
+        sub_soil_fraction: [
+          {...action.data['sub_soil_fraction'][0]},
+          {...action.data['sub_soil_fraction'][1]},
+          {...action.data['sub_soil_fraction'][2]},
+          {...action.data['sub_soil_fraction'][3]},
         ]
       }})
   }
