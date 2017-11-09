@@ -16,6 +16,7 @@ import Paper from 'material-ui/Paper'
 import { withScreenSize } from '@vx/responsive';
 import  PieChart  from './../graphs/line.js'
 import { Doughnut } from 'react-chartjs-2';
+import Loader from './../load-page/load-page.js'
 
 const mapDispatchTo = (dispatch) => ({
   postreq: (dt) => dispatch(postReq(dt))
@@ -55,21 +56,31 @@ class Rainfall extends Component {
     }
   }
 
+  state = {
+    loading: false
+  }
+
   postCoords(coords){
+    this.setState({ loading: true });
     fetch('http://localhost:8080/Rcode', {
       body: JSON.stringify({xcoord: coords.lng, ycoord: coords.lat}),
       headers: {'Content-Type' : 'application/json'},
       method: 'POST',
     })
     .then(resp => resp.json())
-    .then(r => this.props.postreq(r))
+    .then(r => {
+      this.props.postreq(r)
+      this.setState({ loading: false });
+    })
   }
   componentDidMount(){
     this.postCoords(queryString.parse(this.props.location.search))
   }
 
   render() {
-    console.log("updated props:", this.props.data)
+
+    if(!this.state.loading){
+    console.log("updated props:", this.props)
     const screenSize = {
       width: 420,
       height: 200
@@ -211,6 +222,10 @@ class Rainfall extends Component {
     </MuiThemeProvider>
     );
   }
+  else {
+    return (<Loader/>)
+  }
+}
 }
 
 

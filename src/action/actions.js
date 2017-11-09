@@ -19,3 +19,11 @@ export const nextImage = () => {
     type: 'NEXT_IMAGE',
   })
 }
+
+export const modelData = (dt) => {
+  console.log("action modelled data..." , dt )
+  return ({
+    type: 'MODELED_DATA',
+    modelData: dt,
+  })
+}

@@ -8,7 +8,9 @@ import Rainfall from './rainfall/rainfall.js'
 import UserInput from './user-input/user-input.js'
 import Model from './model/model.js'
 
-const Routing = ({ store }) => (
+import { connect } from 'react-redux';
+
+const Routing = (props) => (
   <BrowserRouter>
     <div>
       <Switch>
@@ -22,8 +24,4 @@ const Routing = ({ store }) => (
   </BrowserRouter>
 )
 
-Routing.propTypes = {
-  store: PropTypes.object.isRequired
-}
-
-export default Routing
+export default (Routing)

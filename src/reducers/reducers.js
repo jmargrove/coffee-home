@@ -1,5 +1,6 @@
 
 const defaultState = {
+  modelData: [0, 0, 0, 1, 2],
   data: {dt: [ { month: 1, rain: 40 },
   { month: 2, rain: 36 },
   { month: 3, rain: 48 },
@@ -40,7 +41,11 @@ let count = -1
 
 //// the reducers
 const reducer = (state = defaultState, action) => {
-  if(action.type === 'POST') {
+  if (action.type === 'MODELED_DATA') {
+    console.log("reducer fired....")
+    return ({...state, modelData: [...action.modelData]})
+  }
+  else if(action.type === 'POST') {
     console.log("POST red:", action.data['TOP_pH'])
     return ({...state,
       data: {dt: [...action.data.dt],

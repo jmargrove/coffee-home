@@ -1,0 +1,15 @@
+.yeild6th-box{
+  border-radius: 50%;
+  height: 75px;
+  width: 75px;
+  border: solid;
+  border-width: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.yeild6th{
+  font-size: 25px;
+}
