@@ -44,7 +44,8 @@ class Model extends Component {
   }
 
   render() {
-    console.log("the props for rendering", this.props.modelData[0])
+    console.log("this.props.model", this.props.modelData)
+  if(!this.state.loading){
     return (
         <MuiThemeProvider>
         <div>
@@ -53,7 +54,7 @@ class Model extends Component {
           </header>
           <AppBar title="the coffee app" style={styles.appbarStyle} iconElementLeft={<div className="header-logo"/>}/>
           <div className="modelData-body">
-            <Paper className="model-frame" zDepth={10}>
+            <Paper className="model-frame" zDepth={3}>
               <div className="yields-header">
                 <div className="yield-title-container">
                   <div className="yield-title">Y I E L D S</div>
@@ -65,7 +66,7 @@ class Model extends Component {
 
               <div className="yield-box">
                 <div className="yield-info-header">
-                  <div className="yield-location">Predicted coffee yeilds for: </div>
+                  <div className="yield-location">Predicted coffee yields for: </div>
                   <div className="yield-coord-box">
                     <div className="latitude-box">
                       <label/>latitude:
@@ -79,7 +80,7 @@ class Model extends Component {
                 </div>
                 <div className="yield-info-graph">
                   <div className="yield-graph-a">
-                  <Yield width={350} height={180} yMax={7}/>
+                  <Yield data={this.props.modelData} width={350} height={180} yMax={this.props.modelData[5].yield*1.161}/>
                   </div>
                   <div className="yield-graph-b">
                   </div>
@@ -92,6 +93,12 @@ class Model extends Component {
       </MuiThemeProvider>
       );
     }
+    else {
+      return (
+        <Loader/>
+      )
+    }
+  }
 }
 
 

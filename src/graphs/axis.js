@@ -126,6 +126,8 @@ export default ({
           numTicks={numTicksForHeight(height)}
           label={'Avg. Rainfall Monthly (mm)'}
           tickTextFontSize={10}
+          stroke="#1b1a1e"
+          tickStroke="red"
           />
 
         <AxisBottom

@@ -1,6 +1,12 @@
 
 const defaultState = {
-  modelData: [0, 0, 0, 1, 2],
+  modelData: [
+    {year: 1, yield: 0},
+    {year: 2, yield: 0},
+    {year: 3, yield: 0},
+    {year: 4, yield: 1},
+    {year: 5, yield: 2.5},
+    {year: 6, yield: 3}],
   data: {dt: [ { month: 1, rain: 40 },
   { month: 2, rain: 36 },
   { month: 3, rain: 48 },

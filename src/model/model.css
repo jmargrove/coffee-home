@@ -106,7 +106,7 @@
 
 .yield-info-graph{
   flex: 5;
-  background-color: red;
+  background-color: transparent;
   display: flex;
   flex-direction: column;
 }
@@ -118,7 +118,7 @@
 
 .yield-graph-a{
   flex: 2;
-  background-color: orange;
+  background-color: transparent;
 }
 .yield-graph-b{
   flex: 2;
