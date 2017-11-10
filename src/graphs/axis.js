@@ -2,11 +2,11 @@ import React from 'react';
 import { AxisLeft, AxisBottom } from '@vx/axis';
 import { Group } from '@vx/group';
 import {scaleLinear } from '@vx/scale'
-import { AreaClosed, LinePath, Bar } from '@vx/shape';
+import { AreaClosed, LinePath } from '@vx/shape';
 import { curveMonotoneX } from '@vx/curve';
-import { LinearGradient } from '@vx/gradient';
-import { Grid } from '@vx/grid';
-import { curveBasis } from '@vx/curve'
+// import { LinearGradient } from '@vx/gradient';
+// import { Grid } from '@vx/grid';
+// import { curveBasis } from '@vx/curve'
 import { ScaleSVG } from '@vx/responsive';
 import './axis.css'
 
@@ -17,9 +17,9 @@ function numTicksForHeight(height) {
 }
 
 function numTicksForWidth(width) {
-  if (width <= 300) return 2;
-  if (300 < width && width <= 400) return 5;
-  return 10;
+  // if (width <= 300) return 2;
+  // if (300 < width && width <= 400) return 5;
+  return 12;
 }
 
 

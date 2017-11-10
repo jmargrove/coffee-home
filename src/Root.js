@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import PropTypes from 'prop-types'
+
 /////---- routes----////
 import App from './App.js'
 import MainPage from './mainpage/mainpage.js'
@@ -8,7 +8,6 @@ import Rainfall from './rainfall/rainfall.js'
 import UserInput from './user-input/user-input.js'
 import Model from './model/model.js'
 
-import { connect } from 'react-redux';
 
 const Routing = (props) => (
   <BrowserRouter>

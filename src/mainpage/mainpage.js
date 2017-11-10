@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
-import Paper from 'material-ui/Paper';
+
 import RaisedButton from 'material-ui/RaisedButton';
 import './mainpage.css';
 import MapLoad from './../map-load/map-load.js'

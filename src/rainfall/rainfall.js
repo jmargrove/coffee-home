@@ -4,17 +4,17 @@ import AppBar from 'material-ui/AppBar';
 import './rainfall.css';
 import styles from './style.json'
 import { connect } from 'react-redux';
-import { nextImage } from './../action/actions.js';
-import DataContain from './../data-contain/data-contain.js'
-import CircularProgress from 'material-ui/CircularProgress';
-import BarChart from './../graphs/line.js'
-import Pies from './../graphs/vxPie.js'
+// import { nextImage } from './../action/actions.js';
+// import DataContain from './../data-contain/data-contain.js'
+// import CircularProgress from 'material-ui/CircularProgress';
+// import BarChart from './../graphs/line.js'
+// import Pies from './../graphs/vxPie.js'
 import Axis from './../graphs/axis.js'
 import queryString  from 'query-string'
 import { postReq } from './../action/actions.js';
 import Paper from 'material-ui/Paper'
-import { withScreenSize } from '@vx/responsive';
-import  PieChart  from './../graphs/line.js'
+// import { withScreenSize } from '@vx/responsive';
+// import  PieChart  from './../graphs/line.js'
 import { Doughnut } from 'react-chartjs-2';
 import Loader from './../load-page/load-page.js'
 
@@ -174,7 +174,7 @@ class Rainfall extends Component {
               <div className="top-data">
                 <div className="top-soil-pie">
                   <div className="pie-box">
-                    // main graph
+
                   </div>
                 </div>
                 <div className="top-soil-info">
@@ -193,7 +193,7 @@ class Rainfall extends Component {
                   <div className="sub-soil-BD">Bulk density: {this.props.data.sub_bulk_density}</div>
                 </div>
                 <div className="sub-soil-pie">
-                  // the pie
+                
                 </div>
 
               </div>

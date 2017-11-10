@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
-import RaisedButton from 'material-ui/RaisedButton';
-import Paper from 'material-ui/Paper';
+// import RaisedButton from 'material-ui/RaisedButton';
+// import Paper from 'material-ui/Paper';
 import './load-page.css';
 import styles from './style.json'
-import queryString  from 'query-string'
+// import queryString  from 'query-string'
 import CircularProgress from 'material-ui/CircularProgress';
 
 class Loader extends Component {
