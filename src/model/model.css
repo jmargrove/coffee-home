@@ -115,12 +115,11 @@
   background-color: green;
 }
 
-
 .yield-graph-a{
   flex: 2;
   background-color: transparent;
 }
 .yield-graph-b{
   flex: 2;
-  background-color: purple;
+  background-color: white;
 }

@@ -1,5 +1,6 @@
 
 const defaultState = {
+  userDataInput: {shadeValue: 30, yieldValue: 30, slopeValue: 5, irrigationValue: false},
   modelData: [
     {year: 1, yield: 0},
     {year: 2, yield: 0},
@@ -47,7 +48,19 @@ let count = -1
 
 //// the reducers
 const reducer = (state = defaultState, action) => {
-  if (action.type === 'MODELED_DATA') {
+  if (action.type === 'IRRIGATION_CHECKBOX') {
+    return ({...state, userDataInput: {...state.userDataInput, irrigationValue: !state.userDataInput.irrigationValue}})
+  }
+  else if (action.type === 'SLOPE_PERCENTAGE') {
+    return ({...state, userDataInput: {...state.userDataInput, slopeValue: action.slope}})
+  }
+  else if (action.type === 'YIELD_PER_HA') {
+    return ({...state, userDataInput: {...state.userDataInput, yieldValue: action.yield}})
+  }
+  else if (action.type === 'SHADE_PERCENTAGE') {
+    return ({...state, userDataInput: {...state.userDataInput, shadeValue: action.shade}})
+  }
+  else if (action.type === 'MODELED_DATA') {
     console.log("reducer fired....")
     return ({...state, modelData: [...action.modelData]})
   }

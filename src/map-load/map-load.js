@@ -32,6 +32,8 @@ class MapLoad extends Component {
         mapTypeId: 'terrain',
         styles: apiSTYLE,
       });
+      /// working on geocoding
+      var geocoder = new google.maps.Geocoder;
 
       var marker = new google.maps.Marker({
          position: myLatlng,

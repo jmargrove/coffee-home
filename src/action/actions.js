@@ -27,3 +27,33 @@ export const modelData = (dt) => {
     modelData: dt,
   })
 }
+
+
+export const shadePercentage = (s) => {
+
+  return ({
+    type: 'SHADE_PERCENTAGE',
+    shade: s,
+  })
+}
+
+
+export const yieldPerHa = (y) => {
+  return ({
+    type: 'YIELD_PER_HA',
+    yield: y,
+  })
+}
+export const irrigationCheckBox = (i) => {
+  return ({
+    type: 'IRRIGATION_CHECKBOX',
+    irr: i,
+  })
+}
+export const slopePercentage= (s) => {
+
+  return ({
+    type: 'SLOPE_PERCENTAGE',
+    slope: s,
+  })
+}

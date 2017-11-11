@@ -4,7 +4,7 @@ import './index.css';
 import { createStore } from 'redux';
 import {Provider} from 'react-redux'
 import reducer from './reducers/reducers';
-import Routing  from './Root.js'
+import Routing from './Root.js'
 
 let store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ &&
   window.__REDUX_DEVTOOLS_EXTENSION__());

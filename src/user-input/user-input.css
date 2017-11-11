@@ -5,7 +5,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: blue;
+  background-color: transparent;
 }
 
 @keyframes example {
@@ -26,18 +26,26 @@
 }
 
 .user-location-info{
-  flex: 0.5;
-  background-color: purple;
+  flex: 2;
+  background-color: transparent;
+  border-bottom: solid;
+  border-width: thin;
+  margin-right: 5%;
+  margin-left: 5%;
 }
-.user-shanding-info{
+.user-yield-info{
   flex: 1;
   background-color: transparent;
+  margin-left: 5%;
+  margin-right: 5%;
+  border-bottom: solid;
+  border-width: thin;
   display: flex;
   flex-direction: column;
 }
 
 .user-data-info{
-  background-color: AliceBlue;
+  background-color: transparent;
   flex: 1;
   display: flex;
   justify-content: space-around;
@@ -45,16 +53,17 @@
 }
 .user-data-type{
   flex: 3;
-  background-color: Aqua;
+  background-color: transparent;
   margin-left: 5%;
   font-size: 100%;
-  max-width: 100px;
+  max-width: 130px;
 }
 .user-data-value-container{
-  flex: 1.25;
+  background-color: white;
+  flex: 1.9;
   display: flex;
   flex-direction: row;
-  max-width: 55px;
+  max-width: 99px;
 }
 
 .user-data-value{
@@ -63,52 +72,68 @@
   font-size: 130%
 }
 .user-data-unit{
-  flex: 1;
+  flex: 3.4;
   text-align: left;
   background-color: transparent;
   font-weight: bold;
-  font-size: 80%
+  font-size: 80%;
+  margin-left: 2%;
 }
 
 .shade-blank-space{
   background-color: transparent;
-  flex: 5;
+  flex: 2;
 }
 
 .mat-ui-slide-bar{
   background-color: transparent;
-  flex: 1;
+  flex: .5;
+  margin-right: 10%;
+  margin-left: 10%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
-.slider:first-child{
-  margin-top:0 !important;
-}
-.slider{
+
+.user-shading-info{
   flex: 1;
-  margin-left: 10%;
-  margin-right: 10%;
-  color: "black";
-
+  background-color: transparent;
+  margin-left: 5%;
+  margin-right: 5%;
+  border-bottom: solid;
+  border-width: thin;
+  display: flex;
+  flex-direction: column;
 }
-
 
 .user-irrigation-info{
   flex: 1;
-  background-color: orange;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  margin-left: 5%;
+  margin-right: 5%;
+  border-bottom: solid;
+  border-width: thin;
 }
-.user-yield-info{
-  flex: 1;
-  background-color: yellow;
+
+.user-irrigation-input-container{
+  display: flex;
+  background-color: transparent;
+  justify-content: space-between;
 }
+
 .user-slope-info{
   flex: 1;
-  background-color: lightblue;
+  background-color: transparent;
+  margin-left: 5%;
+  margin-right: 5%;
+  border-bottom: solid;
+  border-width: thin;
+  display: flex;
+  flex-direction: column;
 }
-.additional-local-info{
-  flex: 2;
-  background-color: lighttransparent;
-}
+
 
 .model-button{
   flex: 0.7;
@@ -116,4 +141,46 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+
+.user-data-type-check{
+  background-color: transparent;
+  margin-left: 10%;
+  margin-right: 5%;
+}
+
+.additional-local-info{
+  flex: 3;
+  background-color: #e8e8ee;
+  display: flex;
+  flex-direction: column;
+}
+
+.advanced-user-input{
+  font-size: 12px;
+  text-align: center;
+  background-color: transparent;
+  margin-top: 5%;
+  margin-left: 15%;
+  margin-right: 15%;
+  border-bottom: solid;
+  border-width: thin;
+}
+
+.statement-to-user{
+  font-size: 10px;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.user-data{
+  font-size: 12px;
+  margin-left: 5%;
+}
+.data{
+  font-size: 10px;
+  background-color: transparent;
+  float: right;
+  margin-right: 10%;
 }

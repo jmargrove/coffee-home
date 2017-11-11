@@ -18,6 +18,7 @@ const mapDispatchTo = (dispatch) => ({
 
 const mapStateData = (state) => ({
   modelData: state.modelData,
+  userData: state.userDataInput,
 })
 
 class Model extends Component {
@@ -44,8 +45,8 @@ class Model extends Component {
   }
 
   render() {
-    console.log("this.props.model", this.props.modelData)
-  if(!this.state.loading){
+    console.log("this props model", this.props.userData)
+
     return (
         <MuiThemeProvider>
         <div>
@@ -83,6 +84,18 @@ class Model extends Component {
                   <Yield data={this.props.modelData} width={350} height={180} yMax={this.props.modelData[5].yield*1.161}/>
                   </div>
                   <div className="yield-graph-b">
+                    <div>
+                      Shade: {this.props.userData.shadeValue}
+                    </div>
+                    <div>
+                      Yield: {this.props.userData.yieldValue/10}
+                    </div>
+                    <div>
+                      Irrigation: {this.props.userData.irrigationValue ? "irrigated" : "no irrigation"}
+                    </div>
+                    <div>
+                      Slope: {this.props.userData.slopeValue}
+                    </div>
                   </div>
                 </div>
                 <div className="yield-info-explanation"></div>
@@ -93,12 +106,8 @@ class Model extends Component {
       </MuiThemeProvider>
       );
     }
-    else {
-      return (
-        <Loader/>
-      )
-    }
-  }
+
+
 }
 
 
