@@ -7,7 +7,7 @@ import MainPage from './mainpage/mainpage.js'
 import Rainfall from './rainfall/rainfall.js'
 import UserInput from './user-input/user-input.js'
 import Model from './model/model.js'
-
+import SimpleResults from './simple-results/simple-results.js'
 
 const Routing = (props) => (
   <BrowserRouter>
@@ -18,6 +18,7 @@ const Routing = (props) => (
         <Route path="/rainfall" component={Rainfall}/>
         <Route path="/user-input" component={UserInput}/>
         <Route path="/model" component={Model}/>
+        <Route path="/simple-results" component={SimpleResults}/>
       </Switch>
     </div>
   </BrowserRouter>

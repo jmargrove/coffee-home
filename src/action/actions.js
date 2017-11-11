@@ -57,3 +57,11 @@ export const slopePercentage= (s) => {
     slope: s,
   })
 }
+
+export const upAddress= (a) => {
+  console.log("the addresses are working...")
+  return ({
+    type: 'ADDRESS_UPDATE',
+    address: a,
+  })
+}

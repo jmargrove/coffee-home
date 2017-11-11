@@ -1,0 +1,58 @@
+.modelData-body{
+  width: 100vw;
+  height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: transparent;
+}
+
+.model-frame{
+  position: relative;
+  height: 100%;
+  width: 97%;
+  animation-name: example;
+  animation-duration: 0.6s;
+  display: flex;
+  justify-content: center;
+}
+
+.key-yield-container{
+  border: solid;
+  border-width: 15px;
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.yield-circle-container{
+  display: flex;
+  justify-content: center;
+}
+
+.key-yield-unit-container{
+  display: flex;
+  justify-content: space-around;
+
+}
+.key-yield-number{
+    font-size: 55px;
+}
+.key-yield-units{
+  font-size: 15px;
+}
+
+.model-button{
+  display: flex;
+  justify-content: space-around;
+}
+
+.statement{
+  background-color: red;
+  margin: 5%;
+}

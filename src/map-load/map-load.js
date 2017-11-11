@@ -4,7 +4,7 @@ import './map-load.css';
 import { upCoords } from './../action/actions.js'
 import apiSTYLE from './stylesheet.json'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
+import { upAddress } from './../action/actions'
 var GoogleMapsLoader = require('google-maps');
 
 const mapImagesTo = (state) => ({
@@ -13,11 +13,12 @@ const mapImagesTo = (state) => ({
 
 const mapDispatchToCoords = (dispatch) => ({
   updateCoords: (coords) => dispatch(upCoords(coords)),
+  updateLocation: (address) => dispatch(upAddress(address))
 })
 
 
 class MapLoad extends Component {
-  gooLoad(x, y, fun, z, zoom){
+  gooLoad(x, y, fun, z, zoom, locationUpdater){
     /// google maps loader
     GoogleMapsLoader.KEY = 'AIzaSyD-lTpPY74D4voFl81v3HZ_JeN45sQZ_T4';
     GoogleMapsLoader.LIBRARIES = ['geometry', 'places']
@@ -33,7 +34,6 @@ class MapLoad extends Component {
         styles: apiSTYLE,
       });
       /// working on geocoding
-      var geocoder = new google.maps.Geocoder;
 
       var marker = new google.maps.Marker({
          position: myLatlng,
@@ -45,6 +45,27 @@ class MapLoad extends Component {
       google.maps.event.addListener(map, "click", function (e) {
         fun({lat: e.latLng.lat(), lng: e.latLng.lng(), zoom: map.zoom})
       });
+
+
+      //////////////////////////////////////////////////////////////////////////
+      /// GEO CODER getting the nearest address.
+      var geocoder = new google.maps.Geocoder;
+      var infowindow = new google.maps.InfoWindow;
+
+      google.maps.event.addListener(map, "click", function (e) {
+        let latlng = {lat: e.latLng.lat(), lng: e.latLng.lng()}
+        // geocodeLatLng(geocoder, map, infowindow, latlng);
+      });
+
+      function geocodeLatLng(geocoder, map, infowindow, latlng) {
+        geocoder.geocode({'location': latlng}, function(results, status) {
+          locationUpdater(
+            {country: results[0].address_components[4].long_name,
+            state: results[0].address_components[3].long_name
+            })
+        }
+      );
+      }
         /////
         /////
         ////////////////////////////////////////////////////////////////////////
@@ -118,7 +139,8 @@ class MapLoad extends Component {
               this.props.coords.lng,
               this.props.updateCoords,
               this.props.coords.zoom,
-              this.props.zoom)}
+              this.props.zoom,
+              this.props.updateLocation)}
             }
             </script>
         </div>

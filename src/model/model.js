@@ -46,7 +46,7 @@ class Model extends Component {
 
   render() {
     console.log("this props model", this.props.userData)
-
+    if(!this.state.loading){
     return (
         <MuiThemeProvider>
         <div>
@@ -106,9 +106,11 @@ class Model extends Component {
       </MuiThemeProvider>
       );
     }
-
-
-}
+   else {
+      return (<Loader/>)
+    }
+  }
+  }
 
 
 //

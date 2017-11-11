@@ -28,7 +28,8 @@ const mapStateToProps = (state) => ({
   yieldValue: state.userDataInput.yieldValue,
   shadeValue: state.userDataInput.shadeValue,
   irrigationValue: state.userDataInput.irrigationValue,
-  slopeValue: state.userDataInput.slopeValue
+  slopeValue: state.userDataInput.slopeValue,
+  address: state.address
 })
 
 
@@ -39,7 +40,7 @@ class UserInput extends Component {
       const coordObj = (queryString.parse(this.props.location.search))
       return <RaisedButton
         label="Model"
-        href={`/model?lat=${Math.round(Number(coordObj.lat)*100)/100}
+        href={`/simple-results?lat=${Math.round(Number(coordObj.lat)*100)/100}
         &lng=${Math.round(Number(coordObj.lng)*100)/100}
         &yield=${Math.round(Number(this.props.yieldValue))}
         &shade=${Number(this.props.shadeValue)}
@@ -53,6 +54,7 @@ class UserInput extends Component {
   }
 
   render() {
+    console.log("the props", this.props)
     return (
       <MuiThemeProvider>
       <div>

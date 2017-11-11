@@ -19,8 +19,6 @@ const mapImagesTo = (state) => ({
 })
 
 class MainPage extends Component {
-
-
   renderDataButton () {
     if(this.refs.latitude && this.refs.longitude) {
       return <RaisedButton
@@ -36,7 +34,6 @@ class MainPage extends Component {
   renderModelButton () {
     if(this.refs.latitude && this.refs.longitude) {
       return <RaisedButton
-
         label="Model"
         href={`/user-input?lat=${this.props.coords.lat}&lng=${this.props.coords.lng}`}
         />;
@@ -46,7 +43,6 @@ class MainPage extends Component {
   }
 
   render() {
-    console.log(this.props.data)
     return (
       <MuiThemeProvider>
         <div>
@@ -59,12 +55,10 @@ class MainPage extends Component {
           <div className="search-location-body">
             <div className="container3">
               <div className="select-location-text">S e l e c t - L o c a t i o n</div>
-
             </div>
             <div className="map-div">
               <MapLoad/>
             </div>
-
               <div className="coord-box">
                 <form className="the-coords">
                 <label>lat:</label>

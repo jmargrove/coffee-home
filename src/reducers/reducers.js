@@ -40,7 +40,8 @@ const defaultState = {
     { soil_fraction: 'clay', percentage: 25 }
   ]
   },
-  coords: {lat: 41.459, lng: 1.6369, zoom: 7}
+  coords: {lat: 41.459, lng: 1.6369, zoom: 7},
+  address: {add: "spain, and the rest"},
 }
 
 const months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
@@ -48,6 +49,10 @@ let count = -1
 
 //// the reducers
 const reducer = (state = defaultState, action) => {
+  if (action.type === 'ADDRESS_UPDATE') {
+    console.log(action.address)
+    return ({...state, address: action.address})
+  }
   if (action.type === 'IRRIGATION_CHECKBOX') {
     return ({...state, userDataInput: {...state.userDataInput, irrigationValue: !state.userDataInput.irrigationValue}})
   }
