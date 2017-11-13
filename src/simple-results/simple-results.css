@@ -41,18 +41,83 @@
 
 }
 .key-yield-number{
-    font-size: 55px;
+  font-size: 55px;
 }
 .key-yield-units{
   font-size: 15px;
 }
 
-.model-button{
+.model-user-information{
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  background-color: transparent;
+  flex: 1;
+}
+
+.user-input{
+  flex: 1;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+
+}
+.yield-info{
+  flex: 1;
+  background-color: transparent;
+  font-size: 120%;
+  margin-left: 10%;
+
+}
+.shade-info{
+  flex: 1;
+  background-color: transparent;
+  font-size: 120%;
+  margin-left: 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+.irr-info{
+  flex: 1;
+  background-color: transparent;
+  font-size: 120%;
+  margin-left: 10%;
+
+}
+.slope-info{
+  flex: 1;
+  background-color: transparent;
+  font-size: 120%;
+  margin-left: 10%;
+}
+
+.more-modelling-options{
+  flex: 1
 }
 
 .statement{
-  background-color: red;
+  background-color: transparent;
   margin: 5%;
+  background-color: green;
+  font-size: 150%;
+}
+
+
+.shade-model-button{
+  width: 20%;
+  height: 90%;
+  margin-right: 2%;
+  background-color: white;
+  border-radius: 2px;
+  box-shadow: 2 2 2 grey;
+  font-size: 55%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: block;
+  background: #4E9CAF;
+  text-align: center;
+  border-radius: 5px;
+  font-weight: bold;
 }

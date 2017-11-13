@@ -128,7 +128,7 @@ class MapLoad extends Component {
 
   render() {
     return (
-      <div>
+      <div className="map-container-div">
       <MuiThemeProvider>
         <div>
           <input id="pac-input" className="controls" type="text" placeholder="Search location..."/>
@@ -138,9 +138,7 @@ class MapLoad extends Component {
             this.gooLoad(this.props.coords.lat,
               this.props.coords.lng,
               this.props.updateCoords,
-              this.props.coords.zoom,
-              this.props.zoom,
-              this.props.updateLocation)}
+              this.props.coords.zoom)}
             }
             </script>
         </div>

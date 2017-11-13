@@ -5,7 +5,8 @@ import TextField from 'material-ui/TextField';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import './login-page.css';
-import styles from './style.json'
+import styles from './style.json';
+import FacebookLogin from 'react-facebook-login';
 
 class Login extends Component {
   render() {
@@ -32,6 +33,11 @@ class Login extends Component {
             <RaisedButton >Facebook</RaisedButton>
             <RaisedButton >Google</RaisedButton>
           </div>
+
+          <FacebookLogin
+            appId="1088597931155576"
+            autoLoad={true}
+            fields="name,email,picture"/>,
         </Paper>
       </div>
     </MuiThemeProvider>

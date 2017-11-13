@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
-
+import { Link } from 'react-router-dom'
 import RaisedButton from 'material-ui/RaisedButton';
 import './mainpage.css';
 import MapLoad from './../map-load/map-load.js'
@@ -19,10 +19,10 @@ const mapImagesTo = (state) => ({
 })
 
 class MainPage extends Component {
+
   renderDataButton () {
     if(this.refs.latitude && this.refs.longitude) {
       return <RaisedButton
-
         label="Data"
         href={`/rainfall?lat=${this.props.coords.lat}&lng=${this.props.coords.lng}`}
         />;
@@ -33,10 +33,11 @@ class MainPage extends Component {
 
   renderModelButton () {
     if(this.refs.latitude && this.refs.longitude) {
-      return <RaisedButton
-        label="Model"
-        href={`/user-input?lat=${this.props.coords.lat}&lng=${this.props.coords.lng}`}
-        />;
+
+      return (
+        <Link to= {`/user-input?lat=${this.props.coords.lat}&lng=${this.props.coords.lng}`}>
+          <RaisedButton label="Model"/>
+      </Link>);
     } else {
       return <RaisedButton label="Model" disabled />;
     }

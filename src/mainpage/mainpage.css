@@ -16,7 +16,10 @@
 }
 
 .map-div{
-  flex: 3
+  flex: 3.5;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
 }
 
 .coord-box{
@@ -50,6 +53,7 @@
   flex-direction: column;
   justify-content: space-between;
   background-color: transparent;
+  align-items: center;
 }
 
 .the-coords{
@@ -58,14 +62,15 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-
+  max-width: 600px;
 }
 .go-buttons{
-  flex: .5;
+  flex: .7;
   background-color: transparent;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  width: 50%;
 }
 
 .lat-input{
@@ -77,4 +82,10 @@
   width: 33%;
   height: 20px;
   font-size: 150%;
+}
+
+.more-modelling-options{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -1,12 +1,19 @@
 #map{
   position: absolute;
-  width: 100%;
+  max-width: 700px;
+  width: 100vw;
   height: 57%;
   background-color: grey;
 }
 
 #global{
 
+}
+
+.map-container-div{
+  max-width: 700px;
+  width: 100vw;
+  height: 57%;
 }
 
 

@@ -1,6 +1,27 @@
 
 const defaultState = {
-  userDataInput: {shadeValue: 30, yieldValue: 30, slopeValue: 5, irrigationValue: false},
+  optimizedData: [
+    {shade: 1, yieldIrrFALSE: 2},
+    {shade: 1, yieldIrrFALSE: 2},
+    {shade: 1, yieldIrrFALSE: 2},
+    {shade: 1, yieldIrrFALSE: 2},
+    {shade: 1, yieldIrrFALSE: 2},
+    {shade: 1, yieldIrrFALSE: 2},
+    {shade: 1, yieldIrrFALSE: 2},
+    {shade: 1, yieldIrrFALSE: 2},
+    {shade: 1, yieldIrrFALSE: 2},
+    {shade: 1, yieldIrrFALSE: 2},
+    {shade: 1, yieldIrrFALSE: 2},
+    {shade: 1, yieldIrrFALSE: 2},
+    {shade: 1, yieldIrrFALSE: 2},
+    {shade: 1, yieldIrrFALSE: 2},
+    {shade: 1, yieldIrrFALSE: 2},
+    {shade: 1, yieldIrrFALSE: 2},
+    {shade: 1, yieldIrrFALSE: 2},
+    {shade: 1, yieldIrrFALSE: 2},
+    {shade: 1, yieldIrrFALSE: 2}
+   ],
+  userDataInput: {shadeValue: 0, yieldValue: 30, slopeValue: 5, irrigationValue: false},
   modelData: [
     {year: 1, yield: 0},
     {year: 2, yield: 0},
@@ -49,7 +70,11 @@ let count = -1
 
 //// the reducers
 const reducer = (state = defaultState, action) => {
-  if (action.type === 'ADDRESS_UPDATE') {
+  if (action.type === 'OPTIMIZED_DATA') {
+    console.log("inside the reducer", action.data)
+    return ({...state, optimizedData: action.data})
+  }
+  else if (action.type === 'ADDRESS_UPDATE') {
     console.log(action.address)
     return ({...state, address: action.address})
   }

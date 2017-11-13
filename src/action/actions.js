@@ -65,3 +65,12 @@ export const upAddress= (a) => {
     address: a,
   })
 }
+
+
+export const optimizedModel = (d) => {
+  console.log("optimized action working")
+  return ({
+    type: 'OPTIMIZED_DATA',
+    data: d
+  })
+}

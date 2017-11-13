@@ -16,6 +16,7 @@ import { slopePercentage } from './../action/actions.js'
 import { connect } from 'react-redux'
 import Checkbox from 'material-ui/Checkbox';
 import MapLoad from './../map-load/map-load.js'
+import { Link } from 'react-router-dom';
 
 const mapDispatchTo = (dispatch) => ({
   yieldUpdate: (yields) => dispatch(yieldPerHa(yields)),
@@ -38,16 +39,11 @@ class UserInput extends Component {
   renderModelButton () {
     if(true) {
       const coordObj = (queryString.parse(this.props.location.search))
-      return <RaisedButton
-        label="Model"
-        href={`/simple-results?lat=${Math.round(Number(coordObj.lat)*100)/100}
-        &lng=${Math.round(Number(coordObj.lng)*100)/100}
-        &yield=${Math.round(Number(this.props.yieldValue))}
-        &shade=${Number(this.props.shadeValue)}
-        &irr=${Number(this.props.irrigationValue)}
-        &slope=${Number(this.props.slopeValue)}
-        `}
-        />;
+      return (
+        <Link to={`/simple-results?lat=${Number(coordObj.lat)}&lng=${Number(coordObj.lng)}`}>
+          <RaisedButton label="Model"/>
+        </Link>
+      );
     } else {
       return <RaisedButton label="Model" disabled />;
     }
@@ -106,10 +102,10 @@ class UserInput extends Component {
           </div>
           <div className="user-shading-info">
           <div className="user-data-info">
-              <div className="user-data-type">S H A D I N G :</div>
+              <div className="user-data-type">S H A D I N G  (LAI):</div>
               <div className="user-data-value-container">
-                <div className="user-data-value">{this.props.shadeValue}</div>
-                <div className="user-data-unit">%</div>
+                <div className="user-data-value">{this.props.shadeValue/10}</div>
+                <div className="user-data-unit">m-2 m-2</div>
               </div>
 
           </div>
@@ -117,7 +113,7 @@ class UserInput extends Component {
             <div>
               <Slider
               onChange={(e) => this.props.shadeUpdate(e)}
-              defaultValue={30}
+              defaultValue={0}
               max={60}
                 railStyle={{
                   backgroundColor: 'white',
