@@ -42,9 +42,9 @@ class MapLoad extends Component {
          markers: [],
        });
 
-      google.maps.event.addListener(map, "click", function (e) {
-        fun({lat: e.latLng.lat(), lng: e.latLng.lng(), zoom: map.zoom})
-      });
+      // google.maps.event.addListener(map, "click", function (e) {
+      //
+      // });
 
 
       //////////////////////////////////////////////////////////////////////////
@@ -55,6 +55,7 @@ class MapLoad extends Component {
       google.maps.event.addListener(map, "click", function (e) {
         let latlng = {lat: e.latLng.lat(), lng: e.latLng.lng()}
         geocodeLatLng(geocoder, map, infowindow, latlng);
+        fun({lat: e.latLng.lat(), lng: e.latLng.lng(), zoom: map.zoom})
       });
 
       function geocodeLatLng(geocoder, map, infowindow, latlng) {
@@ -122,6 +123,9 @@ class MapLoad extends Component {
       });
     });
   }
+  state = {
+    flag: false
+  }
 
   componentDidMount(){
     this.gooLoad(this.props.coords.lat,
@@ -130,6 +134,19 @@ class MapLoad extends Component {
       this.props.coords.zoom,
       this.props.updateLocation
     )
+    this.state.flag = true;
+  }
+
+  afterMountingMap(theProps){
+    console.log(theProps)
+    if (this.state.flag) {
+      this.gooLoad(theProps.coords.lat,
+        theProps.coords.lng,
+        theProps.updateCoords,
+        theProps.coords.zoom,
+        theProps.updateLocation
+      )
+    }
   }
 
   render() {
@@ -139,7 +156,10 @@ class MapLoad extends Component {
         <div>
           <input id="pac-input" className="controls" type="text" placeholder="Search location..."/>
           <div id="map"/>
+            {
+            this.afterMountingMap(this.props)
 
+            }
         </div>
       </MuiThemeProvider>
       </div>
