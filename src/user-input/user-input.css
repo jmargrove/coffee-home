@@ -26,6 +26,80 @@
   flex-direction: column;
 }
 
+.title-box{
+  background-color: transparent;
+  margin-right: 5%;
+  margin-left: 5%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.location-map{
+  flex: 1;
+  background-color: transparent;
+  display: flex;
+  border: solid;
+  border-width: thin;
+  margin: 1%;
+}
+
+.location-info{
+  flex: 1.5;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  margin-left: 5%;
+  margin-top: 2%;
+}
+
+.coords{
+  font-size: 130%;
+  font-weight: lighter;
+  margin-right: 20%;
+}
+
+
+.latlng-lable{
+  font-size: 20px;
+  font-weight: bold;
+  margin-right: 10%;
+}
+.CR-box{
+  flex: 1;
+  background-color: transparent;
+  display: flex;
+  justify-content: start;
+}
+.location-class{
+  font-size: 15px;
+  font-weight: bold;
+  margin-right: 10%
+}
+.location-var{
+  font-size: 100%;
+  font-weight: thin;
+}
+.userdata-coords{
+  display: flex;
+  justify-content: space-between;
+}
+
+.coords-box{
+  border-bottom: solid;
+  border-width: thin;
+}
+
+.title-of-page{
+  font-size: 22px;
+  margin-top: 1%;
+  text-align: center;
+  background-color: transparent;
+  border-top: solid;
+  border-bottom: solid;
+  border-width: thin;
+}
+
 .user-location-info{
   flex: 2;
   background-color: transparent;
@@ -33,6 +107,8 @@
   border-width: thin;
   margin-right: 5%;
   margin-left: 5%;
+  display: flex;
+
 }
 .user-yield-info{
   flex: 1;
@@ -140,7 +216,7 @@
   flex: 0.7;
   background-color: transparent;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -152,8 +228,8 @@
 }
 
 .additional-local-info{
-  flex: 3;
-  background-color: #e8e8ee;
+  flex: 1;
+  background-color: transparent;
   display: flex;
   flex-direction: column;
 }

@@ -12,6 +12,13 @@ import './optimize.css'
 import { optimizedModel } from './../action/actions'
 import { Line } from 'react-chartjs-2';
 
+// Management advice.
+// The predicted max maximum yield at {region} in {country} coords (x,y) is XX with
+// XX shade LIA conditions. Our model suggets that you {add/remove/leep the same}
+// Shade trees to a LIA or {XX}
+//
+
+
 class Optimize extends Component {
   // send request to server for optimiased data
   state = {
@@ -66,8 +73,8 @@ class Optimize extends Component {
   }
 
   render() {
-    console.log("The optimization", this.props.optimizedData[0].yieldIrrFALSE)
-    if(!this.state.loading){
+    console.log("The optimization", this.props)
+    // if(!this.state.loading){
     return (
         <MuiThemeProvider>
         <div>
@@ -77,6 +84,7 @@ class Optimize extends Component {
           <AppBar title="the coffee app" style={styles.appbarStyle} iconElementLeft={<div className="header-logo"/>}/>
           <div className="modelData-body">
             <Paper className="optimized-data-frame" zDepth={1}>
+              <div className="optimized-shade-title"> O P T I M I Z E D - S H A D E - C O N D I T I O N S</div>
               <Paper className="Not-irrigated-graph-container" zDepth={1}>
               <Line
               width={1}
@@ -125,23 +133,28 @@ class Optimize extends Component {
               />
               </Paper>
               <Paper className="extra-info-shade">
-                There optimal shade is already being applied.
+                The predicted max maximum yield at {this.props.address[1]} in {"country"} coords (x,y) is XX with
+                XX shade LIA conditions. Our model suggets that you {"add/remove/leep the same"}
+                Shade trees to a LIA or {"XX"}
+
               </Paper>
             </Paper>
           </div>
         </div>
       </MuiThemeProvider>
-    )}
-    else {
-      return <Loader/>
-    }
+    )
+  // }
+  //   else {
+  //     return <Loader/>
+  //   }
   }
 }
 
 const mapStateToProps = (state) => ({
   coords: state.coords,
   userInput: state.userDataInput,
-  optimizedData: state.optimizedData
+  optimizedData: state.optimizedData,
+  address: state.address
 })
 
 const mapDispatchTo = (dispatch) => ({

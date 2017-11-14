@@ -11,34 +11,28 @@ import { modelData } from './../action/actions'
 import Yield from './../graphs/coffee-yeild.js'
 import './simple-results.css'
 import { Link } from 'react-router-dom'
+import Slider from 'rc-slider';
+import { yearChange } from './../action/actions'
 
-const mapDispatchTo = (dispatch) => ({
-  modelDataDisp: (dt) => dispatch(modelData(dt))
-})
+const marks = {
+  1: '1',
+  2: '2',
+  3: '3',
+  4: '4',
+  5: '5',
+  6: '6',
+};
 
-const mapStateData = (state) => ({
-  modelData: state.modelData,
-  userData: state.userDataInput,
-})
+const ordinalNumbers = [
+  {year: 1, ordinal: 'first'},
+  {year: 2, ordinal: 'second'},
+  {year: 3, ordinal: 'third'},
+  {year: 4, ordinal: 'forth'},
+  {year: 5, ordinal: 'fifth'},
+  {year: 6, ordinal: 'sixth'},
+]
 
 class SimpleResults extends Component {
-  // renderModelButton () {
-  //   if(true) {
-  //     const coordObj = (queryString.parse(this.props.location.search))
-  //     return <RaisedButton
-  //       label="Model Stats"
-  //       href={`/model?lat=${Math.round(Number(coordObj.lat)*100)/100}
-  //       &lng=${Math.round(Number(coordObj.lng)*100)/100}
-  //       &yield=${Math.round(Number(this.props.yieldValue))}
-  //       &shade=${Number(this.props.shadeValue)}
-  //       &irr=${Number(this.props.irrigationValue)}
-  //       &slope=${Number(this.props.slopeValue)}
-  //       `}
-  //       />;
-  //   } else {
-  //     return <RaisedButton label="Model" disabled />;
-  //   }
-  // }
 
   renderOptimizationButton () {
     const coordObj = (queryString.parse(this.props.location.search))
@@ -50,6 +44,14 @@ class SimpleResults extends Component {
 
   state = {
     loading: false,
+  }
+
+  ordinalFun(number){
+    return (ordinalNumbers.filter(el => {
+          if(el.year === number) {
+            return el.ordinal
+          }
+        }))[0].ordinal
   }
 
   postCoordsModel(coords){
@@ -88,35 +90,76 @@ class SimpleResults extends Component {
           <AppBar title="the coffee app" style={styles.appbarStyle} iconElementLeft={<div className="header-logo"/>}/>
           <div className="modelData-body">
             <Paper className="model-frame" zDepth={3}>
+              <div className="title-box">
+                <div className="title-of-page">M O D E L L E D - Y I E L D</div>
+              </div>
+              <div className="year-selection-title"> select the year </div>
+              <div className="year-selector">
+                <Slider
+                  marks={marks}
+                  onChange={e => this.props.yearChange(e)}
+                  dots step={1}
+                  activeDotStyle={{ borderColor: '#A63A50' }}
+                  dotStyle={{ borderColor: '#808080' }}
+                  max={6}
+                  min={1}
+                  defaultValue={5}
+                  railStyle={{
+                    backgroundColor: 'white',
+                    height : 3,
+                    border: 'solid',
+                    borderWidth: 'thin',
+                  }}
+                  trackStyle={{
+                    backgroundColor: 'black',
+                    height: 3 }}
+                  handleStyle={{
+                    borderColor: 'white',
+                    height: 13,
+                    width: 13,
+                    marginLeft: -6.5,
+                    marginTop: -5,
+                    backgroundColor: 'black',
+                  }}/>
+              </div>
+
               <div className="statement">
-                Predicted coffee yield on first crop:
+                Predicted coffee yield during the {this.ordinalFun(this.props.yearValue)} year:
               </div>
               <div className="yield-circle-container">
                 <div id="myGlower "className="key-yield-container">
                   <div className="key-yield-unit-container">
+                    <div className="key-yield-units">t ha-1</div>
                     <div className="key-yield-number">
-                    {Math.round(this.props.modelData[4].yield*10)/10}
-                    </div>
-                    <div className="key-yield-units">
-
+                      {Math.round(this.props.modelData[this.props.yearValue-1].yield*10)/10}
                     </div>
                   </div>
                 </div>
               </div>
               <div className="model-user-information">
                 <div className="user-input">
-                  <div className="yield-info">
-                    User current yield: {Number(this.props.userData.yieldValue/10)}
+                  <div className="setting-title">
+                    <div className="settings-text"> S E T T I N G S</div>
                   </div>
-                  <div className="shade-info">
-                    User current shade: {Number(this.props.userData.shadeValue/10)}
-
+                  <div className="info">
+                    <div className="label">User current yield: </div>
+                    <div className="value">{Number(this.props.userData.yieldValue/10)}</div>
+                    <div className="unit">t ha-1 y-1</div>
                   </div>
-                  <div className="irr-info">
-                    User irrigating {Number(this.props.userData.irrigationValue)}
+                  <div className="info">
+                    <div className="label">User current shade: </div>
+                    <div className="value">{Number(this.props.userData.shadeValue/10)}</div>
+                    <div className="unit">m-2 m-2</div>
                   </div>
-                  <div className="slope-info">
-                    User slope: {Number(this.props.userData.slopeValue)}
+                  <div className="info">
+                    <div className="label">User irrigating  </div>
+                    <div className="value">{Number(this.props.userData.irrigationValue)} </div>
+                    <div className="unit"></div>
+                  </div>
+                  <div className="info">
+                    <div className="label">User slope: </div>
+                    <div className="value">{Number(this.props.userData.slopeValue)}</div>
+                    <div className="unit">deg</div>
                   </div>
                 </div>
                 <div className="more-modelling-options">
@@ -135,6 +178,17 @@ class SimpleResults extends Component {
   }
 }
 
+const mapDispatchTo = (dispatch) => ({
+  modelDataDisp: (dt) => dispatch(modelData(dt)),
+  yearChange: (year) => dispatch(yearChange(year))
+})
 
+const mapStateData = (state) => ({
+  modelData: state.modelData,
+  userData: state.userDataInput,
+  yearValue: state.yearValue
+})
+
+{/* <div className="graph-window"></div> */}
 
 export default connect(mapStateData, mapDispatchTo)(SimpleResults);;

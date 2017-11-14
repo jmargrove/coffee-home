@@ -17,6 +17,8 @@ import { connect } from 'react-redux'
 import Checkbox from 'material-ui/Checkbox';
 import MapLoad from './../map-load/map-load.js'
 import { Link } from 'react-router-dom';
+import UserInfoMap from './../user-info-map/user-info-map.js'
+
 
 const mapDispatchTo = (dispatch) => ({
   yieldUpdate: (yields) => dispatch(yieldPerHa(yields)),
@@ -35,7 +37,7 @@ const mapStateToProps = (state) => ({
 
 
 class UserInput extends Component {
-
+  coordObj = (queryString.parse(this.props.location.search))
   renderModelButton () {
     if(true) {
       const coordObj = (queryString.parse(this.props.location.search))
@@ -49,6 +51,25 @@ class UserInput extends Component {
     }
   }
 
+  renderSoilButton () {
+    if(true) {
+      const coordObj = (queryString.parse(this.props.location.search))
+      return (
+        <Link to={`/rainfall?lat=${Number(coordObj.lat)}&lng=${Number(coordObj.lng)}`}>
+          <RaisedButton label="Soil-Info"/>
+        </Link>
+      );
+    } else {
+      return <RaisedButton label="Run Model" disabled />;
+    }
+  }
+
+  renderMapOnInit(){
+    return <UserInfoMap/>
+  }
+
+
+
   render() {
     console.log("the props", this.props)
     return (
@@ -60,8 +81,37 @@ class UserInput extends Component {
         <AppBar title="the coffee app" style={styles.appbarStyle} iconElementLeft={<div className="header-logo"/>}/>
         <div className="form-body">
           <Paper className="user-input-frame"zDepth={3}>
+          <div className="title-box">
+            <div className="title-of-page"> U S E R - I N P U T </div>
+          </div>
           <div className="user-location-info">
-            <div />
+            <div className="location-info">
+              <div className="coords-box">
+                <div className="userdata-coords">
+                  <div className="latlng-lable">latitude:</div>
+                  <div className="coords"> {Math.round(this.coordObj.lat*1000)/1000}
+                  </div>
+                </div>
+                <div className="userdata-coords">
+                  <div className="latlng-lable">longitude:</div>
+                  <div className="coords"> {Math.round(this.coordObj.lng*1000)/1000}</div>
+                </div>
+              </div>
+              <div className="CR-box">
+                <div className="location-class">Country: </div>
+                <div className="location-var">{this.props.address.country}</div>
+              </div>
+              <div className="CR-box">
+                <div className="location-class">Region: </div>
+                <div className="location-var">{this.props.address.region}</div>
+              </div>
+            </div>
+            <div className="location-map">
+
+                 {this.renderMapOnInit()}
+
+            </div>
+          <div/>
 
 
           </div>
@@ -182,22 +232,9 @@ class UserInput extends Component {
 
           </div>
           <div className="additional-local-info">
-          <div className="advanced-user-input">A D V A N C E D   &nbsp;  U S E R   &nbsp;  I N P U T S</div>
-          <div className="statement-to-user">To increase the accuracy of your yield estimate, add in your own environmental data.</div>
-            <div>
-            <label className="user-data">Rainfall:</label>
-              <input className="data" name="myFile" type="file"/>
-              </div>
-            <div>
-            <label className="user-data">Max-temperature:</label>
-              <input className="data" name="myFile" type="file"/>
-              </div>
-            <div>
-            <label className="user-data">Min-temperature:</label>
-              <input className="data" name="myFile" type="file"/>
-            </div>
-          <div className="form"/>
+
           <div className="model-button">
+            {this.renderSoilButton()}
             {this.renderModelButton()}
           </div>
           </div>

@@ -74,3 +74,11 @@ export const optimizedModel = (d) => {
     data: d
   })
 }
+
+export const yearChange = (y) => {
+  console.log("year change action", y)
+  return ({
+    type: 'CHANGE_YEAR',
+    year: y
+  })
+}

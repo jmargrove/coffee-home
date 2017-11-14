@@ -44,6 +44,7 @@ class MainPage extends Component {
   }
 
   render() {
+    console.log("the provided props:", this.props)
     return (
       <MuiThemeProvider>
         <div>

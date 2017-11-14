@@ -1,5 +1,6 @@
 
 const defaultState = {
+  yearValue: 5,
   optimizedData: [
     {shade: 1, yieldIrrFALSE: 2},
     {shade: 1, yieldIrrFALSE: 2},
@@ -70,7 +71,10 @@ let count = -1
 
 //// the reducers
 const reducer = (state = defaultState, action) => {
-  if (action.type === 'OPTIMIZED_DATA') {
+  if (action.type === 'CHANGE_YEAR') {
+    return ({...state, yearValue: action.year})
+  }
+  else if (action.type === 'OPTIMIZED_DATA') {
     console.log("inside the reducer", action.data)
     return ({...state, optimizedData: action.data})
   }
@@ -78,7 +82,7 @@ const reducer = (state = defaultState, action) => {
     console.log(action.address)
     return ({...state, address: action.address})
   }
-  if (action.type === 'IRRIGATION_CHECKBOX') {
+  else if (action.type === 'IRRIGATION_CHECKBOX') {
     return ({...state, userDataInput: {...state.userDataInput, irrigationValue: !state.userDataInput.irrigationValue}})
   }
   else if (action.type === 'SLOPE_PERCENTAGE') {

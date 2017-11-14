@@ -18,7 +18,7 @@ const mapDispatchToCoords = (dispatch) => ({
 
 
 class MapLoad extends Component {
-  gooLoad(x, y, fun, z, zoom, locationUpdater){
+  gooLoad(x, y, fun, z, CountyRegionFinder){
     /// google maps loader
     GoogleMapsLoader.KEY = 'AIzaSyD-lTpPY74D4voFl81v3HZ_JeN45sQZ_T4';
     GoogleMapsLoader.LIBRARIES = ['geometry', 'places']
@@ -54,15 +54,15 @@ class MapLoad extends Component {
 
       google.maps.event.addListener(map, "click", function (e) {
         let latlng = {lat: e.latLng.lat(), lng: e.latLng.lng()}
-        // geocodeLatLng(geocoder, map, infowindow, latlng);
+        geocodeLatLng(geocoder, map, infowindow, latlng);
       });
 
       function geocodeLatLng(geocoder, map, infowindow, latlng) {
         geocoder.geocode({'location': latlng}, function(results, status) {
-          locationUpdater(
-            {country: results[0].address_components[4].long_name,
-            state: results[0].address_components[3].long_name
-            })
+          let formatted_address = (results[0].formatted_address.split(","))
+          const country = formatted_address[formatted_address.length-1]
+          const region = formatted_address[formatted_address.length-2]
+           CountyRegionFinder({country: country, region: region})
         }
       );
       }
@@ -73,14 +73,11 @@ class MapLoad extends Component {
         // Create the search box and link it to the UI element.
       const input = document.getElementById('pac-input');
       const searchBox = new google.maps.places.SearchBox(input);
-        // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-        // Bias the SearchBox results towards current map's viewport.
+
       map.addListener('bounds_changed', function() {
         searchBox.setBounds(map.getBounds());
       });
-      // var markers = [];
-       // Listen for the event fired when the user selects a prediction and retrieve
-       // more details for that place.
+
       searchBox.addListener('places_changed', function() {
         var places = searchBox.getPlaces();
         if (places.length === 0) {
@@ -126,6 +123,15 @@ class MapLoad extends Component {
     });
   }
 
+  componentDidMount(){
+    this.gooLoad(this.props.coords.lat,
+      this.props.coords.lng,
+      this.props.updateCoords,
+      this.props.coords.zoom,
+      this.props.updateLocation
+    )
+  }
+
   render() {
     return (
       <div className="map-container-div">
@@ -133,14 +139,7 @@ class MapLoad extends Component {
         <div>
           <input id="pac-input" className="controls" type="text" placeholder="Search location..."/>
           <div id="map"/>
-          <script>
-          {
-            this.gooLoad(this.props.coords.lat,
-              this.props.coords.lng,
-              this.props.updateCoords,
-              this.props.coords.zoom)}
-            }
-            </script>
+
         </div>
       </MuiThemeProvider>
       </div>
