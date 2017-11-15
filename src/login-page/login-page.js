@@ -8,6 +8,10 @@ import './login-page.css';
 import styles from './style.json';
 import FacebookLogin from 'react-facebook-login';
 
+const responseFacebook = (response) => {
+  console.log(response);
+}
+
 class Login extends Component {
   render() {
     return (
@@ -15,8 +19,8 @@ class Login extends Component {
         <div>
         <AppBar showMenuIconButton={false} style={styles.appbarStyle} title="the  coffee app" titleStyle={styles.ts}/>
 
-        <Paper style={styles.style} zDepth={1}>
-          <div className="logo-box">
+        <Paper  className="mainPage" style={styles.style} zDepth={1}>
+          {/* <div className="logo-box">
             <div className="logo"></div>
           </div>
 
@@ -32,12 +36,14 @@ class Login extends Component {
           <div className="fb-goog">
             <RaisedButton >Facebook</RaisedButton>
             <RaisedButton >Google</RaisedButton>
-          </div>
+          </div> */}
 
           <FacebookLogin
-            appId="1088597931155576"
+            appId="503732776652253"
             autoLoad={true}
-            fields="name,email,picture"/>,
+            fields="name,email,picture"
+            callback={responseFacebook}
+          />
         </Paper>
       </div>
     </MuiThemeProvider>

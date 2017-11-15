@@ -1,4 +1,4 @@
-/*.modelData-body{
+.modelData-body{
   width: 100vw;
   height: 85vh;
   display: flex;
@@ -6,6 +6,13 @@
   align-items: center;
   flex-direction: column;
   background-color: transparent;
+}
+
+.button-home{
+  flex: 1.2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .optimized-data-frame{
@@ -24,7 +31,10 @@
 }
 
 .optimized-shade-title{
-
+  font-size: 22px;
+  border-top: solid;
+  border-bottom: solid;
+  border-width: thin;
 }
 
 .Not-irrigated-graph-container{
@@ -33,8 +43,22 @@
   margin: 5%;
 }
 
+.extra-info-pannel{
+  display: flex;
+  flex-direction: column;
+
+}
+
 .extra-info-shade{
-  height: 50%;
-  width: 85%;
+  flex: 3;
   margin: 5%;
-}*/
+  padding: 1.5%;
+  font-size: 20px;
+
+}
+
+.return-to-map-button{
+  width: 50%;
+  height: 30px;
+  background-color: red;
+}

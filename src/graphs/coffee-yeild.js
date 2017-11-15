@@ -1,10 +1,7 @@
 import React from 'react';
 import { AxisLeft, AxisBottom } from '@vx/axis';
-import { Group } from '@vx/group';
 import {scaleLinear } from '@vx/scale'
-import { AreaClosed, Line } from '@vx/shape';
-import { curveMonotoneX } from '@vx/curve';
-import { ScaleSVG } from '@vx/responsive';
+import { AreaClosed } from '@vx/shape';
 import { GlyphDot } from '@vx/glyph';
 import './axis.css'
 

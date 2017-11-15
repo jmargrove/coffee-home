@@ -10,7 +10,7 @@
 /build
 
 # datafiles
-/Rcode
+Rcode
 
 # misc
 .DS_Store

@@ -63,7 +63,7 @@ const defaultState = {
   ]
   },
   coords: {lat: 41.459, lng: 1.6369, zoom: 7},
-  address: {add: "spain, and the rest"},
+  address: {country: "Spain", region: "Barcelona"},
 }
 
 const months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']

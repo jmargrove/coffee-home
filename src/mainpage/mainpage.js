@@ -39,7 +39,7 @@ class MainPage extends Component {
           <RaisedButton label="Model"/>
       </Link>);
     } else {
-      return <RaisedButton label="Model" disabled />;
+      return <RaisedButton label="Param Model" disabled />;
     }
   }
 
@@ -71,7 +71,6 @@ class MainPage extends Component {
 
                 </form>
                 <div className="go-buttons">
-                  {this.renderDataButton()}
                   {this.renderModelButton()}
                 </div>
               </div>

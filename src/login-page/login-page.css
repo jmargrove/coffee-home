@@ -5,6 +5,13 @@
   height: 100px;
 }
 
+
+.mainPage{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .logo-box{
   display: flex;
   align-items: center;

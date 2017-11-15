@@ -26,7 +26,7 @@ const mapStateData = (state) => ({
   data: state.data,
 })
 
-class Rainfall extends Component {
+class SoilInfo extends Component {
   options = {
   responsive: true,
    title: {
@@ -193,7 +193,7 @@ class Rainfall extends Component {
                   <div className="sub-soil-BD">Bulk density: {this.props.data.sub_bulk_density}</div>
                 </div>
                 <div className="sub-soil-pie">
-                
+
                 </div>
 
               </div>
@@ -230,4 +230,4 @@ class Rainfall extends Component {
 
 
 //
-export default connect(mapStateData, mapDispatchTo)(Rainfall);;
+export default connect(mapStateData, mapDispatchTo)(SoilInfo);;

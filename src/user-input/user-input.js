@@ -7,7 +7,6 @@ import './user-input.css';
 import styles from './style.json'
 import queryString  from 'query-string'
 import Slider from 'rc-slider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import 'rc-slider/assets/index.css';
 import { shadePercentage } from './../action/actions.js'
 import { yieldPerHa } from './../action/actions.js'
@@ -15,7 +14,6 @@ import { irrigationCheckBox } from './../action/actions.js'
 import { slopePercentage } from './../action/actions.js'
 import { connect } from 'react-redux'
 import Checkbox from 'material-ui/Checkbox';
-import MapLoad from './../map-load/map-load.js'
 import { Link } from 'react-router-dom';
 import UserInfoMap from './../user-info-map/user-info-map.js'
 
@@ -227,14 +225,9 @@ class UserInput extends Component {
                 }}/>
             </div>
           </div>
-
-
-
           </div>
           <div className="additional-local-info">
-
           <div className="model-button">
-            {this.renderSoilButton()}
             {this.renderModelButton()}
           </div>
           </div>

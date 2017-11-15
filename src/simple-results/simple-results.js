@@ -6,14 +6,12 @@ import Paper from 'material-ui/Paper';
 import styles from './style.json'
 import queryString  from 'query-string'
 import { connect } from 'react-redux'
-import Loader from './../load-page/load-page.js'
 import { modelData } from './../action/actions'
-import Yield from './../graphs/coffee-yeild.js'
 import './simple-results.css'
 import { Link } from 'react-router-dom'
 import Slider from 'rc-slider';
 import { yearChange } from './../action/actions'
-
+import Loader from './../load-page/load-page.js'
 const marks = {
   1: '1',
   2: '2',
@@ -73,6 +71,7 @@ class SimpleResults extends Component {
       this.setState({ loading: false });
     })
   }
+  
   componentDidMount(){
     this.postCoordsModel(queryString.parse(this.props.location.search))
   }
@@ -80,7 +79,7 @@ class SimpleResults extends Component {
   searchInfo = queryString.parse(this.props.location.search)
   render() {
     console.log("this props model",this.props.location.search)
-    // if (!this.state.loading){
+    if (!this.state.loading){
     return (
         <MuiThemeProvider>
         <div>
@@ -171,10 +170,10 @@ class SimpleResults extends Component {
         </div>
       </MuiThemeProvider>
     );
-    // }
-    // else {
-    //   return (<Loader/>)
-    // }
+    }
+    else {
+      return (<Loader/>)
+    }
   }
 }
 
@@ -188,7 +187,5 @@ const mapStateData = (state) => ({
   userData: state.userDataInput,
   yearValue: state.yearValue
 })
-
-{/* <div className="graph-window"></div> */}
 
 export default connect(mapStateData, mapDispatchTo)(SimpleResults);;

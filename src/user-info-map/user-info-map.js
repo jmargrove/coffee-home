@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import './user-info-map.css';
-import { upCoords } from './../action/actions.js'
 import apiSTYLE from './stylesheet.json'
 import './user-info-map.css'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { upAddress } from './../action/actions'
+
 var GoogleMapsLoader = require('google-maps');
 
 const mapStateToProps = (state) => ({

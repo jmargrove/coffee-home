@@ -2,32 +2,22 @@ import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import Paper from 'material-ui/Paper';
+import RaisedButton from 'material-ui/RaisedButton';
 import styles from './style.json'
 import queryString  from 'query-string'
 import { connect } from 'react-redux'
-import Loader from './../load-page/load-page.js'
-import { modelData } from './../action/actions'
-import Yield from './../graphs/coffee-yeild.js'
 import './optimize.css'
 import { optimizedModel } from './../action/actions'
 import { Line } from 'react-chartjs-2';
-
-// Management advice.
-// The predicted max maximum yield at {region} in {country} coords (x,y) is XX with
-// XX shade LIA conditions. Our model suggets that you {add/remove/leep the same}
-// Shade trees to a LIA or {XX}
-//
-
-
+import Loader from './../load-page/load-page.js'
+import { Link } from 'react-router-dom'
 class Optimize extends Component {
-  // send request to server for optimiased data
   state = {
     loading: false,
   }
 
   postCoordsModel(coords){
     this.setState({ loading: true });
-    console.log("post for optimization sent...", this.props)
     fetch('http://localhost:8080/optimize', {
       body: JSON.stringify({
         xcoord: coords.lng,
@@ -39,7 +29,6 @@ class Optimize extends Component {
     .then(resp => resp.json())
     .then(r => {
       this.props.optimized(r)
-      console.log("the response....:", r)
       this.setState({ loading: false });
     })
   }
@@ -72,9 +61,44 @@ class Optimize extends Component {
   }
   }
 
+  findMaxYield(theProps){
+    return theProps.reduce((acc, el) => {
+      return Math.max(acc, el.yieldIrrFALSE)
+    }, 0)
+  }
+
+  findMaxShade = (theProps) => {
+    const maxYield = this.findMaxYield(theProps)
+    return (theProps.reduce((acc, el) => {
+      if(el.yieldIrrFALSE >= maxYield) {
+        return el.shade
+      } else {
+      return acc }
+    }, 0))
+  }
+
+
+  decissionOnShade(theProps){
+    const yourYield = theProps.userDataInput.yieldValue/10;
+    const yourShade = theProps.userDataInput.shadeValue/10;
+    const maxShade = this.findMaxShade(theProps.optimizedData);
+    const maxYield = this.findMaxYield(theProps.optimizedData);
+    if (yourYield < maxYield) {
+      if(yourShade < maxShade) {
+        return {perYieldDiff: maxYield/yourYield*100, decission: "increase", to: maxShade}
+      }
+      else {
+        return {perYieldDiff: maxYield/yourYield*100, decission: "decrease", to: maxShade}
+      }
+    }
+    else{
+      return "great"
+    }
+  }
+
   render() {
-    console.log("The optimization", this.props)
-    // if(!this.state.loading){
+    console.log("The optimization", this.decissionOnShade(this.props))
+    if(!this.state.loading){
     return (
         <MuiThemeProvider>
         <div>
@@ -84,16 +108,14 @@ class Optimize extends Component {
           <AppBar title="the coffee app" style={styles.appbarStyle} iconElementLeft={<div className="header-logo"/>}/>
           <div className="modelData-body">
             <Paper className="optimized-data-frame" zDepth={1}>
-              <div className="optimized-shade-title"> O P T I M I Z E D - S H A D E - C O N D I T I O N S</div>
+              <div className="optimized-shade-title"> O P T I M I Z E D - S H A D E</div>
               <Paper className="Not-irrigated-graph-container" zDepth={1}>
               <Line
               width={1}
               data={{
-                labels: [0, 0.5, 1, 1.5, 2.0, 2.5, 3.0, 3.5, 4.5, 5.0, 5.5, 6.5, 7.0, 7.5, 8.0, 8.5, 9.0],
+                labels: [0, 0.5, 1, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 6.5, 7.0, 7.5, 8.0, 8.5, 9.0],
                 datasets: [{
                     label: "blue",
-                    backgroundColor: 'blue',
-                    borderColor: 'rgb(255, 99, 132)',
                     data: [
                       this.props.optimizedData[0].yieldIrrFALSE,
                       this.props.optimizedData[1].yieldIrrFALSE,
@@ -132,21 +154,34 @@ class Optimize extends Component {
               options={this.options}
               />
               </Paper>
-              <Paper className="extra-info-shade">
-                The predicted max maximum yield at {this.props.address[1]} in {"country"} coords (x,y) is XX with
-                XX shade LIA conditions. Our model suggets that you {"add/remove/leep the same"}
-                Shade trees to a LIA or {"XX"}
-
+              <Paper className="extra-info-pannel" zDepth={0}>
+                <div className="extra-info-shade">
+                The predicted maximum yield at&nbsp;
+                <b>{this.props.address.region}</b> in&nbsp;
+                <b>{this.props.address.country}</b>&nbsp;
+                (lat: <b>{Math.round(this.props.coords.lat*100)/100} </b>,&nbsp;
+                lng: <b>{Math.round(this.props.coords.lng*100)/100}</b>) is&nbsp;
+                <b>{this.findMaxYield(this.props.optimizedData)}</b> t ha-1.&nbsp;
+                Our model suggets that you &nbsp;
+                <b> {this.decissionOnShade(this.props).decission}</b>&nbsp;
+                your shade cover by <b>{Math.round(this.decissionOnShade(this.props).perYieldDiff*100)/100} %</b>&nbsp;
+                to <b>{this.decissionOnShade(this.props).to}</b> LIA.
+              </div>
+                <div className="button-home">
+                  <Link to="/home">
+                    <RaisedButton label="Back to map"/>
+                  </Link>
+                </div>
               </Paper>
             </Paper>
           </div>
         </div>
       </MuiThemeProvider>
     )
-  // }
-  //   else {
-  //     return <Loader/>
-  //   }
+  }
+    else {
+      return <Loader/>
+    }
   }
 }
 
@@ -154,7 +189,8 @@ const mapStateToProps = (state) => ({
   coords: state.coords,
   userInput: state.userDataInput,
   optimizedData: state.optimizedData,
-  address: state.address
+  address: state.address,
+  userDataInput: state.userDataInput
 })
 
 const mapDispatchTo = (dispatch) => ({

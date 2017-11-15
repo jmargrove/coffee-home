@@ -49,8 +49,8 @@ class MapLoad extends Component {
 
       //////////////////////////////////////////////////////////////////////////
       /// GEO CODER getting the nearest address.
-      var geocoder = new google.maps.Geocoder;
-      var infowindow = new google.maps.InfoWindow;
+      var geocoder = new google.maps.Geocoder();
+      var infowindow = new google.maps.InfoWindow();
 
       google.maps.event.addListener(map, "click", function (e) {
         let latlng = {lat: e.latLng.lat(), lng: e.latLng.lng()}
@@ -134,7 +134,7 @@ class MapLoad extends Component {
       this.props.coords.zoom,
       this.props.updateLocation
     )
-    this.state.flag = true;
+    this.setState({flag: true});
   }
 
   afterMountingMap(theProps){
