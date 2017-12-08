@@ -20,4 +20,5 @@ React         |        redux |            R |           JS |          koa | goog
 
 ### Contributors
 [Eric Rahn]() - developer of the model
+
 [James Margrove](https://www.linkedin.com/in/james-margrove-b3b81557/) - full stack developer
