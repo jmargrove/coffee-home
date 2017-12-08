@@ -22,17 +22,6 @@ class UserInfoMap extends Component {
         center: myLatlng,
         mapTypeId: 'terrain',
         styles: apiSTYLE,
-        disableDefaultUI: true,
-        zoomControl: false,
-        mapTypeControl: false,
-        scaleControl: false,
-        streetViewControl: false,
-        rotateControl: false,
-        fullscreenControl: false,
-        draggable: false,
-        scrollwheel: false,
-        disableDoubleClickZoom: true,
-        animation: google.maps.Animation.BOUNCE,
       });
       /// working on geocoding
       var marker = new google.maps.Marker({
