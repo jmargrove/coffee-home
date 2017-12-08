@@ -2,10 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import './map-load.css';
 import { upCoords } from './../action/actions.js'
-import apiSTYLE from './stylesheet.json'
+
+ import apiSTYLE from './stylesheet.json'
+
+
+
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { upAddress } from './../action/actions'
-var GoogleMapsLoader = require('google-maps');
+
+
+
+    var GoogleMapsLoader = require('google-maps');
 
 const mapImagesTo = (state) => ({
   coords: state.coords
@@ -20,8 +27,10 @@ const mapDispatchToCoords = (dispatch) => ({
 class MapLoad extends Component {
   gooLoad(x, y, fun, z, CountyRegionFinder){
     /// google maps loader
+
     GoogleMapsLoader.KEY = 'AIzaSyD-lTpPY74D4voFl81v3HZ_JeN45sQZ_T4';
-    GoogleMapsLoader.LIBRARIES = ['geometry', 'places']
+
+    GoogleMapsLoader.LIBRARIES = ['places']
 
     GoogleMapsLoader.load(function(google){
 
