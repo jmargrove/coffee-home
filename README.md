@@ -14,8 +14,8 @@ Map Page                                     |                                  
 
 ### Tech stack
 
-React         |        redux |            R |           JS |          koa |              |google-maps
-:------------:|:------------:|:------------:|:------------:|:------------:|:------------:|:------------:
+React         |        redux |            R |           JS |          koa | google-maps
+:------------:|:------------:|:------------:|:------------:|:------------:|:------------:
 ![reactredux](./PhotosForReadMe/react.png) | ![redux](./PhotosForReadMe/redux.jpeg) | ![R](./PhotosForReadMe/R.jpeg) | ![JS](./PhotosForReadMe/es6.jpeg) | ![koa](./PhotosForReadMe/koa.png) | ![ggm](./PhotosForReadMe/ggm.png)
 
 ### Contributors
