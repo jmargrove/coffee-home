@@ -19,5 +19,5 @@ React         |        redux |            R |           JS |          koa | goog
 ![reactredux](./PhotosForReadMe/react.png) | ![redux](./PhotosForReadMe/redux.jpeg) | ![R](./PhotosForReadMe/R.jpeg) | ![JS](./PhotosForReadMe/es6.jpeg) | ![koa](./PhotosForReadMe/koa.png) | ![ggm](./PhotosForReadMe/ggm.png)
 
 ### Contributors
-*Eric* - developer of the model
-*James Margrove* - full stack developer of the app
+[Eric Rahn]() - developer of the model
+[James Margrove](https://www.linkedin.com/in/james-margrove-b3b81557/) - full stack developer
