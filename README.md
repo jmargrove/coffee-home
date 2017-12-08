@@ -7,9 +7,9 @@ in the world.
 ### Screen shots
 Map and main page | user input and settings
 ----------------:|:-----------------------
-![mappage](https://github.com/t03jam8/coffee-home/tree/master/PhotosForReadMe/Screen Shot 2017-12-08 at 17.08.51.png) | ![usersettings](https://github.com/t03jam8/coffee-home/tree/master//PhotosForReadMe/Screen Shot 2017-12-08 at 17.05.41.png)
+![mappage](./PhotosForReadMe/locationfinder) | ![usersettings](./PhotosForReadMe/userinput.png)
 results | optimise
-![results](https://github.com/t03jam8/coffee-home/tree/master/PhotosForReadMe/Screen Shot 2017-12-08 at 17.09.10.png) | ![optimised](https://github.com/t03jam8/coffee-home/tree/master/PhotosForReadMe/Screen Shot 2017-12-08 at 17.09.28.png)
+![results](./PhotosForReadMe/initialmodelresults.png) | ![optimised](./PhotosForReadMe/optiRes.png)
 
 ### Tech stack
 React-redux, react, R, JS, koa, google-maps api collaboration with ETH Zurich
