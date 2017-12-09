@@ -1,4 +1,3 @@
-
 const mongodb = require('mongodb')
 const R = require('r-script')
 const fs = require('fs')
