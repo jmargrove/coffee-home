@@ -14,11 +14,13 @@ Map Page                                     |                                  
 
 ### Tech stack
 
-React | redux | R | JS |  koa | google-maps
+
+React         |        redux |            R |           JS |          koa | google-maps
 :------------:|:------------:|:------------:|:------------:|:------------:|:------------:
 ![reactredux](./PhotosForReadMe/react.png) | ![redux](./PhotosForReadMe/redux.jpeg) | ![R](./PhotosForReadMe/R.jpeg) | ![JS](./PhotosForReadMe/es6.jpeg) | ![koa](./PhotosForReadMe/koa.png) | ![ggm](./PhotosForReadMe/ggm.png)
 
 ### Contributors
 [Eric Rahn]() - developer of the model
 
-[James Margrove](https://www.linkedin.com/in/james-margrove-b3b81557/) - full stack developer of the app
+[James Margrove](https://www.linkedin.com/in/james-margrove-b3b81557/) - full stack developer
+
