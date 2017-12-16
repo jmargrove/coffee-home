@@ -10,17 +10,16 @@ The app is useful for coffee farmers and corporations to simulate shade manageme
 ### Screen shots
 Map Page                                     |                                      User Input |                                      Results |                                      Optimise
 :-------------------------------------------:|:-----------------------------------------------:|:-------------------------------------------:|:-----------------------------------------------:
-![mappage](./PhotosForReadMe/locationfinder) | ![usersettings](./PhotosForReadMe/userinput.png)| ![results](./PhotosForReadMe/initialmodelresults.png) | ![optimised](./PhotosForReadMe/optiRes.png) |
+![mappage](https://s3-eu-west-1.amazonaws.com/james.margrove/the-coffee-app/readMeImages/locationfinder) | ![usersettings](https://s3-eu-west-1.amazonaws.com/james.margrove/the-coffee-app/readMeImages/userinput.png)| ![results](https://s3-eu-west-1.amazonaws.com/james.margrove/the-coffee-app/readMeImages/initialmodelresults.png) | ![optimised](https://s3-eu-west-1.amazonaws.com/james.margrove/the-coffee-app/readMeImages/optiRes.png) |
 
 ### Tech stack
 
 
 React         |        redux |            R |           JS |          koa | google-maps
 :------------:|:------------:|:------------:|:------------:|:------------:|:------------:
-![reactredux](./PhotosForReadMe/react.png) | ![redux](./PhotosForReadMe/redux.jpeg) | ![R](./PhotosForReadMe/R.jpeg) | ![JS](./PhotosForReadMe/es6.jpeg) | ![koa](./PhotosForReadMe/koa.png) | ![ggm](./PhotosForReadMe/ggm.png)
+![reactredux](https://s3-eu-west-1.amazonaws.com/james.margrove/the-coffee-app/readMeImages/react.png) | ![redux](https://s3-eu-west-1.amazonaws.com/james.margrove/the-coffee-app/readMeImages/redux.jpeg) | ![R](https://s3-eu-west-1.amazonaws.com/james.margrove/the-coffee-app/readMeImages/R.jpeg) | ![JS](https://s3-eu-west-1.amazonaws.com/james.margrove/the-coffee-app/readMeImages/es6.jpeg) | ![koa](https://s3-eu-west-1.amazonaws.com/james.margrove/the-coffee-app/readMeImages/koa.png) | ![ggm](https://s3-eu-west-1.amazonaws.com/james.margrove/the-coffee-app/readMeImages/ggm.png)
 
 ### Contributors
 [Eric Rahn]() - developer of the model
 
 [James Margrove](https://www.linkedin.com/in/james-margrove-b3b81557/) - full stack developer
-
