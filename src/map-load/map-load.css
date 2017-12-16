@@ -1,4 +1,4 @@
-#map{
+#map {
   position: absolute;
   max-width: 700px;
   width: 100vw;
@@ -6,22 +6,19 @@
   background-color: grey;
 }
 
-#global{
-
+#global {
 }
 
-.map-container-div{
+.map-container-div {
   max-width: 700px;
   width: 100vw;
   height: 57%;
 }
 
-
-
-.controler-box{
+.controler-box {
   background-color: transparent;
   position: absolute;
-  left:530px;
+  left: 530px;
   z-index: 1;
   width: 400px;
   height: 100px;
@@ -32,6 +29,7 @@
 
 #pac-input {
   position: absolute;
+  max-width: 300px;
   z-index: 1;
   margin-top: 10px;
   background-color: #fff;
@@ -43,16 +41,18 @@
   width: 40%;
 }
 
-input:focus, textarea:focus {
+input:focus,
+textarea:focus {
   box-shadow: 2px 2px 20px #000000;
   border: 1px solid #000000;
 }
 
-input[type=text], textarea {
-  -webkit-transition: all 0.50s ease-in-out;
-  -moz-transition: all 0.50s ease-in-out;
-  -ms-transition: all 0.50s ease-in-out;
-  -o-transition: all 0.50s ease-in-out;
+input[type="text"],
+textarea {
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
   outline: none;
-  border: 1px solid #DDDDDD;
+  border: 1px solid #dddddd;
 }

@@ -1,4 +1,4 @@
-#mapSmall{
+#mapSmall {
   position: relative;
   max-width: 100%;
   width: 100%;
@@ -6,8 +6,6 @@
   background-color: grey;
   overflow: hidden;
 }
-
-
 
 .marker {
   position: absolute;
@@ -17,5 +15,5 @@
   top: 50%; /*positions our marker*/
   left: 50%; /*positions our marker*/
   background-color: blue;
-  border-radius: 50%
+  border-radius: 50%;
 }
