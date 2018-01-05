@@ -1,3 +1,233 @@
+* {
+  font-family: "Work Sans";
+}
+
+.InfoPhoto {
+  width: 150px;
+  /* height: 100px; */
+  background-color: #fafafa;
+}
+
+.InfoContainer {
+  flex: 1;
+  display: flex;
+}
+
+.CoffeeLogoFull {
+  width: 500px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+}
+
+.OurPersonalProfile {
+  flex: 1;
+  background-color: blue;
+  display: flex;
+}
+
+.PictureBox {
+  flex: 1;
+  background-color: purple;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Information {
+  flex: 3;
+  background-color: orange;
+}
+
+.ProfilePicture {
+  width: 225px;
+  height: 225px;
+  background-color: yellow;
+}
+
+/* #AboutBox {
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+} */
+
+.MaxWidth {
+  margin: auto;
+  max-width: 960px;
+  height: 200vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  text-align: center;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+h2 {
+  text-align: center;
+  font-style: italic;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+#OurWhy {
+  flex: 0.666;
+  /* background-color: #fafafa; */
+}
+
+.Box {
+  /* margin: 5px; */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  /* margin-left: 30px;
+  margin-right: 30px; */
+}
+
+.InfoContainer {
+  width: 300px;
+  height: 300px;
+  background-color: grey;
+}
+
+.CoffeeLogo {
+  background-size: cover;
+  background-color: white;
+  height: 100px;
+  width: 100px;
+  filter: invert(100%);
+}
+
+.Background1 {
+  margin: auto;
+  max-width: 960px;
+  height: 100vw;
+  /* background-color: yellow; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.WhyBox {
+  flex: 0.8;
+  /* background-color: blue; */
+  display: flex;
+  flex-direction: column;
+}
+
+.WhyTitle {
+  font-size: 30px;
+  font-family: "Work Sans";
+  text-align: center;
+}
+
+.Image {
+  flex: 0.2;
+  background-size: cover;
+}
+
+.PossBox {
+  flex: 1;
+  /* background-color: blue; */
+  /* border: solid; */
+}
+
+.WhoTitle {
+  background-color: yellow;
+}
+
+.AboutUs {
+  flex: 1;
+  background-color: blue;
+}
+
+.WhoText {
+  display: flex;
+}
+
+.WhyText {
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-top: 30px;
+  font-family: "Work Sans";
+  background-color: #cfcfcf;
+}
+
+.OurWhy {
+  flex: 0.3;
+  /* background-color: white; */
+  display: flex;
+  flex-direction: column;
+}
+
+.Title {
+  color: #fafafa;
+  font-size: 30px;
+  font-family: "Work Sans";
+}
+
+.FullPage {
+  width: 100vw;
+  height: 100vw;
+  /* background-color: grey; */
+}
+
+.Background2 {
+  margin: auto;
+  max-width: 960px;
+  height: 100vw;
+  /* background-color: red; */
+}
+
+.Header {
+  position: fixed;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 960px;
+  max-width: 960px;
+  height: 122px;
+  background-color: black;
+}
+
+.TopPage {
+  z-index: 3;
+  display: flex;
+  margin: auto;
+  max-width: 960px;
+  height: 100vh;
+  background-color: #dfdfdf;
+}
+
+.coffeelandscape {
+  width: 100vw;
+  height: auto;
+}
+
+.header {
+  position: fixed;
+  width: 100vw;
+  height: 122px;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.headerText {
+  color: white;
+  font-size: 30px;
+}
+.body {
+  top: 500px;
+  width: 100vw;
+  height: 300vh;
+  background-color: black;
+}
+
 .search-location-body {
   width: 100%;
   height: 85vh;

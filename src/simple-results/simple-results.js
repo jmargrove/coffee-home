@@ -36,9 +36,7 @@ class SimpleResults extends Component {
     console.log("un parsed stuff", coordObj);
     return (
       <Link
-        to={`/optimization?lat=${Number(coordObj.lat)}&lng=${Number(
-          coordObj.lng
-        )}`}
+        to={`/optimize?lat=${Number(coordObj.lat)}&lng=${Number(coordObj.lng)}`}
       >
         <RaisedButton label="Optimize Farm" />
       </Link>
@@ -63,8 +61,8 @@ class SimpleResults extends Component {
       "http://localhost:8000/simpleModel", //"http://ec2-54-229-24-11.eu-west-1.compute.amazonaws.com:80/simpleModel",
       {
         body: JSON.stringify({
-          xcoord: coords.lng,
-          ycoord: coords.lat,
+          lng: coords.lng,
+          lat: coords.lat,
           userShadeValue: this.props.userData.shadeValue,
           userIrrValue: Number(this.props.userData.irrigationValue),
           userSlopeValue: this.props.userData.slopeValue
@@ -194,10 +192,10 @@ class SimpleResults extends Component {
                     </div>
                   </div>
                   <div className="more-modelling-options">
-                    <Link to="/home">
-                      <RaisedButton label="Back to map" />
-                    </Link>
-                    {/* {this.renderOptimizationButton()} */}
+                    {/* <Link to="/optimize">
+                      <RaisedButton label="Optimize shade" />
+                    </Link> */}
+                    {this.renderOptimizationButton()}
                   </div>
                 </div>
               </Paper>
