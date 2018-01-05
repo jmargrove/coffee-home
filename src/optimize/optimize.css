@@ -1,4 +1,4 @@
-.modelData-body{
+.modelData-body {
   width: 100vw;
   height: 85vh;
   display: flex;
@@ -8,14 +8,14 @@
   background-color: transparent;
 }
 
-.button-home{
+.button-home {
   flex: 1.2;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.optimized-data-frame{
+.optimized-data-frame {
   position: relative;
   margin-top: 5%;
   margin-bottom: 5%;
@@ -30,34 +30,32 @@
   align-items: center;
 }
 
-.optimized-shade-title{
+.optimized-shade-title {
   font-size: 22px;
   border-top: solid;
   border-bottom: solid;
   border-width: thin;
 }
 
-.Not-irrigated-graph-container{
+.Not-irrigated-graph-container {
   height: 200px;
   width: 85%;
   margin: 5%;
 }
 
-.extra-info-pannel{
+.extra-info-pannel {
   display: flex;
   flex-direction: column;
-
 }
 
-.extra-info-shade{
+.extra-info-shade {
   flex: 3;
   margin: 5%;
   padding: 1.5%;
   font-size: 20px;
-
 }
 
-.return-to-map-button{
+.return-to-map-button {
   width: 50%;
   height: 30px;
   background-color: red;

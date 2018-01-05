@@ -1,28 +1,584 @@
-.App {
+* {
+  font-family: "Work Sans";
+}
+
+.InfoPhoto {
+  width: 150px;
+  /* height: 100px; */
+  background-color: #fafafa;
+}
+
+.InfoContainer {
+  flex: 1;
+  display: flex;
+}
+
+.CoffeeLogoFull {
+  width: 500px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+}
+
+.OurPersonalProfile {
+  flex: 1;
+  background-color: blue;
+  display: flex;
+}
+
+.PictureBox {
+  flex: 1;
+  background-color: purple;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Information {
+  flex: 3;
+  background-color: orange;
+}
+
+.ProfilePicture {
+  width: 225px;
+  height: 225px;
+  background-color: yellow;
+}
+
+/* #AboutBox {
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+} */
+
+.MaxWidth {
+  margin: auto;
+  max-width: 960px;
+  height: 200vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  text-align: center;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+h2 {
+  text-align: center;
+  font-style: italic;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+#OurWhy {
+  flex: 0.666;
+  /* background-color: #fafafa; */
+}
+
+.Box {
+  /* margin: 5px; */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  /* margin-left: 30px;
+  margin-right: 30px; */
+}
+
+.InfoContainer {
+  width: 300px;
+  height: 300px;
+  background-color: grey;
+}
+
+.CoffeeLogo {
+  background-size: cover;
+  background-color: white;
+  height: 100px;
+  width: 100px;
+  filter: invert(100%);
+}
+
+.Background1 {
+  margin: auto;
+  max-width: 960px;
+  height: 100vw;
+  /* background-color: yellow; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.WhyBox {
+  flex: 0.8;
+  /* background-color: blue; */
+  display: flex;
+  flex-direction: column;
+}
+
+.WhyTitle {
+  font-size: 30px;
+  font-family: "Work Sans";
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.Image {
+  flex: 0.2;
+  background-size: cover;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
+.PossBox {
+  flex: 1;
+  /* background-color: blue; */
+  /* border: solid; */
+}
+
+.WhoTitle {
+  background-color: yellow;
+}
+
+.AboutUs {
+  flex: 1;
+  background-color: blue;
+}
+
+.WhoText {
+  display: flex;
+}
+
+.WhyText {
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-top: 30px;
+  font-family: "Work Sans";
+  background-color: #cfcfcf;
+}
+
+.OurWhy {
+  flex: 0.3;
+  /* background-color: white; */
+  display: flex;
+  flex-direction: column;
+}
+
+.Title {
+  color: #fafafa;
+  font-size: 30px;
+  font-family: "Work Sans";
+}
+
+.FullPage {
+  width: 100vw;
+  height: 100vw;
+  /* background-color: grey; */
+}
+
+.Background2 {
+  margin: auto;
+  max-width: 960px;
+  height: 100vw;
+  /* background-color: red; */
+}
+
+.Header {
+  position: fixed;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 960px;
+  max-width: 960px;
+  height: 122px;
+  background-color: black;
+}
+
+.TopPage {
+  z-index: 3;
+  display: flex;
+  margin: auto;
+  max-width: 960px;
+  height: 100vh;
+  background-color: #dfdfdf;
+}
+
+.coffeelandscape {
+  width: 100vw;
+  height: auto;
+}
+
+.header {
+  position: fixed;
+  width: 100vw;
+  height: 122px;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.headerText {
   color: white;
+  font-size: 30px;
+}
+.body {
+  top: 500px;
+  width: 100vw;
+  height: 300vh;
+  background-color: black;
 }
 
-.App-title {
-  font-size: 1.5em;
+.search-location-body {
+  width: 100%;
+  height: 85vh;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
 }
 
-.App-intro {
-  font-size: large;
+.container3 {
+  flex: 0.5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.map-div {
+  flex: 3.5;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+}
+
+.coord-box {
+  flex: 1;
+}
+
+.select-location-text {
+  font-size: 22px;
+  margin-top: 2%;
+  text-align: center;
+  background-color: transparent;
+  border-top: solid;
+  border-bottom: solid;
+  border-width: thin;
+}
+
+.header-logo {
+  height: 90px;
+  width: 85px;
+  margin-left: 5%;
+  background-image: url("https://s3-eu-west-1.amazonaws.com/james.margrove/the-coffee-app/images/logo.svg");
+  background-size: contain;
+  filter: invert(100%);
+}
+
+.coord-box {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: transparent;
+  align-items: center;
+}
+
+.the-coords {
+  flex: 0.5;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 600px;
+}
+.go-buttons {
+  flex: 0.7;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 50%;
+}
+
+.lat-input {
+  width: 33%;
+  height: 20px;
+  font-size: 150%;
+}
+.lng-input {
+  width: 33%;
+  height: 20px;
+  font-size: 150%;
+}
+
+.more-modelling-options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-body {
+  width: 100vw;
+  height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: transparent;
+}
+
+@keyframes example {
+  from {
+    left: -1000px;
+  }
+  to {
+    left: 1%;
+  }
+}
+
+.user-input-frame {
+  position: relative;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  height: 99%;
+  width: 95%;
+  max-width: 700px;
+  animation-name: example;
+  animation-duration: 0.6s;
+  display: flex;
+  flex-direction: column;
+}
+
+.title-box {
+  background-color: transparent;
+  margin-right: 5%;
+  margin-left: 5%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.location-map {
+  flex: 1;
+  background-color: transparent;
+  display: flex;
+  border: solid;
+  border-width: thin;
+  margin: 1%;
+}
+
+.location-info {
+  flex: 1.5;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  margin-left: 5%;
+  margin-top: 2%;
+}
+
+.coords {
+  font-size: 130%;
+  font-weight: lighter;
+  margin-right: 20%;
+}
+
+.latlng-lable {
+  font-size: 20px;
+  font-weight: bold;
+  margin-right: 10%;
+}
+.CR-box {
+  flex: 1;
+  background-color: transparent;
+  display: flex;
+  justify-content: start;
+}
+.location-class {
+  font-size: 15px;
+  font-weight: bold;
+  margin-right: 10%;
+}
+.location-var {
+  font-size: 100%;
+  font-weight: thin;
+}
+.userdata-coords {
+  display: flex;
+  justify-content: space-between;
+}
+
+.coords-box {
+  border-bottom: solid;
+  border-width: thin;
+}
+
+.title-of-page {
+  font-size: 22px;
+  margin-top: 1%;
+  text-align: center;
+  background-color: transparent;
+  border-top: solid;
+  border-bottom: solid;
+  border-width: thin;
+}
+
+.user-location-info {
+  flex: 2;
+  background-color: transparent;
+  border-bottom: solid;
+  border-width: thin;
+  margin-right: 5%;
+  margin-left: 5%;
+  display: flex;
+}
+.user-yield-info {
+  flex: 1;
+  background-color: transparent;
+  margin-left: 5%;
+  margin-right: 5%;
+  border-bottom: solid;
+  border-width: thin;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-data-info {
+  background-color: transparent;
+  flex: 1;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.user-data-type {
+  flex: 3;
+  background-color: transparent;
+  margin-left: 5%;
+  font-size: 100%;
+  max-width: 130px;
+}
+.user-data-value-container {
+  background-color: white;
+  flex: 1.9;
+  display: flex;
+  flex-direction: row;
+  max-width: 99px;
+}
+
+.user-data-value {
+  flex: 2;
+  text-align: right;
+  font-size: 130%;
+}
+.user-data-unit {
+  flex: 3.4;
+  text-align: left;
+  background-color: transparent;
+  font-weight: bold;
+  font-size: 80%;
+  margin-left: 2%;
+}
+
+.shade-blank-space {
+  background-color: transparent;
+  flex: 2;
+}
+
+.mat-ui-slide-bar {
+  background-color: transparent;
+  flex: 0.5;
+  margin-right: 10%;
+  margin-left: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.user-shading-info {
+  flex: 1;
+  background-color: transparent;
+  margin-left: 5%;
+  margin-right: 5%;
+  border-bottom: solid;
+  border-width: thin;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-irrigation-info {
+  flex: 1;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  margin-left: 5%;
+  margin-right: 5%;
+  border-bottom: solid;
+  border-width: thin;
+}
+
+.user-irrigation-input-container {
+  display: flex;
+  background-color: transparent;
+  justify-content: space-between;
+}
+
+.user-slope-info {
+  flex: 1;
+  background-color: transparent;
+  margin-left: 5%;
+  margin-right: 5%;
+  border-bottom: solid;
+  border-width: thin;
+  display: flex;
+  flex-direction: column;
+}
+
+.model-button {
+  flex: 0.7;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.user-data-type-check {
+  background-color: transparent;
+  margin-left: 10%;
+  margin-right: 5%;
+}
+
+.additional-local-info {
+  flex: 1;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+.advanced-user-input {
+  font-size: 12px;
+  text-align: center;
+  background-color: transparent;
+  margin-top: 5%;
+  margin-left: 15%;
+  margin-right: 15%;
+  border-bottom: solid;
+  border-width: thin;
+}
+
+.statement-to-user {
+  font-size: 10px;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.user-data {
+  font-size: 12px;
+  margin-left: 5%;
+}
+.data {
+  font-size: 10px;
+  background-color: transparent;
+  float: right;
+  margin-right: 10%;
 }
