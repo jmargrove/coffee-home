@@ -58,7 +58,7 @@ class SimpleResults extends Component {
   postCoordsModel(coords) {
     this.setState({ loading: true });
     fetch(
-      "http://localhost:8000/simpleModel", //"http://ec2-54-229-24-11.eu-west-1.compute.amazonaws.com:80/simpleModel",
+      "http://ec2-54-229-24-11.eu-west-1.compute.amazonaws.com:80/simpleModel", //"http://localhost:8000/simpleModel", //
       {
         body: JSON.stringify({
           lng: coords.lng,
