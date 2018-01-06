@@ -1,11 +1,24 @@
 # the-coffee-app
 
-The coffee app incorporates a state of the art eco-physiological model of coffee yield predictions allowing anyone to access coffee yield predictions from anywhere
-in the world.
+The coffee app incorporates a state of the art eco-physiological model of coffee yield predictions allowing anyone to access coffee yield predictions from anywhere in the world. The app also alows the user to run simulations to discover whether thier farm could benift from an increase or decrease in shade conditions. 
+
+Why shade? Some coffee plantations can benifit from shade. As shade trees are an expensive longterm investment, out app give advice for farmers on this issue. 
 
 By running simulations we are also able to provide management advice for shade treatments.
 
 The app is useful for coffee farmers and corporations to simulate shade management treatments before investing.
+
+Please visit then web page to use the model.
+[the-coffee-app webpage] (http://the.coffee.app.s3-website-eu-west-1.amazonaws.com/home)
+
+steps:
+  1. choose a location (locations within tropcial regions give most interesting predictions)
+  2. enter in your management system.
+  3. model the data - see how much coffee you produce compared to out model predictions.
+  4. optimize for shade - run simiulations with different shade treatments and see you your farm could benifit from and increase or decrease in shade. 
+  
+  test all around the world.
+
 
 ### Screen shots
 Map Page                                     |                                      User Input |                                      Results |                                      Optimise
