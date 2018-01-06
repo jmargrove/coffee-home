@@ -23,7 +23,7 @@ steps:
 ### Screen shots
 Map Page                                     |                                      User Input |                                      Results |                                      Optimise
 :-------------------------------------------:|:-----------------------------------------------:|:-------------------------------------------:|:-----------------------------------------------:
-![mappage](https://s3-eu-west-1.amazonaws.com/james.margrove/the-coffee-app/readMeImages/locationfinder) | ![usersettings](https://s3-eu-west-1.amazonaws.com/james.margrove/the-coffee-app/readMeImages/userinput.png)| ![results](https://s3-eu-west-1.amazonaws.com/james.margrove/the-coffee-app/readMeImages/initialmodelresults.png) | ![optimised](https://s3-eu-west-1.amazonaws.com/james.margrove/the-coffee-app/readMeImages/optiRes.png) |
+![mappage](https://s3-eu-west-1.amazonaws.com/james.margrove/the-coffee-app/readMeImages/locationfinder+copy.png) | ![usersettings](https://s3-eu-west-1.amazonaws.com/james.margrove/the-coffee-app/readMeImages/userinput.png)| ![results](https://s3-eu-west-1.amazonaws.com/james.margrove/the-coffee-app/readMeImages/initialmodelresults.png) | ![optimised](https://s3-eu-west-1.amazonaws.com/james.margrove/the-coffee-app/readMeImages/optiRes.png) |
 
 ### Tech stack
 
