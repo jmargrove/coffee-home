@@ -1,7 +1,7 @@
 # the-coffee-app
 
-<img align="right" src="https://thumbs.gfycat.com/WaryHarmfulCanine-size_restricted.gif" height="300px">
-<img src="https://thumbs.gfycat.com/PertinentGoodAzurevase-size_restricted.gif" height="300px">
+<img align="right" src="https://thumbs.gfycat.com/WaryHarmfulCanine-size_restricted.gif" height="400px">
+<img src="https://thumbs.gfycat.com/PertinentGoodAzurevase-size_restricted.gif" height="400px">
 
 The coffee app incorporates a state of the art eco-physiological model of coffee yield predictions allowing anyone to access coffee yield predictions from anywhere in the world. The app also alows the user to run simulations to discover whether thier farm could benift from an increase or decrease in shade conditions. 
 
