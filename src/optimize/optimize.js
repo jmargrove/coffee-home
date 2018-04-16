@@ -19,14 +19,17 @@ class Optimize extends Component {
 
   postCoordsModel(coords) {
     this.setState({ loading: true });
-    fetch("http://localhost:8000/optimize", {
-      body: JSON.stringify({
-        lng: coords.lng,
-        lat: coords.lat
-      }),
-      headers: { "Content-Type": "application/json" },
-      method: "POST"
-    })
+    fetch(
+      "http://ec2-54-229-24-11.eu-west-1.compute.amazonaws.com:80/optimize",
+      {
+        body: JSON.stringify({
+          lng: coords.lng,
+          lat: coords.lat
+        }),
+        headers: { "Content-Type": "application/json" },
+        method: "POST"
+      }
+    )
       .then(resp => resp.json())
       .then(r => {
         this.props.optimized(r);

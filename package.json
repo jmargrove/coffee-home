@@ -23,7 +23,7 @@
     "koa-static": "^4.0.2",
     "koa2-cors": "^2.0.5",
     "material-ui": "^0.19.4",
-    "moment": "^2.19.1",
+    "moment": "^2.22.1",
     "mongodb": "^3.0.0-rc0",
     "query-string": "^5.0.1",
     "r-script": "0.0.3",
