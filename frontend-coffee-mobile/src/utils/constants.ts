@@ -1,0 +1,3 @@
+export const WELCOME_SCREEN = "WELCOME_SCREEN"
+export const MAP_SCREEN = "MAP_SCREEN"
+export const YEILD_SCREEN = "YEILD_SCREEN"
