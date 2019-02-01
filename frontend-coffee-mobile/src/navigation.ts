@@ -1,20 +1,20 @@
 import { createSwitchNavigator } from "react-navigation"
-import { WelcomeScreen } from "./WelcomeScreen"
-import { MapScreen } from "./MapScreen"
-import { YieldScreen } from "./YeildScreen"
+import { PoweredWelcomeScreen } from "./WelcomeScreen"
+import { PoweredMapScreen } from "./MapScreen"
+import { PoweredYieldScreen } from "./YeildScreen"
 import { WELCOME_SCREEN, MAP_SCREEN, YEILD_SCREEN } from "./utils/constants"
 import { createAppContainer } from "react-navigation"
 
 export const AppNavigation = createSwitchNavigator(
   {
     [WELCOME_SCREEN]: {
-      screen: WelcomeScreen
+      screen: PoweredWelcomeScreen
     },
     [MAP_SCREEN]: {
-      screen: MapScreen
+      screen: PoweredMapScreen
     },
     [YEILD_SCREEN]: {
-      screen: YieldScreen
+      screen: PoweredYieldScreen
     }
   },
   { initialRouteName: WELCOME_SCREEN }
