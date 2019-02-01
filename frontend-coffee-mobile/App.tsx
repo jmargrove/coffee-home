@@ -1,9 +1,7 @@
-import React, { Component } from "react"
+import { FunctionComponent } from "react"
+import { NavigationComponent } from "react-navigation"
 import { MainNavigation } from "./src/navigation"
 
-interface Props {}
-export default class App extends Component<Props> {
-  render() {
-    return <MainNavigation />
-  }
-}
+export const App: FunctionComponent = (): NavigationComponent => (
+    <MainNavigation />
+)

@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react"
+import { FunctionComponent } from "react"
 import {
   Container,
   Header,
@@ -9,17 +9,13 @@ import {
   Button
 } from "native-base"
 import { Text } from "react-native"
-import {
-  withNavigation,
-  NavigationScreenProp,
-  NavigationRoute
-} from "react-navigation"
-import { MAP_SCREEN } from "./utils/constants"
+import { withNavigation } from "react-navigation"
 import { NavigationProps } from "./types"
+import { MAP_SCREEN } from "./utils/constants"
 
 export const WelcomeScreen: FunctionComponent<NavigationProps> = ({
   navigation
-}) => {
+}): any => {
   return (
     <Container>
       <Header>
