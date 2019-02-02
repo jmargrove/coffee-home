@@ -2,22 +2,33 @@ import React, { FunctionComponent } from "react"
 import {
   Container,
   Header,
-  Footer,
-  Content,
   Title,
   Body,
-  Button
+  Button,
+  Footer,
+  Text
 } from "native-base"
-import { Text } from "react-native"
 import { withNavigation } from "react-navigation"
-import { MAP_SCREEN } from "./utils/constants"
 import { NavigationProps } from "./types"
 import { SystemFlex } from "./system-components/SystemFlex"
 import { SystemContent } from "./system-components/SystemContent"
+import { SMALL, LARGE, BIG } from "./utils/theme"
+import { SystemSpace } from "./system-components/SystemSpace"
+import { MAP_SCREEN } from "./utils/constants"
 
-export const WelcomeScreen: FunctionComponent<NavigationProps> = ({
-  navigation
-}) => {
+const ButtonLarge: FunctionComponent<any> = ({ to, navigation }) => {
+  const navigationHandler = () => navigation.navigate(to)
+
+  return (
+    <Button bordered rounded block large onPress={navigationHandler}>
+      <Text>Getting Started</Text>
+    </Button>
+  )
+}
+
+const PoweredButtonLarge = withNavigation(ButtonLarge)
+
+export const WelcomeScreen: FunctionComponent<NavigationProps> = () => {
   return (
     <Container>
       <Header>
@@ -25,16 +36,16 @@ export const WelcomeScreen: FunctionComponent<NavigationProps> = ({
           <Title>Welcome</Title>
         </Body>
       </Header>
-      <SystemContent>
-        <SystemFlex justify="center" align="center">
-          <Button rounded large onPress={() => navigation.navigate(MAP_SCREEN)}>
-            <Text>Getting Started</Text>
-          </Button>
+      <SystemContent fill={true}>
+        <SystemFlex justify="flex-end">
+          <SystemFlex noFlex row justify="center">
+            <PoweredButtonLarge to={MAP_SCREEN} />
+          </SystemFlex>
+          <SystemSpace size={BIG} />
         </SystemFlex>
       </SystemContent>
-      <Footer />
     </Container>
   )
 }
 
-export const PoweredWelcomeScreen = withNavigation(WelcomeScreen)
+export const PoweredWelcomeScreen = WelcomeScreen

@@ -9,10 +9,10 @@ export declare namespace System {
       | "space-around"
       | "space-evenly"
     align?: "stretch" | "flex-start" | "flex-end" | "center" | "baseline"
-    direction?: "row" | "row-reverse" | "column" | "column-reverse"
+    row?: boolean
   }
 
   type Space = {
-    size: "SMALL" | "MEDIUM" | "LARGE"
+    size: "SMALL" | "MEDIUM" | "LARGE" | "BIG"
   }
 }
