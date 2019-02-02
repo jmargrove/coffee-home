@@ -9,13 +9,11 @@ import {
   Button
 } from "native-base"
 import { Text } from "react-native"
-import {
-  withNavigation,
-  NavigationScreenProp,
-  NavigationRoute
-} from "react-navigation"
+import { withNavigation } from "react-navigation"
 import { MAP_SCREEN } from "./utils/constants"
 import { NavigationProps } from "./types"
+import { SystemFlex } from "./system-components/SystemFlex"
+import { SystemContent } from "./system-components/SystemContent"
 
 export const WelcomeScreen: FunctionComponent<NavigationProps> = ({
   navigation
@@ -27,11 +25,13 @@ export const WelcomeScreen: FunctionComponent<NavigationProps> = ({
           <Title>Welcome</Title>
         </Body>
       </Header>
-      <Content>
-        <Button rounded large onPress={() => navigation.navigate(MAP_SCREEN)}>
-          <Text>Getting Started</Text>
-        </Button>
-      </Content>
+      <SystemContent>
+        <SystemFlex justify="center" align="center">
+          <Button rounded large onPress={() => navigation.navigate(MAP_SCREEN)}>
+            <Text>Getting Started</Text>
+          </Button>
+        </SystemFlex>
+      </SystemContent>
       <Footer />
     </Container>
   )

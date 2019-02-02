@@ -12,6 +12,7 @@ import { Text } from "react-native"
 import { withNavigation } from "react-navigation"
 import { YEILD_SCREEN } from "./utils/constants"
 import { NavigationProps } from "./types"
+import { SystemFlex } from "./system-components/SystemFlex"
 
 export const MapScreen: FunctionComponent<NavigationProps> = ({
   navigation
@@ -24,9 +25,15 @@ export const MapScreen: FunctionComponent<NavigationProps> = ({
         </Body>
       </Header>
       <Content>
-        <Button rounded large onPress={() => navigation.navigate(YEILD_SCREEN)}>
-          <Text>Calculate Yeild</Text>
-        </Button>
+        <SystemFlex justify="center" align="center">
+          <Button
+            rounded
+            large
+            onPress={() => navigation.navigate(YEILD_SCREEN)}
+          >
+            <Text>Calculate Yeild</Text>
+          </Button>
+        </SystemFlex>
       </Content>
       <Footer />
     </Container>
