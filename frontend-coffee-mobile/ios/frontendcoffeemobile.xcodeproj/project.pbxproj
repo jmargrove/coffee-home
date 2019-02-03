@@ -44,6 +44,7 @@
 		5D8BAC7EBA6641C0964FEFA4 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F12E6914F6043F9B73D19D1 /* Entypo.ttf */; };
 		608E99F5F7784028AB163615 /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F529E0920FBE482882477728 /* FontAwesome5_Brands.ttf */; };
 		682ADE3A21804BFD8C33D29A /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CECE6DA7E29248AC9B85A14D /* MaterialIcons.ttf */; };
+		6E1C0A8F7A34B296BB456D48 /* libPods-frontendcoffeemobileTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AD10CB3A9A59028E96F691A /* libPods-frontendcoffeemobileTests.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		91F856F968884B069D3C0464 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64171FB868754A498D1F2BB9 /* SimpleLineIcons.ttf */; };
 		9B60700C1FFB469D99C881C8 /* rubicon-icon-font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B8CDC23B1CF9494D9355ED81 /* rubicon-icon-font.ttf */; };
@@ -370,6 +371,7 @@
 		64171FB868754A498D1F2BB9 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/native-base/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		6AD10CB3A9A59028E96F691A /* libPods-frontendcoffeemobileTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-frontendcoffeemobileTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		73980DF8051A463A8B024AC7 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/native-base/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
+		7796E13C330BECFF657671A3 /* Pods-frontendcoffeemobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-frontendcoffeemobileTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-frontendcoffeemobileTests/Pods-frontendcoffeemobileTests.debug.xcconfig"; sourceTree = "<group>"; };
 		77F335061A5589B6712C5237 /* Pods-frontendcoffeemobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-frontendcoffeemobile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-frontendcoffeemobile/Pods-frontendcoffeemobile.debug.xcconfig"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7DD9B0D29254B3566EC808A1 /* libPods-frontendcoffeemobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-frontendcoffeemobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -383,6 +385,7 @@
 		CC739FC5714E4D07A7DB7B3E /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/native-base/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		CECE6DA7E29248AC9B85A14D /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/native-base/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		CF98EF5A44094B16BD8E9FC2 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/native-base/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
+		D0B32EA2AA97DC51371ACEA0 /* Pods-frontendcoffeemobileTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-frontendcoffeemobileTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-frontendcoffeemobileTests/Pods-frontendcoffeemobileTests.release.xcconfig"; sourceTree = "<group>"; };
 		DBFDE24A42574077892BC393 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/native-base/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
@@ -396,6 +399,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */,
+				6E1C0A8F7A34B296BB456D48 /* libPods-frontendcoffeemobileTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -662,6 +666,8 @@
 			children = (
 				77F335061A5589B6712C5237 /* Pods-frontendcoffeemobile.debug.xcconfig */,
 				CC1B7436F0FF40613CBD16AB /* Pods-frontendcoffeemobile.release.xcconfig */,
+				7796E13C330BECFF657671A3 /* Pods-frontendcoffeemobileTests.debug.xcconfig */,
+				D0B32EA2AA97DC51371ACEA0 /* Pods-frontendcoffeemobileTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -699,6 +705,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "frontendcoffeemobileTests" */;
 			buildPhases = (
+				1EECE065CBC3C1945921C45C /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
@@ -1193,6 +1200,24 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
+		1EECE065CBC3C1945921C45C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-frontendcoffeemobileTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1310,6 +1335,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7796E13C330BECFF657671A3 /* Pods-frontendcoffeemobileTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1331,6 +1357,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D0B32EA2AA97DC51371ACEA0 /* Pods-frontendcoffeemobileTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;

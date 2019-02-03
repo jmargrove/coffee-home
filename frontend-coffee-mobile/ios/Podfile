@@ -51,3 +51,9 @@ post_install do |installer|
     end
   end
 end
+
+
+target 'frontendcoffeemobileTests' do
+  inherit! :search_paths
+  # Pods for testing
+end
