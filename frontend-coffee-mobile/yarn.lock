@@ -5357,6 +5357,11 @@ react-native-gesture-handler@^1.0.0, react-native-gesture-handler@^1.0.15:
     invariant "^2.2.2"
     prop-types "^15.5.10"
 
+react-native-google-maps@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-google-maps/-/react-native-google-maps-1.0.0.tgz#df55b421642bd02ba9cb95229ca9f5546db0208c"
+  integrity sha1-31W0IWQr0Cupy5UinKn1VG2wIIw=
+
 react-native-iphone-x-helper@^1.0.3:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.2.0.tgz#9f8a376eb00bc712115abff4420318a0063fa796"
@@ -5369,6 +5374,11 @@ react-native-keyboard-aware-scroll-view@0.8.0:
   dependencies:
     prop-types "^15.6.2"
     react-native-iphone-x-helper "^1.0.3"
+
+react-native-maps@^0.23.0:
+  version "0.23.0"
+  resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-0.23.0.tgz#edbfdcad0e42190627eb1c8067eaba5965c8f81e"
+  integrity sha512-qxOIQGsDtQXQlSJdXMW1wg8pvLaVYdbiIolB7tZTTgTGgIA/hDxXwZbQZ08c4KDD6/VTk8krfd1APaHkqvh6og==
 
 react-native-safe-area-view@^0.11.0:
   version "0.11.0"
