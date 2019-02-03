@@ -1,18 +1,7 @@
 import React, { FunctionComponent } from "react"
-import {
-  Container,
-  Header,
-  Footer,
-  Content,
-  Title,
-  Body,
-  Button
-} from "native-base"
-import { Text } from "react-native"
+import { Container } from "native-base"
 import { withNavigation } from "react-navigation"
-import { YEILD_SCREEN } from "./utils/constants"
 import { NavigationProps } from "./types"
-import { SystemFlex } from "./system-components/SystemFlex"
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps"
 import { SystemContent } from "./system-components/SystemContent"
 

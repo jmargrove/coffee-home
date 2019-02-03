@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react"
-import { Container, Button, Text, Image, H2 } from "native-base"
+import { Container, Button, Text, H2 } from "native-base"
 import { withNavigation } from "react-navigation"
 import { NavigationProps } from "./types"
 import { SystemFlex } from "./system-components/SystemFlex"
@@ -9,7 +9,7 @@ import { SystemSpace } from "./system-components/SystemSpace"
 import { MAP_SCREEN } from "./utils/constants"
 import { View, ImageBackground } from "react-native"
 
-const ButtonLarge: FunctionComponent<any> = ({ to, navigation }) => {
+export const ButtonLarge: FunctionComponent<any> = ({ to, navigation }) => {
   const navigationHandler = () => navigation.navigate(to)
 
   return (
@@ -19,7 +19,7 @@ const ButtonLarge: FunctionComponent<any> = ({ to, navigation }) => {
   )
 }
 
-const PoweredButtonLarge = withNavigation(ButtonLarge)
+export const PoweredButtonLarge = withNavigation(ButtonLarge)
 
 export const WelcomeScreen: FunctionComponent<NavigationProps> = () => {
   return (
