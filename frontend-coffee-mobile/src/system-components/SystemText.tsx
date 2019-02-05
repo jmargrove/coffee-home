@@ -1,5 +1,5 @@
-import styled from "styled-components"
 import { Text } from "react-native"
+import styled from "styled-components"
 
 export const SystemText = styled(Text)<any>`
   font-size: 16;

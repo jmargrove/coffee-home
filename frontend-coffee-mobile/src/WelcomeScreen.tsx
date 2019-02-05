@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from "react"
-import { Container, Content, Button } from "native-base"
-import { Text, Image } from "react-native"
+import { Container } from "native-base"
+import { Image } from "react-native"
 import { withNavigation } from "react-navigation"
 import { MAP_SCREEN } from "./utils/constants"
 import { NavigationProps } from "./types"
@@ -9,7 +9,7 @@ import { SystemFlex } from "./system-components/SystemFlex"
 import { SystemTitle } from "./system-components/SystemTitle"
 import { SystemText } from "./system-components/SystemText"
 import { SystemSpace } from "./system-components/SystemSpace"
-import { BIG, WHITE } from "./system-components/theme"
+import { BIG, WHITE } from "./system-components/system-theme/theme"
 import { SystemButtonLarge } from "./system-components/SystemButtonLarge"
 
 export const WelcomeScreen: FunctionComponent<NavigationProps> = ({

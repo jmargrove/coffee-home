@@ -1,10 +1,10 @@
 import React, { FunctionComponent } from "react"
-import styled from "styled-components"
 import { SystemText } from "./SystemText"
 import { Button } from "native-base"
 import { View } from "react-native"
 import { SystemFlex } from "./SystemFlex"
 import { System } from "./types"
+import styled from "./system-theme/styled-components"
 
 const StyledButton = styled(View)<System.StyledButtonProps>`
   background-color: white;

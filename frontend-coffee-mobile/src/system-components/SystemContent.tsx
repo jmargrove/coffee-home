@@ -1,6 +1,6 @@
-import styled from "styled-components"
 import { Content } from "native-base"
 import { System } from "./types"
+import styled from "./system-theme/styled-components"
 
 export const SystemContent = styled(Content).attrs(
   ({ fill }: { fill?: boolean }) => ({
