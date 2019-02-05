@@ -16,11 +16,11 @@ const StyledButton = styled(View)<any>`
   height: 64;
 `
 
-export const SystemButtonLarge = ({ children }: any) => {
+export const SystemButtonLarge = ({ children, onPress }: any) => {
   return (
     <StyledButton>
       <SystemFlex noFlex>
-        <Button large transparent block rounded>
+        <Button large transparent block rounded onPress={onPress}>
           <SystemText uppercase size={24}>
             {children}
           </SystemText>

@@ -27,7 +27,9 @@ export const WelcomeScreen: FunctionComponent<NavigationProps> = ({
             Get yeild estimates for any location on the globe.
           </SystemText>
           <SystemSpace size={BIG} />
-          <SystemButtonLarge>Get started</SystemButtonLarge>
+          <SystemButtonLarge onPress={() => navigation.navigate(MAP_SCREEN)}>
+            Get started
+          </SystemButtonLarge>
         </SystemFlex>
       </SystemContent>
     </Container>
