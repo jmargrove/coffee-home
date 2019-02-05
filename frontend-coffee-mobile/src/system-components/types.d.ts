@@ -9,7 +9,10 @@ export declare namespace System {
     children: ReactNode
   }
 
-  interface Content {}
+  interface ContentProps {
+    children: ReactNode
+    fill?: boolean
+  }
   interface Flex {}
   interface Space {}
   interface Text {}
