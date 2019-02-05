@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { MainNavigation } from "./src/navigation"
 import { ThemeProvider } from "styled-components"
-import { theme } from "./src/system-components/theme"
+import { theme } from "./src/system-components/system-theme/theme"
 
 interface Props {}
 export default class App extends Component<Props> {
