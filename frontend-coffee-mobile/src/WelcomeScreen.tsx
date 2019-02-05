@@ -9,8 +9,8 @@ import { SystemFlex } from "./system-components/SystemFlex"
 import { SystemTitle } from "./system-components/SystemTitle"
 import { SystemText } from "./system-components/SystemText"
 import { SystemSpace } from "./system-components/SystemSpace"
-import { REGULAR, BIG, WHITE } from "./system-components/theme"
-import { SystemButtonLarge } from "./system-components/SystemButton"
+import { BIG, WHITE } from "./system-components/theme"
+import { SystemButtonLarge } from "./system-components/SystemButtonLarge"
 
 export const WelcomeScreen: FunctionComponent<NavigationProps> = ({
   navigation

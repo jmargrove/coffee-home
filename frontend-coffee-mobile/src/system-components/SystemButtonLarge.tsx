@@ -1,4 +1,4 @@
-import React from "react"
+import React, { FunctionComponent } from "react"
 import styled from "styled-components"
 import { SystemText } from "./SystemText"
 import { Button } from "native-base"
@@ -6,6 +6,7 @@ import { View } from "react-native"
 import { REGULAR } from "./theme"
 import { SystemSpace } from "./SystemSpace"
 import { SystemFlex } from "./SystemFlex"
+import { System } from "./types"
 
 const StyledButton = styled(View)<any>`
   background-color: white;
@@ -16,7 +17,10 @@ const StyledButton = styled(View)<any>`
   height: 64;
 `
 
-export const SystemButtonLarge = ({ children, onPress }: any) => {
+export const SystemButtonLarge: FunctionComponent<System.ButtonLarge> = ({
+  children,
+  onPress
+}) => {
   return (
     <StyledButton>
       <SystemFlex noFlex>
