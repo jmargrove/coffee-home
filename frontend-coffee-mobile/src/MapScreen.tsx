@@ -1,34 +1,22 @@
 import React, { FunctionComponent } from "react"
-import {
-  Container,
-  Header,
-  Footer,
-  Content,
-  Title,
-  Body,
-  Button
-} from "native-base"
-import { Text } from "react-native"
+import { Container } from "native-base"
 import { withNavigation } from "react-navigation"
-import { YEILD_SCREEN } from "./utils/constants"
+
 import { NavigationProps } from "./types"
+import MapView, { PROVIDER_GOOGLE } from "react-native-maps"
+import { SystemContent } from "./system-components/SystemContent"
 
 export const MapScreen: FunctionComponent<NavigationProps> = ({
   navigation
 }) => {
   return (
     <Container>
-      <Header>
-        <Body>
-          <Title>Map</Title>
-        </Body>
-      </Header>
-      <Content>
-        <Button rounded large onPress={() => navigation.navigate(YEILD_SCREEN)}>
-          <Text>Calculate Yeild</Text>
-        </Button>
-      </Content>
-      <Footer />
+      <SystemContent fill>
+        <MapView
+          provider={PROVIDER_GOOGLE}
+          style={{ width: "100%", height: "100%" }}
+        />
+      </SystemContent>
     </Container>
   )
 }
