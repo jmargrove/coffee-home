@@ -3,12 +3,10 @@ import styled from "styled-components"
 import { SystemText } from "./SystemText"
 import { Button } from "native-base"
 import { View } from "react-native"
-import { REGULAR } from "./theme"
-import { SystemSpace } from "./SystemSpace"
 import { SystemFlex } from "./SystemFlex"
 import { System } from "./types"
 
-const StyledButton = styled(View)<any>`
+const StyledButton = styled(View)<System.StyledButtonProps>`
   background-color: white;
   border-width: 1;
   border-color: purple;
@@ -17,7 +15,7 @@ const StyledButton = styled(View)<any>`
   height: 64;
 `
 
-export const SystemButtonLarge: FunctionComponent<System.ButtonLarge> = ({
+export const SystemButtonLarge: FunctionComponent<System.ButtonLargeProps> = ({
   children,
   onPress
 }) => {
