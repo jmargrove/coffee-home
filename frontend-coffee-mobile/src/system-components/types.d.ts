@@ -1,10 +1,14 @@
 import { ReactNode } from "react"
 
 export declare namespace System {
-  interface ButtonLarge {
+  interface ButtonLargeProps {
     children: string | ReactNode
     onPress: () => void
   }
+  interface StyledButtonProps {
+    children: ReactNode
+  }
+
   interface Content {}
   interface Flex {}
   interface Space {}
