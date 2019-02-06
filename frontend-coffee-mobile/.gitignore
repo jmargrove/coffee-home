@@ -31,7 +31,7 @@ build/
 local.properties
 *.iml
 
-/android/gradle.properties
+android/gradle.properties
 # Visual Studio Code
 #
 .vscode/
