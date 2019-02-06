@@ -11,7 +11,7 @@ const StyledButton = styled(View)<System.StyledButtonProps>`
   border-width: 1;
   border-color: purple;
   width: 300;
-  border-radius: 25;
+  border-radius: 24;
   height: 64;
 `
 
