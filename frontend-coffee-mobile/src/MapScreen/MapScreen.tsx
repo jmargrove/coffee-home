@@ -12,18 +12,18 @@ import { View } from "react-native"
 export const MapScreen: FunctionComponent<NavigationProps> = ({
   navigation
 }) => {
-  navigator.geolocation.getCurrentPosition(
-    location => {
-      console.log("location:", location)
-    },
-    error => {
-      console.log("error", error)
-    },
-    {
-      timeout: 1000 * 5,
-      enableHighAccuracy: true
-    }
-  )
+  // navigator.geolocation.getCurrentPosition(
+  //   location => {
+  //     console.log("location:", location)
+  //   },
+  //   error => {
+  //     console.log("error", error)
+  //   },
+  //   {
+  //     timeout: 1000 * 5,
+  //     enableHighAccuracy: true
+  //   }
+  // )
 
   return (
     <Container>
@@ -31,6 +31,12 @@ export const MapScreen: FunctionComponent<NavigationProps> = ({
         <MapView
           provider={PROVIDER_GOOGLE}
           style={{ width: "100%", height: "100%" }}
+          region={{
+            latitude: 37.78825,
+            longitude: -122.4324,
+            latitudeDelta: 0.015,
+            longitudeDelta: 0.0121
+          }}
         />
         <View
           style={{
