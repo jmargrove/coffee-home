@@ -29,9 +29,9 @@ build/
 .idea
 .gradle
 local.properties
-# gradle.properties
 *.iml
 
+/android/gradle.properties
 # Visual Studio Code
 #
 .vscode/
