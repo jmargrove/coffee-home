@@ -27,6 +27,7 @@ PODS:
   - GoogleMaps/Base (2.5.0)
   - GoogleMaps/Maps (2.5.0):
     - GoogleMaps/Base
+  - Keys (1.0.1)
   - React (0.58.3):
     - React/Core (= 0.58.3)
   - react-native-google-maps (0.23.0):
@@ -92,6 +93,7 @@ DEPENDENCIES:
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - Google-Maps-iOS-Utils
   - GoogleMaps
+  - Keys (from `Pods/CocoaPodsKeys`)
   - react-native-google-maps (from `../node_modules/react-native-maps`)
   - react-native-maps (from `../node_modules/react-native-maps`)
   - React/Core (from `../node_modules/react-native`)
@@ -123,6 +125,8 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/Folly.podspec"
   glog:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
+  Keys:
+    :path: Pods/CocoaPodsKeys
   React:
     :path: "../node_modules/react-native"
   react-native-google-maps:
@@ -139,11 +143,12 @@ SPEC CHECKSUMS:
   glog: aefd1eb5dda2ab95ba0938556f34b98e2da3a60d
   Google-Maps-iOS-Utils: c32891ff472eaaa1fca032beedafa1a013af7875
   GoogleMaps: c087b8e5dfe87ca6ebf59adb9b4894a4146bec4f
+  Keys: a576f4c9c1c641ca913a959a9c62ed3f215a8de9
   React: 9b873b38b92ed8012d7cdf3b965477095ed364c4
   react-native-google-maps: b946d62e25dc66097921ed82520e45b0b081768a
   react-native-maps: 066c2afcc89e18726377bcc685315f989ca22449
   yoga: 0885622311729a02c2bc02dca97167787a51488b
 
-PODFILE CHECKSUM: 2aae609040a7690320a026bb209ec02e46f18baa
+PODFILE CHECKSUM: 269a1fcbb89b1bde3865aeaf5cdb28ea83eae8e4
 
 COCOAPODS: 1.5.3

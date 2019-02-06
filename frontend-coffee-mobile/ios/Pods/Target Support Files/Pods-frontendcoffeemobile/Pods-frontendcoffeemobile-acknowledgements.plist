@@ -448,6 +448,16 @@ third-party archives.
 		</dict>
 		<dict>
 			<key>FooterText</key>
+			<string>MIT LICENSE Found in the repo</string>
+			<key>License</key>
+			<string>MIT</string>
+			<key>Title</key>
+			<string>Keys</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>FooterText</key>
 			<string>MIT License
 
 Copyright (c) Facebook, Inc. and its affiliates.

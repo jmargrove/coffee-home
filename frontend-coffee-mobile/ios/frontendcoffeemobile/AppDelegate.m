@@ -10,12 +10,16 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 #import <GoogleMaps/GoogleMaps.h>
+#import <Keys/FrontendcoffeemobileKeys.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  [GMSServices provideAPIKey:@"AIzaSyCF1RcI4oWL5z51DHi9HZEF9mORCT0IxD8"];
+  FrontendcoffeemobileKeys *keys = [[FrontendcoffeemobileKeys alloc] init];
+  [GMSServices provideAPIKey: keys.googleMapsAPISecretKey];
+
+
   NSURL *jsCodeLocation;
 
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
