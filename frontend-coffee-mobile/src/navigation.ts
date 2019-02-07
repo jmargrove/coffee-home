@@ -16,7 +16,7 @@ export const AppNavigation = createSwitchNavigator(
       screen: PoweredYieldScreen
     }
   },
-  { initialRouteName: WELCOME_SCREEN }
+  { initialRouteName: MAP_SCREEN }
 )
 
 export const MainNavigation = createAppContainer(AppNavigation)
