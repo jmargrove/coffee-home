@@ -9,7 +9,7 @@ import styled from "./system-theme/styled-components"
 const StyledButton = styled(View)<System.StyledButtonProps>`
   background-color: white;
   border-width: 1;
-  border-color: purple;
+  border-color: black;
   width: 300;
   border-radius: 24;
   height: 64;

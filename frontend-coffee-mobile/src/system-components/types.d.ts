@@ -44,6 +44,7 @@ export declare namespace System {
   interface Title {}
 
   interface AbsoluteProps {
+    children: ReactNode
     top?: number
     bottom?: number
     left?: number
