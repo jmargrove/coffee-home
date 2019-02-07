@@ -14,7 +14,8 @@ import {
   BIG,
   LARGE,
   MASSIVE,
-  ATOMIC
+  ATOMIC,
+  ALPHA_PRIMARY
 } from "./theme"
 
 export interface ThemeInterface {
@@ -22,6 +23,7 @@ export interface ThemeInterface {
     [BLACK]: string
     [WHITE]: string
     [PRIMARY]: string
+    [ALPHA_PRIMARY]: string
     [SECONDARY]: string
     [THIRD]: string
     [LIGHT_GREY]: string

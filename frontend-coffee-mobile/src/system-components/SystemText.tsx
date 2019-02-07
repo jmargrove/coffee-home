@@ -6,4 +6,6 @@ export const SystemText = styled(Text)<any>`
   ${({ color, theme }) => color && `color: ${theme.colors[color]}`};
   ${({ uppercase }) => uppercase && `text-transform: uppercase`}
   ${({ size }) => size && `font-size: ${size}`}
+  font-weight: bold;
+  font-family: Roboto;
 `

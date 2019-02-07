@@ -14,9 +14,13 @@ export class Store {
   @observable
   zoom = { latitudeDelta: 0.015, longitudeDelta: 0.0121 }
 
+  @observable
+  field = []
+
   @action
   handleMakerLocation = ({ nativeEvent }: any) => {
     this.marker = nativeEvent.coordinate
+    this.field.push(nativeEvent.coordinate)
   }
 
   @action

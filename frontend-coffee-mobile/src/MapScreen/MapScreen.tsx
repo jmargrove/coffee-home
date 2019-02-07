@@ -2,26 +2,23 @@ import React, { FunctionComponent } from "react"
 import { Container } from "native-base"
 import { withNavigation } from "react-navigation"
 import { NavigationProps } from "../types"
-import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps"
+import MapView, { PROVIDER_GOOGLE, Marker, Polygon } from "react-native-maps"
 import {
   SystemContent,
   SystemButtonLarge,
   SystemAbsolute,
-  SystemText,
-  SystemFlex,
   SystemSpace
 } from "../system-components"
 import { YEILD_SCREEN } from "../utils/constants"
 import { observer } from "mobx-react"
-import { observable, action, toJS } from "mobx"
+import { toJS } from "mobx"
 import { compose, withProps } from "recompose"
-import { TouchableHighlight, TouchableOpacity } from "react-native"
-import { SystemExtent } from "../system-components/SystemExtent"
+import { TouchableOpacity } from "react-native"
 import {
   SMALL,
-  WHITE,
   PRIMARY,
-  SECONDARY
+  BLACK,
+  theme
 } from "../system-components/system-theme/theme"
 import { Store } from "./Store"
 import { Image } from "react-native"
@@ -41,13 +38,15 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
     handleZoomIn,
     handleZoomOut,
     marker,
-    zoom
+    zoom,
+    field
   } = store
 
   return (
     <Container>
       <SystemContent fill>
         <MapView
+          mapType="satellite"
           onPress={handleMakerLocation}
           showsUserLocation={true}
           provider={PROVIDER_GOOGLE}
@@ -59,7 +58,11 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
             longitudeDelta: zoom.longitudeDelta
           }}
         >
-          <Marker coordinate={toJS(marker)} />
+          {/* <Marker coordinate={toJS(marker)} /> */}
+          <Polygon
+            fillColor={theme.colors.ALPHA_PRIMARY}
+            coordinates={toJS(field)}
+          />
         </MapView>
         <SystemAbsolute bottom={104} right={16}>
           <TouchableOpacity onPress={handleZoomIn}>
@@ -78,14 +81,14 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
         </SystemAbsolute>
         <SystemAbsolute bottom={32} horizontal={300}>
           <SystemButtonLarge
-            colorBorder={SECONDARY}
+            colorBorder={BLACK}
             color={PRIMARY}
-            textColor={WHITE}
+            textColor={BLACK}
             onPress={() =>
               navigation.navigate(YEILD_SCREEN, { coordinates: toJS(marker) })
             }
           >
-            select location
+            Select location
           </SystemButtonLarge>
         </SystemAbsolute>
       </SystemContent>

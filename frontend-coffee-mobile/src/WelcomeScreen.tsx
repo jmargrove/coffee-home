@@ -14,10 +14,10 @@ import {
 } from "./system-components"
 import {
   BIG,
-  WHITE,
   BLACK,
   PRIMARY,
-  SECONDARY
+  ALPHA_PRIMARY,
+  WHITE
 } from "./system-components/system-theme/theme"
 
 export const WelcomeScreen: FunctionComponent<NavigationProps> = ({
@@ -29,7 +29,7 @@ export const WelcomeScreen: FunctionComponent<NavigationProps> = ({
         <SystemFlex justify="center" align="center">
           <SystemTitle>Coffee Engine</SystemTitle>
           <SystemSpace size={BIG} />
-          <Image source={require("./assets/bean-logo-white.png")} />
+          <Image source={require("./assets/bean-logo-black.png")} />
           <SystemSpace size={BIG} />
           <SystemText>
             Get yeild estimates for any location on the globe.

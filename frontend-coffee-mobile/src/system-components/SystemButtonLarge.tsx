@@ -8,7 +8,7 @@ import styled from "./system-theme/styled-components"
 
 const StyledButton = styled(View)<System.StyledButtonProps & any>`
   ${({ color, theme }) => color && `background-color: ${theme.colors[color]}`};
-  border-width: 1;
+  border-width: 2;
   ${({ colorBorder, theme }) =>
     colorBorder && `border-color: ${theme.colors[colorBorder]}`};
   width: 300;
@@ -26,7 +26,7 @@ export const SystemButtonLarge: FunctionComponent<System.ButtonLargeProps> = ({
     <StyledButton color={color} colorBorder={colorBorder}>
       <SystemFlex noFlex>
         <Button large transparent block rounded onPress={onPress}>
-          <SystemText uppercase size={24} color={textColor}>
+          <SystemText size={24} color={textColor}>
             {children}
           </SystemText>
         </Button>
