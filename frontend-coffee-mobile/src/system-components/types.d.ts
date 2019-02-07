@@ -15,6 +15,7 @@ export declare namespace System {
   }
 
   interface FlexProps {
+    children: ReactNode
     noFlex?: boolean
     justify?:
       | "start"
