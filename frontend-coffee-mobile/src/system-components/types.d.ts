@@ -2,6 +2,9 @@ import { ReactNode } from "react"
 
 export declare namespace System {
   interface ButtonLargeProps {
+    colorBorder?: string
+    color?: string
+    textColor?: string
     children: string | ReactNode
     onPress: () => void
   }

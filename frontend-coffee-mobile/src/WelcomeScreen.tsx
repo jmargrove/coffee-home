@@ -12,7 +12,13 @@ import {
   SystemSpace,
   SystemButtonLarge
 } from "./system-components"
-import { BIG, WHITE } from "./system-components/system-theme/theme"
+import {
+  BIG,
+  WHITE,
+  BLACK,
+  PRIMARY,
+  SECONDARY
+} from "./system-components/system-theme/theme"
 
 export const WelcomeScreen: FunctionComponent<NavigationProps> = ({
   navigation
@@ -25,11 +31,15 @@ export const WelcomeScreen: FunctionComponent<NavigationProps> = ({
           <SystemSpace size={BIG} />
           <Image source={require("./assets/bean-logo-white.png")} />
           <SystemSpace size={BIG} />
-          <SystemText color={WHITE}>
+          <SystemText>
             Get yeild estimates for any location on the globe.
           </SystemText>
           <SystemSpace size={BIG} />
-          <SystemButtonLarge onPress={() => navigation.navigate(MAP_SCREEN)}>
+          <SystemButtonLarge
+            colorBorder={BLACK}
+            color={PRIMARY}
+            onPress={() => navigation.navigate(MAP_SCREEN)}
+          >
             Get started
           </SystemButtonLarge>
         </SystemFlex>

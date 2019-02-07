@@ -15,71 +15,16 @@ import { YEILD_SCREEN } from "../utils/constants"
 import { observer } from "mobx-react"
 import { observable, action, toJS } from "mobx"
 import { compose, withProps } from "recompose"
-import {
-  NativeEventEmitter,
-  NativeTouchEvent,
-  View,
-  TouchableHighlight,
-  TouchableOpacity
-} from "react-native"
+import { TouchableHighlight, TouchableOpacity } from "react-native"
 import { SystemExtent } from "../system-components/SystemExtent"
-import { BIG, SMALL } from "../system-components/system-theme/theme"
-
-class Store {
-  constructor() {
-    this.handleInitialLocation()
-  }
-
-  @observable
-  marker: { latitude: number; longitude: number } = {
-    latitude: 0,
-    longitude: 0
-  }
-
-  @observable
-  zoom = { latitudeDelta: 0.015, longitudeDelta: 0.0121 }
-
-  @action
-  handleMakerLocation = ({ nativeEvent }: any) => {
-    this.marker = nativeEvent.coordinate
-  }
-
-  @action
-  handleInitialLocation = () => {
-    navigator.geolocation.getCurrentPosition(
-      location => {
-        console.log("location", location)
-        const { latitude, longitude } = location.coords
-        this.marker = { latitude, longitude }
-        this.zoom = { latitudeDelta: 0.015, longitudeDelta: 0.0121 }
-      },
-      error => {
-        console.log("error", error)
-      },
-      {
-        timeout: 1000 * 5,
-        enableHighAccuracy: false
-      }
-    )
-  }
-
-  @action handleZoomIn = () => {
-    const { latitudeDelta, longitudeDelta } = this.zoom
-    this.zoom = {
-      latitudeDelta: latitudeDelta / 3,
-      longitudeDelta: longitudeDelta / 3
-    }
-  }
-
-  @action handleZoomOut = () => {
-    const { latitudeDelta, longitudeDelta } = this.zoom
-    this.zoom = {
-      latitudeDelta: latitudeDelta * 3,
-      longitudeDelta: longitudeDelta * 3
-    }
-  }
-}
-
+import {
+  SMALL,
+  WHITE,
+  PRIMARY,
+  SECONDARY
+} from "../system-components/system-theme/theme"
+import { Store } from "./Store"
+import { Image } from "react-native"
 const power = compose<any, any>(
   withNavigation,
   withProps({ store: new Store() }),
@@ -116,35 +61,26 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
         >
           <Marker coordinate={toJS(marker)} />
         </MapView>
-        <SystemAbsolute bottom={200} right={24}>
+        <SystemAbsolute bottom={104} right={16}>
           <TouchableOpacity onPress={handleZoomIn}>
-            <SystemExtent circle={48} color="orange">
-              <SystemFlex justify="center" align="center">
-                <SystemText>+</SystemText>
-              </SystemFlex>
-            </SystemExtent>
+            <Image source={require("./../assets/possitive-button.png")} />
           </TouchableOpacity>
 
           <SystemSpace size={SMALL} />
-          <TouchableHighlight onPress={handleZoomOut}>
-            <SystemExtent circle={48} color="red">
-              <SystemFlex justify="center" align="center">
-                <SystemText>-</SystemText>
-              </SystemFlex>
-            </SystemExtent>
-          </TouchableHighlight>
+          <TouchableOpacity onPress={handleZoomOut}>
+            <Image source={require("./../assets/negative-button.png")} />
+          </TouchableOpacity>
 
           <SystemSpace size={SMALL} />
-          <TouchableHighlight onPress={handleInitialLocation}>
-            <SystemExtent circle={48} color="blue">
-              <SystemFlex justify="center" align="center">
-                <SystemText>Go</SystemText>
-              </SystemFlex>
-            </SystemExtent>
-          </TouchableHighlight>
+          <TouchableOpacity onPress={handleInitialLocation}>
+            <Image source={require("./../assets/cardinal-button.png")} />
+          </TouchableOpacity>
         </SystemAbsolute>
-        <SystemAbsolute bottom={64} horizontal={300}>
+        <SystemAbsolute bottom={32} horizontal={300}>
           <SystemButtonLarge
+            colorBorder={SECONDARY}
+            color={PRIMARY}
+            textColor={WHITE}
             onPress={() =>
               navigation.navigate(YEILD_SCREEN, { coordinates: toJS(marker) })
             }

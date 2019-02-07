@@ -23,8 +23,8 @@ export const theme: ThemeInterface = {
   colors: {
     [BLACK]: "black",
     [WHITE]: "white",
-    [PRIMARY]: "black",
-    [SECONDARY]: "black",
+    [PRIMARY]: "rgb(74, 109, 124)",
+    [SECONDARY]: "rgb(98, 146, 158)",
     [THIRD]: "black",
     [LIGHT_GREY]: "rgb(80,80,80)",
     [MEDIUM_GREY]: "rgb(136, 136, 136)",
