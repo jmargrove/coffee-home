@@ -42,4 +42,11 @@ export declare namespace System {
   }
   interface Text {}
   interface Title {}
+
+  interface AbsoluteProps {
+    top?: number
+    bottom?: number
+    left?: number
+    right?: number
+  }
 }
