@@ -59,12 +59,12 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
           }}
         >
           {/* <Marker coordinate={toJS(marker)} /> */}
-          <Polygon
+          {/* <Polygon
             fillColor={theme.colors.ALPHA_PRIMARY}
             coordinates={toJS(field)}
-          />
+          /> */}
         </MapView>
-        <SystemAbsolute bottom={104} right={16}>
+        {/* <SystemAbsolute bottom={104} right={16}>
           <TouchableOpacity onPress={handleZoomIn}>
             <Image source={require("./../assets/possitive-button.png")} />
           </TouchableOpacity>
@@ -90,7 +90,7 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
           >
             Select location
           </SystemButtonLarge>
-        </SystemAbsolute>
+        </SystemAbsolute> */}
       </SystemContent>
     </Container>
   )
