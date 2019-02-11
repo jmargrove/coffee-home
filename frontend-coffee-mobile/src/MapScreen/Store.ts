@@ -15,7 +15,7 @@ export class Store {
   zoom = { latitudeDelta: 0.015, longitudeDelta: 0.0121 }
 
   @observable
-  field = []
+  field: any[] = []
 
   @action
   handleMakerLocation = ({ nativeEvent }: any) => {
@@ -27,7 +27,6 @@ export class Store {
   handleInitialLocation = () => {
     navigator.geolocation.getCurrentPosition(
       location => {
-        console.log("location", location)
         const { latitude, longitude } = location.coords
         this.marker = { latitude, longitude }
         this.zoom = { latitudeDelta: 0.015, longitudeDelta: 0.0121 }
@@ -56,5 +55,9 @@ export class Store {
       latitudeDelta: latitudeDelta * 3,
       longitudeDelta: longitudeDelta * 3
     }
+  }
+
+  handleDraggableMarker = ({ nativeEvent }: any) => {
+    this.marker = nativeEvent.coordinate
   }
 }

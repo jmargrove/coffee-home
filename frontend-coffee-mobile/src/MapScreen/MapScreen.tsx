@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react"
-import { Container } from "native-base"
+import { Container, View } from "native-base"
 import { withNavigation } from "react-navigation"
 import { NavigationProps } from "../types"
 import MapView, { PROVIDER_GOOGLE, Marker, Polygon } from "react-native-maps"
@@ -7,26 +7,56 @@ import {
   SystemContent,
   SystemButtonLarge,
   SystemAbsolute,
-  SystemSpace
+  SystemSpace,
+  SystemText,
+  SystemFlex
 } from "../system-components"
-import { YEILD_SCREEN } from "../utils/constants"
+import { YEILD_SCREEN, MAP_SCREEN } from "../utils/constants"
 import { observer } from "mobx-react"
 import { toJS } from "mobx"
 import { compose, withProps } from "recompose"
-import { TouchableOpacity } from "react-native"
+import { TouchableOpacity, Dimensions } from "react-native"
 import {
   SMALL,
   PRIMARY,
   BLACK,
-  theme
+  theme,
+  WHITE,
+  LIGHT_GREY
 } from "../system-components/system-theme/theme"
 import { Store } from "./Store"
 import { Image } from "react-native"
+import { MapToolBar } from "./MapToolBar"
+import styled from "../system-components/system-theme/styled-components"
+
 const power = compose<any, any>(
   withNavigation,
   withProps({ store: new Store() }),
   observer
 )
+
+const PhoneInfoBarr = styled(View)<any>`
+  height: 24;
+  width: 100%;
+  background-color: ${({ theme }) => theme && theme.colors[PRIMARY]};
+`
+
+const HeaderContainer = styled(View)<any>`
+  width: ${Dimensions.get("window").width};
+  height: 80;
+  background-color: ${({ theme }) => theme && theme.colors[LIGHT_GREY]};
+`
+const YellowLine = styled(View)<any>`
+width: ${Dimensions.get("window").width}
+height: 2;
+background-color: ${({ theme }) => theme && theme.colors[PRIMARY]};
+`
+
+const GreyLine = styled(View)<any>`
+  width: ${Dimensions.get("window").width};
+  height: 1;
+  background-color: grey;
+`
 
 export const MapScreen: FunctionComponent<NavigationProps & any> = ({
   navigation,
@@ -35,6 +65,7 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
   const {
     handleMakerLocation,
     handleInitialLocation,
+    handleDraggableMarker,
     handleZoomIn,
     handleZoomOut,
     marker,
@@ -44,11 +75,33 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
 
   return (
     <Container>
+      <HeaderContainer>
+        <SystemFlex justify="space-between">
+          <PhoneInfoBarr />
+          <SystemFlex row align="center" justify="space-between">
+            <SystemFlex row noFlex>
+              <SystemSpace size={SMALL} />
+              <Image source={require("./../assets/back.png")} />
+            </SystemFlex>
+
+            <SystemText color={BLACK} size={24} italic bold>
+              Select location
+            </SystemText>
+            <SystemFlex row noFlex>
+              <Image source={require("./../assets/settings.png")} />
+              <SystemSpace size={SMALL} />
+            </SystemFlex>
+          </SystemFlex>
+
+          <SystemFlex noFlex>
+            <YellowLine />
+            <GreyLine />
+          </SystemFlex>
+        </SystemFlex>
+      </HeaderContainer>
       <SystemContent fill>
         <MapView
           mapType="satellite"
-          onPress={handleMakerLocation}
-          showsUserLocation={true}
           provider={PROVIDER_GOOGLE}
           style={{ width: "100%", height: "100%" }}
           region={{
@@ -58,39 +111,30 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
             longitudeDelta: zoom.longitudeDelta
           }}
         >
-          {/* <Marker coordinate={toJS(marker)} /> */}
-          {/* <Polygon
-            fillColor={theme.colors.ALPHA_PRIMARY}
-            coordinates={toJS(field)}
-          /> */}
+          <Marker
+            draggable={true}
+            onDrag={handleDraggableMarker}
+            coordinate={toJS(marker)}
+            image={require("./../assets/map-location-yellow.png")}
+          />
         </MapView>
-        {/* <SystemAbsolute bottom={104} right={16}>
-          <TouchableOpacity onPress={handleZoomIn}>
-            <Image source={require("./../assets/possitive-button.png")} />
-          </TouchableOpacity>
-
-          <SystemSpace size={SMALL} />
-          <TouchableOpacity onPress={handleZoomOut}>
-            <Image source={require("./../assets/negative-button.png")} />
-          </TouchableOpacity>
-
-          <SystemSpace size={SMALL} />
-          <TouchableOpacity onPress={handleInitialLocation}>
-            <Image source={require("./../assets/cardinal-button.png")} />
-          </TouchableOpacity>
-        </SystemAbsolute>
+        <MapToolBar
+          handleZoomIn={handleZoomIn}
+          handleZoomOut={handleZoomOut}
+          handleInitialLocation={handleMakerLocation}
+        />
         <SystemAbsolute bottom={32} horizontal={300}>
-          <SystemButtonLarge
-            colorBorder={BLACK}
-            color={PRIMARY}
-            textColor={BLACK}
-            onPress={() =>
-              navigation.navigate(YEILD_SCREEN, { coordinates: toJS(marker) })
-            }
-          >
-            Select location
-          </SystemButtonLarge>
-        </SystemAbsolute> */}
+          <SystemAbsolute bottom={8}>
+            <SystemButtonLarge
+              colorBorder={PRIMARY}
+              color={WHITE}
+              textColor={BLACK}
+              onPress={() => navigation.navigate(MAP_SCREEN)}
+            >
+              Select location
+            </SystemButtonLarge>
+          </SystemAbsolute>
+        </SystemAbsolute>
       </SystemContent>
     </Container>
   )
