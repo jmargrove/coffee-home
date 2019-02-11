@@ -22,13 +22,13 @@ const base = 8
 
 export const theme: ThemeInterface = {
   colors: {
-    [BLACK]: "#020100",
+    [BLACK]: "#4A4A4A",
     [WHITE]: "#FDFFFC",
     [PRIMARY]: "rgb(241, 211, 2)", // yellow
     [ALPHA_PRIMARY]: "rgba(241, 211, 2, 0.5)",
     [SECONDARY]: "#235789", // blue
     [THIRD]: "#ED1C24", /// red
-    [LIGHT_GREY]: "rgb(80,80,80)",
+    [LIGHT_GREY]: "#F0F0F0",
     [MEDIUM_GREY]: "rgb(136, 136, 136)",
     [HEAVY_GREY]: "black"
   },
