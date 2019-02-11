@@ -33,7 +33,7 @@ export const WelcomeScreen: FunctionComponent<NavigationProps> = ({
           <Image source={require("./assets/logo-yellow-large.png")} />
           <SystemSpace size={BIG} />
           <SystemText size={24} center color={BLACK}>
-            Get yeild estimates for any location on the globe.
+            Get yield estimates for any location on the globe.
           </SystemText>
           <SystemSpace size={BIG} />
           <SystemAbsolute bottom={24}>

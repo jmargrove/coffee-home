@@ -70,7 +70,10 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
     handleZoomOut,
     marker,
     zoom,
-    field
+    isDisabled,
+    field,
+    handlePointDrop,
+    userLocation
   } = store
 
   return (
@@ -79,10 +82,12 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
         <SystemFlex justify="space-between">
           <PhoneInfoBarr />
           <SystemFlex row align="center" justify="space-between">
-            <SystemFlex row noFlex>
-              <SystemSpace size={SMALL} />
-              <Image source={require("./../assets/back.png")} />
-            </SystemFlex>
+            <TouchableOpacity>
+              <SystemFlex row noFlex>
+                <SystemSpace size={SMALL} />
+                <Image source={require("./../assets/back.png")} />
+              </SystemFlex>
+            </TouchableOpacity>
 
             <SystemText color={BLACK} size={24} italic bold>
               Select location
@@ -112,29 +117,39 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
           }}
         >
           <Marker
-            draggable={true}
-            onDrag={handleDraggableMarker}
-            coordinate={toJS(marker)}
+            coordinate={toJS(userLocation)}
             image={require("./../assets/map-location-yellow.png")}
           />
+          {!isDisabled && (
+            <Marker
+              zIndex={2}
+              draggable={true}
+              onDrag={handleDraggableMarker}
+              coordinate={toJS(marker)}
+              image={require("./../assets/map-location-red.png")}
+            />
+          )}
         </MapView>
         <MapToolBar
           handleZoomIn={handleZoomIn}
           handleZoomOut={handleZoomOut}
-          handleInitialLocation={handleMakerLocation}
+          handleInitialLocation={handleInitialLocation}
+          handlePointDrop={handlePointDrop}
         />
-        <SystemAbsolute bottom={32} horizontal={300}>
-          <SystemAbsolute bottom={8}>
-            <SystemButtonLarge
-              colorBorder={PRIMARY}
-              color={WHITE}
-              textColor={BLACK}
-              onPress={() => navigation.navigate(MAP_SCREEN)}
-            >
-              Select location
-            </SystemButtonLarge>
+        {!isDisabled && (
+          <SystemAbsolute bottom={32} horizontal={300}>
+            <SystemAbsolute bottom={8}>
+              <SystemButtonLarge
+                colorBorder={PRIMARY}
+                color={WHITE}
+                textColor={BLACK}
+                onPress={() => navigation.navigate(YEILD_SCREEN)}
+              >
+                Select location
+              </SystemButtonLarge>
+            </SystemAbsolute>
           </SystemAbsolute>
-        </SystemAbsolute>
+        )}
       </SystemContent>
     </Container>
   )

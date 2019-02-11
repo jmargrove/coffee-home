@@ -19,12 +19,14 @@ interface MapToolBarProps {
   handleInitialLocation: () => void
   handleZoomOut: () => void
   handleZoomIn: () => void
+  handlePointDrop: () => void
 }
 
 export const MapToolBar: FunctionComponent<MapToolBarProps> = ({
   handleInitialLocation,
   handleZoomOut,
-  handleZoomIn
+  handleZoomIn,
+  handlePointDrop
 }) => {
   return (
     <SystemAbsolute vertical={48 * 4 + 70 * 3} right={16}>
@@ -54,7 +56,7 @@ export const MapToolBar: FunctionComponent<MapToolBarProps> = ({
       </TouchableOpacity>
 
       <SystemSpace size={MEDIUM} />
-      <TouchableOpacity onPress={handleInitialLocation}>
+      <TouchableOpacity onPress={handlePointDrop}>
         <RoundButton>
           <SystemFlex justify="center" align="center">
             <View

@@ -12,6 +12,12 @@ export class Store {
   }
 
   @observable
+  userLocation: { latitude: number; longitude: number } = {
+    latitude: 0,
+    longitude: 0
+  }
+
+  @observable
   zoom = { latitudeDelta: 0.015, longitudeDelta: 0.0121 }
 
   @observable
@@ -29,7 +35,11 @@ export class Store {
       location => {
         const { latitude, longitude } = location.coords
         this.marker = { latitude, longitude }
-        this.zoom = { latitudeDelta: 0.015, longitudeDelta: 0.0121 }
+        this.userLocation = { latitude, longitude }
+        this.zoom = {
+          latitudeDelta: 0.015 * 600 * 3,
+          longitudeDelta: 0.0121 * 600 * 3
+        }
       },
       error => {
         console.log("error", error)
@@ -59,5 +69,13 @@ export class Store {
 
   handleDraggableMarker = ({ nativeEvent }: any) => {
     this.marker = nativeEvent.coordinate
+  }
+
+  @observable
+  isDisabled = true
+
+  @action
+  handlePointDrop = () => {
+    this.isDisabled = !this.isDisabled
   }
 }
