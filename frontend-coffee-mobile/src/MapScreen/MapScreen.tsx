@@ -22,12 +22,14 @@ import {
   BLACK,
   theme,
   WHITE,
-  LIGHT_GREY
+  LIGHT_GREY,
+  THIRD
 } from "../system-components/system-theme/theme"
 import { Store } from "./Store"
 import { Image } from "react-native"
 import { MapToolBar } from "./MapToolBar"
 import styled from "../system-components/system-theme/styled-components"
+import { AnimatedMapMarker } from "./MapMarker"
 
 const power = compose<any, any>(
   withNavigation,
@@ -66,13 +68,15 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
     viewUserLocaton,
     handleZoomIn,
     handleZoomOut,
-    isDisabled,
+    handleDragPoint,
     handlePointDrop,
     userLocation,
     mapExtent,
     handleRegionChange,
     pointLocation,
-    isSelectingPoint
+    isSelectingPoint,
+    isPointPressed,
+    handlePointPress
   } = store
 
   return (
@@ -109,20 +113,24 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
           provider={PROVIDER_GOOGLE}
           style={{ width: "100%", height: "100%" }}
           region={toJS(mapExtent)}
-          onRegionChangeComplete={handleRegionChange}
+          onRegionChangeComplete={isSelectingPoint ? null : handleRegionChange}
+          onRegionChange={
+            isSelectingPoint ? e => handleDragPoint(e) : () => null
+          }
         >
-          <Marker
-            coordinate={toJS(userLocation)}
-            image={require("./../assets/map-location-yellow.png")}
-          />
-          {isSelectingPoint && (
-            <Marker
-              zIndex={2}
-              draggable={true}
-              // onDrag={handleDraggableMarker}
-              coordinate={toJS(pointLocation)}
-              image={require("./../assets/map-location-red.png")}
+          {/* <Marker coordinate={toJS(userLocation)}>
+            <AnimatedMapMarker
+              maxDimention={80}
+              color={theme.colors[PRIMARY]}
             />
+          </Marker> */}
+          {isSelectingPoint && (
+            <Marker zIndex={2} coordinate={toJS(pointLocation)}>
+              <AnimatedMapMarker
+                maxDimention={isPointPressed ? 200 : 80}
+                color={theme.colors[THIRD]}
+              />
+            </Marker>
           )}
         </MapView>
         <MapToolBar
@@ -130,6 +138,7 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
           handleZoomOut={handleZoomOut}
           viewUserLocaton={viewUserLocaton}
           handlePointDrop={handlePointDrop}
+          isSelectingPoint={isSelectingPoint}
         />
         {isSelectingPoint && (
           <SystemAbsolute bottom={32} horizontal={300}>

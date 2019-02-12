@@ -9,7 +9,8 @@ import {
   BLACK,
   PRIMARY,
   BIG,
-  MEDIUM
+  MEDIUM,
+  THIRD
 } from "../system-components/system-theme/theme"
 import { FunctionComponent } from "react"
 import { View } from "react-native"
@@ -20,13 +21,15 @@ interface MapToolBarProps {
   handleZoomOut: () => void
   handleZoomIn: () => void
   handlePointDrop: () => void
+  isSelectingPoint: boolean
 }
 
 export const MapToolBar: FunctionComponent<MapToolBarProps> = ({
   viewUserLocaton,
   handleZoomOut,
   handleZoomIn,
-  handlePointDrop
+  handlePointDrop,
+  isSelectingPoint
 }) => {
   return (
     <SystemAbsolute vertical={48 * 4 + 70 * 3} right={16}>
@@ -57,7 +60,7 @@ export const MapToolBar: FunctionComponent<MapToolBarProps> = ({
 
       <SystemSpace size={MEDIUM} />
       <TouchableOpacity onPress={handlePointDrop}>
-        <RoundButton>
+        <RoundButton selected={isSelectingPoint}>
           <SystemFlex justify="center" align="center">
             <View
               style={{
@@ -80,5 +83,6 @@ const RoundButton = styled(View)<any>`
   width: 48;
   border-radius: 24;
   border-width: 2;
-  ${({ theme }) => theme && `border-color: ${theme.colors[PRIMARY]}`}
+  border-color: ${({ selected }) =>
+    selected ? theme.colors[THIRD] : theme.colors[PRIMARY]};
 `

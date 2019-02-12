@@ -27,7 +27,7 @@ export const theme: ThemeInterface = {
     [PRIMARY]: "rgb(241, 211, 2)", // yellow
     [ALPHA_PRIMARY]: "rgba(241, 211, 2, 0.5)",
     [SECONDARY]: "#235789", // blue
-    [THIRD]: "#ED1C24", /// red
+    [THIRD]: "rgb(208, 2, 27)", /// red
     [LIGHT_GREY]: "#F0F0F0",
     [MEDIUM_GREY]: "rgb(136, 136, 136)",
     [HEAVY_GREY]: "black"
