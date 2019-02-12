@@ -63,17 +63,16 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
   store
 }) => {
   const {
-    handleMakerLocation,
-    handleInitialLocation,
-    handleDraggableMarker,
+    viewUserLocaton,
     handleZoomIn,
     handleZoomOut,
-    marker,
-    zoom,
     isDisabled,
-    field,
     handlePointDrop,
-    userLocation
+    userLocation,
+    mapExtent,
+    handleRegionChange,
+    pointLocation,
+    isSelectingPoint
   } = store
 
   return (
@@ -109,23 +108,19 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
           mapType="satellite"
           provider={PROVIDER_GOOGLE}
           style={{ width: "100%", height: "100%" }}
-          region={{
-            latitude: marker.latitude,
-            longitude: marker.longitude,
-            latitudeDelta: zoom.latitudeDelta,
-            longitudeDelta: zoom.longitudeDelta
-          }}
+          region={toJS(mapExtent)}
+          onRegionChangeComplete={handleRegionChange}
         >
           <Marker
             coordinate={toJS(userLocation)}
             image={require("./../assets/map-location-yellow.png")}
           />
-          {!isDisabled && (
+          {isSelectingPoint && (
             <Marker
               zIndex={2}
               draggable={true}
-              onDrag={handleDraggableMarker}
-              coordinate={toJS(marker)}
+              // onDrag={handleDraggableMarker}
+              coordinate={toJS(pointLocation)}
               image={require("./../assets/map-location-red.png")}
             />
           )}
@@ -133,10 +128,10 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
         <MapToolBar
           handleZoomIn={handleZoomIn}
           handleZoomOut={handleZoomOut}
-          handleInitialLocation={handleInitialLocation}
+          viewUserLocaton={viewUserLocaton}
           handlePointDrop={handlePointDrop}
         />
-        {!isDisabled && (
+        {isSelectingPoint && (
           <SystemAbsolute bottom={32} horizontal={300}>
             <SystemAbsolute bottom={8}>
               <SystemButtonLarge

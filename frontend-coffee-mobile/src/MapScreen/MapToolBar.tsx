@@ -16,14 +16,14 @@ import { View } from "react-native"
 import styled from "styled-components"
 
 interface MapToolBarProps {
-  handleInitialLocation: () => void
+  viewUserLocaton: () => void
   handleZoomOut: () => void
   handleZoomIn: () => void
   handlePointDrop: () => void
 }
 
 export const MapToolBar: FunctionComponent<MapToolBarProps> = ({
-  handleInitialLocation,
+  viewUserLocaton,
   handleZoomOut,
   handleZoomIn,
   handlePointDrop
@@ -47,7 +47,7 @@ export const MapToolBar: FunctionComponent<MapToolBarProps> = ({
       </TouchableOpacity>
 
       <SystemSpace size={MEDIUM} />
-      <TouchableOpacity onPress={handleInitialLocation}>
+      <TouchableOpacity onPress={viewUserLocaton}>
         <RoundButton>
           <SystemFlex justify="center" align="center">
             <Image source={require("./../assets/reset-map.png")} />
