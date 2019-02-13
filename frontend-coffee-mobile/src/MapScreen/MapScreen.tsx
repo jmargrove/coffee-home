@@ -1,36 +1,36 @@
 import React, { FunctionComponent } from "react"
 import { Container, View } from "native-base"
-import { withNavigation } from "react-navigation"
+import {
+  withNavigation,
+  NavigationInjectedProps,
+  NavigationScreenProp
+} from "react-navigation"
 import { NavigationProps } from "../types"
 import MapView, { PROVIDER_GOOGLE, Marker, Polygon } from "react-native-maps"
 import {
   SystemContent,
   SystemButtonLarge,
-  SystemAbsolute,
-  SystemSpace,
-  SystemText,
-  SystemFlex
+  SystemAbsolute
 } from "../system-components"
-import { YEILD_SCREEN, MAP_SCREEN } from "../utils/constants"
+import { YEILD_SCREEN } from "../utils/constants"
 import { observer } from "mobx-react"
 import { toJS } from "mobx"
 import { compose, withProps } from "recompose"
-import { TouchableOpacity, Dimensions } from "react-native"
+import { Dimensions } from "react-native"
 import {
-  SMALL,
   PRIMARY,
   BLACK,
   theme,
   WHITE,
   LIGHT_GREY,
-  THIRD,
-  SECONDARY
+  THIRD
 } from "../system-components/system-theme/theme"
 import { Store } from "./Store"
-import { Image } from "react-native"
+
 import { MapToolBar } from "./MapToolBar"
 import styled from "../system-components/system-theme/styled-components"
 import { AnimatedMapMarker } from "./MapMarker"
+import { HeaderComponent } from "../components/HeaderComponent"
 
 const power = compose<any, any>(
   withNavigation,
@@ -38,28 +38,37 @@ const power = compose<any, any>(
   observer
 )
 
-const PhoneInfoBarr = styled(View)<any>`
-  height: 24;
-  width: 100%;
-  background-color: ${({ theme }) => theme && theme.colors[PRIMARY]};
-`
-
-const HeaderContainer = styled(View)<any>`
-  width: ${Dimensions.get("window").width};
-  height: 80;
-  background-color: ${({ theme }) => theme && theme.colors[LIGHT_GREY]};
-`
-const YellowLine = styled(View)<any>`
-width: ${Dimensions.get("window").width}
-height: 2;
-background-color: ${({ theme }) => theme && theme.colors[PRIMARY]};
-`
-
-const GreyLine = styled(View)<any>`
-  width: ${Dimensions.get("window").width};
-  height: 1;
-  background-color: grey;
-`
+const MapSelectLocationButton: FunctionComponent<{
+  mapExtent: any
+  navigation: any
+  isActive: boolean
+}> = ({ mapExtent, navigation, isActive }) => {
+  if (isActive) {
+    return (
+      <SystemAbsolute bottom={32} horizontal={300}>
+        <SystemAbsolute bottom={8}>
+          <SystemButtonLarge
+            colorBorder={PRIMARY}
+            color={WHITE}
+            textColor={BLACK}
+            onPress={() => {
+              navigation.navigate(YEILD_SCREEN, {
+                point: {
+                  latitude: mapExtent.latitude,
+                  longitude: mapExtent.longitude
+                }
+              })
+            }}
+          >
+            Select location
+          </SystemButtonLarge>
+        </SystemAbsolute>
+      </SystemAbsolute>
+    )
+  } else {
+    return null
+  }
+}
 
 export const MapScreen: FunctionComponent<NavigationProps & any> = ({
   navigation,
@@ -78,32 +87,7 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
   } = store
   return (
     <Container>
-      <HeaderContainer>
-        <SystemFlex justify="space-between">
-          <PhoneInfoBarr />
-          <SystemFlex row align="center" justify="space-between">
-            <TouchableOpacity>
-              <SystemFlex row noFlex>
-                <SystemSpace size={SMALL} />
-                <Image source={require("./../assets/back.png")} />
-              </SystemFlex>
-            </TouchableOpacity>
-
-            <SystemText color={BLACK} size={24} italic bold>
-              Select location
-            </SystemText>
-            <SystemFlex row noFlex>
-              <Image source={require("./../assets/settings.png")} />
-              <SystemSpace size={SMALL} />
-            </SystemFlex>
-          </SystemFlex>
-
-          <SystemFlex noFlex>
-            <YellowLine />
-            <GreyLine />
-          </SystemFlex>
-        </SystemFlex>
-      </HeaderContainer>
+      <HeaderComponent />
       <SystemContent fill>
         <MapView
           mapType="satellite"
@@ -142,27 +126,11 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
             </Marker>
           </View>
         )}
-        {isSelectingPoint && (
-          <SystemAbsolute bottom={32} horizontal={300}>
-            <SystemAbsolute bottom={8}>
-              <SystemButtonLarge
-                colorBorder={PRIMARY}
-                color={WHITE}
-                textColor={BLACK}
-                onPress={() => {
-                  navigation.navigate(YEILD_SCREEN, {
-                    point: {
-                      latitude: mapExtent.latitude,
-                      longitude: mapExtent.longitude
-                    }
-                  })
-                }}
-              >
-                Select location
-              </SystemButtonLarge>
-            </SystemAbsolute>
-          </SystemAbsolute>
-        )}
+        <MapSelectLocationButton
+          isActive={isSelectingPoint}
+          navigation={navigation}
+          mapExtent={mapExtent}
+        />
       </SystemContent>
     </Container>
   )
