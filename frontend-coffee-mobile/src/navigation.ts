@@ -4,9 +4,11 @@ import {
   MAP_SCREEN,
   SET_PARAMETERS_SCREEN
 } from "./utils/constants"
-import { PoweredWelcomeScreen } from "./screens/WelcomeScreen/WelcomeScreen"
-import { PoweredMapScreen } from "./screens/MapScreen/MapScreen"
-import { SetParametersScreen } from "./screens/SetParametersScreen/SetParametersScreen"
+import {
+  PoweredWelcomeScreen,
+  PoweredMapScreen,
+  PoweredSetParametersScreen
+} from "./screens"
 
 export const AppNavigation = createSwitchNavigator(
   {
@@ -17,7 +19,7 @@ export const AppNavigation = createSwitchNavigator(
       screen: PoweredMapScreen
     },
     [SET_PARAMETERS_SCREEN]: {
-      screen: SetParametersScreen
+      screen: PoweredSetParametersScreen
     }
   },
   { initialRouteName: WELCOME_SCREEN }
