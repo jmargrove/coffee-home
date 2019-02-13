@@ -8,5 +8,5 @@ export const BoundsBar = styled(View)<any>`
       ? Dimensions.get("window").width - theme.sizes[space] * 2
       : Dimensions.get("window").width};
   height: 2;
-  background-color: ${({ theme }) => theme && theme.colors[PRIMARY]};
+  background-color: ${({ theme, color }) => theme && theme.colors[color]};
 `

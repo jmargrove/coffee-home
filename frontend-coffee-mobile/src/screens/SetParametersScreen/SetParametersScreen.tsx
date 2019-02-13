@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from "react"
 import { HeaderComponent } from "../../components/HeaderComponent"
-import { Container } from "native-base"
+import { Container, Input } from "native-base"
 import {
   SystemContent,
   SystemFlex,
@@ -8,7 +8,7 @@ import {
   SystemText
 } from "../../system-components"
 import styled from "../../system-components/system-theme/styled-components"
-import { View } from "react-native"
+import { View, TextInput } from "react-native"
 import {
   REGULAR,
   BLACK,
@@ -24,6 +24,12 @@ import { withNavigation } from "react-navigation"
 import { NavigationProps } from "../../types"
 import { AnimatedMapMarker } from "../MapScreen/components/MapMarker"
 import { BoundsBar } from "../../components/BoundsBar"
+import { PoweredSystemInput } from "../../system-components/SystemInput/SystemInput"
+import { compose, withProps, mapProps } from "recompose"
+import { observable, action } from "mobx"
+import { observer } from "mobx-react"
+import { SystemIconToggle } from "../../system-components/SystemInput/SystemIconToggle"
+import { TextInputComponent } from "../../components/InputComponent"
 
 const SelectedLocationContainer = styled(View)<any>`
   height: 132;
@@ -43,7 +49,7 @@ const MapFixed: FunctionComponent<{ point: any }> = ({ point }) => {
         }}
       >
         <Marker coordinate={point}>
-          <AnimatedMapMarker maxDimention={20} color={theme.colors[PRIMARY]} />
+          <AnimatedMapMarker maxDimention={60} color={theme.colors[PRIMARY]} />
         </Marker>
       </MapView>
     </SystemFlex>
@@ -69,7 +75,7 @@ const SelectedLocation: FunctionComponent<{ point: any }> = ({ point }) => {
       <SystemSpace size={REGULAR} />
       <SelectedLocationContainer>
         <SystemFlex>
-          <BoundsBar space={REGULAR} />
+          <BoundsBar space={REGULAR} color={PRIMARY} />
           <SystemFlex row>
             <SystemSpace size={REGULAR} />
             <SystemFlex>
@@ -79,17 +85,17 @@ const SelectedLocation: FunctionComponent<{ point: any }> = ({ point }) => {
               <SelectLocationTextComponent field="Region:" value="Sandakan" />
               <SelectLocationTextComponent
                 field="Latitude:"
-                value={Math.round(point.latitude * 1000) / 1000}
+                value={`${Math.round(point.latitude * 1000) / 1000}°`}
               />
               <SelectLocationTextComponent
                 field="Longitude:"
-                value={Math.round(point.longitude * 1000) / 1000}
+                value={`${Math.round(point.longitude * 1000) / 1000}°`}
               />
             </SystemFlex>
             <MapFixed point={point} />
             <SystemSpace size={REGULAR} />
           </SystemFlex>
-          <BoundsBar space={REGULAR} />
+          <BoundsBar space={REGULAR} color={PRIMARY} />
         </SystemFlex>
       </SelectedLocationContainer>
       <SystemSpace size={REGULAR} />
@@ -97,20 +103,51 @@ const SelectedLocation: FunctionComponent<{ point: any }> = ({ point }) => {
   )
 }
 
-const SetParametersScreen: FunctionComponent<NavigationProps> = ({
-  navigation
-}) => {
-  const point = navigation.getParam("point")
-  console.log("point", point)
+const SetParametersScreen: FunctionComponent<{ store: any }> = ({ store }) => {
+  const { point, pointName, handleNameChange } = store
+  console.log("props", point, pointName, handleNameChange)
   return (
     <Container>
       <HeaderComponent>Set Parameters</HeaderComponent>
       <SystemContent fill>
         <SystemSpace size={REGULAR} />
         <SelectedLocation point={point} />
+        <SystemSpace size={REGULAR} />
+
+        <SystemSpace size={REGULAR} />
+        <TextInputComponent
+          label="Enter point Name"
+          value={pointName}
+          autoFocus={false}
+          onChangeText={handleNameChange}
+        />
       </SystemContent>
     </Container>
   )
 }
 
-export const PoweredSetParametersScreen = withNavigation(SetParametersScreen)
+class ParametersStore {
+  @observable
+  pointName = ""
+
+  @action
+  public handleNameChange = (pointName: string) => {
+    this.pointName = pointName
+  }
+
+  point = { latitude: 0, longitude: 0 }
+
+  constructor({ point }: any) {
+    this.point = point
+  }
+}
+
+const power = compose<any, any>(
+  withNavigation,
+  mapProps(({ navigation }: any) => ({
+    store: new ParametersStore({ point: navigation.getParam("point") })
+  })),
+  observer
+)
+
+export const PoweredSetParametersScreen = power(SetParametersScreen)

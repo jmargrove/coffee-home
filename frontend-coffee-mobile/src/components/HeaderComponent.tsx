@@ -50,7 +50,7 @@ export const HeaderComponent: FunctionComponent = ({ children }) => {
         </SystemFlex>
 
         <SystemFlex noFlex>
-          <BoundsBar />
+          <BoundsBar color={PRIMARY} />
           <GreyLine />
         </SystemFlex>
       </SystemFlex>
