@@ -1,18 +1,14 @@
 import React, { FunctionComponent } from "react"
 import { Container, View } from "native-base"
-import {
-  withNavigation,
-  NavigationInjectedProps,
-  NavigationScreenProp
-} from "react-navigation"
-import { NavigationProps } from "../types"
-import MapView, { PROVIDER_GOOGLE, Marker, Polygon } from "react-native-maps"
+import { withNavigation } from "react-navigation"
+import { NavigationProps } from "../../types"
+import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps"
 import {
   SystemContent,
   SystemButtonLarge,
   SystemAbsolute
-} from "../system-components"
-import { YEILD_SCREEN } from "../utils/constants"
+} from "../../system-components"
+import { SET_PARAMETERS_SCREEN } from "../../utils/constants"
 import { observer } from "mobx-react"
 import { toJS } from "mobx"
 import { compose, withProps } from "recompose"
@@ -22,15 +18,12 @@ import {
   BLACK,
   theme,
   WHITE,
-  LIGHT_GREY,
   THIRD
-} from "../system-components/system-theme/theme"
+} from "../../system-components/system-theme/theme"
 import { Store } from "./Store"
-
-import { MapToolBar } from "./MapToolBar"
-import styled from "../system-components/system-theme/styled-components"
-import { AnimatedMapMarker } from "./MapMarker"
-import { HeaderComponent } from "../components/HeaderComponent"
+import { MapToolBar } from "./components/MapToolBar"
+import { AnimatedMapMarker } from "./components/MapMarker"
+import { HeaderComponent } from "../../components/HeaderComponent"
 
 const power = compose<any, any>(
   withNavigation,
@@ -52,7 +45,7 @@ const MapSelectLocationButton: FunctionComponent<{
             color={WHITE}
             textColor={BLACK}
             onPress={() => {
-              navigation.navigate(YEILD_SCREEN, {
+              navigation.navigate(SET_PARAMETERS_SCREEN, {
                 point: {
                   latitude: mapExtent.latitude,
                   longitude: mapExtent.longitude
@@ -87,7 +80,7 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
   } = store
   return (
     <Container>
-      <HeaderComponent />
+      <HeaderComponent>Select location</HeaderComponent>
       <SystemContent fill>
         <MapView
           mapType="satellite"

@@ -1,11 +1,11 @@
 import React from "react"
 import { View } from "native-base"
-import { SystemFlex } from "../system-components"
-import styled from "../system-components/system-theme/styled-components"
+import { SystemFlex } from "../../../system-components"
+import styled from "../../../system-components/system-theme/styled-components"
 import { observable } from "mobx"
 import { compose, withProps } from "recompose"
 import { observer } from "mobx-react"
-import { Animated, Easing } from "react-native"
+import { Animated } from "react-native"
 
 const MarkerCenter = styled(View)<any>`
   width: ${({ minDimention }) => minDimention && minDimention};

@@ -31,7 +31,7 @@ const GreyLine = styled(View)<any>`
   height: 1;
   background-color: grey;
 `
-export const HeaderComponent: FunctionComponent = () => {
+export const HeaderComponent: FunctionComponent = ({ children }) => {
   return (
     <HeaderContainer>
       <SystemFlex justify="space-between">
@@ -45,7 +45,7 @@ export const HeaderComponent: FunctionComponent = () => {
           </TouchableOpacity>
 
           <SystemText color={BLACK} size={24} italic bold>
-            Select location
+            {children}
           </SystemText>
           <SystemFlex row noFlex>
             <Image source={require("./../assets/settings.png")} />

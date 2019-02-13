@@ -1,20 +1,17 @@
 import React from "react"
-import { SystemAbsolute } from "../system-components/SystemAbsolute"
+import { SystemAbsolute } from "../../../system-components/SystemAbsolute"
 import { TouchableOpacity } from "react-native"
 import { Image } from "react-native"
-import { SystemSpace, SystemFlex } from "../system-components"
+import { SystemSpace, SystemFlex } from "../../../system-components"
 import {
-  SMALL,
   theme,
-  BLACK,
   PRIMARY,
-  BIG,
   MEDIUM,
   THIRD
-} from "../system-components/system-theme/theme"
+} from "../../../system-components/system-theme/theme"
 import { FunctionComponent } from "react"
 import { View } from "react-native"
-import styled from "styled-components"
+import styled from "../../../system-components/system-theme/styled-components"
 
 interface MapToolBarProps {
   viewUserLocaton: () => void
@@ -36,7 +33,7 @@ export const MapToolBar: FunctionComponent<MapToolBarProps> = ({
       <TouchableOpacity onPress={handleZoomIn}>
         <RoundButton>
           <SystemFlex justify="center" align="center">
-            <Image source={require("./../assets/plus.png")} />
+            <Image source={require("./../../../assets/plus.png")} />
           </SystemFlex>
         </RoundButton>
       </TouchableOpacity>
@@ -44,7 +41,7 @@ export const MapToolBar: FunctionComponent<MapToolBarProps> = ({
       <TouchableOpacity onPress={handleZoomOut}>
         <RoundButton>
           <SystemFlex justify="center" align="center">
-            <Image source={require("./../assets/minus.png")} />
+            <Image source={require("./../../../assets/minus.png")} />
           </SystemFlex>
         </RoundButton>
       </TouchableOpacity>
@@ -53,7 +50,7 @@ export const MapToolBar: FunctionComponent<MapToolBarProps> = ({
       <TouchableOpacity onPress={viewUserLocaton}>
         <RoundButton>
           <SystemFlex justify="center" align="center">
-            <Image source={require("./../assets/reset-map.png")} />
+            <Image source={require("./../../../assets/reset-map.png")} />
           </SystemFlex>
         </RoundButton>
       </TouchableOpacity>
