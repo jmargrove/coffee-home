@@ -16,6 +16,8 @@ import { NavigationProps } from "./types"
 export const YieldScreen: FunctionComponent<NavigationProps> = ({
   navigation
 }: any) => {
+  // const { params } = navigation.getParam("parama")
+  console.log("params", navigation.getParam("point"))
   return (
     <Container>
       <Header>

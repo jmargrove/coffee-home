@@ -23,7 +23,8 @@ import {
   theme,
   WHITE,
   LIGHT_GREY,
-  THIRD
+  THIRD,
+  SECONDARY
 } from "../system-components/system-theme/theme"
 import { Store } from "./Store"
 import { Image } from "react-native"
@@ -68,17 +69,13 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
     viewUserLocaton,
     handleZoomIn,
     handleZoomOut,
-    handleDragPoint,
     handlePointDrop,
     userLocation,
     mapExtent,
     handleRegionChange,
     pointLocation,
-    isSelectingPoint,
-    isPointPressed,
-    handlePointPress
+    isSelectingPoint
   } = store
-
   return (
     <Container>
       <HeaderContainer>
@@ -113,25 +110,14 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
           provider={PROVIDER_GOOGLE}
           style={{ width: "100%", height: "100%" }}
           region={toJS(mapExtent)}
-          onRegionChangeComplete={isSelectingPoint ? null : handleRegionChange}
-          onRegionChange={
-            isSelectingPoint ? e => handleDragPoint(e) : () => null
-          }
+          onRegionChangeComplete={handleRegionChange}
         >
-          {/* <Marker coordinate={toJS(userLocation)}>
+          <Marker coordinate={toJS(userLocation)}>
             <AnimatedMapMarker
               maxDimention={80}
               color={theme.colors[PRIMARY]}
             />
-          </Marker> */}
-          {isSelectingPoint && (
-            <Marker zIndex={2} coordinate={toJS(pointLocation)}>
-              <AnimatedMapMarker
-                maxDimention={isPointPressed ? 200 : 80}
-                color={theme.colors[THIRD]}
-              />
-            </Marker>
-          )}
+          </Marker>
         </MapView>
         <MapToolBar
           handleZoomIn={handleZoomIn}
@@ -141,13 +127,36 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
           isSelectingPoint={isSelectingPoint}
         />
         {isSelectingPoint && (
+          <View
+            style={{
+              position: "relative",
+              left: Dimensions.get("window").width / 2,
+              bottom: Dimensions.get("window").height / 2 - 40
+            }}
+          >
+            <Marker zIndex={2} coordinate={toJS(pointLocation)}>
+              <AnimatedMapMarker
+                maxDimention={80}
+                color={theme.colors[THIRD]}
+              />
+            </Marker>
+          </View>
+        )}
+        {isSelectingPoint && (
           <SystemAbsolute bottom={32} horizontal={300}>
             <SystemAbsolute bottom={8}>
               <SystemButtonLarge
                 colorBorder={PRIMARY}
                 color={WHITE}
                 textColor={BLACK}
-                onPress={() => navigation.navigate(YEILD_SCREEN)}
+                onPress={() => {
+                  navigation.navigate(YEILD_SCREEN, {
+                    point: {
+                      latitude: mapExtent.latitude,
+                      longitude: mapExtent.longitude
+                    }
+                  })
+                }}
               >
                 Select location
               </SystemButtonLarge>

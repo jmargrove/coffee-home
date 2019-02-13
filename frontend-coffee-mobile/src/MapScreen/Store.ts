@@ -34,8 +34,6 @@ export class Store {
   @observable
   isSelectingPoint = false
   @observable
-  isPointPressed = false
-  @observable
   pointLocation: { latitude: number; longitude: number } = {
     latitude: 0,
     longitude: 0
@@ -146,42 +144,14 @@ export class Store {
 
   @action
   handleRegionChange = (extent: ICoordinate) => {
-    if (this.isSelectingPoint) {
-      this.nextRegion = extent
-      if (
-        this.hasRegionLatitudeChanged ||
-        this.hasRegionLongitudeChanged ||
-        this.hasRegionLatitudeDeltaChanged ||
-        this.hasRegionLongitudeDeltaChanged
-      ) {
-        const changeLatitude = this.mapExtent.latitude - extent.latitude
-        const changeLongitude = this.mapExtent.longitude - extent.longitude
-
-        this.mapExtent = {
-          ...this.mapExtent,
-          longitude: this.mapExtent.longitude - changeLongitude,
-          latitude: this.mapExtent.latitude - changeLatitude
-        }
-      }
-    } else {
-      this.nextRegion = extent
-      if (
-        this.hasRegionLatitudeChanged ||
-        this.hasRegionLongitudeChanged ||
-        this.hasRegionLatitudeDeltaChanged ||
-        this.hasRegionLongitudeDeltaChanged
-      ) {
-        this.mapExtent = extent
-      }
-    }
-  }
-
-  handleDragPoint = e => {
-    console.log(e)
-    this.pointLocation = {
-      ...this.pointLocation,
-      latitude: e.latitude,
-      longitude: e.longitude
+    this.nextRegion = extent
+    if (
+      this.hasRegionLatitudeChanged ||
+      this.hasRegionLongitudeChanged ||
+      this.hasRegionLatitudeDeltaChanged ||
+      this.hasRegionLongitudeDeltaChanged
+    ) {
+      this.mapExtent = extent
     }
   }
 
@@ -192,16 +162,5 @@ export class Store {
       latitude: this.mapExtent.latitude,
       longitude: this.mapExtent.longitude
     }
-  }
-
-  @action
-  handlePointPress = () => {
-    console.log("pressed")
-    this.isPointPressed = true
-  }
-
-  @action
-  handlePointRelease = () => {
-    this.isPointPressed = false
   }
 }

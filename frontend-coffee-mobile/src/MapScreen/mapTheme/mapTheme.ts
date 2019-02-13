@@ -6,8 +6,8 @@ export const mapTheme: IMapTheme = {
     longitudeDelta: 131
   },
   initialZoom: {
-    latitudeDelta: 12.4,
-    longitudeDelta: 11.6
+    latitudeDelta: 12.4 / 8,
+    longitudeDelta: 11.6 / 8
   },
   zoomMin: {
     latitudeDelta: 0.00024,
