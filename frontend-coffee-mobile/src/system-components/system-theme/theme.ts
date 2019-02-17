@@ -3,6 +3,7 @@ import { ThemeInterface } from "./styled-components"
 export const BLACK = `BLACK`
 export const WHITE = `WHITE`
 export const PRIMARY = `PRIMARY`
+export const ALPHA_PRIMARY = `ALPHA_PRIMARY`
 export const SECONDARY = `SECONDARY`
 export const THIRD = `THIRD`
 export const LIGHT_GREY = `LIGHT_GREY`
@@ -21,12 +22,13 @@ const base = 8
 
 export const theme: ThemeInterface = {
   colors: {
-    [BLACK]: "black",
-    [WHITE]: "white",
-    [PRIMARY]: "black",
-    [SECONDARY]: "black",
-    [THIRD]: "black",
-    [LIGHT_GREY]: "rgb(80,80,80)",
+    [BLACK]: "#4A4A4A",
+    [WHITE]: "#FDFFFC",
+    [PRIMARY]: "rgb(241, 211, 2)", // yellow
+    [ALPHA_PRIMARY]: "rgba(241, 211, 2, 0.5)",
+    [SECONDARY]: "rgb(35, 87, 137)", // blue
+    [THIRD]: "rgb(208, 2, 27)", /// red
+    [LIGHT_GREY]: "#F0F0F0",
     [MEDIUM_GREY]: "rgb(136, 136, 136)",
     [HEAVY_GREY]: "black"
   },
