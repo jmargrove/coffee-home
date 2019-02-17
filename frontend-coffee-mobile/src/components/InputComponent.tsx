@@ -1,4 +1,4 @@
-import React from "react"
+import React, { FunctionComponent } from "react"
 import { SystemText, SystemSpace, SystemFlex } from "../system-components"
 import { PoweredSystemInput } from "../system-components/SystemInput/SystemInput"
 import {
@@ -11,12 +11,21 @@ import {
 import { SystemIconToggle } from "../system-components/SystemInput/SystemIconToggle"
 import { View } from "react-native"
 
-export const TextInputComponent = ({
+type OnChangeText = (value: string) => void
+
+interface ITextInputComponent {
+  label: string
+  value: string
+  autoFocus: boolean
+  onChangeText: OnChangeText
+}
+
+export const TextInputComponent: FunctionComponent<ITextInputComponent> = ({
   label,
   value,
   onChangeText,
   autoFocus
-}: any) => {
+}) => {
   return (
     <SystemFlex noFlex row>
       <SystemSpace size={REGULAR} />
