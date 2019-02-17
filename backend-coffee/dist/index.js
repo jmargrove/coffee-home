@@ -123,6 +123,17 @@ var ModelPayloadResolvers;
     }
   };
 })(ModelPayloadResolvers = exports.ModelPayloadResolvers || (exports.ModelPayloadResolvers = {}));
+},{}],"resolvers/Query/model.ts":[function(require,module,exports) {
+"use strict";
+
+exports.__esModule = true;
+
+exports.model = function (parent, args, ctx) {
+  var res = Math.random() * 100;
+  return {
+    yield: Math.round(res * 100) / 100
+  };
+};
 },{}],"resolvers/Query.ts":[function(require,module,exports) {
 "use strict";
 
@@ -144,15 +155,12 @@ exports.__esModule = true;
 
 var graphqlgen_1 = require("../generated/graphqlgen");
 
+var model_1 = require("./Query/model");
+
 exports.Query = __assign({}, graphqlgen_1.QueryResolvers.defaultResolvers, {
-  model: function (parent, args, ctx) {
-    var res = Math.random() * 100;
-    return {
-      yield: Math.round(res * 100) / 100
-    };
-  }
+  model: model_1.model
 });
-},{"../generated/graphqlgen":"generated/graphqlgen.ts"}],"resolvers/ModelPayload.ts":[function(require,module,exports) {
+},{"../generated/graphqlgen":"generated/graphqlgen.ts","./Query/model":"resolvers/Query/model.ts"}],"resolvers/ModelPayload.ts":[function(require,module,exports) {
 "use strict";
 
 var __assign = this && this.__assign || function () {

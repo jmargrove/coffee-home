@@ -17,7 +17,7 @@ import {
 import { SystemFlex, SystemSpace, SystemText } from "../system-components"
 import { BoundsBar } from "./BoundsBar"
 
-const PhoneInfoBarr = styled(StatusBar)<any>`
+const PhoneInfoBarr = styled(View)<any>`
   width: 100%;
   height: 24;
   background-color: ${({ theme }) => theme && theme.colors[PRIMARY]};
