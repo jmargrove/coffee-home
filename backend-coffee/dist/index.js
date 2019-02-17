@@ -146,7 +146,10 @@ var graphqlgen_1 = require("../generated/graphqlgen");
 
 exports.Query = __assign({}, graphqlgen_1.QueryResolvers.defaultResolvers, {
   model: function (parent, args, ctx) {
-    throw new Error("Resolver not implemented");
+    var res = Math.random() * 100;
+    return {
+      yield: Math.round(res * 100) / 100
+    };
   }
 });
 },{"../generated/graphqlgen":"generated/graphqlgen.ts"}],"resolvers/ModelPayload.ts":[function(require,module,exports) {
