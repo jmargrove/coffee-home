@@ -1,18 +1,25 @@
 import React, { FunctionComponent } from "react"
 import styled from "../system-components/system-theme/styled-components"
-import { View, Dimensions, TouchableOpacity, Image } from "react-native"
+import {
+  View,
+  Dimensions,
+  TouchableOpacity,
+  Image,
+  StatusBar
+} from "react-native"
 import {
   PRIMARY,
   LIGHT_GREY,
   SMALL,
-  BLACK
+  BLACK,
+  theme
 } from "../system-components/system-theme/theme"
 import { SystemFlex, SystemSpace, SystemText } from "../system-components"
 import { BoundsBar } from "./BoundsBar"
 
-const PhoneInfoBarr = styled(View)<any>`
-  height: 24;
+const PhoneInfoBarr = styled(StatusBar)<any>`
   width: 100%;
+  height: 24;
   background-color: ${({ theme }) => theme && theme.colors[PRIMARY]};
 `
 
@@ -32,6 +39,10 @@ export const HeaderComponent: FunctionComponent = ({ children }) => {
     <HeaderContainer>
       <SystemFlex justify="space-between">
         <PhoneInfoBarr />
+        <StatusBar
+          barStyle="dark-content"
+          backgroundColor={theme.colors[PRIMARY]}
+        />
         <SystemFlex row align="center" justify="space-between">
           <TouchableOpacity>
             <SystemFlex row noFlex>
