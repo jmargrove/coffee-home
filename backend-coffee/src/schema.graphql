@@ -1,0 +1,12 @@
+type ModelPayload {
+  yield: Float
+}
+
+input Coordinates {
+  latitude: Float
+  longitude: Float
+}
+
+type Query {
+  model(input: Coordinates): ModelPayload
+}
