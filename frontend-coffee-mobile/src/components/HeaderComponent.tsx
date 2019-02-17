@@ -16,6 +16,7 @@ import {
 } from "../system-components/system-theme/theme"
 import { SystemFlex, SystemSpace, SystemText } from "../system-components"
 import { BoundsBar } from "./BoundsBar"
+import { IconBack } from "../assets/IconBack/IconBack"
 
 const PhoneInfoBarr = styled(View)<any>`
   width: 100%;
@@ -47,7 +48,7 @@ export const HeaderComponent: FunctionComponent = ({ children }) => {
           <TouchableOpacity>
             <SystemFlex row noFlex>
               <SystemSpace size={SMALL} />
-              <Image source={require("./../assets/back.png")} />
+              <IconBack />
             </SystemFlex>
           </TouchableOpacity>
 
