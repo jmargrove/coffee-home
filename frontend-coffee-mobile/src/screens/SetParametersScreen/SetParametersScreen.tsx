@@ -2,7 +2,7 @@ import React, { FunctionComponent } from "react"
 import { HeaderComponent } from "../../components/HeaderComponent"
 import { Container } from "native-base"
 import { SystemContent, SystemSpace } from "../../system-components"
-import { REGULAR } from "../../system-components/system-theme/theme"
+import { REGULAR, MEDIUM } from "../../system-components/system-theme/theme"
 import { withNavigation } from "react-navigation"
 import { NavigationProps } from "../../types"
 import { compose, mapProps } from "recompose"
@@ -10,25 +10,37 @@ import { observer } from "mobx-react"
 import { TextInputComponent } from "../../components/InputComponent"
 import { SelectedLocation } from "./components.ts/SelectedLocation/SelectedLocation"
 import { ParametersStore } from "./ParametersStore"
+import { NumericInputComponent } from "../../components/NumericInputComponent"
 
 const SetParametersScreen: FunctionComponent<{ store: ParametersStore }> = ({
   store
 }) => {
-  const { point, pointName, handleNameChange } = store
+  const {
+    point,
+    pointName,
+    userCurrentYield,
+    handleNameChange,
+    handleYieldChange
+  } = store
   return (
     <Container>
       <HeaderComponent>Set Parameters</HeaderComponent>
-      <SystemContent fill>
+      <SystemContent>
         <SystemSpace size={REGULAR} />
         <SelectedLocation point={point} />
-        <SystemSpace size={REGULAR} />
-
-        <SystemSpace size={REGULAR} />
+        <SystemSpace size={MEDIUM} />
         <TextInputComponent
           label="Enter point Name"
           value={pointName}
           autoFocus={false}
           onChangeText={handleNameChange}
+        />
+        <SystemSpace size={MEDIUM} />
+        <NumericInputComponent
+          label="Your current yield"
+          value={userCurrentYield}
+          autoFocus={false}
+          onChangeText={handleYieldChange}
         />
       </SystemContent>
     </Container>

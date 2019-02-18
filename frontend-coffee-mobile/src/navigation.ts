@@ -1,4 +1,8 @@
-import { createSwitchNavigator, createAppContainer } from "react-navigation"
+import {
+  createSwitchNavigator,
+  createStackNavigator,
+  createAppContainer
+} from "react-navigation"
 import {
   WELCOME_SCREEN,
   MAP_SCREEN,
@@ -10,7 +14,7 @@ import {
   PoweredSetParametersScreen
 } from "./screens"
 
-export const AppNavigation = createSwitchNavigator(
+export const AppNavigation = createStackNavigator(
   {
     [WELCOME_SCREEN]: {
       screen: PoweredWelcomeScreen
@@ -22,7 +26,15 @@ export const AppNavigation = createSwitchNavigator(
       screen: PoweredSetParametersScreen
     }
   },
-  { initialRouteName: WELCOME_SCREEN }
+  {
+    initialRouteName: WELCOME_SCREEN,
+    headerMode: "none",
+    transitionConfig: () => ({
+      transitionSpec: {
+        duration: 0
+      }
+    })
+  }
 )
 
 export const MainNavigation = createAppContainer(AppNavigation)
