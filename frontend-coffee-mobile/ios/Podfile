@@ -39,8 +39,8 @@ plugin 'cocoapods-keys', {
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  # pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
-
+  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
+  # pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler/ios'
   # pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
 
   # pod 'CodePush', :path => '../node_modules/react-native-code-push'
