@@ -9,12 +9,17 @@ interface ICoordinates {
 
 type OnYieldChange = (value: string) => void
 
+type OnShadeChange = (shade: string) => void
+
 export class ParametersStore {
   @observable
   public pointName: string = ""
 
   @observable
   public userCurrentYield = ""
+
+  @observable
+  public shadeLevel = "none"
 
   @action
   public handleNameChange: OnChangeText = (value: string) => {
@@ -24,6 +29,12 @@ export class ParametersStore {
   @action
   public handleYieldChange: OnYieldChange = value => {
     this.userCurrentYield = value
+  }
+
+  @action
+  public handleShadeChange: OnShadeChange = shade => {
+    console.log("shade", shade)
+    this.shadeLevel = shade
   }
 
   public point: ICoordinates = { latitude: 0, longitude: 0 }
