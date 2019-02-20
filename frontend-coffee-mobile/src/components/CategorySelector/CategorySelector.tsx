@@ -17,41 +17,43 @@ const FlexEqual = styled(View)<any>`
 `
 
 export const CategorySelector: FunctionComponent<{
+  title: string
   shadeLevel: string
+  prevShadeLevel: string
   handleShadeChange: (shade: string) => void
-}> = ({ handleShadeChange, shadeLevel }) => {
+}> = ({ handleShadeChange, shadeLevel, prevShadeLevel, title }) => {
   return (
     <>
       <SystemFlex noFlex row>
         <SystemSpace size={REGULAR} />
         <SystemFlex>
-          <SystemText color={BLACK}>Your shade level</SystemText>
+          <SystemText color={BLACK}>{title}</SystemText>
           <SystemFlex justify="flex-end">
             <CategorySelectionContainer>
               <SystemFlex row>
                 <FlexEqual>
                   <AxisNode
-                    key="1232"
                     left={true}
                     label="none"
                     handleShadeChange={handleShadeChange}
                     shadeLevel={shadeLevel}
+                    prevShadeLevel={prevShadeLevel}
                   />
                 </FlexEqual>
                 <FlexEqual>
                   <AxisNode
-                    key="234"
                     label="low"
                     handleShadeChange={handleShadeChange}
                     shadeLevel={shadeLevel}
+                    prevShadeLevel={prevShadeLevel}
                   />
                 </FlexEqual>
                 <FlexEqual>
                   <AxisNode
-                    key="123"
                     label="medium"
                     handleShadeChange={handleShadeChange}
                     shadeLevel={shadeLevel}
+                    prevShadeLevel={prevShadeLevel}
                   />
                 </FlexEqual>
                 <FlexEqual>
@@ -60,6 +62,7 @@ export const CategorySelector: FunctionComponent<{
                     label="high"
                     handleShadeChange={handleShadeChange}
                     shadeLevel={shadeLevel}
+                    prevShadeLevel={prevShadeLevel}
                   />
                 </FlexEqual>
               </SystemFlex>

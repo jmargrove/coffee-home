@@ -21,6 +21,9 @@ export class ParametersStore {
   @observable
   public shadeLevel = "none"
 
+  @observable
+  public prevShadeLevel = "none"
+
   @action
   public handleNameChange: OnChangeText = (value: string) => {
     this.pointName = value
@@ -33,7 +36,7 @@ export class ParametersStore {
 
   @action
   public handleShadeChange: OnShadeChange = shade => {
-    console.log("shade", shade)
+    this.prevShadeLevel = this.shadeLevel
     this.shadeLevel = shade
   }
 

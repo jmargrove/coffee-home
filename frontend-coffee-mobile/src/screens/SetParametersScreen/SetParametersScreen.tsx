@@ -21,6 +21,7 @@ const SetParametersScreen: FunctionComponent<{ store: ParametersStore }> = ({
     pointName,
     userCurrentYield,
     shadeLevel,
+    prevShadeLevel,
     handleNameChange,
     handleYieldChange,
     handleShadeChange
@@ -47,6 +48,15 @@ const SetParametersScreen: FunctionComponent<{ store: ParametersStore }> = ({
         />
         <SystemSpace size={MEDIUM} />
         <CategorySelector
+          title="Your shade level"
+          prevShadeLevel={prevShadeLevel}
+          shadeLevel={shadeLevel}
+          handleShadeChange={handleShadeChange}
+        />
+        <SystemSpace size={MEDIUM} />
+        <CategorySelector
+          title="Your slope level"
+          prevShadeLevel={prevShadeLevel}
           shadeLevel={shadeLevel}
           handleShadeChange={handleShadeChange}
         />

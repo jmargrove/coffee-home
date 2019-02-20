@@ -1,48 +1,47 @@
 import React, { FunctionComponent } from "react"
 import { SystemFlex } from "../../../system-components/SystemFlex"
-import { Image, TouchableOpacity } from "react-native"
+import { TouchableOpacity } from "react-native"
 import { View } from "react-native"
 import {
   MEDIUM_GREY,
   theme,
-  BLACK,
-  PRIMARY
+  BLACK
 } from "../../../system-components/system-theme/theme"
 import { SystemText } from "../../../system-components"
-import styled from "../../../system-components/system-theme/styled-components"
 import { YtickAnimated, YtickContainer } from "./YtickAnimated"
 import { SelectionGlowAnimated } from "./SelectionGlowAnimated"
+import { IconTick } from "../../../assets/IconTick/IconTick"
+import { IconCross } from "../../../assets/IconCross/IconCross"
 
 interface ITickProps {
   handleShadeChange: (shade: string) => void
   shadeLevel: string
+  prevShadeLevel?: string
   label: string
 }
-
-const SelectionGlow = styled(View)<any>`
-  width: 50;
-  height: 50;
-  border-radius: 25;
-  background-color: ${({ theme }) => theme && theme.colors[PRIMARY]};
-`
 
 const GreaterTick: FunctionComponent<ITickProps> = ({
   handleShadeChange,
   shadeLevel,
+  prevShadeLevel,
   label
 }) => (
   <TouchableOpacity onPress={() => handleShadeChange(label)}>
     <SystemFlex noFlex align="center">
-      <SelectionGlowAnimated label={label} shadeLevel={shadeLevel}>
+      <SelectionGlowAnimated
+        label={label}
+        shadeLevel={shadeLevel}
+        prevShadeLevel={prevShadeLevel}
+      >
         <SystemFlex justify="center" align="center">
-          {label === shadeLevel ? (
-            <Image source={require("../../../assets/edit-text.png")} />
-          ) : (
-            <Image source={require("../../../assets/clear-text.png")} />
-          )}
+          {label === shadeLevel ? <IconTick /> : <IconCross />}
         </SystemFlex>
       </SelectionGlowAnimated>
-      <YtickAnimated label={label} shadeLevel={shadeLevel} />
+      <YtickAnimated
+        label={label}
+        shadeLevel={shadeLevel}
+        prevShadeLevel={prevShadeLevel}
+      />
     </SystemFlex>
   </TouchableOpacity>
 )
@@ -94,6 +93,7 @@ interface IAxisNode {
   label: string
   handleShadeChange: (shade: string) => void
   shadeLevel: string
+  prevShadeLevel: string
 }
 
 export const AxisNode: FunctionComponent<IAxisNode> = ({
@@ -101,13 +101,15 @@ export const AxisNode: FunctionComponent<IAxisNode> = ({
   right,
   label,
   handleShadeChange,
-  shadeLevel
+  shadeLevel,
+  prevShadeLevel
 }) => {
   return (
     <SystemFlex noFlex align="center">
       <GreaterTick
         handleShadeChange={handleShadeChange}
         shadeLevel={shadeLevel}
+        prevShadeLevel={prevShadeLevel}
         label={label}
       />
       <Xaxis left={left} right={right} />
