@@ -5,27 +5,37 @@ import { SystemContent, SystemSpace } from "../../system-components"
 import { REGULAR, MEDIUM } from "../../system-components/system-theme/theme"
 import { withNavigation } from "react-navigation"
 import { NavigationProps } from "../../types"
-import { compose, mapProps } from "recompose"
+import { compose, mapProps, withProps } from "recompose"
 import { observer } from "mobx-react"
-import { TextInputComponent } from "../../components/InputComponent"
+import {
+  TextInputComponent,
+  TextInputWithStore
+} from "../../components/InputComponent"
 import { SelectedLocation } from "./components.ts/SelectedLocation/SelectedLocation"
 import { ParametersStore } from "./ParametersStore"
-import { NumericInputComponent } from "../../components/NumericInputComponent"
+import {
+  NumericInputComponent,
+  NumericInputWithStore
+} from "../../components/NumericInputComponent"
 import { CategorySelector } from "../../components/CategorySelector/CategorySelector"
+import { TouchableOpacity, View } from "react-native"
 
 const SetParametersScreen: FunctionComponent<{ store: ParametersStore }> = ({
   store
 }) => {
   const {
     point,
-    pointName,
-    userCurrentYield,
     shadeLevel,
     prevShadeLevel,
     handleNameChange,
     handleYieldChange,
-    handleShadeChange
+    handleShadeChange,
+    handleSlopeChange,
+    slopeLevel,
+    prevSlopeLevel,
+    handleSend
   } = store
+
   return (
     <Container>
       <HeaderComponent>Set Parameters</HeaderComponent>
@@ -33,33 +43,37 @@ const SetParametersScreen: FunctionComponent<{ store: ParametersStore }> = ({
         <SystemSpace size={REGULAR} />
         <SelectedLocation point={point} />
         <SystemSpace size={MEDIUM} />
-        <TextInputComponent
+        <TextInputWithStore
           label="Enter point Name"
-          value={pointName}
           autoFocus={false}
-          onChangeText={handleNameChange}
+          retrieve={handleNameChange}
         />
         <SystemSpace size={MEDIUM} />
-        <NumericInputComponent
+        <NumericInputWithStore
           label="Your current yield"
-          value={userCurrentYield}
           autoFocus={false}
-          onChangeText={handleYieldChange}
+          retrieve={handleYieldChange}
         />
         <SystemSpace size={MEDIUM} />
         <CategorySelector
           title="Your shade level"
-          prevShadeLevel={prevShadeLevel}
-          shadeLevel={shadeLevel}
-          handleShadeChange={handleShadeChange}
+          levels={["none", "low", "medium", "high"]}
+          prevFactorLevel={prevShadeLevel}
+          factorLevel={shadeLevel}
+          handleFactorChange={handleShadeChange}
         />
         <SystemSpace size={MEDIUM} />
         <CategorySelector
           title="Your slope level"
-          prevShadeLevel={prevShadeLevel}
-          shadeLevel={shadeLevel}
-          handleShadeChange={handleShadeChange}
+          levels={["flat", "slight", "gradual", "steep"]}
+          prevFactorLevel={prevSlopeLevel}
+          factorLevel={slopeLevel}
+          handleFactorChange={handleSlopeChange}
         />
+        <SystemSpace size={MEDIUM} />
+        <TouchableOpacity onPress={handleSend}>
+          <View style={{ width: 100, height: 20, backgroundColor: "blue" }} />
+        </TouchableOpacity>
       </SystemContent>
     </Container>
   )

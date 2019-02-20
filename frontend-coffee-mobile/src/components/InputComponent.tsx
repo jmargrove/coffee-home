@@ -10,22 +10,45 @@ import {
 } from "../system-components/system-theme/theme"
 import { SystemIconToggle } from "../system-components/SystemInput/SystemIconToggle"
 import { View } from "react-native"
+import { observable, action } from "mobx"
+import { compose, withProps } from "recompose"
+import { observer } from "mobx-react"
 
 type OnChangeText = (value: string) => void
 
 interface ITextInputComponent {
   label: string
-  value: string
   autoFocus: boolean
-  onChangeText: OnChangeText
+  retrieve: any
+  store: Store
 }
+
+class Store {
+  @observable
+  public value: string = ""
+
+  @action
+  public handleChange: OnChangeText = (value: string) => {
+    this.value = value
+  }
+}
+
+const power = compose<any, any>(
+  withProps({
+    store: new Store()
+  }),
+  observer
+)
 
 export const TextInputComponent: FunctionComponent<ITextInputComponent> = ({
   label,
-  value,
-  onChangeText,
-  autoFocus
+  autoFocus,
+  retrieve,
+  store,
+  ...rest
 }) => {
+  const { value, handleChange } = store
+  retrieve(value)
   return (
     <SystemFlex noFlex row>
       <SystemSpace size={REGULAR} />
@@ -38,8 +61,9 @@ export const TextInputComponent: FunctionComponent<ITextInputComponent> = ({
             <PoweredSystemInput
               value={value}
               autoFocus={autoFocus}
-              onChangeText={onChangeText}
+              onChangeText={handleChange}
               IconToggle={SystemIconToggle}
+              {...rest}
             />
           </SystemFlex>
 
@@ -51,6 +75,8 @@ export const TextInputComponent: FunctionComponent<ITextInputComponent> = ({
     </SystemFlex>
   )
 }
+
+export const TextInputWithStore = power(TextInputComponent)
 
 const InputTray = () => {
   return (

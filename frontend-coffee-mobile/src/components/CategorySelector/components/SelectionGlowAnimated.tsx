@@ -52,11 +52,11 @@ const CenterCircleAnimation = ({ children }: any) => {
 
 export const SelectionGlowAnimated = ({
   label,
-  shadeLevel,
+  factorLevel,
   children,
-  prevShadeLevel
+  prevFactorLevel
 }: any) => {
-  if (label === shadeLevel) {
+  if (label === factorLevel) {
     const diameter = new Animated.Value(20)
     const radius = new Animated.Value(10)
     Animated.timing(diameter, {
@@ -78,7 +78,7 @@ export const SelectionGlowAnimated = ({
         </SystemFlex>
       </SelectionGlow>
     )
-  } else if (label === prevShadeLevel) {
+  } else if (label === prevFactorLevel) {
     const diameter = new Animated.Value(50)
     const radius = new Animated.Value(25)
     Animated.timing(diameter, {

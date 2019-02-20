@@ -14,33 +14,33 @@ import { IconTick } from "../../../assets/IconTick/IconTick"
 import { IconCross } from "../../../assets/IconCross/IconCross"
 
 interface ITickProps {
-  handleShadeChange: (shade: string) => void
-  shadeLevel: string
-  prevShadeLevel?: string
+  handleFactorChange: (shade: string) => void
+  factorLevel: string
+  prevFactorLevel?: string
   label: string
 }
 
 const GreaterTick: FunctionComponent<ITickProps> = ({
-  handleShadeChange,
-  shadeLevel,
-  prevShadeLevel,
+  handleFactorChange,
+  factorLevel,
+  prevFactorLevel,
   label
 }) => (
-  <TouchableOpacity onPress={() => handleShadeChange(label)}>
+  <TouchableOpacity onPress={() => handleFactorChange(label)}>
     <SystemFlex noFlex align="center">
       <SelectionGlowAnimated
         label={label}
-        shadeLevel={shadeLevel}
-        prevShadeLevel={prevShadeLevel}
+        factorLevel={factorLevel}
+        prevFactorLevel={prevFactorLevel}
       >
         <SystemFlex justify="center" align="center">
-          {label === shadeLevel ? <IconTick /> : <IconCross />}
+          {label === factorLevel ? <IconTick /> : <IconCross />}
         </SystemFlex>
       </SelectionGlowAnimated>
       <YtickAnimated
         label={label}
-        shadeLevel={shadeLevel}
-        prevShadeLevel={prevShadeLevel}
+        factorLevel={factorLevel}
+        prevFactorLevel={prevFactorLevel}
       />
     </SystemFlex>
   </TouchableOpacity>
@@ -74,13 +74,13 @@ const Xaxis = ({ left, right }: any) => (
 
 const LowerTick: FunctionComponent<ITickProps> = ({
   label,
-  handleShadeChange,
-  shadeLevel
+  handleFactorChange,
+  factorLevel
 }) => (
-  <TouchableOpacity onPress={() => handleShadeChange(label)}>
+  <TouchableOpacity onPress={() => handleFactorChange(label)}>
     <SystemFlex noFlex align="center">
       <YtickContainer />
-      <SystemText color={shadeLevel === label ? BLACK : MEDIUM_GREY}>
+      <SystemText color={factorLevel === label ? BLACK : MEDIUM_GREY}>
         {label}
       </SystemText>
     </SystemFlex>
@@ -91,31 +91,31 @@ interface IAxisNode {
   left?: boolean
   right?: boolean
   label: string
-  handleShadeChange: (shade: string) => void
-  shadeLevel: string
-  prevShadeLevel: string
+  handleFactorChange: (shade: string) => void
+  factorLevel: string
+  prevFactorLevel: string
 }
 
 export const AxisNode: FunctionComponent<IAxisNode> = ({
   left,
   right,
   label,
-  handleShadeChange,
-  shadeLevel,
-  prevShadeLevel
+  handleFactorChange,
+  factorLevel,
+  prevFactorLevel
 }) => {
   return (
     <SystemFlex noFlex align="center">
       <GreaterTick
-        handleShadeChange={handleShadeChange}
-        shadeLevel={shadeLevel}
-        prevShadeLevel={prevShadeLevel}
+        handleFactorChange={handleFactorChange}
+        factorLevel={factorLevel}
+        prevFactorLevel={prevFactorLevel}
         label={label}
       />
       <Xaxis left={left} right={right} />
       <LowerTick
-        handleShadeChange={handleShadeChange}
-        shadeLevel={shadeLevel}
+        handleFactorChange={handleFactorChange}
+        factorLevel={factorLevel}
         label={label}
       />
     </SystemFlex>

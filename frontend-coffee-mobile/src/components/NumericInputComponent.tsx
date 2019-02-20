@@ -6,15 +6,13 @@ import {
   SMALL,
   theme,
   REGULAR,
-  MEDIUM_GREY,
-  LIGHT_GREY,
-  HEAVY_GREY,
-  MEDIUM
+  MEDIUM_GREY
 } from "../system-components/system-theme/theme"
 import { SystemIconToggle } from "../system-components/SystemInput/SystemIconToggle"
-import { View, KeyboardAvoidingView } from "react-native"
-
-type OnChangeText = (value: string) => void
+import { View } from "react-native"
+import { observable, action } from "mobx"
+import { compose, withProps } from "recompose"
+import { observer } from "mobx-react"
 
 interface ITextInputComponent {
   label: string
@@ -23,12 +21,41 @@ interface ITextInputComponent {
   onChangeText: OnChangeText
 }
 
+type OnChangeText = (value: string) => void
+
+interface ITextInputComponent {
+  label: string
+  autoFocus: boolean
+  retrieve: any
+  store: Store
+}
+
+class Store {
+  @observable
+  public value: string = ""
+
+  @action
+  public handleChange: OnChangeText = (value: string) => {
+    this.value = value
+  }
+}
+
+const power = compose<any, any>(
+  withProps({
+    store: new Store()
+  }),
+  observer
+)
+
 export const NumericInputComponent: FunctionComponent<ITextInputComponent> = ({
   label,
-  value,
-  onChangeText,
-  autoFocus
+  autoFocus,
+  retrieve,
+  store,
+  ...rest
 }) => {
+  const { value, handleChange } = store
+  retrieve(value)
   return (
     <SystemFlex noFlex row>
       <SystemSpace size={REGULAR} />
@@ -43,8 +70,9 @@ export const NumericInputComponent: FunctionComponent<ITextInputComponent> = ({
               units="tones of coffee per hectar"
               value={value}
               autoFocus={autoFocus}
-              onChangeText={onChangeText}
+              onChangeText={handleChange}
               IconToggle={SystemIconToggle}
+              {...rest}
             />
           </SystemFlex>
           <SystemSpace size={REGULAR} />
@@ -55,6 +83,8 @@ export const NumericInputComponent: FunctionComponent<ITextInputComponent> = ({
     </SystemFlex>
   )
 }
+
+export const NumericInputWithStore = power(NumericInputComponent)
 
 const InputTray = () => {
   return (

@@ -10,17 +10,17 @@ export const YtickContainer = styled(Animated.View)<{ height?: number }>`
 
 export const YtickAnimated: FunctionComponent<any> = ({
   label,
-  shadeLevel,
-  prevShadeLevel
+  factorLevel,
+  prevFactorLevel
 }) => {
-  if (label === shadeLevel) {
+  if (label === factorLevel) {
     const height = new Animated.Value(8)
     Animated.timing(height, {
       toValue: 24,
       duration: 1000
     }).start(() => 8)
     return <YtickContainer style={{ height }} />
-  } else if (label === prevShadeLevel) {
+  } else if (label === prevFactorLevel) {
     const height = new Animated.Value(24)
     Animated.timing(height, {
       toValue: 8,

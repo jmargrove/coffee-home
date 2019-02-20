@@ -4,6 +4,7 @@ import styled from "styled-components"
 import { View } from "react-native"
 import { REGULAR, BLACK } from "../../system-components/system-theme/theme"
 import { AxisNode } from "./components/AxisNode"
+import uuid from "uuid/v4"
 
 const CategorySelectionContainer = styled(View)<any>`
   height: 100
@@ -18,10 +19,11 @@ const FlexEqual = styled(View)<any>`
 
 export const CategorySelector: FunctionComponent<{
   title: string
-  shadeLevel: string
-  prevShadeLevel: string
-  handleShadeChange: (shade: string) => void
-}> = ({ handleShadeChange, shadeLevel, prevShadeLevel, title }) => {
+  levels: string[]
+  factorLevel: string
+  prevFactorLevel: string
+  handleFactorChange: (shade: string) => void
+}> = ({ handleFactorChange, factorLevel, prevFactorLevel, title, levels }) => {
   return (
     <>
       <SystemFlex noFlex row>
@@ -31,40 +33,20 @@ export const CategorySelector: FunctionComponent<{
           <SystemFlex justify="flex-end">
             <CategorySelectionContainer>
               <SystemFlex row>
-                <FlexEqual>
-                  <AxisNode
-                    left={true}
-                    label="none"
-                    handleShadeChange={handleShadeChange}
-                    shadeLevel={shadeLevel}
-                    prevShadeLevel={prevShadeLevel}
-                  />
-                </FlexEqual>
-                <FlexEqual>
-                  <AxisNode
-                    label="low"
-                    handleShadeChange={handleShadeChange}
-                    shadeLevel={shadeLevel}
-                    prevShadeLevel={prevShadeLevel}
-                  />
-                </FlexEqual>
-                <FlexEqual>
-                  <AxisNode
-                    label="medium"
-                    handleShadeChange={handleShadeChange}
-                    shadeLevel={shadeLevel}
-                    prevShadeLevel={prevShadeLevel}
-                  />
-                </FlexEqual>
-                <FlexEqual>
-                  <AxisNode
-                    right={true}
-                    label="high"
-                    handleShadeChange={handleShadeChange}
-                    shadeLevel={shadeLevel}
-                    prevShadeLevel={prevShadeLevel}
-                  />
-                </FlexEqual>
+                {levels.map((level, i) => {
+                  return (
+                    <FlexEqual key={`${i}_${level}_${uuid()}`}>
+                      <AxisNode
+                        left={i === 0 ? true : false}
+                        right={i === levels.length - 1 ? true : false}
+                        label={level}
+                        handleFactorChange={handleFactorChange}
+                        factorLevel={factorLevel}
+                        prevFactorLevel={prevFactorLevel}
+                      />
+                    </FlexEqual>
+                  )
+                })}
               </SystemFlex>
             </CategorySelectionContainer>
           </SystemFlex>
