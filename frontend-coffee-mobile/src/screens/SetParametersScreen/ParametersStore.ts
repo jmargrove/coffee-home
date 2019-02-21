@@ -1,5 +1,5 @@
 import { observable, action, computed } from "mobx"
-
+require("dotenv").config()
 type OnChangeText = (value: string) => void
 
 interface ICoordinates {
@@ -63,12 +63,49 @@ export class ParametersStore {
     this.irrigation = !this.irrigation
   }
 
-  handleSend = () => {
-    console.log("name", this.pointName)
-    console.log("yeild", this.userCurrentYield)
-    console.log("shade", this.shadeLevel)
-    console.log("slope", this.slopeLevel)
-    console.log("irrigated", this.irrigation)
+  handleUserShadeParameter = (shade: string) => {
+    switch (shade) {
+      case "none":
+        return 0
+      case "low":
+        return (1 / 3) * 10
+      case "medium":
+        return (2 / 3) * 10
+      case "high":
+        return 10
+    }
+  }
+
+  handleUserSlopeParameter = (slope: string) => {
+    switch (slope) {
+      case "flat":
+        return 1
+      case "slight":
+        return (1 / 3) * 45
+      case "gradual":
+        return (2 / 3) * 45
+      case "steep":
+        return 45
+    }
+  }
+
+  handleSend = async () => {
+    console.log("sending....")
+    const data = {
+      lng: this.point.longitude,
+      lat: this.point.latitude,
+      userShadeValue: this.handleUserShadeParameter(this.shadeLevel),
+      userIrrValue: this.irrigation ? 1 : 0,
+      userSlopeValue: this.handleUserSlopeParameter(this.slopeLevel)
+    }
+
+    const response = await fetch(process.env.REACT_APP_SIMPLE_MODEL_REQUEST!, {
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" },
+      method: "POST"
+    })
+
+    console.log("response ", response)
   }
 
   @computed
