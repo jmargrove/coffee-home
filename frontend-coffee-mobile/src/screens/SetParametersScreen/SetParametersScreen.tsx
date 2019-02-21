@@ -5,19 +5,13 @@ import { SystemContent, SystemSpace } from "../../system-components"
 import { REGULAR, MEDIUM } from "../../system-components/system-theme/theme"
 import { withNavigation } from "react-navigation"
 import { NavigationProps } from "../../types"
-import { compose, mapProps, withProps } from "recompose"
+import { compose, mapProps } from "recompose"
 import { observer } from "mobx-react"
-import {
-  TextInputComponent,
-  TextInputWithStore
-} from "../../components/InputComponent"
+import { TextInputWithStore } from "../../components/InputComponent"
 import { SelectedLocation } from "./components.ts/SelectedLocation/SelectedLocation"
 import { ParametersStore } from "./ParametersStore"
-import {
-  NumericInputComponent,
-  NumericInputWithStore
-} from "../../components/NumericInputComponent"
-import { CategorySelector } from "../../components/CategorySelector/CategorySelector"
+import { NumericInputWithStore } from "../../components/NumericInputComponent"
+import { CategorySelectorWithStore } from "../../components/CategorySelector/CategorySelector"
 import { TouchableOpacity, View } from "react-native"
 
 const SetParametersScreen: FunctionComponent<{ store: ParametersStore }> = ({
@@ -25,17 +19,13 @@ const SetParametersScreen: FunctionComponent<{ store: ParametersStore }> = ({
 }) => {
   const {
     point,
-    shadeLevel,
-    prevShadeLevel,
     handleNameChange,
     handleYieldChange,
     handleShadeChange,
     handleSlopeChange,
-    slopeLevel,
-    prevSlopeLevel,
     handleSend
   } = store
-
+  console.log("setParameter Screen render")
   return (
     <Container>
       <HeaderComponent>Set Parameters</HeaderComponent>
@@ -55,20 +45,16 @@ const SetParametersScreen: FunctionComponent<{ store: ParametersStore }> = ({
           retrieve={handleYieldChange}
         />
         <SystemSpace size={MEDIUM} />
-        <CategorySelector
+        <CategorySelectorWithStore
           title="Your shade level"
           levels={["none", "low", "medium", "high"]}
-          prevFactorLevel={prevShadeLevel}
-          factorLevel={shadeLevel}
-          handleFactorChange={handleShadeChange}
+          retrieve={handleShadeChange}
         />
         <SystemSpace size={MEDIUM} />
-        <CategorySelector
+        <CategorySelectorWithStore
           title="Your slope level"
           levels={["flat", "slight", "gradual", "steep"]}
-          prevFactorLevel={prevSlopeLevel}
-          factorLevel={slopeLevel}
-          handleFactorChange={handleSlopeChange}
+          retrieve={handleSlopeChange}
         />
         <SystemSpace size={MEDIUM} />
         <TouchableOpacity onPress={handleSend}>

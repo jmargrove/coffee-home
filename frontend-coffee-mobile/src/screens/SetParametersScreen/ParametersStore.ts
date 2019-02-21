@@ -24,13 +24,7 @@ export class ParametersStore {
   public shadeLevel = "none"
 
   @observable
-  public prevShadeLevel = ""
-
-  @observable
   public slopeLevel = "flat"
-
-  @observable
-  public prevSlopeLevel = ""
 
   @action
   public handleNameChange: OnChangeText = (value: string) => {
@@ -44,18 +38,21 @@ export class ParametersStore {
 
   @action
   public handleShadeChange: OnShadeChange = shade => {
-    this.prevShadeLevel = this.shadeLevel
+    console.log("slope", this.slopeLevel)
     this.shadeLevel = shade
   }
 
   @action
   public handleSlopeChange: OnSlopeChange = slope => {
-    this.prevSlopeLevel = this.slopeLevel
+    console.log("shade", this.shadeLevel)
     this.slopeLevel = slope
   }
 
   handleSend = () => {
     console.log("name", this.pointName)
+    console.log("yeild", this.userCurrentYield)
+    console.log("shade", this.shadeLevel)
+    console.log("slope", this.slopeLevel)
   }
 
   public point: ICoordinates = { latitude: 0, longitude: 0 }
