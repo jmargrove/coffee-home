@@ -2,6 +2,7 @@ import { ReactNode } from "react"
 
 export declare namespace System {
   interface ButtonLargeProps {
+    isDisabled?: boolean
     colorBorder?: string
     color?: string
     textColor?: string

@@ -1,4 +1,4 @@
-import { observable, action } from "mobx"
+import { observable, action, computed } from "mobx"
 
 type OnChangeText = (value: string) => void
 
@@ -12,6 +12,7 @@ type OnYieldChange = (value: string) => void
 type OnShadeChange = (shade: string) => void
 
 type OnSlopeChange = (slope: string) => void
+type OnIrrigationChange = () => void
 
 export class ParametersStore {
   @observable
@@ -24,7 +25,16 @@ export class ParametersStore {
   public shadeLevel = "none"
 
   @observable
+  public prevShadeLevel = ""
+
+  @observable
   public slopeLevel = "flat"
+
+  @observable
+  public prevSlopeLevel = ""
+
+  @observable
+  public irrigation = false
 
   @action
   public handleNameChange: OnChangeText = (value: string) => {
@@ -38,14 +48,19 @@ export class ParametersStore {
 
   @action
   public handleShadeChange: OnShadeChange = shade => {
-    console.log("slope", this.slopeLevel)
+    this.prevShadeLevel = this.shadeLevel
     this.shadeLevel = shade
   }
 
   @action
   public handleSlopeChange: OnSlopeChange = slope => {
-    console.log("shade", this.shadeLevel)
+    this.prevSlopeLevel = this.slopeLevel
     this.slopeLevel = slope
+  }
+
+  @action
+  public handleIrrigationChange: OnIrrigationChange = () => {
+    this.irrigation = !this.irrigation
   }
 
   handleSend = () => {
@@ -53,6 +68,16 @@ export class ParametersStore {
     console.log("yeild", this.userCurrentYield)
     console.log("shade", this.shadeLevel)
     console.log("slope", this.slopeLevel)
+    console.log("irrigated", this.irrigation)
+  }
+
+  @computed
+  get isFormFilled() {
+    if (this.pointName.length > 3) {
+      return true
+    } else {
+      return false
+    }
   }
 
   public point: ICoordinates = { latitude: 0, longitude: 0 }

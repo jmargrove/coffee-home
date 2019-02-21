@@ -10,45 +10,22 @@ import {
 } from "../system-components/system-theme/theme"
 import { SystemIconToggle } from "../system-components/SystemInput/SystemIconToggle"
 import { View } from "react-native"
-import { observable, action } from "mobx"
-import { compose, withProps } from "recompose"
-import { observer } from "mobx-react"
+import { compose, shouldUpdate } from "recompose"
 
-type OnChangeText = (value: string) => void
-
-interface ITextInputComponent {
+interface ITextInputComponentProps {
   label: string
-  autoFocus: boolean
-  retrieve: any
-  store: Store
+  autoFocus?: boolean
+  handleChange: any
+  value: string
 }
 
-class Store {
-  @observable
-  public value: string = ""
-
-  @action
-  public handleChange: OnChangeText = (value: string) => {
-    this.value = value
-  }
-}
-
-const power = compose<any, any>(
-  withProps({
-    store: new Store()
-  }),
-  observer
-)
-
-export const TextInputComponent: FunctionComponent<ITextInputComponent> = ({
+const TextInputComponent: FunctionComponent<ITextInputComponentProps> = ({
   label,
+  value,
+  handleChange,
   autoFocus,
-  retrieve,
-  store,
   ...rest
 }) => {
-  const { value, handleChange } = store
-  retrieve(value)
   return (
     <SystemFlex noFlex row>
       <SystemSpace size={REGULAR} />
@@ -75,8 +52,6 @@ export const TextInputComponent: FunctionComponent<ITextInputComponent> = ({
     </SystemFlex>
   )
 }
-
-export const TextInputWithStore = power(TextInputComponent)
 
 const InputTray = () => {
   return (
@@ -105,3 +80,17 @@ const InputTray = () => {
     </SystemFlex>
   )
 }
+
+const power = compose<ITextInputComponentProps, ITextInputComponentProps>(
+  shouldUpdate(
+    (props: ITextInputComponentProps, nextProps: ITextInputComponentProps) => {
+      if (props.value === nextProps.value) {
+        return false
+      } else {
+        return true
+      }
+    }
+  )
+)
+
+export default power(TextInputComponent)

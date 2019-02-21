@@ -11,51 +11,20 @@ import {
 import { SystemIconToggle } from "../system-components/SystemInput/SystemIconToggle"
 import { View } from "react-native"
 import { observable, action } from "mobx"
-import { compose, withProps } from "recompose"
+import { compose, withProps, shouldUpdate } from "recompose"
 import { observer } from "mobx-react"
 
-interface ITextInputComponent {
+interface ITextInputComponentProps {
   label: string
+  autoFocus: boolean
   value: string
-  autoFocus: boolean
-  onChangeText: OnChangeText
+  handleChange: any
+  units: string
 }
 
-type OnChangeText = (value: string) => void
-
-interface ITextInputComponent {
-  label: string
-  autoFocus: boolean
-  retrieve: any
-  store: Store
-}
-
-class Store {
-  @observable
-  public value: string = ""
-
-  @action
-  public handleChange: OnChangeText = (value: string) => {
-    this.value = value
-  }
-}
-
-const power = compose<any, any>(
-  withProps({
-    store: new Store()
-  }),
-  observer
-)
-
-export const NumericInputComponent: FunctionComponent<ITextInputComponent> = ({
-  label,
-  autoFocus,
-  retrieve,
-  store,
-  ...rest
-}) => {
-  const { value, handleChange } = store
-  retrieve(value)
+export const NumericInputComponent: FunctionComponent<
+  ITextInputComponentProps
+> = ({ label, autoFocus, units, value, handleChange, ...rest }) => {
   return (
     <SystemFlex noFlex row>
       <SystemSpace size={REGULAR} />
@@ -67,7 +36,7 @@ export const NumericInputComponent: FunctionComponent<ITextInputComponent> = ({
           <SystemFlex>
             <PoweredSystemInput
               keyboardType="numeric"
-              units="tones of coffee per hectar"
+              units={units}
               value={value}
               autoFocus={autoFocus}
               onChangeText={handleChange}
@@ -84,7 +53,19 @@ export const NumericInputComponent: FunctionComponent<ITextInputComponent> = ({
   )
 }
 
-export const NumericInputWithStore = power(NumericInputComponent)
+const power = compose<ITextInputComponentProps, ITextInputComponentProps>(
+  shouldUpdate(
+    (props: ITextInputComponentProps, nextProps: ITextInputComponentProps) => {
+      if (props.value === nextProps.value) {
+        return false
+      } else {
+        return true
+      }
+    }
+  )
+)
+
+export default power(NumericInputComponent)
 
 const InputTray = () => {
   return (

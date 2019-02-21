@@ -6,7 +6,7 @@ import { REGULAR, BLACK } from "../../system-components/system-theme/theme"
 import { AxisNode } from "./components/AxisNode"
 import uuid from "uuid/v4"
 import { observable, action } from "mobx"
-import { compose, withProps, mapProps } from "recompose"
+import { compose, shouldUpdate } from "recompose"
 import { observer } from "mobx-react"
 
 const CategorySelectionContainer = styled(View)<any>`
@@ -19,16 +19,20 @@ const FlexEqual = styled(View)<{ flex?: boolean; children: ReactNode }>`
   justify-content: flex-end;
   align-items: center;
 `
-
-const CategorySelector: FunctionComponent<{
+interface ICategorySelectorProps {
   title: string
   levels: string[]
-  store: Store
-  retrieve: any
-}> = ({ title, levels, store, retrieve }) => {
-  const { factorLevel, prevFactorLevel, handleFactorChange } = store
-  retrieve(factorLevel)
-  console.log(`factore level ${title}`)
+  handleChange: any
+  prevFactorLevel: string
+  factorLevel: string
+}
+const CategorySelector: FunctionComponent<ICategorySelectorProps> = ({
+  title,
+  levels,
+  factorLevel,
+  prevFactorLevel,
+  handleChange
+}) => {
   return (
     <>
       <SystemFlex noFlex row>
@@ -45,7 +49,7 @@ const CategorySelector: FunctionComponent<{
                         left={i === 0 ? true : false}
                         right={i === levels.length - 1 ? true : false}
                         label={level}
-                        handleFactorChange={handleFactorChange}
+                        handleFactorChange={handleChange}
                         factorLevel={factorLevel}
                         prevFactorLevel={prevFactorLevel}
                       />
@@ -62,33 +66,16 @@ const CategorySelector: FunctionComponent<{
   )
 }
 
-class Store {
-  constructor(args: { default: string }) {
-    this.factorLevel = args.default
-  }
-  @observable
-  public factorLevel = ""
-
-  @observable
-  public prevFactorLevel = ""
-
-  @action
-  public handleFactorChange: any = (factorLevel: any) => {
-    this.prevFactorLevel = this.factorLevel
-    this.factorLevel = factorLevel
-  }
-}
-
-const power = compose<any, any>(
-  mapProps(({ title, levels, retrieve }: any) => {
-    return {
-      title,
-      levels,
-      retrieve,
-      store: new Store({ default: levels[0] })
+const power = compose<ICategorySelectorProps, ICategorySelectorProps>(
+  shouldUpdate(
+    (props: ICategorySelectorProps, nextProps: ICategorySelectorProps) => {
+      if (props.factorLevel === nextProps.factorLevel) {
+        return false
+      } else {
+        return true
+      }
     }
-  }),
-  observer
+  )
 )
 
-export const CategorySelectorWithStore = power(CategorySelector)
+export default power(CategorySelector)
