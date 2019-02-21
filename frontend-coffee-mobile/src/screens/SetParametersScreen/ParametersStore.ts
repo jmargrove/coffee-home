@@ -22,19 +22,19 @@ export class ParametersStore {
   public userCurrentYield = ""
 
   @observable
-  public shadeLevel = "none"
+  public shadeLevel = ""
 
   @observable
   public prevShadeLevel = ""
 
   @observable
-  public slopeLevel = "flat"
+  public slopeLevel = ""
 
   @observable
   public prevSlopeLevel = ""
 
   @observable
-  public irrigation = false
+  public irrigation: boolean | undefined = false
 
   @action
   public handleNameChange: OnChangeText = (value: string) => {
@@ -73,7 +73,12 @@ export class ParametersStore {
 
   @computed
   get isFormFilled() {
-    if (this.pointName.length > 3) {
+    if (
+      this.pointName.length > 3 &&
+      this.userCurrentYield.length > 1 &&
+      this.shadeLevel !== "" &&
+      this.slopeLevel !== ""
+    ) {
       return true
     } else {
       return false
