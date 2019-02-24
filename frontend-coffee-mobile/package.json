@@ -4,11 +4,11 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "clean": "watchman watch-del-all && rm -rf node_modules && rm yarn.lock && rm -rf tmp/metro-bundler-cache-* && rm -rf tmp/haste-map-react-native-packager-* && yarn"
   },
   "dependencies": {
     "@types/uuid": "^3.4.4",
-    "dotenv": "^6.2.0",
     "mobx": "3.2.2",
     "mobx-react": "4.2.2",
     "native-base": "^2.11.0",
@@ -33,10 +33,16 @@
     "babel-jest": "24.0.0",
     "jest": "24.0.0",
     "metro-react-native-babel-preset": "0.51.1",
+    "react-native-dotenv": "^0.2.0",
     "react-test-renderer": "16.6.3",
     "typescript": "^3.3.1"
   },
   "jest": {
     "preset": "react-native"
+  },
+  "rnpm": {
+    "assets": [
+      "./src/assets/fonts/"
+    ]
   }
 }

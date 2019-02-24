@@ -24,6 +24,7 @@ import { ParametersStore } from "./ParametersStore"
 import NumericInputComponent from "../../components/NumericInputComponent"
 import CategorySelector from "../../components/CategorySelector/CategorySelector"
 import BinarySelector from "../../components/BinarySelector/BinarySelector"
+import { LoadingScreen } from "../"
 
 const SetParametersScreen: FunctionComponent<{
   store: ParametersStore
@@ -43,73 +44,81 @@ const SetParametersScreen: FunctionComponent<{
     slopeLevel,
     prevSlopeLevel,
     irrigation,
-    isFormFilled
+    isFormFilled,
+    isLoading
   } = store
-  return (
-    <Container>
-      <HeaderComponent>Set Parameters</HeaderComponent>
-      <SystemContent>
-        <SystemFlex align="center">
-          <SystemSpace size={REGULAR} />
-          <SelectedLocation point={point} />
-          <SystemSpace size={MEDIUM} />
-          <TextInputComponent
-            value={pointName}
-            label="Enter point Name"
-            autoFocus={false}
-            handleChange={handleNameChange}
-          />
-          <SystemSpace size={MEDIUM} />
-          <NumericInputComponent
-            units="tones of coffee per hectar"
-            label="Your current yield"
-            autoFocus={false}
-            value={userCurrentYield}
-            handleChange={handleYieldChange}
-          />
-          <SystemSpace size={MEDIUM} />
-          <CategorySelector
-            title="Your shade level"
-            levels={["none", "low", "medium", "high"]}
-            handleChange={handleShadeChange}
-            factorLevel={shadeLevel}
-            prevFactorLevel={prevShadeLevel}
-          />
-          <SystemSpace size={MEDIUM} />
-          <CategorySelector
-            title="Your slope level"
-            levels={["flat", "slight", "gradual", "steep"]}
-            handleChange={handleSlopeChange}
-            factorLevel={slopeLevel}
-            prevFactorLevel={prevSlopeLevel}
-          />
-          <SystemSpace size={MEDIUM} />
-          <BinarySelector
-            title="Is your site irrigated?"
-            value={irrigation}
-            handleChange={handleIrrigationChange}
-          />
+  if (isLoading) {
+    return <LoadingScreen />
+  } else {
+    return (
+      <Container>
+        <HeaderComponent>Set Parameters</HeaderComponent>
+        <SystemContent>
+          <SystemFlex align="center">
+            <SystemSpace size={REGULAR} />
+            <SelectedLocation point={point} />
+            <SystemSpace size={MEDIUM} />
+            <TextInputComponent
+              value={pointName}
+              label="Enter point Name"
+              autoFocus={false}
+              handleChange={handleNameChange}
+            />
+            <SystemSpace size={MEDIUM} />
+            <NumericInputComponent
+              units="tones of coffee per hectar"
+              label="Your current yield"
+              autoFocus={false}
+              value={userCurrentYield}
+              handleChange={handleYieldChange}
+            />
+            <SystemSpace size={MEDIUM} />
+            <CategorySelector
+              title="What is your shade level"
+              levels={["none", "low", "medium", "high"]}
+              handleChange={handleShadeChange}
+              factorLevel={shadeLevel}
+              prevFactorLevel={prevShadeLevel}
+            />
+            <SystemSpace size={MEDIUM} />
+            <CategorySelector
+              title="What is your slope incline?"
+              levels={["flat", "slight", "gradual", "steep"]}
+              handleChange={handleSlopeChange}
+              factorLevel={slopeLevel}
+              prevFactorLevel={prevSlopeLevel}
+            />
+            <SystemSpace size={MEDIUM} />
+            <BinarySelector
+              title="Is your site irrigated?"
+              value={irrigation}
+              handleChange={handleIrrigationChange}
+            />
 
-          <SystemButtonLarge
-            isDisabled={!isFormFilled}
-            colorBorder={PRIMARY}
-            color={WHITE}
-            textColor={BLACK}
-            onPress={handleSend}
-          >
-            Model
-          </SystemButtonLarge>
-          <SystemSpace size={MEDIUM} />
-        </SystemFlex>
-      </SystemContent>
-    </Container>
-  )
+            <SystemButtonLarge
+              isDisabled={!isFormFilled}
+              colorBorder={PRIMARY}
+              color={WHITE}
+              textColor={BLACK}
+              onPress={handleSend}
+            >
+              Model
+            </SystemButtonLarge>
+            <SystemSpace size={MEDIUM} />
+          </SystemFlex>
+        </SystemContent>
+      </Container>
+    )
+  }
 }
 
 const power = compose<any, any>(
   withNavigation,
   mapProps(({ navigation }: NavigationProps) => ({
-    store: new ParametersStore({ point: navigation.getParam("point") })
+    store: new ParametersStore({
+      point: navigation.getParam("point"),
+      navigation
+    })
   })),
   observer
 )

@@ -1,5 +1,7 @@
 import { observable, action, computed } from "mobx"
-require("dotenv").config()
+import { NavigationProps } from "../../types.d"
+import { REACT_APP_SIMPLE_MODEL_REQUEST } from "react-native-dotenv"
+
 type OnChangeText = (value: string) => void
 
 interface ICoordinates {
@@ -12,9 +14,15 @@ type OnYieldChange = (value: string) => void
 type OnShadeChange = (shade: string) => void
 
 type OnSlopeChange = (slope: string) => void
+
 type OnIrrigationChange = () => void
 
 export class ParametersStore {
+  @observable
+  public isLoading = false
+
+  public navigation: null | NavigationProps = null
+
   @observable
   public pointName: string = ""
 
@@ -89,7 +97,9 @@ export class ParametersStore {
     }
   }
 
+  @action
   handleSend = async () => {
+    this.isLoading = true
     console.log("sending....")
     const data = {
       lng: this.point.longitude,
@@ -99,7 +109,7 @@ export class ParametersStore {
       userSlopeValue: this.handleUserSlopeParameter(this.slopeLevel)
     }
 
-    const response = await fetch(process.env.REACT_APP_SIMPLE_MODEL_REQUEST!, {
+    const response = await fetch(REACT_APP_SIMPLE_MODEL_REQUEST, {
       body: JSON.stringify(data),
       headers: { "Content-Type": "application/json" },
       method: "POST"
@@ -124,7 +134,22 @@ export class ParametersStore {
 
   public point: ICoordinates = { latitude: 0, longitude: 0 }
 
-  constructor({ point }: { point: ICoordinates }) {
+  constructor({
+    point,
+    navigation
+  }: {
+    point: ICoordinates
+    navigation: NavigationProps
+  }) {
     this.point = point
+    this.navigation = navigation
+  }
+
+  handleLoadingTrue = () => {
+    this.isLoading = true
+  }
+
+  handleLoadingFalse = () => {
+    this.isLoading = false
   }
 }
