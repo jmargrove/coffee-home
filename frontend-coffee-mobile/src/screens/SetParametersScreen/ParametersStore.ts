@@ -1,6 +1,8 @@
 import { observable, action, computed } from "mobx"
 import { NavigationProps } from "../../types.d"
 import { REACT_APP_SIMPLE_MODEL_REQUEST } from "react-native-dotenv"
+import { NavigationScreenProp, NavigationRoute } from "react-navigation"
+import { MODEL_RESULTS_SCREEN } from "../../utils/constants"
 
 type OnChangeText = (value: string) => void
 
@@ -24,7 +26,7 @@ export class ParametersStore {
   public navigation: null | NavigationProps = null
 
   @observable
-  public pointName: string = ""
+  public pointName: string = "Field-1"
 
   @observable
   public userCurrentYield = ""
@@ -115,7 +117,10 @@ export class ParametersStore {
       method: "POST"
     })
 
-    console.log("response ", response)
+    console.log("response", response.json())
+
+    this.isLoading = false
+    this.navigation.navigate(MODEL_RESULTS_SCREEN)
   }
 
   @computed
@@ -139,7 +144,7 @@ export class ParametersStore {
     navigation
   }: {
     point: ICoordinates
-    navigation: NavigationProps
+    navigation: NavigationScreenProp<NavigationRoute>
   }) {
     this.point = point
     this.navigation = navigation

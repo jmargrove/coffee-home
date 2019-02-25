@@ -3,13 +3,15 @@ import {
   WELCOME_SCREEN,
   MAP_SCREEN,
   SET_PARAMETERS_SCREEN,
-  LOADING_SCREEN
+  LOADING_SCREEN,
+  MODEL_RESULTS_SCREEN
 } from "./utils/constants"
 import {
   PoweredWelcomeScreen,
   PoweredMapScreen,
   PoweredSetParametersScreen,
-  LoadingScreen
+  LoadingScreen,
+  ModelResultsScreen
 } from "./screens"
 
 export const AppNavigation = createStackNavigator(
@@ -25,10 +27,11 @@ export const AppNavigation = createStackNavigator(
     },
     [LOADING_SCREEN]: {
       screen: LoadingScreen
-    }
+    },
+    [MODEL_RESULTS_SCREEN]: { screen: ModelResultsScreen }
   },
   {
-    initialRouteName: LOADING_SCREEN,
+    initialRouteName: MODEL_RESULTS_SCREEN,
     headerMode: "none",
     transitionConfig: () => ({
       transitionSpec: {
