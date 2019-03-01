@@ -9,8 +9,9 @@ import {
 } from "../../system-components"
 import { REGULAR } from "../../system-components/system-theme/theme"
 import { ScatterPlot } from "./ScatterPlot"
+import { GGPosition } from "../../components/GGPlot/components/GGPosition"
 
-const response = [
+export const response = [
   { year: 0, yield: 0 },
   { year: 1, yield: 0 },
   { year: 2, yield: 0 },
@@ -24,12 +25,12 @@ export const ModelResultsScreen: FunctionComponent = () => {
     <Container>
       <HeaderComponent>Model results</HeaderComponent>
       <SystemContent fill>
-        <SystemFlex justify="center" align="center">
-          <SystemFlex noFlex={true} justify="center" align="center">
-            <ScatterPlot data={response} />
-            <SystemSpace size={REGULAR} />
-            <SystemText>Year</SystemText>
-          </SystemFlex>
+        <SystemFlex align="center">
+          <SystemText>hellow</SystemText>
+
+          {/* <ScatterPlot data={response} /> */}
+          <GGPosition />
+          <SystemText>hellow</SystemText>
         </SystemFlex>
       </SystemContent>
     </Container>

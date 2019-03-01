@@ -3,6 +3,7 @@ import styled from "../../../system-components/system-theme/styled-components"
 import { View } from "react-native"
 import { PRIMARY } from "../../../system-components/system-theme/theme"
 import { IData } from "../types"
+import { PointVals } from "../GG"
 
 const Point = styled(View)<any>`
   position: absolute;
@@ -14,21 +15,19 @@ const Point = styled(View)<any>`
   border-color: ${({ theme }) => theme && theme.colors[PRIMARY]}
   width: 20;
   height: 20;
-  border-radius: 10;
-`
+  ${({ size }) => size && `border-radius: ${size}`}
+  ${({ width }) => width && `width: ${width * 2}`}
+  ${({ height }) => height && `height: ${height * 2}`}
+  `
 
-export const GGPoint: FunctionComponent<IData> = ({ data }) => {
+export const GGPoint: FunctionComponent<{ data: PointVals; size: number }> = ({
+  data,
+  size
+}) => {
   return (
     <>
       {data.map((el, i) => {
-        console.log("yeild", (150 / 4.14) * el.yield)
-        return (
-          <Point
-            key={i}
-            x={(300 / 5) * el.year - 10}
-            y={(150 / 4.14) * el.yield - 10}
-          />
-        )
+        return <Point key={i} x={el.x - size} y={el.y - size} size={size} />
       })}
     </>
   )

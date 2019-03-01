@@ -1,10 +1,10 @@
 type HypVals = { hyp: number }[]
 type RotateVals = { rotate: number }[]
 type OppVals = { opp: number }[]
-type PointVals = { x: number; y: number }[]
+export type PointVals = { x: number; y: number }[]
 type ToDegrees = (args: { angle: number }) => number
-type LineEnd = { xEnd: number; yEnd: number }[]
-type DataArray = {
+type LinePosition = { xEnd: number; yEnd: number }[]
+export type DataArray = {
   hyp: number
   opp: number
   rotate: number
@@ -16,16 +16,18 @@ type Merge = (
   array1: HypVals,
   array2: OppVals,
   array3: RotateVals,
-  array4: LineEnd
+  array4: LinePosition
 ) => DataArray
 
-type CalcEndOfLine = (data: PointVals, hypVals: HypVals) => LineEnd
+type CalcEndOfLine = (data: PointVals, hypVals: HypVals) => LinePosition
 type CalcAngle = (hypArray: HypVals, oppArray: OppVals) => RotateVals
 type CalcOppLength = (data: PointVals) => OppVals
 type CalcHypLength = (data: PointVals) => HypVals
-type CalcPointValues = (data: any) => PointVals
+type CalcPointValues = (data: InputData) => PointVals
 
 type InputData = { [x: string]: number }[]
+
+type ExtractAxisValues = (data: InputData) => number[]
 
 export class GG {
   public merge: Merge = (array1, array2, array3, array4) => {
@@ -46,9 +48,11 @@ export class GG {
     return data.map((el, i) => {
       if (i < data.length - 1) {
         return {
-          xEnd: el.x - (hypVals[i].hyp - 300 / this.lineNumber) / 2,
+          xEnd: el.x - (hypVals[i].hyp - this.width / this.lineNumber) / 2,
           yEnd: el.y + (data[i + 1].y - el.y) / 2
         }
+      } else {
+        return { xEnd: 0, yEnd: 0 }
       }
     })
   }
@@ -91,22 +95,22 @@ export class GG {
     }, [])
   }
 
-  public calcPointValues: CalcPointValues = (data, pointRadius = 0) => {
+  public calcPointValues: CalcPointValues = data => {
     return data.map((el, i) => {
       return {
-        x: (300 / this.xMax) * el.year - pointRadius,
-        y: (150 / this.yMax) * el.yield - pointRadius
+        x: (this.width / this.xMax) * el.year,
+        y: (this.height / this.yMax) * el.yield
       }
     })
   }
 
-  public extractXValues = data => {
+  public extractXValues: ExtractAxisValues = data => {
     return data.map(el => {
       return el.year
     })
   }
 
-  public extractYValues = data => {
+  public extractYValues: ExtractAxisValues = data => {
     return data.map(el => {
       return el.yield
     })
@@ -120,11 +124,18 @@ export class GG {
   hypVals: HypVals
   oppVals: OppVals
   rotateVals: RotateVals
-  lineEnd: LineEnd
+  linePosition: LinePosition
   dataArray: DataArray
   lineNumber: number
+  width: number
+  height: number
 
-  constructor(data: InputData) {
+  constructor(
+    data: InputData,
+    plotDimensions: { width: number; height: number }
+  ) {
+    this.width = plotDimensions.width
+    this.height = plotDimensions.height
     this.lineNumber = data.length - 1
     this.xValues = this.extractXValues(data)
     this.xMax = Math.max(...this.xValues)
@@ -134,12 +145,12 @@ export class GG {
     this.hypVals = this.calcHypLength(this.pointVals)
     this.oppVals = this.calcOppLength(this.pointVals)
     this.rotateVals = this.calcAngle(this.hypVals, this.oppVals)
-    this.lineEnd = this.calcEndOfLine(this.pointVals, this.hypVals)
+    this.linePosition = this.calcEndOfLine(this.pointVals, this.hypVals)
     this.dataArray = this.merge(
       this.hypVals,
       this.oppVals,
       this.rotateVals,
-      this.lineEnd
+      this.linePosition
     ).slice(0, this.lineNumber)
   }
 }
