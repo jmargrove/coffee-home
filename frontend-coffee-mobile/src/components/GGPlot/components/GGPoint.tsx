@@ -2,8 +2,9 @@ import React, { FunctionComponent } from "react"
 import styled from "../../../system-components/system-theme/styled-components"
 import { View } from "react-native"
 import { PRIMARY } from "../../../system-components/system-theme/theme"
-import { IData } from "../types"
-import { PointVals } from "../GG"
+import { GG } from "../GG"
+import { compose, mapProps } from "recompose"
+import { IData } from "../types.d"
 
 const Point = styled(View)<any>`
   position: absolute;
@@ -20,15 +21,33 @@ const Point = styled(View)<any>`
   ${({ height }) => height && `height: ${height * 2}`}
   `
 
-export const GGPoint: FunctionComponent<{ data: PointVals; size: number }> = ({
-  data,
-  size
-}) => {
+export interface IGGPointProps {
+  store: GG
+  size: number
+}
+
+const GGPointDefault: FunctionComponent<IGGPointProps> = ({ store, size }) => {
+  console.log("size", size)
+  const { pointVals } = store
   return (
     <>
-      {data.map((el, i) => {
-        return <Point key={i} x={el.x - size} y={el.y - size} size={size} />
+      {pointVals.map((el, i) => {
+        return <Point key={i} x={el.x - size} y={el.y - size} size={10} />
       })}
     </>
   )
 }
+
+const withStore = compose<
+  { store: GG; size: number },
+  IData & { size: number }
+>(
+  mapProps(({ data, size }: IData & { size: number }) => {
+    return {
+      store: new GG(data, { width: 350 - 80, height: 250 - 80 }),
+      size: size
+    }
+  })
+)
+
+export const GGPoint = withStore(GGPointDefault)

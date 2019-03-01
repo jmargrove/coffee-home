@@ -1,31 +1,21 @@
 import React, { FunctionComponent } from "react"
 import { GGPlot } from "../../components/GGPlot/GGPlot"
-import { GGPoint } from "../../components/GGPlot/components/GGPoint"
-import { IData } from "../../components/GGPlot/types"
+import { response } from "./ModelResultsScreen"
+import { GGYTick } from "../../components/GGPlot/components/GGYTick"
+import { GGXTick } from "../../components/GGPlot/components/GGXTick"
 import { GGLine } from "../../components/GGPlot/components/GGLine"
-import { compose, mapProps } from "recompose"
-import { GG } from "../../components/GGPlot/GG"
-import { SystemFlex } from "../../system-components"
-import { View } from "react-native"
+import { GGPoint } from "../../components/GGPlot/components/GGPoint"
 
-const ScatterPlotDefault: FunctionComponent<{ store: GG }> = ({ store }) => {
-  const { dataArray, pointVals, xValues, yValues, width, height } = store
-
+export const ScatterPlot: FunctionComponent = () => {
   return (
-    <GGPlot>
-      <GGLine dataArray={dataArray} size={1} />
-      <GGPoint data={pointVals} size={10} />
-      {/* <GGXTick length={250} tickNumber={6} xValues={xValues} /> */}
-    </GGPlot>
+    <GGPlot
+      data={response}
+      outerDimensions={{ width: 350, height: 250 }}
+      padding={{ top: 20, bottom: 60, left: 60, right: 20 }}
+      GeomYTick={{ GGYTick, props: { tickNumber: 8 } }}
+      GeomXTick={{ GGXTick, props: { tickNumber: 6 } }}
+      GeomLine={{ GGLine, props: { size: 1 } }}
+      GeomPoint={{ GGPoint, props: { size: 10 } }}
+    />
   )
 }
-
-const withStore = compose<{ store: GG }, IData>(
-  mapProps(({ data }: IData) => {
-    return {
-      store: new GG(data, { width: 350 - 80, height: 250 - 80 })
-    }
-  })
-)
-
-export const ScatterPlot = withStore(ScatterPlotDefault)

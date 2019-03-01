@@ -1,15 +1,9 @@
 import React, { FunctionComponent } from "react"
 import { HeaderComponent } from "../../components/HeaderComponent"
 import { Container } from "native-base"
-import {
-  SystemContent,
-  SystemFlex,
-  SystemText,
-  SystemSpace
-} from "../../system-components"
-import { REGULAR } from "../../system-components/system-theme/theme"
+import { SystemContent, SystemFlex, SystemText } from "../../system-components"
+import { GGPlot } from "../../components/GGPlot/GGPlot"
 import { ScatterPlot } from "./ScatterPlot"
-import { GGPosition } from "../../components/GGPlot/components/GGPosition"
 
 export const response = [
   { year: 0, yield: 0 },
@@ -27,9 +21,7 @@ export const ModelResultsScreen: FunctionComponent = () => {
       <SystemContent fill>
         <SystemFlex align="center">
           <SystemText>hellow</SystemText>
-
-          {/* <ScatterPlot data={response} /> */}
-          <GGPosition />
+          <ScatterPlot />
           <SystemText>hellow</SystemText>
         </SystemFlex>
       </SystemContent>

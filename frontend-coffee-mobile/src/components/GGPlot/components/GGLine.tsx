@@ -1,7 +1,9 @@
 import React, { FunctionComponent } from "react"
 import styled from "../../../system-components/system-theme/styled-components"
 import { View } from "react-native"
-import { DataArray } from "../GG"
+import { GG } from "../GG"
+import { compose, mapProps } from "recompose"
+import { IData } from "../types.d"
 
 const StyledLine = styled(View)<any>`
   position: absolute;
@@ -13,10 +15,11 @@ const StyledLine = styled(View)<any>`
   ${({ rotate }) => rotate && `transform: rotate(-${rotate}deg`} );
 `
 
-export const GGLine: FunctionComponent<{
-  dataArray: DataArray
+const GGLineDefault: FunctionComponent<{
   size: number
-}> = ({ dataArray, size }) => {
+  store: GG
+}> = ({ size, store }) => {
+  const { dataArray } = store
   return (
     <>
       {dataArray.map((lineSegment, i) => {
@@ -34,3 +37,17 @@ export const GGLine: FunctionComponent<{
     </>
   )
 }
+
+const withStore = compose<
+  { store: GG; size: number },
+  IData & { size: number }
+>(
+  mapProps(({ data, size }: IData & { size: number }) => {
+    return {
+      store: new GG(data, { width: 350 - 80, height: 250 - 80 }),
+      size: size
+    }
+  })
+)
+
+export const GGLine = withStore(GGLineDefault)
