@@ -4,6 +4,8 @@ import { View } from "native-base"
 import { SystemFlex } from "../../system-components"
 import { FunctionComponent } from "react"
 import { IData } from "./types"
+import { mapProps, compose } from "recompose"
+import { GG } from "./GG"
 
 const GGPlotContainer = styled(View)<any>`
   ${({ width }) => width && `width: ${width}`}
@@ -61,31 +63,30 @@ interface IGGPlot {
     props: { size: number }
   }
   GeomPoint: {
-    GGPoint: FunctionComponent<{ data: IData; size: number }>
+    GGPoint: FunctionComponent<{ data: { x: number; y: number }; size: number }>
     props: { size: number }
   }
 
   outerDimensions: { width: number; height: number }
   padding: { top: number; bottom: number; left: number; right: number }
   data: IData
-  xlim: number[]
+  store: GG
 }
-export const GGPlot: FunctionComponent<IGGPlot> = ({
+export const GGPlotDefault: FunctionComponent<IGGPlot> = ({
   GeomYTick,
   GeomXTick,
   GeomLine,
   GeomPoint,
   padding,
   outerDimensions,
-  data
+  data,
+  store
 }) => {
   const { width, height } = outerDimensions
   const { left, right, top, bottom } = padding
   const plotWidth = width - right - left
   const plotHeight = height - top - bottom
-
-  console.log(GeomPoint.props)
-
+  const { pointVals } = store
   return (
     <SystemFlex noFlex>
       <GGPlotContainer width={width} height={height}>
@@ -135,10 +136,33 @@ export const GGPlot: FunctionComponent<IGGPlot> = ({
         />
 
         <BlankCenter left={left} right={right} top={top} bottom={bottom}>
-          {GeomLine && <GeomLine.GGLine data={data} {...GeomLine.props} />}
-          {GeomPoint && <GeomPoint.GGPoint data={data} {...GeomPoint.props} />}
+          {GeomLine && (
+            <GeomLine.GGLine data={data} size={1} {...GeomLine.props} />
+          )}
+          {GeomPoint && (
+            <GeomPoint.GGPoint
+              data={pointVals}
+              {...GeomPoint.props}
+              size={10}
+            />
+          )}
         </BlankCenter>
       </GGPlotContainer>
     </SystemFlex>
   )
 }
+
+const withStore = compose<
+  { store: GG } & IGGPlot,
+  IData & { store: GG } & IGGPlot
+>(
+  mapProps(({ data, ...rest }: IData & { size: number } & IGGPlot) => {
+    return {
+      store: new GG(data, { width: 350 - 80, height: 250 - 80 }),
+      data,
+      ...rest
+    }
+  })
+)
+
+export const GGPlot = withStore(GGPlotDefault)

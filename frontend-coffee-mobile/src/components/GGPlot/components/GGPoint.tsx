@@ -22,32 +22,17 @@ const Point = styled(View)<any>`
   `
 
 export interface IGGPointProps {
-  store: GG
+  data: { x: number; y: number }[]
   size: number
 }
 
-const GGPointDefault: FunctionComponent<IGGPointProps> = ({ store, size }) => {
-  console.log("size", size)
-  const { pointVals } = store
+export const GGPoint: FunctionComponent<IGGPointProps> = ({ data, size }) => {
+  console.log("data", data)
   return (
     <>
-      {pointVals.map((el, i) => {
+      {data.map((el, i) => {
         return <Point key={i} x={el.x - size} y={el.y - size} size={10} />
       })}
     </>
   )
 }
-
-const withStore = compose<
-  { store: GG; size: number },
-  IData & { size: number }
->(
-  mapProps(({ data, size }: IData & { size: number }) => {
-    return {
-      store: new GG(data, { width: 350 - 80, height: 250 - 80 }),
-      size: size
-    }
-  })
-)
-
-export const GGPoint = withStore(GGPointDefault)

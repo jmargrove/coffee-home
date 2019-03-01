@@ -2,7 +2,6 @@ import React, { FunctionComponent } from "react"
 import { HeaderComponent } from "../../components/HeaderComponent"
 import { Container } from "native-base"
 import { SystemContent, SystemFlex, SystemText } from "../../system-components"
-import { GGPlot } from "../../components/GGPlot/GGPlot"
 import { ScatterPlot } from "./ScatterPlot"
 
 export const response = [

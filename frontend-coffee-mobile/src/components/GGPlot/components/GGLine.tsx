@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from "react"
 import styled from "../../../system-components/system-theme/styled-components"
 import { View } from "react-native"
-import { GG } from "../GG"
+import { DataArray, GG } from "../GG"
 import { compose, mapProps } from "recompose"
 import { IData } from "../types.d"
 
@@ -20,6 +20,7 @@ const GGLineDefault: FunctionComponent<{
   store: GG
 }> = ({ size, store }) => {
   const { dataArray } = store
+  console.log("ar", dataArray)
   return (
     <>
       {dataArray.map((lineSegment, i) => {
