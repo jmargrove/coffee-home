@@ -22,7 +22,7 @@ const FlexEqual = styled(View)<{ flex?: boolean; children: ReactNode }>`
 interface IBinarySelectorProps {
   title: string
   handleChange: any
-  value: boolean
+  value: boolean | undefined
 }
 
 const BinarySelector: FunctionComponent<IBinarySelectorProps> = ({

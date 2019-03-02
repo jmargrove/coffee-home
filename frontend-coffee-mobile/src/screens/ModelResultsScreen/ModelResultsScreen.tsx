@@ -1,20 +1,28 @@
 import React, { FunctionComponent } from "react"
 import { HeaderComponent } from "../../components/HeaderComponent"
 import { Container } from "native-base"
-import { SystemContent } from "../../system-components"
-import styled from "../../system-components/system-theme/styled-components"
-import { View } from "react-native"
+import { SystemContent, SystemFlex, SystemText } from "../../system-components"
+import { ScatterPlot } from "./ScatterPlot"
 
-const SelectedLocationBox = styled(View)`
-width: 20
-height: 20
-`
+export const response = [
+  { year: 0, yield: 0 },
+  { year: 1, yield: 0 },
+  { year: 2, yield: 0 },
+  { year: 3, yield: 1.14 },
+  { year: 4, yield: 4.14 },
+  { year: 5, yield: 4.14 }
+]
+
 export const ModelResultsScreen: FunctionComponent = () => {
   return (
     <Container>
       <HeaderComponent>Model results</HeaderComponent>
       <SystemContent fill>
-        <SelectedLocationBox />
+        <SystemFlex align="center">
+          <SystemText>hellow</SystemText>
+          <ScatterPlot />
+          <SystemText>hellow</SystemText>
+        </SystemFlex>
       </SystemContent>
     </Container>
   )

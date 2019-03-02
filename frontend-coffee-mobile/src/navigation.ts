@@ -1,17 +1,17 @@
-import {
-  createSwitchNavigator,
-  createStackNavigator,
-  createAppContainer
-} from "react-navigation"
+import { createStackNavigator, createAppContainer } from "react-navigation"
 import {
   WELCOME_SCREEN,
   MAP_SCREEN,
-  SET_PARAMETERS_SCREEN
+  SET_PARAMETERS_SCREEN,
+  LOADING_SCREEN,
+  MODEL_RESULTS_SCREEN
 } from "./utils/constants"
 import {
   PoweredWelcomeScreen,
   PoweredMapScreen,
-  PoweredSetParametersScreen
+  PoweredSetParametersScreen,
+  LoadingScreen,
+  ModelResultsScreen
 } from "./screens"
 
 export const AppNavigation = createStackNavigator(
@@ -24,10 +24,14 @@ export const AppNavigation = createStackNavigator(
     },
     [SET_PARAMETERS_SCREEN]: {
       screen: PoweredSetParametersScreen
-    }
+    },
+    [LOADING_SCREEN]: {
+      screen: LoadingScreen
+    },
+    [MODEL_RESULTS_SCREEN]: { screen: ModelResultsScreen }
   },
   {
-    initialRouteName: WELCOME_SCREEN,
+    initialRouteName: MODEL_RESULTS_SCREEN,
     headerMode: "none",
     transitionConfig: () => ({
       transitionSpec: {

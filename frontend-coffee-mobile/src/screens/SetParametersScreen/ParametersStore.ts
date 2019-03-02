@@ -1,4 +1,8 @@
 import { observable, action, computed } from "mobx"
+import { NavigationProps } from "../../types.d"
+import { REACT_APP_SIMPLE_MODEL_REQUEST } from "react-native-dotenv"
+import { NavigationScreenProp, NavigationRoute } from "react-navigation"
+import { MODEL_RESULTS_SCREEN } from "../../utils/constants"
 
 type OnChangeText = (value: string) => void
 
@@ -12,29 +16,35 @@ type OnYieldChange = (value: string) => void
 type OnShadeChange = (shade: string) => void
 
 type OnSlopeChange = (slope: string) => void
+
 type OnIrrigationChange = () => void
 
 export class ParametersStore {
   @observable
-  public pointName: string = ""
+  public isLoading = false
+
+  public navigation: null | NavigationProps = null
+
+  @observable
+  public pointName: string = "Field-1"
 
   @observable
   public userCurrentYield = ""
 
   @observable
-  public shadeLevel = "none"
+  public shadeLevel = ""
 
   @observable
   public prevShadeLevel = ""
 
   @observable
-  public slopeLevel = "flat"
+  public slopeLevel = ""
 
   @observable
   public prevSlopeLevel = ""
 
   @observable
-  public irrigation = false
+  public irrigation: boolean | undefined = false
 
   @action
   public handleNameChange: OnChangeText = (value: string) => {
@@ -63,17 +73,64 @@ export class ParametersStore {
     this.irrigation = !this.irrigation
   }
 
-  handleSend = () => {
-    console.log("name", this.pointName)
-    console.log("yeild", this.userCurrentYield)
-    console.log("shade", this.shadeLevel)
-    console.log("slope", this.slopeLevel)
-    console.log("irrigated", this.irrigation)
+  handleUserShadeParameter = (shade: string) => {
+    switch (shade) {
+      case "none":
+        return 0
+      case "low":
+        return (1 / 3) * 10
+      case "medium":
+        return (2 / 3) * 10
+      case "high":
+        return 10
+    }
+  }
+
+  handleUserSlopeParameter = (slope: string) => {
+    switch (slope) {
+      case "flat":
+        return 1
+      case "slight":
+        return (1 / 3) * 45
+      case "gradual":
+        return (2 / 3) * 45
+      case "steep":
+        return 45
+    }
+  }
+
+  @action
+  handleSend = async () => {
+    this.isLoading = true
+    console.log("sending....")
+    const data = {
+      lng: this.point.longitude,
+      lat: this.point.latitude,
+      userShadeValue: this.handleUserShadeParameter(this.shadeLevel),
+      userIrrValue: this.irrigation ? 1 : 0,
+      userSlopeValue: this.handleUserSlopeParameter(this.slopeLevel)
+    }
+
+    const response = await fetch(REACT_APP_SIMPLE_MODEL_REQUEST, {
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" },
+      method: "POST"
+    })
+
+    console.log("response", response.json())
+
+    this.isLoading = false
+    this.navigation.navigate(MODEL_RESULTS_SCREEN)
   }
 
   @computed
   get isFormFilled() {
-    if (this.pointName.length > 3) {
+    if (
+      this.pointName.length > 3 &&
+      this.userCurrentYield.length > 1 &&
+      this.shadeLevel !== "" &&
+      this.slopeLevel !== ""
+    ) {
       return true
     } else {
       return false
@@ -82,7 +139,22 @@ export class ParametersStore {
 
   public point: ICoordinates = { latitude: 0, longitude: 0 }
 
-  constructor({ point }: { point: ICoordinates }) {
+  constructor({
+    point,
+    navigation
+  }: {
+    point: ICoordinates
+    navigation: NavigationScreenProp<NavigationRoute>
+  }) {
     this.point = point
+    this.navigation = navigation
+  }
+
+  handleLoadingTrue = () => {
+    this.isLoading = true
+  }
+
+  handleLoadingFalse = () => {
+    this.isLoading = false
   }
 }

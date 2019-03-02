@@ -14,6 +14,7 @@ export declare namespace System {
   }
 
   interface ContentProps {
+    color?: "PRIMARY"
     children: ReactNode
     fill?: boolean
   }
