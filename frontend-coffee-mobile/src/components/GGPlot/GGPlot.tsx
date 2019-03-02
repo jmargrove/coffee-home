@@ -3,16 +3,23 @@ import styled from "styled-components"
 import { View } from "native-base"
 import { SystemFlex } from "../../system-components"
 import { FunctionComponent } from "react"
-import { IData } from "./types"
 import { mapProps, compose } from "recompose"
-import { GG } from "./GG"
+import { GG, DataArray } from "./GG"
 
-const GGPlotContainer = styled(View)<any>`
+const GGPlotContainer = styled(View)<{ width: number; height: number }>`
   ${({ width }) => width && `width: ${width}`}
   ${({ height }) => height && `height: ${height}`}
  position: relative;
 `
-export const BlankCorner = styled(View)<any>`
+
+interface IAbsolute {
+  left: number
+  top: number
+  right: number
+  bottom: number
+}
+
+export const BlankCorner = styled(View)<IAbsolute>`
   position: absolute;
   ${({ left }) => (left ? `left: ${left}` : `left: 0`)}
   ${({ top }) => (top ? `top: ${top}` : `top: 0`)}
@@ -22,7 +29,7 @@ export const BlankCorner = styled(View)<any>`
   z-index: 9
 `
 
-export const BlankCenter = styled(View)<any>`
+export const BlankCenter = styled(View)<IAbsolute>`
   position: absolute;
   ${({ left }) => left && `left: ${left}`}
   ${({ top }) => top && `top: ${top}`}
@@ -32,7 +39,7 @@ export const BlankCenter = styled(View)<any>`
   z-index: 3;
 `
 
-export const BlankPanel = styled(View)<any>`
+export const BlankPanel = styled(View)<IAbsolute>`
   position: absolute;
   ${({ left }) => (left ? `left: ${left}` : `left: 0`)}
   ${({ top }) => (top ? `top: ${top}` : `top: 0`)}
@@ -46,7 +53,7 @@ interface IGGPlot {
     GGYTick: FunctionComponent<{
       tickNumber: number
       length: number
-      data: IData
+      yValues: number[]
     }>
     props: { tickNumber: number }
   }
@@ -54,47 +61,57 @@ interface IGGPlot {
     GGXTick: FunctionComponent<{
       tickNumber: number
       length: number
-      data: IData
+      xValues: number[]
     }>
     props: { tickNumber: number }
   }
   GeomLine: {
-    GGLine: FunctionComponent<{ data: IData; size: number }>
+    GGLine: FunctionComponent<{
+      data: DataArray
+      size: number
+    }>
     props: { size: number }
   }
   GeomPoint: {
-    GGPoint: FunctionComponent<{ data: { x: number; y: number }; size: number }>
+    GGPoint: FunctionComponent<{
+      data: { x: number; y: number }[]
+      size: number
+    }>
     props: { size: number }
   }
-
   outerDimensions: { width: number; height: number }
   padding: { top: number; bottom: number; left: number; right: number }
-  data: IData
+  data: { yield: number; year: number }[]
+}
+
+interface IGGPlotProps extends IGGPlot {
   store: GG
 }
-export const GGPlotDefault: FunctionComponent<IGGPlot> = ({
+
+export const GGPlotDefault: FunctionComponent<IGGPlotProps> = ({
   GeomYTick,
   GeomXTick,
   GeomLine,
   GeomPoint,
   padding,
   outerDimensions,
-  data,
   store
 }) => {
   const { width, height } = outerDimensions
   const { left, right, top, bottom } = padding
   const plotWidth = width - right - left
   const plotHeight = height - top - bottom
-  const { pointVals } = store
+  const { pointVals, dataArray, yValues, xValues } = store
+  console.log("this", pointVals, dataArray, yValues, xValues)
+
   return (
     <SystemFlex noFlex>
       <GGPlotContainer width={width} height={height}>
         <BlankPanel left={0} top={top} right={width - left} bottom={bottom}>
           {GeomYTick && (
             <GeomYTick.GGYTick
+              yValues={yValues}
               length={plotHeight}
-              data={data}
               {...GeomYTick.props}
             />
           )}
@@ -103,8 +120,8 @@ export const GGPlotDefault: FunctionComponent<IGGPlot> = ({
         <BlankPanel left={left} top={height - bottom} right={right} bottom={0}>
           {GeomXTick && (
             <GeomXTick.GGXTick
+              xValues={xValues}
               length={plotWidth}
-              data={data}
               {...GeomXTick.props}
             />
           )}
@@ -136,15 +153,9 @@ export const GGPlotDefault: FunctionComponent<IGGPlot> = ({
         />
 
         <BlankCenter left={left} right={right} top={top} bottom={bottom}>
-          {GeomLine && (
-            <GeomLine.GGLine data={data} size={1} {...GeomLine.props} />
-          )}
+          {GeomLine && <GeomLine.GGLine data={dataArray} {...GeomLine.props} />}
           {GeomPoint && (
-            <GeomPoint.GGPoint
-              data={pointVals}
-              {...GeomPoint.props}
-              size={10}
-            />
+            <GeomPoint.GGPoint data={pointVals} {...GeomPoint.props} />
           )}
         </BlankCenter>
       </GGPlotContainer>
@@ -152,14 +163,14 @@ export const GGPlotDefault: FunctionComponent<IGGPlot> = ({
   )
 }
 
-const withStore = compose<
-  { store: GG } & IGGPlot,
-  IData & { store: GG } & IGGPlot
->(
-  mapProps(({ data, ...rest }: IData & { size: number } & IGGPlot) => {
+const withStore = compose<IGGPlotProps, IGGPlot>(
+  mapProps(({ data, outerDimensions, padding, ...rest }: IGGPlot) => {
+    const plotWidth = outerDimensions.width - padding.left - padding.right
+    const plotHeight = outerDimensions.height - padding.top - padding.bottom
     return {
-      store: new GG(data, { width: 350 - 80, height: 250 - 80 }),
-      data,
+      store: new GG(data, { width: plotHeight, height: plotWidth }),
+      outerDimensions,
+      padding,
       ...rest
     }
   })

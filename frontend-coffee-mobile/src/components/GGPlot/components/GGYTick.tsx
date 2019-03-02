@@ -1,10 +1,6 @@
 import React, { FunctionComponent } from "react"
 import styled from "../../../system-components/system-theme/styled-components"
-import { View, Text } from "react-native"
-import { compose, mapProps } from "recompose"
-import { GG } from "../GG"
-import { IData } from "../types.d"
-import { StyleSheet } from "react-native"
+import { View, Text, StyleSheet } from "react-native"
 
 const YTickMajor = styled(View)<any>`
   position: absolute;
@@ -24,12 +20,11 @@ const YLabMajor = styled(Text)<any>`
   z-index: 20;
 `
 
-const GGYTickDefault: FunctionComponent<any> = ({
+export const GGYTick: FunctionComponent<any> = ({
   length,
   tickNumber,
-  store
+  yValues
 }) => {
-  const { yValues } = store
   const tickSpaces = tickNumber - 1
   const yTickPosition = Array(tickNumber)
     .fill(1)
@@ -49,7 +44,7 @@ const GGYTickDefault: FunctionComponent<any> = ({
       <View
         style={{
           width: StyleSheet.hairlineWidth,
-          height: 250 - 80,
+          height: length,
           top: 0,
           left: 60 - StyleSheet.hairlineWidth / 2,
           bottom: 0,
@@ -79,24 +74,3 @@ const GGYAxisTitle = styled(Text)<any>`
   ${({ bottom }) => bottom && `bottom: ${bottom}`};
   ${({ left }) => left && `left: ${left}`};
 `
-
-const withStore = compose<
-  { store: GG } & { length: number; tickNumber: number },
-  { length: number; tickNumber: number } & IData
->(
-  mapProps(
-    ({
-      data,
-      length,
-      tickNumber
-    }: IData & { length: number; tickNumber: number }) => {
-      return {
-        store: new GG(data, { width: 350 - 80, height: 250 - 80 }),
-        length: length,
-        tickNumber: tickNumber
-      }
-    }
-  )
-)
-
-export const GGYTick = withStore(GGYTickDefault)

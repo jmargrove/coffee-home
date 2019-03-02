@@ -1,12 +1,8 @@
 import React, { FunctionComponent } from "react"
 import styled from "../../../system-components/system-theme/styled-components"
-import { View, Text } from "react-native"
-import { IData } from "../types.d"
-import { compose, mapProps } from "recompose"
-import { GG } from "../GG"
-import { StyleSheet } from "react-native"
+import { View, Text, StyleSheet } from "react-native"
 
-const XTickMajor = styled(View)<any>`
+const XTickMajor = styled(View)<{ x: number; y: number }>`
   position: absolute;
   left: ${({ x }) => x && x};
   top: ${({ y }) => y && y};
@@ -16,7 +12,7 @@ const XTickMajor = styled(View)<any>`
   z-index: 20;
 `
 
-const XLabMajor = styled(Text)<any>`
+const XLabMajor = styled(Text)<{ x: number; y: number }>`
   position: absolute;
   font-size: 12;
   left: ${({ x }) => x && x};
@@ -24,12 +20,11 @@ const XLabMajor = styled(Text)<any>`
   z-index: 20;
 `
 
-const GGXTickDefault: FunctionComponent<any> = ({
-  length,
-  tickNumber,
-  store
-}) => {
-  const { xValues } = store
+export const GGXTick: FunctionComponent<{
+  length: number
+  tickNumber: number
+  xValues: number[]
+}> = ({ length, tickNumber, xValues }) => {
   const tickSpaces = tickNumber - 1
   const xTickPosition = Array(tickNumber)
     .fill(1)
@@ -47,7 +42,7 @@ const GGXTickDefault: FunctionComponent<any> = ({
     <>
       <View
         style={{
-          width: 350 - 80,
+          width: length,
           height: StyleSheet.hairlineWidth,
           backgroundColor: "black",
           top: 0,
@@ -76,24 +71,3 @@ const GGXAxisTitle = styled(Text)<any>`
   ${({ bottom }) => bottom && `bottom: ${bottom}`};
   ${({ left }) => left && `left: ${left}`};
 `
-
-const withStore = compose<
-  { store: GG } & { length: number; tickNumber: number },
-  { length: number; tickNumber: number } & IData
->(
-  mapProps(
-    ({
-      data,
-      length,
-      tickNumber
-    }: IData & { length: number; tickNumber: number }) => {
-      return {
-        store: new GG(data, { width: 350 - 80, height: 250 - 80 }),
-        length: length,
-        tickNumber: tickNumber
-      }
-    }
-  )
-)
-
-export const GGXTick = withStore(GGXTickDefault)

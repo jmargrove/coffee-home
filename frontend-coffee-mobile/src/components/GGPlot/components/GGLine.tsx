@@ -1,11 +1,17 @@
 import React, { FunctionComponent } from "react"
 import styled from "../../../system-components/system-theme/styled-components"
 import { View } from "react-native"
-import { DataArray, GG } from "../GG"
-import { compose, mapProps } from "recompose"
-import { IData } from "../types.d"
+import { DataArray } from "../GG"
 
-const StyledLine = styled(View)<any>`
+interface IStyledLine {
+  hyp: number
+  size: number
+  rotate: number
+  x: number
+  y: number
+}
+
+const StyledLine = styled(View)<IStyledLine>`
   position: absolute;
   width: ${({ hyp }) => hyp && hyp};
   ${({ size }) => size && `height: ${size}`};
@@ -15,15 +21,13 @@ const StyledLine = styled(View)<any>`
   ${({ rotate }) => rotate && `transform: rotate(-${rotate}deg`} );
 `
 
-const GGLineDefault: FunctionComponent<{
+export const GGLine: FunctionComponent<{
   size: number
-  store: GG
-}> = ({ size, store }) => {
-  const { dataArray } = store
-  console.log("ar", dataArray)
+  data: DataArray
+}> = ({ size, data }) => {
   return (
     <>
-      {dataArray.map((lineSegment, i) => {
+      {data.map((lineSegment, i) => {
         return (
           <StyledLine
             size={size}
@@ -38,17 +42,3 @@ const GGLineDefault: FunctionComponent<{
     </>
   )
 }
-
-const withStore = compose<
-  { store: GG; size: number },
-  IData & { size: number }
->(
-  mapProps(({ data, size }: IData & { size: number }) => {
-    return {
-      store: new GG(data, { width: 350 - 80, height: 250 - 80 }),
-      size: size
-    }
-  })
-)
-
-export const GGLine = withStore(GGLineDefault)
