@@ -9,7 +9,7 @@ import {
 } from "../../system-components"
 import { ScatterPlot } from "./ScatterPlot"
 import styled from "../../system-components/system-theme/styled-components"
-import { View } from "react-native"
+import { View, ScrollView } from "react-native"
 import {
   SMALL,
   BLACK,
@@ -18,6 +18,7 @@ import {
 } from "../../system-components/system-theme/theme"
 import { BoundsBar } from "../../components/BoundsBar"
 import { SubHeader } from "../../components/SubHeaderComponent"
+import { YieldDisplay } from "../../components/YieldDisplay"
 
 export const response = [
   { year: 0, yield: 0 },
@@ -33,13 +34,16 @@ export const ModelResultsScreen: FunctionComponent = () => {
     <Container>
       <HeaderComponent>Model results</HeaderComponent>
       <SystemContent fill>
-        <SystemFlex align="center">
-          <SystemSpace size={SMALL} />
-          <SubHeader> Field </SubHeader>
-          <SystemSpace size={SMALL} />
-          <ScatterPlot />
-          <SystemText>hellow</SystemText>
-        </SystemFlex>
+        <ScrollView>
+          <SystemFlex align="center">
+            <SystemSpace size={SMALL} />
+            <SubHeader> Field </SubHeader>
+            <SystemSpace size={SMALL} />
+            <ScatterPlot />
+            <SystemSpace size={SMALL} />
+            <YieldDisplay />
+          </SystemFlex>
+        </ScrollView>
       </SystemContent>
     </Container>
   )
