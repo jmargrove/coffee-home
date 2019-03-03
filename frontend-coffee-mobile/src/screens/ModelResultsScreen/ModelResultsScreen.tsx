@@ -1,10 +1,23 @@
 import React, { FunctionComponent } from "react"
 import { HeaderComponent } from "../../components/HeaderComponent"
 import { Container } from "native-base"
-import { SystemContent, SystemFlex, SystemText } from "../../system-components"
+import {
+  SystemContent,
+  SystemFlex,
+  SystemText,
+  SystemSpace
+} from "../../system-components"
 import { ScatterPlot } from "./ScatterPlot"
 import styled from "../../system-components/system-theme/styled-components"
 import { View } from "react-native"
+import {
+  SMALL,
+  BLACK,
+  REGULAR,
+  PRIMARY
+} from "../../system-components/system-theme/theme"
+import { BoundsBar } from "../../components/BoundsBar"
+import { SubHeader } from "../../components/SubHeaderComponent"
 
 export const response = [
   { year: 0, yield: 0 },
@@ -15,22 +28,15 @@ export const response = [
   { year: 5, yield: 4.14 }
 ]
 
-const SubHeader = styled(View)`
-  width: 80%;
-  height: 32;
-  background-color: lightgrey;
-`
-
 export const ModelResultsScreen: FunctionComponent = () => {
   return (
     <Container>
       <HeaderComponent>Model results</HeaderComponent>
       <SystemContent fill>
         <SystemFlex align="center">
-          <SubHeader>
-            <SystemText>hellow</SystemText>
-          </SubHeader>
-
+          <SystemSpace size={SMALL} />
+          <SubHeader> Field </SubHeader>
+          <SystemSpace size={SMALL} />
           <ScatterPlot />
           <SystemText>hellow</SystemText>
         </SystemFlex>
