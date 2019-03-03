@@ -102,7 +102,6 @@ export const GGPlotDefault: FunctionComponent<IGGPlotProps> = ({
   const plotWidth = width - right - left
   const plotHeight = height - top - bottom
   const { pointVals, dataArray, yValues, xValues } = store
-  console.log("this", pointVals, dataArray, yValues, xValues)
 
   return (
     <SystemFlex noFlex>
@@ -168,7 +167,7 @@ const withStore = compose<IGGPlotProps, IGGPlot>(
     const plotWidth = outerDimensions.width - padding.left - padding.right
     const plotHeight = outerDimensions.height - padding.top - padding.bottom
     return {
-      store: new GG(data, { width: plotHeight, height: plotWidth }),
+      store: new GG(data, { width: plotWidth, height: plotHeight }),
       outerDimensions,
       padding,
       ...rest

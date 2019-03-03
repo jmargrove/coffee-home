@@ -28,6 +28,7 @@ export const GGLine: FunctionComponent<{
   return (
     <>
       {data.map((lineSegment, i) => {
+        console.log(lineSegment)
         return (
           <StyledLine
             size={size}

@@ -97,6 +97,7 @@ export class GG {
 
   public calcPointValues: CalcPointValues = data => {
     return data.map((el, i) => {
+      console.log(this.width, this.xMax, el.year)
       return {
         x: (this.width / this.xMax) * el.year,
         y: (this.height / this.yMax) * el.yield

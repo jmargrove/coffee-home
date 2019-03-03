@@ -26,6 +26,7 @@ export const GGXTick: FunctionComponent<{
   xValues: number[]
 }> = ({ length, tickNumber, xValues }) => {
   const tickSpaces = tickNumber - 1
+
   const xTickPosition = Array(tickNumber)
     .fill(1)
     .map((el, i) => {

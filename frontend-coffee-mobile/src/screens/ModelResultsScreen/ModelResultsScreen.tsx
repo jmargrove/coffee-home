@@ -3,6 +3,8 @@ import { HeaderComponent } from "../../components/HeaderComponent"
 import { Container } from "native-base"
 import { SystemContent, SystemFlex, SystemText } from "../../system-components"
 import { ScatterPlot } from "./ScatterPlot"
+import styled from "../../system-components/system-theme/styled-components"
+import { View } from "react-native"
 
 export const response = [
   { year: 0, yield: 0 },
@@ -13,13 +15,22 @@ export const response = [
   { year: 5, yield: 4.14 }
 ]
 
+const SubHeader = styled(View)`
+  width: 80%;
+  height: 32;
+  background-color: lightgrey;
+`
+
 export const ModelResultsScreen: FunctionComponent = () => {
   return (
     <Container>
       <HeaderComponent>Model results</HeaderComponent>
       <SystemContent fill>
         <SystemFlex align="center">
-          <SystemText>hellow</SystemText>
+          <SubHeader>
+            <SystemText>hellow</SystemText>
+          </SubHeader>
+
           <ScatterPlot />
           <SystemText>hellow</SystemText>
         </SystemFlex>
