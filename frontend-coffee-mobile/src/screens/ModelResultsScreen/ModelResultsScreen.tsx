@@ -4,8 +4,8 @@ import { Container } from "native-base"
 import {
   SystemContent,
   SystemFlex,
-  SystemText,
-  SystemSpace
+  SystemSpace,
+  SystemButtonLarge
 } from "../../system-components"
 import { ScatterPlot } from "./ScatterPlot"
 import styled from "../../system-components/system-theme/styled-components"
@@ -13,12 +13,13 @@ import { View, ScrollView } from "react-native"
 import {
   SMALL,
   BLACK,
-  REGULAR,
-  PRIMARY
+  PRIMARY,
+  WHITE
 } from "../../system-components/system-theme/theme"
-import { BoundsBar } from "../../components/BoundsBar"
+
 import { SubHeader } from "../../components/SubHeaderComponent"
 import { YieldDisplay } from "../../components/YieldDisplay"
+import { compose, withProps } from "recompose";
 
 export const response = [
   { year: 0, yield: 0 },
@@ -40,11 +41,21 @@ export const ModelResultsScreen: FunctionComponent = () => {
             <SubHeader> Field </SubHeader>
             <SystemSpace size={SMALL} />
             <ScatterPlot />
-            <SystemSpace size={SMALL} />
+
             <YieldDisplay />
+            <SystemButtonLarge
+              colorBorder={PRIMARY}
+              color={WHITE}
+              textColor={BLACK}
+              onPress={e => console.log("error", e)}
+            >
+              Optimize shade
+            </SystemButtonLarge>
           </SystemFlex>
         </ScrollView>
       </SystemContent>
     </Container>
   )
 }
+
+

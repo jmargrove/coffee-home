@@ -12,8 +12,8 @@ export const ScatterPlot: FunctionComponent = () => {
   return (
     <GGPlot
       data={response}
-      outerDimensions={{ width: 350, height: 230 }}
-      padding={{ top: 20, bottom: 60, left: 60, right: 20 }}
+      outerDimensions={{ width: 350, height: 150 }}
+      padding={{ top: 20, bottom: 20, left: 60, right: 20 }}
       GeomYTick={{ GGYTick, props: { tickNumber: 8 } }}
       GeomXTick={{ GGXTick, props: { tickNumber: 6 } }}
       GeomLine={{ GGLine, props: { size: 1 } }}

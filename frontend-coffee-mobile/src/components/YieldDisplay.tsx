@@ -1,23 +1,30 @@
 import React, { FunctionComponent } from "react"
-import { View } from "native-base"
-import { BoundsBar } from "./BoundsBar"
+import { View, TouchableOpacity } from "react-native"
 import {
   REGULAR,
   PRIMARY,
-  SMALL,
   BLACK,
   WHITE,
-  LIGHT_GREY
+  SMALL
 } from "../system-components/system-theme/theme"
-import { SystemSpace, SystemFlex, SystemText } from "../system-components"
+import {
+  SystemSpace,
+  SystemFlex,
+  SystemText,
+  SystemAbsolute
+} from "../system-components"
 import styled from "../system-components/system-theme/styled-components"
-import { Text } from "react-native"
+import { ConsoleLeftArrow } from "../assets/ConsoleLeftArrow/ConsoleLeftArrow"
+import { ConsoleRightArrow } from "../assets/ConsoleRightArrow/ConsoleRightArrow"
+import { DialOuterRing } from "../assets/DialOuterRing.png/DialOuterRing"
 
-const YieldDisplayContainer = styled(View)`
+const YieldDisplayContainer = styled(View)<{}>`
+  position: relative;
   width: 328;
+  height: 260;
 `
 
-const DialContainer = styled(View)`
+const DialContainer = styled(View)<{}>`
   width: 200;
   height: 200;
   border-radius: 100;
@@ -26,7 +33,7 @@ const DialContainer = styled(View)`
   background-color: #f0f0f0;
 `
 
-const DialOuterContainer = styled(View)`
+const DialOuterContainer = styled(View)<{}>`
 position: absolute; 
 z-index: 10;
 top: 20;
@@ -41,85 +48,42 @@ bottom: 20 ;
   background-color: ${({ theme }) => theme && theme.colors[WHITE]};
 `
 
-const DialOuterRing = styled(View)`
-  width: 206;
-  height: 206;
-  border-radius: 103;
-  border-width: 10;
-  border-color: ${({ theme }) => theme && theme.colors[PRIMARY]};
-`
-
-const ArrowRight = styled(View)`
-position: absolute;
-left: 264;;
-top: 70;
-  width: 0;
-  height: 0;
-  border-top-color: white;
-  border-top-width: 72
-  border-bottom-color: white;
-  border-bottom-width: 72
-  border-left-color: ${({ theme }) => theme && theme.colors[BLACK]};
-  border-left-width: 96
-`
-
-const ArrowLeft = styled(View)`
-position: absolute;
-left: -20;
-top: 70;
-  width: 0;
-  height: 0;
-  border-top-color: white;
-  border-top-width: 72
-  border-bottom-width: 72
-  border-bottom-color: white;
-  border-right-color: ${({ theme }) => theme && theme.colors[BLACK]};
-  border-right-width: 96
+const SystemRelative = styled(View)<{}>`
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: blue;
 `
 
 export const YieldDisplay: FunctionComponent = ({ children }) => {
   return (
-    <>
-      <SystemSpace size={REGULAR} />
+    <SystemFlex noFlex>
+      <SystemSpace size={SMALL} />
       <YieldDisplayContainer>
-        <View
-          style={{
-            position: "relative",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: "blue"
-          }}
-        >
+        <SystemRelative>
           <SystemFlex justify="center" row align="center">
-            <ArrowLeft />
+            <TouchableOpacity onPress={() => console.log("there is this")}>
+              <SystemAbsolute left={22.5} top={100}>
+                <ConsoleLeftArrow />
+              </SystemAbsolute>
+            </TouchableOpacity>
+
             <DialOuterContainer>
               <SystemFlex justify="center" align="center">
                 <DialOuterRing>
                   <SystemFlex justify="center" align="center">
                     <DialContainer>
                       <SystemFlex justify="center" align="center">
-                        <Text
-                          style={{
-                            position: "absolute",
-                            top: 45,
-                            left: 120,
-                            fontSize: 18
-                          }}
-                        >
-                          t ha
-                        </Text>
-                        <Text
-                          style={{
-                            position: "absolute",
-                            top: 40,
-                            left: 150,
-                            fontSize: 12
-                          }}
-                        >
-                          -1
-                        </Text>
+                        <SystemAbsolute top={45} left={120} zIndex={55}>
+                          <SystemText color={BLACK}> t ha</SystemText>
+                        </SystemAbsolute>
+                        <SystemAbsolute top={40} left={150}>
+                          <SystemText color={BLACK} size={12}>
+                            -1
+                          </SystemText>
+                        </SystemAbsolute>
                         <SystemText size={48} color={BLACK} blackItalic={true}>
                           3.98
                         </SystemText>
@@ -129,11 +93,15 @@ export const YieldDisplay: FunctionComponent = ({ children }) => {
                 </DialOuterRing>
               </SystemFlex>
             </DialOuterContainer>
-            <ArrowRight />
+            <SystemAbsolute top={100} left={280}>
+              <TouchableOpacity>
+                <ConsoleRightArrow />
+              </TouchableOpacity>
+            </SystemAbsolute>
           </SystemFlex>
-        </View>
+        </SystemRelative>
       </YieldDisplayContainer>
       <SystemSpace size={REGULAR} />
-    </>
+    </SystemFlex>
   )
 }

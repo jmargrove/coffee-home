@@ -8,6 +8,9 @@ export const SystemAbsolute = styled(View)<System.AbsoluteProps & any>`
   ${({ left }) => left && `left: ${left}`};
   ${({ bottom }) => bottom && `bottom: ${bottom}`};
   ${({ right }) => right && `right: ${right}`};
+  ${({ width }) => width && `width: ${width}`};
+  ${({ height }) => height && `height: ${height}`};
+  ${({ zIndex }) => zIndex && `z-index: ${zIndex}`};
   ${({ horizontal }) =>
     horizontal && `left: ${(Dimensions.get("window").width - horizontal) / 2}`};
   ${({ vertical }) =>
