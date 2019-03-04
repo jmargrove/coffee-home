@@ -57,14 +57,19 @@ const SystemRelative = styled(View)<{}>`
   background-color: blue;
 `
 
-export const YieldDisplay: FunctionComponent = ({ children }) => {
+export const YieldDisplay: FunctionComponent<{
+  handleIncrement: () => void
+  handleDecrement: () => void
+
+  focalPoint: { index: number; yield: number; year: number }
+}> = ({ children, handleDecrement, handleIncrement, focalPoint }) => {
   return (
     <SystemFlex noFlex>
       <SystemSpace size={SMALL} />
       <YieldDisplayContainer>
         <SystemRelative>
           <SystemFlex justify="center" row align="center">
-            <TouchableOpacity onPress={() => console.log("there is this")}>
+            <TouchableOpacity onPress={handleDecrement}>
               <SystemAbsolute left={22.5} top={100}>
                 <ConsoleLeftArrow />
               </SystemAbsolute>
@@ -85,7 +90,7 @@ export const YieldDisplay: FunctionComponent = ({ children }) => {
                           </SystemText>
                         </SystemAbsolute>
                         <SystemText size={48} color={BLACK} blackItalic={true}>
-                          3.98
+                          {Math.round(focalPoint.yield * 100) / 100}
                         </SystemText>
                       </SystemFlex>
                     </DialContainer>
@@ -94,7 +99,7 @@ export const YieldDisplay: FunctionComponent = ({ children }) => {
               </SystemFlex>
             </DialOuterContainer>
             <SystemAbsolute top={100} left={280}>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={handleIncrement}>
                 <ConsoleRightArrow />
               </TouchableOpacity>
             </SystemAbsolute>

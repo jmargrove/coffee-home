@@ -4,7 +4,9 @@ export {
   PoweredSetParametersScreen
 } from "./SetParametersScreen/SetParametersScreen"
 export { LoadingScreen } from "./LoadingScreen/LoadingScreen"
-export { ModelResultsScreen } from "./ModelResultsScreen/ModelResultsScreen"
+export {
+  PoweredModelResultsScreen
+} from "./ModelResultsScreen/ModelResultsScreen"
 export {
   ShadeOptimizedScreen
 } from "./ShadeOptimizedScreen/ShadeOptimizedScreen"

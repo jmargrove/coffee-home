@@ -8,18 +8,18 @@ import {
   SystemButtonLarge
 } from "../../system-components"
 import { ScatterPlot } from "./ScatterPlot"
-import styled from "../../system-components/system-theme/styled-components"
-import { View, ScrollView } from "react-native"
+import { ScrollView } from "react-native"
 import {
   SMALL,
   BLACK,
   PRIMARY,
   WHITE
 } from "../../system-components/system-theme/theme"
-
 import { SubHeader } from "../../components/SubHeaderComponent"
 import { YieldDisplay } from "../../components/YieldDisplay"
-import { compose, withProps } from "recompose";
+import { compose, mapProps } from "recompose"
+import { observable } from "mobx"
+import { observer } from "mobx-react"
 
 export const response = [
   { year: 0, yield: 0 },
@@ -30,7 +30,11 @@ export const response = [
   { year: 5, yield: 4.14 }
 ]
 
-export const ModelResultsScreen: FunctionComponent = () => {
+export const ModelResultsScreen: FunctionComponent<{
+  store: ResultsScreenStore
+}> = ({ store }) => {
+  console.log("store", store)
+  const { focalPoint, handleIncrement, handleDecrement } = store
   return (
     <Container>
       <HeaderComponent>Model results</HeaderComponent>
@@ -40,9 +44,13 @@ export const ModelResultsScreen: FunctionComponent = () => {
             <SystemSpace size={SMALL} />
             <SubHeader> Field </SubHeader>
             <SystemSpace size={SMALL} />
-            <ScatterPlot />
+            <ScatterPlot focalPoint={focalPoint} />
 
-            <YieldDisplay />
+            <YieldDisplay
+              focalPoint={focalPoint}
+              handleIncrement={handleIncrement}
+              handleDecrement={handleDecrement}
+            />
             <SystemButtonLarge
               colorBorder={PRIMARY}
               color={WHITE}
@@ -58,4 +66,47 @@ export const ModelResultsScreen: FunctionComponent = () => {
   )
 }
 
+class ResultsScreenStore {
+  @observable
+  focalPoint: { index: number; yield: number; year: number }
 
+  @observable
+  data: { yield: number; year: number }[]
+
+  constructor({ response }: { response: { yield: number; year: number }[] }) {
+    this.data = response
+    this.focalPoint = { index: 4, ...response[4] }
+    console.log("this.focalPoint")
+  }
+
+  handleIncrement = () => {
+    console.log("hello", this.focalPoint.index)
+    if (this.focalPoint.index < 5) {
+      this.focalPoint = {
+        index: this.focalPoint.index + 1,
+        ...this.data[this.focalPoint.index + 1]
+      }
+    }
+  }
+
+  handleDecrement = () => {
+    if (this.focalPoint.index > 0) {
+      this.focalPoint = {
+        index: this.focalPoint.index - 1,
+        ...this.data[this.focalPoint.index - 1]
+      }
+    }
+  }
+}
+
+const power = compose<any, any>(
+  mapProps(({ rest }: any) => {
+    return {
+      store: new ResultsScreenStore({ response }),
+      ...rest
+    }
+  }),
+  observer
+)
+
+export const PoweredModelResultsScreen = power(ModelResultsScreen)

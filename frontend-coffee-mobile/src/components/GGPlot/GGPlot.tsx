@@ -76,8 +76,9 @@ interface IGGPlot {
     GGPoint: FunctionComponent<{
       data: { x: number; y: number }[]
       size: number
+      focalPoint: number
     }>
-    props: { size: number }
+    props: { size: number; focalPoint: number }
   }
   outerDimensions: { width: number; height: number }
   padding: { top: number; bottom: number; left: number; right: number }

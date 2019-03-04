@@ -11,7 +11,7 @@ import {
   PoweredMapScreen,
   PoweredSetParametersScreen,
   LoadingScreen,
-  ModelResultsScreen
+  PoweredModelResultsScreen
 } from "./screens"
 
 export const AppNavigation = createStackNavigator(
@@ -28,7 +28,7 @@ export const AppNavigation = createStackNavigator(
     [LOADING_SCREEN]: {
       screen: LoadingScreen
     },
-    [MODEL_RESULTS_SCREEN]: { screen: ModelResultsScreen }
+    [MODEL_RESULTS_SCREEN]: { screen: PoweredModelResultsScreen }
   },
   {
     initialRouteName: MODEL_RESULTS_SCREEN,
