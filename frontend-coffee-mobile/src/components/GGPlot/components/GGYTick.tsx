@@ -1,8 +1,9 @@
 import React, { FunctionComponent } from "react"
 import styled from "../../../system-components/system-theme/styled-components"
 import { View, Text, StyleSheet } from "react-native"
+import { IXYCoordinates } from "../types.d"
 
-const YTickMajor = styled(View)<any>`
+const YTickMajor = styled(View)<IXYCoordinates>`
   position: absolute;
   right: ${({ x }) => x && x};
   bottom: ${({ y }) => y && y};
@@ -12,7 +13,7 @@ const YTickMajor = styled(View)<any>`
   z-index: 20;
 `
 
-const YLabMajor = styled(Text)<any>`
+const YLabMajor = styled(Text)<IXYCoordinates>`
   position: absolute;
   right: ${({ x }) => x && x};
   top: ${({ y }) => y && y};
@@ -20,19 +21,20 @@ const YLabMajor = styled(Text)<any>`
   z-index: 20;
 `
 
-export const GGYTick: FunctionComponent<any> = ({
+interface GGYTickProps {
+  length: number
+  tickNumber: number
+  yValues: number[]
+  yTickPosition: number[]
+}
+
+export const GGYTick: FunctionComponent<GGYTickProps> = ({
   length,
   tickNumber,
-  yValues
+  yValues,
+  yTickPosition
 }) => {
   const tickSpaces = tickNumber - 1
-  const yTickPosition = Array(tickNumber)
-    .fill(1)
-    .map((el, i) => {
-      return Math.round((length / tickSpaces) * i * 10) / 10
-    })
-    .reverse()
-
   const yLabValues = Array(tickNumber)
     .fill(1)
     .map((el, i) => {
@@ -69,7 +71,12 @@ export const GGYTick: FunctionComponent<any> = ({
   )
 }
 
-const GGYAxisTitle = styled(Text)<any>`
+export interface IGGAxisTitleProps {
+  bottom: number
+  left: number
+}
+
+const GGYAxisTitle = styled(Text)<IGGAxisTitleProps>`
   transform: rotate(-90deg);
   ${({ bottom }) => bottom && `bottom: ${bottom}`};
   ${({ left }) => left && `left: ${left}`};

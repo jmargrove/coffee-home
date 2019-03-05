@@ -1,3 +1,5 @@
+import { IElementData } from "./types"
+
 type HypVals = { hyp: number }[]
 type RotateVals = { rotate: number }[]
 type OppVals = { opp: number }[]
@@ -23,11 +25,13 @@ type CalcEndOfLine = (data: PointVals, hypVals: HypVals) => LinePosition
 type CalcAngle = (hypArray: HypVals, oppArray: OppVals) => RotateVals
 type CalcOppLength = (data: PointVals) => OppVals
 type CalcHypLength = (data: PointVals) => HypVals
-type CalcPointValues = (data: InputData) => PointVals
+type CalcPointValues = (data: IElementData[]) => PointVals
 
 type InputData = { [x: string]: number }[]
 
-type ExtractAxisValues = (data: InputData) => number[]
+type ExtractAxisValues = (data: IElementData[]) => number[]
+
+type CalcYTickPosition = (tickNumber: number, length: number) => number[]
 
 export class GG {
   public merge: Merge = (array1, array2, array3, array4) => {
@@ -117,7 +121,7 @@ export class GG {
     })
   }
 
-  private calcYTickPosition = (tickNumber, length) => {
+  private calcYTickPosition: CalcYTickPosition = (tickNumber, length) => {
     const tickSpaces = tickNumber - 1
     return Array(tickNumber)
       .fill(1)
@@ -143,7 +147,7 @@ export class GG {
   yTickPosition: number[]
 
   constructor(
-    data: InputData,
+    data: IElementData[],
     plotDimensions: { width: number; height: number },
     yTickNumber: number
   ) {

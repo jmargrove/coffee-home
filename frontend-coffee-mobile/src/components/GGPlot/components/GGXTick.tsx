@@ -1,8 +1,10 @@
 import React, { FunctionComponent } from "react"
 import styled from "../../../system-components/system-theme/styled-components"
 import { View, Text, StyleSheet } from "react-native"
+import { IXYCoordinates } from "../types"
+import { IGGAxisTitleProps } from "./GGYTick"
 
-const XTickMajor = styled(View)<{ x: number; y: number }>`
+const XTickMajor = styled(View)<IXYCoordinates>`
   position: absolute;
   left: ${({ x }) => x && x};
   top: ${({ y }) => y && y};
@@ -12,21 +14,25 @@ const XTickMajor = styled(View)<{ x: number; y: number }>`
   z-index: 20;
 `
 
-const XLabMajor = styled(Text)<{ x: number; y: number }>`
+const XLabMajor = styled(Text)<IXYCoordinates>`
   position: absolute;
   font-size: 12;
   left: ${({ x }) => x && x};
   top: ${({ y }) => y && y};
   z-index: 20;
 `
-
-export const GGXTick: FunctionComponent<{
+interface IGGTickProps {
   length: number
   tickNumber: number
   xValues: number[]
-}> = ({ length, tickNumber, xValues }) => {
-  const tickSpaces = tickNumber - 1
+}
 
+export const GGXTick: FunctionComponent<IGGTickProps> = ({
+  length,
+  tickNumber,
+  xValues
+}) => {
+  const tickSpaces = tickNumber - 1
   const xTickPosition = Array(tickNumber)
     .fill(1)
     .map((el, i) => {
@@ -68,7 +74,7 @@ export const GGXTick: FunctionComponent<{
   )
 }
 
-const GGXAxisTitle = styled(Text)<any>`
+const GGXAxisTitle = styled(Text)<IGGAxisTitleProps>`
   ${({ bottom }) => bottom && `bottom: ${bottom}`};
   ${({ left }) => left && `left: ${left}`};
 `

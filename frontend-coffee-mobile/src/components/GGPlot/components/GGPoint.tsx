@@ -2,7 +2,6 @@ import React, { FunctionComponent } from "react"
 import styled from "../../../system-components/system-theme/styled-components"
 import { View, Animated } from "react-native"
 import { PRIMARY, theme } from "../../../system-components/system-theme/theme"
-import { SystemFlex } from "../../../system-components"
 import { alphaFunction } from "../../../utils/alphaFunction"
 
 const PointStandard = styled(View)<any>`
@@ -37,7 +36,7 @@ const PointAnimatedContainer = styled(View)<any>`
 `
 
 export interface IGGPointProps {
-  focalPoint: { index: number; yeild: number; year: number }
+  focalPoint: { index: number; yield: number; year: number }
   data: { x: number; y: number }[]
   size: number
 }

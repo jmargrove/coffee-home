@@ -4,26 +4,20 @@ import { View } from "native-base"
 import { SystemFlex } from "../../system-components"
 import { FunctionComponent } from "react"
 import { mapProps, compose } from "recompose"
-import { GG, DataArray } from "./GG"
+import { GG } from "./GG"
 import {
   LIGHT_GREY,
   BLACK,
   theme
 } from "../../system-components/system-theme/theme"
 import { StyleSheet } from "react-native"
+import { IGGPlotProps, IGGPlot, IAbsolute } from "./types.d"
 
 const GGPlotContainer = styled(View)<{ width: number; height: number }>`
   ${({ width }) => width && `width: ${width}`}
   ${({ height }) => height && `height: ${height}`}
  position: relative;
 `
-
-interface IAbsolute {
-  left: number
-  top: number
-  right: number
-  bottom: number
-}
 
 export const BlankCorner = styled(View)<IAbsolute>`
   position: absolute;
@@ -86,47 +80,6 @@ const PlotCanvas: FunctionComponent<{
   )
 }
 
-interface IGGPlot {
-  GeomYTick: {
-    GGYTick: FunctionComponent<{
-      tickNumber: number
-      length: number
-      yValues: number[]
-    }>
-    props: { tickNumber: number }
-  }
-  GeomXTick: {
-    GGXTick: FunctionComponent<{
-      tickNumber: number
-      length: number
-      xValues: number[]
-    }>
-    props: { tickNumber: number }
-  }
-  GeomLine: {
-    GGLine: FunctionComponent<{
-      data: DataArray
-      size: number
-    }>
-    props: { size: number }
-  }
-  GeomPoint: {
-    GGPoint: FunctionComponent<{
-      data: { x: number; y: number }[]
-      size: number
-      focalPoint: number
-    }>
-    props: { size: number; focalPoint: number }
-  }
-  outerDimensions: { width: number; height: number }
-  padding: { top: number; bottom: number; left: number; right: number }
-  data: { yield: number; year: number }[]
-}
-
-interface IGGPlotProps extends IGGPlot {
-  store: GG
-}
-
 export const GGPlotDefault: FunctionComponent<IGGPlotProps> = ({
   GeomYTick,
   GeomXTick,
@@ -148,6 +101,7 @@ export const GGPlotDefault: FunctionComponent<IGGPlotProps> = ({
         <BlankPanel left={0} top={top} right={width - left} bottom={bottom}>
           {GeomYTick && (
             <GeomYTick.GGYTick
+              yTickPosition={yTickPosition}
               yValues={yValues}
               length={plotHeight}
               {...GeomYTick.props}
