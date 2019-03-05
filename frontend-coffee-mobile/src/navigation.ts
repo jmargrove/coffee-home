@@ -35,7 +35,7 @@ export const AppNavigation = createStackNavigator(
     headerMode: "none",
     transitionConfig: () => ({
       transitionSpec: {
-        duration: 0
+        duration: 250
       }
     })
   }

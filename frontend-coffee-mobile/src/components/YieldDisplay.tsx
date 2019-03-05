@@ -77,7 +77,8 @@ export const YieldDisplay: FunctionComponent<{
 
             <DialOuterContainer>
               <SystemFlex justify="center" align="center">
-                <DialOuterRing>
+                <DialOuterRing />
+                <SystemAbsolute>
                   <SystemFlex justify="center" align="center">
                     <DialContainer>
                       <SystemFlex justify="center" align="center">
@@ -95,7 +96,7 @@ export const YieldDisplay: FunctionComponent<{
                       </SystemFlex>
                     </DialContainer>
                   </SystemFlex>
-                </DialOuterRing>
+                </SystemAbsolute>
               </SystemFlex>
             </DialOuterContainer>
             <SystemAbsolute top={100} left={280}>

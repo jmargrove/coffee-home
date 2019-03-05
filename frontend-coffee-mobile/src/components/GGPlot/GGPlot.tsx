@@ -5,6 +5,7 @@ import { SystemFlex } from "../../system-components"
 import { FunctionComponent } from "react"
 import { mapProps, compose } from "recompose"
 import { GG, DataArray } from "./GG"
+import { LIGHT_GREY } from '../../system-components/system-theme/theme';
 
 const GGPlotContainer = styled(View)<{ width: number; height: number }>`
   ${({ width }) => width && `width: ${width}`}
@@ -35,7 +36,7 @@ export const BlankCenter = styled(View)<IAbsolute>`
   ${({ top }) => top && `top: ${top}`}
   ${({ right }) => right && `right: ${right}`}
   ${({ bottom }) => bottom && `bottom: ${bottom}`}
-  background-color: white;
+  background-color: ${({theme}) => theme && theme.colors[LIGHT_GREY]};
   z-index: 3;
 `
 
