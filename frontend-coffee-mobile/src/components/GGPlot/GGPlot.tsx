@@ -5,7 +5,12 @@ import { SystemFlex } from "../../system-components"
 import { FunctionComponent } from "react"
 import { mapProps, compose } from "recompose"
 import { GG, DataArray } from "./GG"
-import { LIGHT_GREY } from '../../system-components/system-theme/theme';
+import {
+  LIGHT_GREY,
+  BLACK,
+  theme
+} from "../../system-components/system-theme/theme"
+import { StyleSheet } from "react-native"
 
 const GGPlotContainer = styled(View)<{ width: number; height: number }>`
   ${({ width }) => width && `width: ${width}`}
@@ -36,7 +41,7 @@ export const BlankCenter = styled(View)<IAbsolute>`
   ${({ top }) => top && `top: ${top}`}
   ${({ right }) => right && `right: ${right}`}
   ${({ bottom }) => bottom && `bottom: ${bottom}`}
-  background-color: ${({theme}) => theme && theme.colors[LIGHT_GREY]};
+  background-color: ${({ theme }) => theme && theme.colors[LIGHT_GREY]};
   z-index: 3;
 `
 
@@ -49,6 +54,38 @@ export const BlankPanel = styled(View)<IAbsolute>`
   background-color: white;
   z-index: 10
 `
+
+const PlotCanvas: FunctionComponent<{
+  left: number
+  right: number
+  top: number
+  bottom: number
+  yTickPosition: number[]
+  plotWidth: number
+}> = ({ children, left, right, top, bottom, yTickPosition, plotWidth }) => {
+  return (
+    <BlankCenter left={left} right={right} top={top} bottom={bottom}>
+      {yTickPosition.map((el, i) => {
+        console.log("el", el)
+        return (
+          <View
+            key={i}
+            style={{
+              position: "absolute",
+              backgroundColor: theme.colors[BLACK],
+              width: plotWidth,
+              height: StyleSheet.hairlineWidth,
+              top: el - StyleSheet.hairlineWidth / 2,
+              left: 0
+            }}
+          />
+        )
+      })}
+      {children}
+    </BlankCenter>
+  )
+}
+
 interface IGGPlot {
   GeomYTick: {
     GGYTick: FunctionComponent<{
@@ -103,7 +140,7 @@ export const GGPlotDefault: FunctionComponent<IGGPlotProps> = ({
   const { left, right, top, bottom } = padding
   const plotWidth = width - right - left
   const plotHeight = height - top - bottom
-  const { pointVals, dataArray, yValues, xValues } = store
+  const { pointVals, dataArray, yValues, xValues, yTickPosition } = store
 
   return (
     <SystemFlex noFlex>
@@ -153,28 +190,42 @@ export const GGPlotDefault: FunctionComponent<IGGPlotProps> = ({
           bottom={0}
         />
 
-        <BlankCenter left={left} right={right} top={top} bottom={bottom}>
+        <PlotCanvas
+          left={left}
+          right={right}
+          top={top}
+          bottom={bottom}
+          yTickPosition={yTickPosition}
+          plotWidth={plotWidth}
+        >
           {GeomLine && <GeomLine.GGLine data={dataArray} {...GeomLine.props} />}
           {GeomPoint && (
             <GeomPoint.GGPoint data={pointVals} {...GeomPoint.props} />
           )}
-        </BlankCenter>
+        </PlotCanvas>
       </GGPlotContainer>
     </SystemFlex>
   )
 }
 
 const withStore = compose<IGGPlotProps, IGGPlot>(
-  mapProps(({ data, outerDimensions, padding, ...rest }: IGGPlot) => {
-    const plotWidth = outerDimensions.width - padding.left - padding.right
-    const plotHeight = outerDimensions.height - padding.top - padding.bottom
-    return {
-      store: new GG(data, { width: plotWidth, height: plotHeight }),
-      outerDimensions,
-      padding,
-      ...rest
+  mapProps(
+    ({ data, outerDimensions, padding, GeomYTick, ...rest }: IGGPlot) => {
+      const plotWidth = outerDimensions.width - padding.left - padding.right
+      const plotHeight = outerDimensions.height - padding.top - padding.bottom
+      return {
+        store: new GG(
+          data,
+          { width: plotWidth, height: plotHeight },
+          GeomYTick.props.tickNumber
+        ),
+        outerDimensions,
+        padding,
+        GeomYTick,
+        ...rest
+      }
     }
-  })
+  )
 )
 
 export const GGPlot = withStore(GGPlotDefault)

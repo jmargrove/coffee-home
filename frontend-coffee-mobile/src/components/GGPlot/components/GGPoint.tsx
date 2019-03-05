@@ -4,7 +4,6 @@ import { View, Animated } from "react-native"
 import { PRIMARY, theme } from "../../../system-components/system-theme/theme"
 import { SystemFlex } from "../../../system-components"
 import { alphaFunction } from "../../../utils/alphaFunction"
-import { SystemAbsolute } from "../../../system-components/SystemAbsolute"
 
 const PointStandard = styled(View)<any>`
   position: absolute;
@@ -16,9 +15,9 @@ const PointStandard = styled(View)<any>`
   border-color: ${({ theme }) => theme && theme.colors[PRIMARY]}
   width: 20;
   height: 20;
-  ${({ size }) => size && `border-radius: ${size}`}
-  ${({ width }) => width && `width: ${width * 2}`}
-  ${({ height }) => height && `height: ${height * 2}`}
+  ${({ size }) => size && `border-radius: ${size}`};
+  ${({ width }) => width && `width: ${width * 2}`};
+  ${({ height }) => height && `height: ${height * 2}`};
   `
 
 const PointAnimated = styled(Animated.View)<any>`
@@ -26,7 +25,7 @@ const PointAnimated = styled(Animated.View)<any>`
   border-color: ${({ theme }) => theme && theme.colors[PRIMARY]}
   width: 20;
   height: 20;
-  `
+`
 
 const PointAnimatedContainer = styled(View)<any>`
   position: absolute;

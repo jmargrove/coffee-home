@@ -117,6 +117,16 @@ export class GG {
     })
   }
 
+  private calcYTickPosition = (tickNumber, length) => {
+    const tickSpaces = tickNumber - 1
+    return Array(tickNumber)
+      .fill(1)
+      .map((el, i) => {
+        return Math.round((length / tickSpaces) * i * 10) / 10
+      })
+      .reverse()
+  }
+
   pointVals: PointVals
   xValues: number[]
   yValues: number[]
@@ -130,10 +140,12 @@ export class GG {
   lineNumber: number
   width: number
   height: number
+  yTickPosition: number[]
 
   constructor(
     data: InputData,
-    plotDimensions: { width: number; height: number }
+    plotDimensions: { width: number; height: number },
+    yTickNumber: number
   ) {
     this.width = plotDimensions.width
     this.height = plotDimensions.height
@@ -153,5 +165,7 @@ export class GG {
       this.rotateVals,
       this.linePosition
     ).slice(0, this.lineNumber)
+
+    this.yTickPosition = this.calcYTickPosition(yTickNumber, this.height)
   }
 }
