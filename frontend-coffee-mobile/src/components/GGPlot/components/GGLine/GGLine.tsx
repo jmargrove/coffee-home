@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from "react"
-import styled from "../../../system-components/system-theme/styled-components"
+import styled from "../../../../system-components/system-theme/styled-components"
 import { View } from "react-native"
-import { DataArray } from "../GG"
+import { DataArray } from "../../types"
 
 interface IStyledLine {
   hyp: number
@@ -27,19 +27,28 @@ export const GGLine: FunctionComponent<{
 }> = ({ size, data }) => {
   return (
     <>
-      {data.map((lineSegment, i) => {
-        console.log(lineSegment)
-        return (
-          <StyledLine
-            size={size}
-            x={lineSegment.xEnd}
-            y={lineSegment.yEnd - size / 2}
-            key={i}
-            rotate={lineSegment.rotate}
-            hyp={lineSegment.hyp}
-          />
-        )
-      })}
+      {data.map(
+        (
+          lineSegment: {
+            xEnd: number
+            yEnd: number
+            rotate: number
+            hyp: number
+          },
+          i: number
+        ) => {
+          return (
+            <StyledLine
+              size={size}
+              x={lineSegment.xEnd}
+              y={lineSegment.yEnd - size / 2}
+              key={i}
+              rotate={lineSegment.rotate}
+              hyp={lineSegment.hyp}
+            />
+          )
+        }
+      )}
     </>
   )
 }

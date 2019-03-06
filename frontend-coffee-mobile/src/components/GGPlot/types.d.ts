@@ -80,3 +80,34 @@ export interface IAbsolute {
   right: number
   bottom: number
 }
+
+export type HypVals = { hyp: number }[]
+export type RotateVals = { rotate: number }[]
+export type OppVals = { opp: number }[]
+export type PointVals = { x: number; y: number }[]
+export type ToDegrees = (args: { angle: number }) => number
+export type LinePosition = { xEnd: number; yEnd: number }[]
+export type DataArray = {
+  hyp: number
+  opp: number
+  rotate: number
+  xEnd: number
+  yEnd: number
+}[]
+
+export type Merge = (
+  array1: HypVals,
+  array2: OppVals,
+  array3: RotateVals,
+  array4: LinePosition
+) => DataArray
+
+export type CalcEndOfLine = (data: PointVals, hypVals: HypVals) => LinePosition
+export type CalcAngle = (hypArray: HypVals, oppArray: OppVals) => RotateVals
+export type CalcOppLength = (data: PointVals) => OppVals
+export type CalcHypLength = (data: PointVals) => HypVals
+export type CalcPointValues = (data: IElementData[]) => PointVals
+
+export type ExtractAxisValues = (data: IElementData[]) => number[]
+
+export type CalcYTickPosition = (tickNumber: number, length: number) => number[]

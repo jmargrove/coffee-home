@@ -1,39 +1,24 @@
+import {
+  CalcEndOfLine,
+  Merge,
+  ToDegrees,
+  CalcAngle,
+  CalcOppLength,
+  OppVals,
+  CalcHypLength,
+  HypVals,
+  CalcPointValues,
+  ExtractAxisValues,
+  CalcYTickPosition,
+  PointVals,
+  RotateVals,
+  LinePosition,
+  DataArray
+} from "./types"
 import { IElementData } from "./types"
+import { GGLineStore } from "./components/GGLine/GGLineStore"
 
-type HypVals = { hyp: number }[]
-type RotateVals = { rotate: number }[]
-type OppVals = { opp: number }[]
-export type PointVals = { x: number; y: number }[]
-type ToDegrees = (args: { angle: number }) => number
-type LinePosition = { xEnd: number; yEnd: number }[]
-export type DataArray = {
-  hyp: number
-  opp: number
-  rotate: number
-  xEnd: number
-  yEnd: number
-}[]
-
-type Merge = (
-  array1: HypVals,
-  array2: OppVals,
-  array3: RotateVals,
-  array4: LinePosition
-) => DataArray
-
-type CalcEndOfLine = (data: PointVals, hypVals: HypVals) => LinePosition
-type CalcAngle = (hypArray: HypVals, oppArray: OppVals) => RotateVals
-type CalcOppLength = (data: PointVals) => OppVals
-type CalcHypLength = (data: PointVals) => HypVals
-type CalcPointValues = (data: IElementData[]) => PointVals
-
-type InputData = { [x: string]: number }[]
-
-type ExtractAxisValues = (data: IElementData[]) => number[]
-
-type CalcYTickPosition = (tickNumber: number, length: number) => number[]
-
-export class GG {
+export class GG extends GGLineStore {
   public merge: Merge = (array1, array2, array3, array4) => {
     const res = []
     for (let i = 0; i < array1.length; i++) {
@@ -61,47 +46,8 @@ export class GG {
     })
   }
 
-  private toDegrees: ToDegrees = ({ angle }) => {
-    return angle * (180 / Math.PI)
-  }
-
-  public calcAngle: CalcAngle = (hypArray, oppArray) => {
-    return hypArray.map((el, i) => {
-      return {
-        rotate: this.toDegrees({ angle: Math.asin(oppArray[i].opp / el.hyp) })
-      }
-    })
-  }
-
-  public calcOppLength: CalcOppLength = data => {
-    return data.reduce((acc: OppVals, el, i) => {
-      if (i < data.length - 1) {
-        const res: OppVals[0] = { opp: data[i + 1].y - el.y }
-        acc.push(res)
-        return acc
-      } else {
-        return acc
-      }
-    }, [])
-  }
-
-  public calcHypLength: CalcHypLength = data => {
-    return data.reduce((acc: HypVals, el, i) => {
-      if (i < data.length - 1) {
-        const res = Math.sqrt(
-          Math.pow(el.x - data[i + 1].x, 2) + Math.pow(el.y - data[i + 1].y, 2)
-        )
-        acc.push({ hyp: res })
-        return acc
-      } else {
-        return acc
-      }
-    }, [])
-  }
-
   public calcPointValues: CalcPointValues = data => {
     return data.map((el, i) => {
-      console.log(this.width, this.xMax, el.year)
       return {
         x: (this.width / this.xMax) * el.year,
         y: (this.height / this.yMax) * el.yield
@@ -151,6 +97,7 @@ export class GG {
     plotDimensions: { width: number; height: number },
     yTickNumber: number
   ) {
+    super()
     this.width = plotDimensions.width
     this.height = plotDimensions.height
     this.lineNumber = data.length - 1
