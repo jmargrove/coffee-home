@@ -1,8 +1,11 @@
 import React, { FunctionComponent } from "react"
-import styled from "../../../system-components/system-theme/styled-components"
+import styled from "../../../../system-components/system-theme/styled-components"
 import { View, Animated } from "react-native"
-import { PRIMARY, theme } from "../../../system-components/system-theme/theme"
-import { alphaFunction } from "../../../utils/alphaFunction"
+import {
+  PRIMARY,
+  theme
+} from "../../../../system-components/system-theme/theme"
+import { alphaFunction } from "../../../../utils/alphaFunction"
 
 const PointStandard = styled(View)<any>`
   position: absolute;

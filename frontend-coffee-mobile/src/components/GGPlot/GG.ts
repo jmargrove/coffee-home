@@ -18,7 +18,13 @@ import {
 import { IElementData } from "./types"
 import { GGLineStore } from "./components/GGLine/GGLineStore"
 
-export class GG extends GGLineStore {
+class GG implements GGLineStore {
+  // Mixin types for GGLine
+  toDegrees!: ToDegrees
+  calcAngle!: CalcAngle
+  calcOppLength!: CalcOppLength
+  calcHypLength!: CalcHypLength
+
   public merge: Merge = (array1, array2, array3, array4) => {
     const res = []
     for (let i = 0; i < array1.length; i++) {
@@ -97,7 +103,6 @@ export class GG extends GGLineStore {
     plotDimensions: { width: number; height: number },
     yTickNumber: number
   ) {
-    super()
     this.width = plotDimensions.width
     this.height = plotDimensions.height
     this.lineNumber = data.length - 1
@@ -120,3 +125,15 @@ export class GG extends GGLineStore {
     this.yTickPosition = this.calcYTickPosition(yTickNumber, this.height)
   }
 }
+
+function applyMixins(derivedCtor: any, baseCtors: any[]) {
+  baseCtors.forEach(baseCtor => {
+    Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
+      derivedCtor.prototype[name] = baseCtor.prototype[name]
+    })
+  })
+}
+
+applyMixins(GG, [GGLineStore])
+
+export default GG

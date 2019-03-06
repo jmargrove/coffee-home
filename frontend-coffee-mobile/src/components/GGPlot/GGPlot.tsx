@@ -4,7 +4,7 @@ import { View } from "native-base"
 import { SystemFlex } from "../../system-components"
 import { FunctionComponent } from "react"
 import { mapProps, compose } from "recompose"
-import { GG } from "./GG"
+import GG from "./GG"
 import {
   LIGHT_GREY,
   BLACK,

@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react"
-import { DataArray, GG } from "./GG"
+import GG from "./GG"
 
 export interface IXYCoordinates {
   x: number

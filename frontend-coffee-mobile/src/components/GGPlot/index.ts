@@ -1,5 +1,5 @@
 export { GGYTick } from "./components/GGYTick"
 export { GGXTick } from "./components/GGXTick"
-export { GGPoint } from "./components/GGPoint"
+export { GGPoint } from "./components/GGPoint/GGPoint"
 export { GGLine } from "./components/GGLine/GGLine"
 export { GGPlot } from "./GGPlot"

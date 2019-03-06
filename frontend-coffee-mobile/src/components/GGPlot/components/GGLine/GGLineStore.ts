@@ -1,18 +1,11 @@
-import {
-  CalcAngle,
-  CalcOppLength,
-  OppVals,
-  CalcHypLength,
-  HypVals,
-  ToDegrees
-} from "../../types"
+import { OppVals, HypVals } from "../../types"
 
 export class GGLineStore {
-  protected toDegrees: ToDegrees = ({ angle }) => {
+  public toDegrees({ angle }: { angle: number }) {
     return angle * (180 / Math.PI)
   }
 
-  protected calcAngle: CalcAngle = (hypArray, oppArray) => {
+  public calcAngle(hypArray: { hyp: number }[], oppArray: { opp: number }[]) {
     return hypArray.map((el, i) => {
       return {
         rotate: this.toDegrees({ angle: Math.asin(oppArray[i].opp / el.hyp) })
@@ -20,7 +13,7 @@ export class GGLineStore {
     })
   }
 
-  protected calcOppLength: CalcOppLength = data => {
+  public calcOppLength(data: { y: number }[]) {
     return data.reduce((acc: OppVals, el, i) => {
       if (i < data.length - 1) {
         const res: OppVals[0] = { opp: data[i + 1].y - el.y }
@@ -32,7 +25,7 @@ export class GGLineStore {
     }, [])
   }
 
-  protected calcHypLength: CalcHypLength = data => {
+  public calcHypLength(data: { y: number; x: number }[]) {
     return data.reduce((acc: HypVals, el, i) => {
       if (i < data.length - 1) {
         const res = Math.sqrt(
