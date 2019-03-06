@@ -38,4 +38,17 @@ export class GGLineStore {
       }
     }, [])
   }
+
+  public calcEndOfLine({ data, hypVals, width, lineNumber }: any) {
+    return data.map((el: any, i: number) => {
+      if (i < data.length - 1) {
+        return {
+          xEnd: el.x - (hypVals[i].hyp - width / lineNumber) / 2,
+          yEnd: el.y + (data[i + 1].y - el.y) / 2
+        }
+      } else {
+        return { xEnd: 0, yEnd: 0 }
+      }
+    })
+  }
 }

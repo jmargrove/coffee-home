@@ -102,7 +102,12 @@ export type Merge = (
   array4: LinePosition
 ) => DataArray
 
-export type CalcEndOfLine = (data: PointVals, hypVals: HypVals) => LinePosition
+export type CalcEndOfLine = (args: {
+  data: PointVals
+  hypVals: HypVals
+  width: number
+  lineNumber: number
+}) => LinePosition
 export type CalcAngle = (hypArray: HypVals, oppArray: OppVals) => RotateVals
 export type CalcOppLength = (data: PointVals) => OppVals
 export type CalcHypLength = (data: PointVals) => HypVals

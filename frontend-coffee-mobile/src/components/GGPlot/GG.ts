@@ -17,13 +17,17 @@ import {
 } from "./types"
 import { IElementData } from "./types"
 import { GGLineStore } from "./components/GGLine/GGLineStore"
+import { GGPointStore } from "./components/GGPoint/GGPointStore"
 
-class GG implements GGLineStore {
+class GG implements GGLineStore, GGPointStore {
   // Mixin types for GGLine
   toDegrees!: ToDegrees
   calcAngle!: CalcAngle
   calcOppLength!: CalcOppLength
   calcHypLength!: CalcHypLength
+  calcEndOfLine!: CalcEndOfLine
+  // Mixin types for GGPoint
+  calcPointValues!: any
 
   public merge: Merge = (array1, array2, array3, array4) => {
     const res = []
@@ -37,28 +41,6 @@ class GG implements GGLineStore {
       res.push(newObj)
     }
     return res
-  }
-
-  public calcEndOfLine: CalcEndOfLine = (data, hypVals) => {
-    return data.map((el, i) => {
-      if (i < data.length - 1) {
-        return {
-          xEnd: el.x - (hypVals[i].hyp - this.width / this.lineNumber) / 2,
-          yEnd: el.y + (data[i + 1].y - el.y) / 2
-        }
-      } else {
-        return { xEnd: 0, yEnd: 0 }
-      }
-    })
-  }
-
-  public calcPointValues: CalcPointValues = data => {
-    return data.map((el, i) => {
-      return {
-        x: (this.width / this.xMax) * el.year,
-        y: (this.height / this.yMax) * el.yield
-      }
-    })
   }
 
   public extractXValues: ExtractAxisValues = data => {
@@ -110,11 +92,24 @@ class GG implements GGLineStore {
     this.xMax = Math.max(...this.xValues)
     this.yValues = this.extractYValues(data)
     this.yMax = Math.max(...this.yValues)
-    this.pointVals = this.calcPointValues(data)
+
+    this.pointVals = this.calcPointValues({
+      data,
+      yMax: this.yMax,
+      xMax: this.xMax,
+      width: this.width,
+      height: this.height
+    })
+
     this.hypVals = this.calcHypLength(this.pointVals)
     this.oppVals = this.calcOppLength(this.pointVals)
     this.rotateVals = this.calcAngle(this.hypVals, this.oppVals)
-    this.linePosition = this.calcEndOfLine(this.pointVals, this.hypVals)
+    this.linePosition = this.calcEndOfLine({
+      data: this.pointVals,
+      hypVals: this.hypVals,
+      width: this.width,
+      lineNumber: this.lineNumber
+    })
     this.dataArray = this.merge(
       this.hypVals,
       this.oppVals,
@@ -134,6 +129,6 @@ function applyMixins(derivedCtor: any, baseCtors: any[]) {
   })
 }
 
-applyMixins(GG, [GGLineStore])
+applyMixins(GG, [GGLineStore, GGPointStore])
 
 export default GG
