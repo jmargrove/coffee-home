@@ -1,59 +1,29 @@
-import {
-  CalcEndOfLine,
-  Merge,
-  ToDegrees,
-  CalcAngle,
-  CalcOppLength,
-  OppVals,
-  CalcHypLength,
-  HypVals,
-  CalcPointValues,
-  ExtractAxisValues,
-  CalcYTickPosition,
-  PointVals,
-  RotateVals,
-  LinePosition,
-  DataArray
-} from "./types"
+import { CalcYTickPosition, PointVals, DataArray } from "./types"
 import { IElementData } from "./types"
 import { GGLineStore } from "./components/GGLine/GGLineStore"
 import { GGPointStore } from "./components/GGPoint/GGPointStore"
+import { GGDefaultData } from "./components/GGDefaultData"
 
-class GG implements GGLineStore, GGPointStore {
+interface GGCalculateBase {
+  data: IElementData[]
+  yMax: number
+  xMax: number
+  width: number
+  height: number
+}
+
+type BaseCalculationFunction = (args: GGCalculateBase) => any
+
+class GG extends GGDefaultData implements GGLineStore, GGPointStore {
   // Mixin types for GGLine
-  toDegrees!: ToDegrees
-  calcAngle!: CalcAngle
-  calcOppLength!: CalcOppLength
-  calcHypLength!: CalcHypLength
-  calcEndOfLine!: CalcEndOfLine
+  calcLineCoordinates!: BaseCalculationFunction
+  merge!: any
+  toDegrees!: any
+  calcAngle!: any
+  calcOppLength!: any
+  calcHypLength!: any
   // Mixin types for GGPoint
-  calcPointValues!: any
-
-  public merge: Merge = (array1, array2, array3, array4) => {
-    const res = []
-    for (let i = 0; i < array1.length; i++) {
-      const newObj = {
-        ...array1[i],
-        ...array2[i],
-        ...array3[i],
-        ...array4[i]
-      }
-      res.push(newObj)
-    }
-    return res
-  }
-
-  public extractXValues: ExtractAxisValues = data => {
-    return data.map(el => {
-      return el.year
-    })
-  }
-
-  public extractYValues: ExtractAxisValues = data => {
-    return data.map(el => {
-      return el.yield
-    })
-  }
+  calcPointValues!: BaseCalculationFunction
 
   private calcYTickPosition: CalcYTickPosition = (tickNumber, length) => {
     const tickSpaces = tickNumber - 1
@@ -66,18 +36,7 @@ class GG implements GGLineStore, GGPointStore {
   }
 
   pointVals: PointVals
-  xValues: number[]
-  yValues: number[]
-  xMax: number
-  yMax: number
-  hypVals: HypVals
-  oppVals: OppVals
-  rotateVals: RotateVals
-  linePosition: LinePosition
   dataArray: DataArray
-  lineNumber: number
-  width: number
-  height: number
   yTickPosition: number[]
 
   constructor(
@@ -85,14 +44,9 @@ class GG implements GGLineStore, GGPointStore {
     plotDimensions: { width: number; height: number },
     yTickNumber: number
   ) {
-    this.width = plotDimensions.width
-    this.height = plotDimensions.height
-    this.lineNumber = data.length - 1
-    this.xValues = this.extractXValues(data)
-    this.xMax = Math.max(...this.xValues)
-    this.yValues = this.extractYValues(data)
-    this.yMax = Math.max(...this.yValues)
+    super(data, plotDimensions)
 
+    // calculation of the point value positions
     this.pointVals = this.calcPointValues({
       data,
       yMax: this.yMax,
@@ -101,21 +55,14 @@ class GG implements GGLineStore, GGPointStore {
       height: this.height
     })
 
-    this.hypVals = this.calcHypLength(this.pointVals)
-    this.oppVals = this.calcOppLength(this.pointVals)
-    this.rotateVals = this.calcAngle(this.hypVals, this.oppVals)
-    this.linePosition = this.calcEndOfLine({
-      data: this.pointVals,
-      hypVals: this.hypVals,
+    // calculation of the line positions
+    this.dataArray = this.calcLineCoordinates({
+      data,
+      yMax: this.yMax,
+      xMax: this.xMax,
       width: this.width,
-      lineNumber: this.lineNumber
+      height: this.height
     })
-    this.dataArray = this.merge(
-      this.hypVals,
-      this.oppVals,
-      this.rotateVals,
-      this.linePosition
-    ).slice(0, this.lineNumber)
 
     this.yTickPosition = this.calcYTickPosition(yTickNumber, this.height)
   }

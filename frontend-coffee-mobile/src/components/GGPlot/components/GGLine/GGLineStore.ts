@@ -1,4 +1,19 @@
-import { OppVals, HypVals } from "../../types"
+import {
+  OppVals,
+  HypVals,
+  PointVals,
+  RotateVals,
+  LinePosition,
+  DataArray,
+  Merge
+} from "../../types"
+
+interface MergeArgs {
+  hypotenuseValues: HypVals
+  oppositeValues: OppVals
+  rotateValues: RotateVals
+  linePositionValues: LinePosition
+}
 
 export class GGLineStore {
   public toDegrees({ angle }: { angle: number }) {
@@ -39,16 +54,66 @@ export class GGLineStore {
     }, [])
   }
 
-  public calcEndOfLine({ data, hypVals, width, lineNumber }: any) {
-    return data.map((el: any, i: number) => {
-      if (i < data.length - 1) {
+  public calcPointValues({ data, yMax, xMax, width, height }: any) {
+    return data.map((pointRaw: { year: number; yield: number }) => {
+      return {
+        x: (width / xMax) * pointRaw.year,
+        y: (height / yMax) * pointRaw.yield
+      }
+    })
+  }
+
+  public merge({
+    hypotenuseValues,
+    oppositeValues,
+    rotateValues,
+    linePositionValues
+  }: MergeArgs) {
+    const res = []
+    for (let i = 0; i < hypotenuseValues.length; i++) {
+      const newObj = {
+        ...hypotenuseValues[i],
+        ...oppositeValues[i],
+        ...rotateValues[i],
+        ...linePositionValues[i]
+      }
+      res.push(newObj)
+    }
+    return res
+  }
+
+  public calcLineCoordinates({ data, yMax, xMax, width, height }: any) {
+    const lineNumber = data.length - 1
+    const pointVals = this.calcPointValues({
+      data,
+      yMax,
+      xMax,
+      width,
+      height
+    })
+
+    const hypotenuseValues = this.calcHypLength(pointVals)
+    const oppositeValues = this.calcOppLength(pointVals)
+    const rotateValues = this.calcAngle(hypotenuseValues, oppositeValues)
+
+    const linePositionValues = pointVals.map((el: any, i: number) => {
+      if (i < pointVals.length - 1) {
         return {
-          xEnd: el.x - (hypVals[i].hyp - width / lineNumber) / 2,
-          yEnd: el.y + (data[i + 1].y - el.y) / 2
+          xEnd: el.x - (hypotenuseValues[i].hyp - width / lineNumber) / 2,
+          yEnd: el.y + (pointVals[i + 1].y - el.y) / 2
         }
       } else {
         return { xEnd: 0, yEnd: 0 }
       }
     })
+
+    const mergedLineAttributes = this.merge({
+      hypotenuseValues,
+      oppositeValues,
+      rotateValues,
+      linePositionValues
+    }).slice(0, lineNumber)
+
+    return mergedLineAttributes
   }
 }
