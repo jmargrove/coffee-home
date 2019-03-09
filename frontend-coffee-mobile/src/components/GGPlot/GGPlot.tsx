@@ -57,10 +57,10 @@ const PlotCanvas: FunctionComponent<{
   yTickPosition: number[]
   plotWidth: number
 }> = ({ children, left, right, top, bottom, yTickPosition, plotWidth }) => {
+  const axisPadding = 30
   return (
     <BlankCenter left={left} right={right} top={top} bottom={bottom}>
       {yTickPosition.map((el, i) => {
-        console.log("el", el)
         return (
           <View
             key={i}
@@ -69,7 +69,7 @@ const PlotCanvas: FunctionComponent<{
               backgroundColor: theme.colors[BLACK],
               width: plotWidth,
               height: StyleSheet.hairlineWidth,
-              top: el - StyleSheet.hairlineWidth / 2,
+              top: el - StyleSheet.hairlineWidth / 2 + axisPadding,
               left: 0
             }}
           />

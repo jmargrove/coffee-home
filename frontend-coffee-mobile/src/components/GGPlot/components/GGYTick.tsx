@@ -30,15 +30,20 @@ interface GGYTickProps {
 
 export const GGYTick: FunctionComponent<GGYTickProps> = ({
   length,
-  tickNumber,
+  // yMax,
   yValues,
   yTickPosition
 }) => {
+  const yMax = Math.max(...yValues)
+  const yFloor = Math.floor(yMax)
+  const tickNumber = yFloor / 0.5
+  console.log(tickNumber)
+  const axisEndPadding = 30
   const tickSpaces = tickNumber - 1
   const yLabValues = Array(tickNumber)
     .fill(1)
     .map((el, i) => {
-      return Math.round((Math.max(...yValues) / tickSpaces) * i * 10) / 10
+      return Math.round((yFloor / tickNumber) * i * 10) / 10
     })
 
   return (
@@ -58,7 +63,7 @@ export const GGYTick: FunctionComponent<GGYTickProps> = ({
         return (
           <React.Fragment key={i}>
             <YTickMajor key={i} y={el - StyleSheet.hairlineWidth / 2} x={0} />
-            <YLabMajor y={el - 5} x={12}>
+            <YLabMajor y={el - 5 + axisEndPadding} x={12}>
               {yLabValues[i]}
             </YLabMajor>
           </React.Fragment>

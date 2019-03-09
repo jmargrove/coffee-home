@@ -32,11 +32,12 @@ export const GGXTick: FunctionComponent<IGGTickProps> = ({
   tickNumber,
   xValues
 }) => {
+  const axisEndPadding = 30
   const tickSpaces = tickNumber - 1
   const xTickPosition = Array(tickNumber)
     .fill(1)
     .map((el, i) => {
-      return Math.round((length / tickSpaces) * i * 10) / 10
+      return Math.round(((length - axisEndPadding) / tickSpaces) * i * 10) / 10
     })
 
   const xLabValues = Array(tickNumber)

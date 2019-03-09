@@ -115,4 +115,4 @@ export type CalcPointValues = (data: IElementData[]) => PointVals
 
 export type ExtractAxisValues = (data: IElementData[]) => number[]
 
-export type CalcYTickPosition = (tickNumber: number, length: number) => number[]
+export type CalcYTickPosition = (length: number, yMax: number) => number[]

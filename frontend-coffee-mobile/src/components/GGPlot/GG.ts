@@ -25,12 +25,20 @@ class GG extends GGDefaultData implements GGLineStore, GGPointStore {
   // Mixin types for GGPoint
   calcPointValues!: BaseCalculationFunction
 
-  private calcYTickPosition: CalcYTickPosition = (tickNumber, length) => {
+  private calcYTickPosition: CalcYTickPosition = (length, yMax) => {
+    const yFloor = Math.floor(yMax)
+    const tickNumber = yFloor / 0.5
+    console.log(tickNumber)
+    const axisEndPadding = 30
     const tickSpaces = tickNumber - 1
+
+    const endNog = yMax - yFloor
     return Array(tickNumber)
       .fill(1)
       .map((el, i) => {
-        return Math.round((length / tickSpaces) * i * 10) / 10
+        return (
+          Math.round(((length - axisEndPadding) / tickSpaces) * i * 10) / 10
+        )
       })
       .reverse()
   }
@@ -64,7 +72,7 @@ class GG extends GGDefaultData implements GGLineStore, GGPointStore {
       height: this.height
     })
 
-    this.yTickPosition = this.calcYTickPosition(yTickNumber, this.height)
+    this.yTickPosition = this.calcYTickPosition(this.height, this.yMax)
   }
 }
 
