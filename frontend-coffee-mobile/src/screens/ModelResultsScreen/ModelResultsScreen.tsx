@@ -55,7 +55,7 @@ export const ModelResultsScreen: FunctionComponent<{
               colorBorder={PRIMARY}
               color={WHITE}
               textColor={BLACK}
-              onPress={e => console.log("error", e)}
+              onPress={() => console.log("error")}
             >
               Optimize shade
             </SystemButtonLarge>
@@ -90,6 +90,7 @@ class ResultsScreenStore {
   }
 
   handleDecrement = () => {
+    console.log("hello this is decrement", this.focalPoint.index)
     if (this.focalPoint.index > 0) {
       this.focalPoint = {
         index: this.focalPoint.index - 1,

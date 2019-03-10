@@ -69,11 +69,11 @@ export const YieldDisplay: FunctionComponent<{
       <YieldDisplayContainer>
         <SystemRelative>
           <SystemFlex justify="center" row align="center">
-            <TouchableOpacity onPress={handleDecrement}>
-              <SystemAbsolute left={22.5} top={100}>
+            <SystemAbsolute left={22.5} top={100}>
+              <TouchableOpacity onPress={handleDecrement}>
                 <ConsoleLeftArrow />
-              </SystemAbsolute>
-            </TouchableOpacity>
+              </TouchableOpacity>
+            </SystemAbsolute>
 
             <DialOuterContainer>
               <SystemFlex justify="center" align="center">
