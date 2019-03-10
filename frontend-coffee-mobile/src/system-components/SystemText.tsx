@@ -12,7 +12,7 @@ interface ISystemTextProps {
 
 export const SystemText = styled(Text)<ISystemTextProps>`
   font-size: 16;
-  font-family: Roboto-Medium;
+  font-family: Roboto;
   ${({ color, theme }) => color && `color: ${theme.colors[color]}`};
   ${({ uppercase }) => uppercase && `text-transform: uppercase`}
   ${({ italic }) => italic && `font-style: italic`}

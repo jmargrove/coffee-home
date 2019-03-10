@@ -5,7 +5,8 @@ import {
   SystemContent,
   SystemFlex,
   SystemSpace,
-  SystemButtonLarge
+  SystemButtonLarge,
+  SystemText
 } from "../../system-components"
 import { ScatterPlot } from "./ScatterPlot"
 import { ScrollView } from "react-native"
@@ -13,7 +14,8 @@ import {
   SMALL,
   BLACK,
   PRIMARY,
-  WHITE
+  WHITE,
+  REGULAR
 } from "../../system-components/system-theme/theme"
 import { SubHeader } from "../../components/SubHeaderComponent"
 import { YieldDisplay } from "../../components/YieldDisplay"
@@ -41,9 +43,9 @@ export const ModelResultsScreen: FunctionComponent<{
       <SystemContent fill>
         <ScrollView>
           <SystemFlex align="center">
-            <SystemSpace size={SMALL} />
+            {/* <SystemSpace size={SMALL} />
             <SubHeader> Field </SubHeader>
-            <SystemSpace size={SMALL} />
+            <SystemSpace size={SMALL} /> */}
             <ScatterPlot focalPoint={focalPoint} />
 
             <YieldDisplay
@@ -51,14 +53,18 @@ export const ModelResultsScreen: FunctionComponent<{
               handleIncrement={handleIncrement}
               handleDecrement={handleDecrement}
             />
-            <SystemButtonLarge
-              colorBorder={PRIMARY}
-              color={WHITE}
-              textColor={BLACK}
-              onPress={() => console.log("error")}
-            >
-              Optimize shade
-            </SystemButtonLarge>
+
+            <SystemFlex row={true} noFlex>
+              <SystemSpace size={REGULAR} />
+              <SystemFlex>
+                <SystemText>
+                  During year {focalPoint.year} we expect that the coffee yeild
+                  will be {focalPoint.yield} tones per hactar.
+                </SystemText>
+              </SystemFlex>
+
+              <SystemSpace size={REGULAR} />
+            </SystemFlex>
           </SystemFlex>
         </ScrollView>
       </SystemContent>

@@ -9,13 +9,14 @@ export const DialOuterRing: FunctionComponent = ({ children }) => {
     toValue: 1,
     duration: 1000
   }).start()
-  console.log("rendering")
+
   return (
     <Animated.Image
       source={source}
       style={{
-        width: 215,
-        height: 215,
+        position: "absolute",
+        width: 170,
+        height: 170,
         transform: [
           {
             rotate: animatedValue.interpolate({
