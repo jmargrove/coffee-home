@@ -3,6 +3,7 @@ import styled from "../../../system-components/system-theme/styled-components"
 import { View, Text, StyleSheet } from "react-native"
 import { IXYCoordinates } from "../types"
 import { IGGAxisTitleProps } from "./GGYTick"
+import { SystemFlex } from "../../../system-components"
 
 const XTickMajor = styled(View)<IXYCoordinates>`
   position: absolute;
@@ -68,14 +69,24 @@ export const GGXTick: FunctionComponent<IGGTickProps> = ({
           </React.Fragment>
         )
       })}
-      <GGXAxisTitle left={length / 2 - 4 * 4} bottom={-30}>
-        Year
-      </GGXAxisTitle>
+      <View
+        style={{
+          position: "absolute",
+          top: 0,
+          bottom: 0,
+          left: 0,
+          rigth: 0,
+          width: "100%"
+        }}
+      >
+        <SystemFlex justify="center" align="center">
+          <GGXAxisTitle>Year</GGXAxisTitle>
+        </SystemFlex>
+      </View>
     </>
   )
 }
 
 const GGXAxisTitle = styled(Text)<IGGAxisTitleProps>`
-  ${({ bottom }) => bottom && `bottom: ${bottom}`};
-  ${({ left }) => left && `left: ${left}`};
+  padding-top: 20;
 `

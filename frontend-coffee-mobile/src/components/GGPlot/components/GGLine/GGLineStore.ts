@@ -54,11 +54,11 @@ export class GGLineStore {
     }, [])
   }
 
-  public calcPointValues({ data, yMax, xMax, width, height }: any) {
+  public calcPointValues({ data, yMax, xMax, width, height, yAxisScale }: any) {
     return data.map((pointRaw: { year: number; yield: number }) => {
       return {
         x: (width / xMax) * pointRaw.year,
-        y: (height / yMax) * pointRaw.yield
+        y: yAxisScale * pointRaw.yield
       }
     })
   }
@@ -82,14 +82,23 @@ export class GGLineStore {
     return res
   }
 
-  public calcLineCoordinates({ data, yMax, xMax, width, height }: any) {
+  public calcLineCoordinates({
+    data,
+    yMax,
+    xMax,
+    width,
+    height,
+    yAxisScale
+  }: any) {
+    console.log("data stuff", data, yMax, xMax, width, height)
     const lineNumber = data.length - 1
     const pointVals = this.calcPointValues({
       data,
       yMax,
       xMax,
       width,
-      height
+      height,
+      yAxisScale
     })
 
     const hypotenuseValues = this.calcHypLength(pointVals)

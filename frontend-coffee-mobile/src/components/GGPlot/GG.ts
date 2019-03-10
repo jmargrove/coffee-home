@@ -10,6 +10,7 @@ interface GGCalculateBase {
   xMax: number
   width: number
   height: number
+  yAxisScale: number
 }
 
 type BaseCalculationFunction = (args: GGCalculateBase) => any
@@ -26,26 +27,46 @@ class GG extends GGDefaultData implements GGLineStore, GGPointStore {
   calcPointValues!: BaseCalculationFunction
 
   private calcYTickPosition: CalcYTickPosition = (length, yMax) => {
-    const yFloor = Math.floor(yMax)
-    const tickNumber = yFloor / 0.5
-    console.log(tickNumber)
-    const axisEndPadding = 30
-    const tickSpaces = tickNumber - 1
+    let axisEndPadding = 40
+    const increments = 0.5
 
-    const endNog = yMax - yFloor
-    return Array(tickNumber)
+    const yRound = Math.round(yMax) // 4
+
+    let tickNumber = yRound / increments
+    let tickSpaces = tickNumber - 1
+
+    const tickSpaceDistance = (length - axisEndPadding) / tickSpaces
+
+    const yTickPosition = Array(tickNumber + 2)
       .fill(1)
       .map((el, i) => {
-        return (
-          Math.round(((length - axisEndPadding) / tickSpaces) * i * 10) / 10
-        )
+        return Math.round(tickSpaceDistance * i * 10) / 10
       })
       .reverse()
+
+    const yLabValues = Array(tickNumber + 2)
+      .fill(1)
+      .map((el, i) => {
+        return Math.round((yRound / tickNumber) * i * 10) / 10
+      })
+      .reverse()
+
+    return {
+      yTickPosition,
+      yLabValues,
+      axisEndPadding,
+      yAxisScale: tickSpaceDistance / increments
+    }
   }
 
   pointVals: PointVals
   dataArray: DataArray
-  yTickPosition: number[]
+  yAxisTheme: {
+    yTickPosition: number[]
+    yLabValues: number[]
+    axisEndPadding: number
+    yAxisScale: number
+  }
 
   constructor(
     data: IElementData[],
@@ -53,14 +74,16 @@ class GG extends GGDefaultData implements GGLineStore, GGPointStore {
     yTickNumber: number
   ) {
     super(data, plotDimensions)
-
+    this.yAxisTheme = this.calcYTickPosition(this.height, this.yMax)
+    console.log("theme y", this.yAxisTheme.yAxisScale)
     // calculation of the point value positions
     this.pointVals = this.calcPointValues({
       data,
       yMax: this.yMax,
       xMax: this.xMax,
       width: this.width,
-      height: this.height
+      height: this.height,
+      yAxisScale: this.yAxisTheme.yAxisScale
     })
 
     // calculation of the line positions
@@ -69,10 +92,9 @@ class GG extends GGDefaultData implements GGLineStore, GGPointStore {
       yMax: this.yMax,
       xMax: this.xMax,
       width: this.width,
-      height: this.height
+      height: this.height,
+      yAxisScale: this.yAxisTheme.yAxisScale
     })
-
-    this.yTickPosition = this.calcYTickPosition(this.height, this.yMax)
   }
 }
 

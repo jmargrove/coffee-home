@@ -2,6 +2,7 @@ import React, { FunctionComponent } from "react"
 import styled from "../../../system-components/system-theme/styled-components"
 import { View, Text, StyleSheet } from "react-native"
 import { IXYCoordinates } from "../types.d"
+import { SystemFlex, SystemText } from "../../../system-components"
 
 const YTickMajor = styled(View)<IXYCoordinates>`
   position: absolute;
@@ -16,35 +17,25 @@ const YTickMajor = styled(View)<IXYCoordinates>`
 const YLabMajor = styled(Text)<IXYCoordinates>`
   position: absolute;
   right: ${({ x }) => x && x};
-  top: ${({ y }) => y && y};
+  bottom: ${({ y }) => y && y};
   font-size: 12;
   z-index: 20;
 `
 
 interface GGYTickProps {
   length: number
-  tickNumber: number
-  yValues: number[]
-  yTickPosition: number[]
+  yAxisTheme: {
+    yTickPosition: number[]
+    yLabValues: number[]
+    axisEndPadding: number
+  }
 }
 
 export const GGYTick: FunctionComponent<GGYTickProps> = ({
   length,
-  // yMax,
-  yValues,
-  yTickPosition
+  yAxisTheme
 }) => {
-  const yMax = Math.max(...yValues)
-  const yFloor = Math.floor(yMax)
-  const tickNumber = yFloor / 0.5
-  console.log(tickNumber)
-  const axisEndPadding = 30
-  const tickSpaces = tickNumber - 1
-  const yLabValues = Array(tickNumber)
-    .fill(1)
-    .map((el, i) => {
-      return Math.round((yFloor / tickNumber) * i * 10) / 10
-    })
+  const { yLabValues, yTickPosition, axisEndPadding } = yAxisTheme
 
   return (
     <>
@@ -63,26 +54,32 @@ export const GGYTick: FunctionComponent<GGYTickProps> = ({
         return (
           <React.Fragment key={i}>
             <YTickMajor key={i} y={el - StyleSheet.hairlineWidth / 2} x={0} />
-            <YLabMajor y={el - 5 + axisEndPadding} x={12}>
-              {yLabValues[i]}
+            <YLabMajor y={el - 5} x={12}>
+              {i % 2 !== 0 ? yLabValues[i] : ""}
             </YLabMajor>
           </React.Fragment>
         )
       })}
-      <GGYAxisTitle left={-20} bottom={(250 - 80) / 2 + 20}>
-        Yield
-      </GGYAxisTitle>
+      <View
+        style={{
+          position: "absolute",
+          top: 0,
+          bottom: 0,
+          left: 0,
+          rigth: 0,
+          width: 50
+        }}
+      >
+        <SystemFlex justify="center" align="center">
+          <GGYAxisTitle>Yield</GGYAxisTitle>
+        </SystemFlex>
+      </View>
     </>
   )
 }
 
-export interface IGGAxisTitleProps {
-  bottom: number
-  left: number
-}
+export interface IGGAxisTitleProps {}
 
 const GGYAxisTitle = styled(Text)<IGGAxisTitleProps>`
   transform: rotate(-90deg);
-  ${({ bottom }) => bottom && `bottom: ${bottom}`};
-  ${({ left }) => left && `left: ${left}`};
 `
