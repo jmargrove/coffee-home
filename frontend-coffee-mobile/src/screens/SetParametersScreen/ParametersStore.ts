@@ -3,6 +3,8 @@ import { NavigationProps } from "../../types.d"
 import { REACT_APP_SIMPLE_MODEL_REQUEST } from "react-native-dotenv"
 import { NavigationScreenProp, NavigationRoute } from "react-navigation"
 import { MODEL_RESULTS_SCREEN } from "../../utils/constants"
+import { AsyncStorage } from "react-native"
+import { Alert } from "react-native"
 
 type OnChangeText = (value: string) => void
 
@@ -156,5 +158,19 @@ export class ParametersStore {
 
   handleLoadingFalse = () => {
     this.isLoading = false
+  }
+
+  handleSaveData = async (data: {}) => {
+    const points: any[] = (await AsyncStorage.getItem("SAVED_POINTS")) | []
+
+    if (points.length > 5) {
+      Alert.alert("Too many points stored locally", "Please delete", [
+        { text: "OK" }
+      ])
+    } else {
+      points.push(data)
+
+      await AsyncStorage.setItem("SAVED_POINTS", points)
+    }
   }
 }

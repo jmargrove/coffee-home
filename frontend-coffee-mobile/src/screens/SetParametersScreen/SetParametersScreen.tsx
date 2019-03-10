@@ -102,7 +102,7 @@ const SetParametersScreen: FunctionComponent<{
               textColor={BLACK}
               onPress={handleSend}
             >
-              Model
+              Save point
             </SystemButtonLarge>
             <SystemSpace size={MEDIUM} />
           </SystemFlex>

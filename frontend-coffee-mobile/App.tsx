@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { MainNavigation } from "./src/navigation"
+import { MainNavigation } from "./src/navigavtion/navigation"
 import { ThemeProvider } from "styled-components"
 import { theme } from "./src/system-components/system-theme/theme"
 
