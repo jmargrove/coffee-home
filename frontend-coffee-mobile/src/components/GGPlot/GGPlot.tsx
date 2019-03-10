@@ -7,11 +7,13 @@ import { mapProps, compose } from "recompose"
 import GG from "./GG"
 import {
   LIGHT_GREY,
+  theme,
   BLACK,
-  theme
+  WHITE,
+  MEDIUM_GREY
 } from "../../system-components/system-theme/theme"
-import { StyleSheet } from "react-native"
 import { IGGPlotProps, IGGPlot, IAbsolute } from "./types.d"
+import { StyleSheet } from "react-native"
 
 const GGPlotContainer = styled(View)<{ width: number; height: number }>`
   ${({ width }) => width && `width: ${width}`}
@@ -54,22 +56,30 @@ const PlotCanvas: FunctionComponent<{
   right: number
   top: number
   bottom: number
-  yTickPosition: number[]
+  yAxisTheme: {
+    yTickPosition: number[]
+    yLabValues: number[]
+    axisEndPadding: number
+    yAxisScale: number
+  }
   plotWidth: number
-}> = ({ children, left, right, top, bottom, yTickPosition, plotWidth }) => {
+}> = ({ children, left, right, top, bottom, yAxisTheme, plotWidth }) => {
+  const axisPadding = 30
   return (
     <BlankCenter left={left} right={right} top={top} bottom={bottom}>
-      {yTickPosition.map((el, i) => {
-        console.log("el", el)
+      {yAxisTheme.yTickPosition.map((el, i) => {
         return (
           <View
             key={i}
             style={{
               position: "absolute",
-              backgroundColor: theme.colors[BLACK],
+              backgroundColor: theme.colors[WHITE],
               width: plotWidth,
-              height: StyleSheet.hairlineWidth,
-              top: el - StyleSheet.hairlineWidth / 2,
+              height:
+                i % 2 !== 0
+                  ? StyleSheet.hairlineWidth * 2
+                  : StyleSheet.hairlineWidth,
+              bottom: el - StyleSheet.hairlineWidth / 2,
               left: 0
             }}
           />
@@ -93,7 +103,8 @@ export const GGPlotDefault: FunctionComponent<IGGPlotProps> = ({
   const { left, right, top, bottom } = padding
   const plotWidth = width - right - left
   const plotHeight = height - top - bottom
-  const { pointVals, dataArray, yValues, xValues, yTickPosition } = store
+  const { pointVals, dataArray, yValues, xValues, yAxisTheme } = store
+  console.log("store", store)
 
   return (
     <SystemFlex noFlex>
@@ -101,7 +112,7 @@ export const GGPlotDefault: FunctionComponent<IGGPlotProps> = ({
         <BlankPanel left={0} top={top} right={width - left} bottom={bottom}>
           {GeomYTick && (
             <GeomYTick.GGYTick
-              yTickPosition={yTickPosition}
+              yAxisTheme={yAxisTheme}
               yValues={yValues}
               length={plotHeight}
               {...GeomYTick.props}
@@ -149,7 +160,7 @@ export const GGPlotDefault: FunctionComponent<IGGPlotProps> = ({
           right={right}
           top={top}
           bottom={bottom}
-          yTickPosition={yTickPosition}
+          yAxisTheme={yAxisTheme}
           plotWidth={plotWidth}
         >
           {GeomLine && <GeomLine.GGLine data={dataArray} {...GeomLine.props} />}

@@ -20,7 +20,7 @@ export interface IGGPlot {
       tickNumber: number
       length: number
       yValues: number[]
-      yTickPosition: number[]
+      yAxisTheme: { yTickPosition: number[]; yLabValues: number[] }
     }>
     props: { tickNumber: number }
   }
@@ -115,4 +115,12 @@ export type CalcPointValues = (data: IElementData[]) => PointVals
 
 export type ExtractAxisValues = (data: IElementData[]) => number[]
 
-export type CalcYTickPosition = (tickNumber: number, length: number) => number[]
+export type CalcYTickPosition = (
+  length: number,
+  yMax: number
+) => {
+  yTickPosition: number[]
+  yLabValues: number[]
+  axisEndPadding: number
+  yAxisScale: number
+}

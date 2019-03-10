@@ -25,27 +25,19 @@ const YieldDisplayContainer = styled(View)<{}>`
 `
 
 const DialContainer = styled(View)<{}>`
-  width: 200;
-  height: 200;
-  border-radius: 100;
+  width: 155;
+  height: 155;
+  border-radius: ${155 / 2};
   border-width: 10;
   border-color: ${({ theme }) => theme && theme.colors[BLACK]};
-  background-color: #f0f0f0;
+  background-color: white;
 `
 
 const DialOuterContainer = styled(View)<{}>`
-position: absolute; 
-z-index: 10;
-top: 20;
-left: 50; 
-right: 50; 
-bottom: 20 ;
-  width: 240
-  height: 240;
-  border-radius: 120
-  border-width: 10;
-  border-color: ${({ theme }) => theme && theme.colors[WHITE]};
-  background-color: ${({ theme }) => theme && theme.colors[WHITE]};
+  width: 180;
+  height: 180;
+  border-radius: 90;
+  background-color: white;
 `
 
 const SystemRelative = styled(View)<{}>`
@@ -54,7 +46,6 @@ const SystemRelative = styled(View)<{}>`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: blue;
 `
 
 export const YieldDisplay: FunctionComponent<{
@@ -68,43 +59,58 @@ export const YieldDisplay: FunctionComponent<{
       <SystemSpace size={SMALL} />
       <YieldDisplayContainer>
         <SystemRelative>
-          <SystemFlex justify="center" row align="center">
+          {/* <SystemFlex justify="center" row align="center" color="purple"> */}
+          <SystemAbsolute left={0} top={50} zIndex={0}>
             <TouchableOpacity onPress={handleDecrement}>
-              <SystemAbsolute left={22.5} top={100}>
-                <ConsoleLeftArrow />
-              </SystemAbsolute>
+              <ConsoleLeftArrow />
             </TouchableOpacity>
-
+          </SystemAbsolute>
+          <SystemAbsolute top={0} left={28} zIndex={2}>
             <DialOuterContainer>
               <SystemFlex justify="center" align="center">
                 <DialOuterRing />
-                <SystemAbsolute>
+                <DialContainer>
                   <SystemFlex justify="center" align="center">
-                    <DialContainer>
-                      <SystemFlex justify="center" align="center">
-                        <SystemAbsolute top={45} left={120} zIndex={55}>
-                          <SystemText color={BLACK}> t ha</SystemText>
-                        </SystemAbsolute>
-                        <SystemAbsolute top={40} left={150}>
-                          <SystemText color={BLACK} size={12}>
-                            -1
-                          </SystemText>
-                        </SystemAbsolute>
-                        <SystemText size={48} color={BLACK} blackItalic={true}>
-                          {Math.round(focalPoint.yield * 100) / 100}
-                        </SystemText>
-                      </SystemFlex>
-                    </DialContainer>
+                    <SystemAbsolute top={32} left={24} zIndex={55}>
+                      <SystemText color={BLACK}> year</SystemText>
+                    </SystemAbsolute>
+
+                    <SystemText size={32} color={BLACK} blackItalic={true}>
+                      {focalPoint.year}
+                    </SystemText>
                   </SystemFlex>
-                </SystemAbsolute>
+                </DialContainer>
               </SystemFlex>
             </DialOuterContainer>
-            <SystemAbsolute top={100} left={280}>
-              <TouchableOpacity onPress={handleIncrement}>
-                <ConsoleRightArrow />
-              </TouchableOpacity>
-            </SystemAbsolute>
-          </SystemFlex>
+          </SystemAbsolute>
+          <SystemAbsolute top={64} right={28} zIndex={3}>
+            <DialOuterContainer>
+              <SystemFlex justify="center" align="center">
+                <DialOuterRing />
+                <DialContainer>
+                  <SystemFlex justify="center" align="center">
+                    <SystemAbsolute top={32} left={88} zIndex={55}>
+                      <SystemText color={BLACK}> t ha</SystemText>
+                    </SystemAbsolute>
+                    <SystemAbsolute top={30} left={116}>
+                      <SystemText color={BLACK} size={8}>
+                        -1
+                      </SystemText>
+                    </SystemAbsolute>
+                    <SystemText size={32} color={BLACK} blackItalic={true}>
+                      {Math.round(focalPoint.yield * 100) / 100}
+                    </SystemText>
+                  </SystemFlex>
+                </DialContainer>
+              </SystemFlex>
+            </DialOuterContainer>
+          </SystemAbsolute>
+
+          <SystemAbsolute top={116} right={0} zIndex={0}>
+            <TouchableOpacity onPress={handleIncrement}>
+              <ConsoleRightArrow />
+            </TouchableOpacity>
+          </SystemAbsolute>
         </SystemRelative>
       </YieldDisplayContainer>
       <SystemSpace size={REGULAR} />
