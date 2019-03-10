@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react"
-import { ImageBackground, Animated } from "react-native"
+import { Animated } from "react-native"
 const source = require("./dial-outer-ring.png")
 
 export const DialOuterRing: FunctionComponent = ({ children }) => {
