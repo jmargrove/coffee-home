@@ -8,7 +8,7 @@ import styled from "../../system-components/system-theme/styled-components"
 import { SystemText, SystemFlex } from "../../system-components"
 import { ListItem } from "native-base"
 import { BeanLogoLarge } from "../../assets/BeanLogoLarge/BeenLogoLarge"
-import { MAP_SCREEN } from "../../utils/constants"
+import { MAP_SCREEN, POINT_SCREEN } from "../../utils/constants"
 
 const DrawerHeaderContianer = styled(View)`
   width: 100%;
@@ -48,12 +48,30 @@ export const NavigationDrawerComponent: FunctionComponent<any> = props => {
             props.navigation.navigate(MAP_SCREEN, { selectPoint: true })
           }}
         >
-          <SystemText>Select Location</SystemText>
+          <SystemText>Add a location</SystemText>
         </ListItem>
-        <ListItem>
+        <ListItem
+          onPress={() => {
+            props.navigation.closeDrawer()
+            props.navigation.navigate(POINT_SCREEN, { screen: "points" })
+          }}
+        >
+          <SystemText>Locations </SystemText>
+        </ListItem>
+        <ListItem
+          onPress={() => {
+            props.navigation.closeDrawer()
+            props.navigation.navigate(POINT_SCREEN, { screen: "yield" })
+          }}
+        >
           <SystemText>Calculate Yield</SystemText>
         </ListItem>
-        <ListItem>
+        <ListItem
+          onPress={() => {
+            props.navigation.closeDrawer()
+            props.navigation.navigate(POINT_SCREEN, { screen: "optimize" })
+          }}
+        >
           <SystemText>Optimize Shade</SystemText>
         </ListItem>
       </SafeAreaView>

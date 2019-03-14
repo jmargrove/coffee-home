@@ -2,9 +2,6 @@ import React from "react"
 import { View } from "native-base"
 import { SystemFlex } from "../../../system-components"
 import styled from "../../../system-components/system-theme/styled-components"
-import { observable } from "mobx"
-import { compose, withProps } from "recompose"
-import { observer } from "mobx-react"
 import { Animated } from "react-native"
 
 const MarkerCenter = styled(View)<any>`
@@ -31,22 +28,9 @@ const MarkerContainer = styled(View)<any>`
   background-color: ${({ color }) => color && color};
 `
 
-class MapMarkerStore {
-  @observable
-  dimentions = new Animated.Value(20)
-  radiusDimentions = new Animated.Value(10)
-}
-
-const power = compose<any, any>(
-  withProps({
-    store: new MapMarkerStore()
-  }),
-  observer
-)
-
 export const MapMarker = ({ maxDimention, color, store }: any) => {
-  const midDimention = (maxDimention / 8) * 3
-  const minDimention = (maxDimention / 8) * 2
+  const dimentions = new Animated.Value(0)
+
   const colorAlpha = color
     .replace(/[)]/g, ", 0.1)")
     .replace(/rgb/g, "rgba")
@@ -58,47 +42,41 @@ export const MapMarker = ({ maxDimention, color, store }: any) => {
 
   Animated.loop(
     Animated.sequence([
-      Animated.timing(store.dimentions, {
-        toValue: maxDimention,
+      Animated.timing(dimentions, {
+        toValue: 1,
         duration: 1000
       }),
-      Animated.timing(store.dimentions, {
-        toValue: minDimention,
+      Animated.timing(dimentions, {
+        toValue: 0,
         duration: 1000
       })
     ])
   ).start()
-
-  Animated.loop(
-    Animated.sequence([
-      Animated.timing(store.radiusDimentions, {
-        toValue: maxDimention / 2,
-        duration: 1000
-      }),
-      Animated.timing(store.radiusDimentions, {
-        toValue: minDimention / 2,
-        duration: 1000
-      })
-    ])
-  ).start()
-
-  console.log("color alpha ", colorAlpha)
 
   return (
     <MarkerContainer maxDimention={maxDimention} color={colorAlpha}>
       <SystemFlex justify="center" align="center">
         <MarkerAnimated
-          midDimention={minDimention}
+          midDimention={20}
           style={{
-            width: store.dimentions,
-            height: store.dimentions,
-            borderRadius: store.radiusDimentions
+            width: dimentions.interpolate({
+              inputRange: [0, 1],
+              outputRange: [20, 50]
+            }),
+            height: dimentions.interpolate({
+              inputRange: [0, 1],
+              outputRange: [20, 50]
+            }),
+            borderRadius: dimentions.interpolate({
+              inputRange: [0, 1],
+              outputRange: [12.5, 25]
+            })
           }}
           color={colorAlpha}
           colorBorder={colorAlphaBorder}
         >
           <SystemFlex justify="center" align="center">
-            <MarkerCenter minDimention={minDimention} color={color} />
+            <MarkerCenter minDimention={20} color={color} />
           </SystemFlex>
         </MarkerAnimated>
       </SystemFlex>
@@ -106,4 +84,4 @@ export const MapMarker = ({ maxDimention, color, store }: any) => {
   )
 }
 
-export const AnimatedMapMarker = power(MapMarker)
+export const AnimatedMapMarker = MapMarker

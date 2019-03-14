@@ -1,4 +1,5 @@
 export { PoweredMapScreen } from "./MapScreen/MapScreen"
+export { PoweredPointScreen } from "./PointScreen/PointScreen"
 export { PoweredWelcomeScreen } from "./WelcomeScreen/WelcomeScreen"
 export {
   PoweredSetParametersScreen

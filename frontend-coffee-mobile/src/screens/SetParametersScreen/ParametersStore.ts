@@ -2,15 +2,26 @@ import { observable, action, computed } from "mobx"
 import { NavigationProps } from "../../types.d"
 import { REACT_APP_SIMPLE_MODEL_REQUEST } from "react-native-dotenv"
 import { NavigationScreenProp, NavigationRoute } from "react-navigation"
-import { MODEL_RESULTS_SCREEN } from "../../utils/constants"
+import { SAVE_DATA_LOCALLY, MAP_SCREEN } from "../../utils/constants"
 import { AsyncStorage } from "react-native"
 import { Alert } from "react-native"
+import NavigationServices from "../../utils/NavigationServices"
 
 type OnChangeText = (value: string) => void
 
 interface ICoordinates {
   latitude: number
   longitude: number
+}
+
+export interface IDataAddition {
+  lng: number
+  lat: number
+  userCurrentYield: number
+  pointName: string
+  userShadeValue: number
+  userIrrValue: 1 | 0
+  userSlopeValue: number
 }
 
 type OnYieldChange = (value: string) => void
@@ -122,7 +133,6 @@ export class ParametersStore {
     console.log("response", response.json())
 
     this.isLoading = false
-    this.navigation.navigate(MODEL_RESULTS_SCREEN)
   }
 
   @computed
@@ -149,7 +159,6 @@ export class ParametersStore {
     navigation: NavigationScreenProp<NavigationRoute>
   }) {
     this.point = point
-    this.navigation = navigation
   }
 
   handleLoadingTrue = () => {
@@ -160,17 +169,50 @@ export class ParametersStore {
     this.isLoading = false
   }
 
-  handleSaveData = async (data: {}) => {
-    const points: any[] = (await AsyncStorage.getItem("SAVED_POINTS")) | []
+  handleSaveData = async () => {
+    const dataAddition = {
+      lng: this.point.longitude,
+      lat: this.point.latitude,
+      userCurrentYield: this.userCurrentYield,
+      pointName: this.pointName,
+      userShadeValue: this.handleUserShadeParameter(this.shadeLevel),
+      userIrrValue: this.irrigation ? 1 : 0,
+      userSlopeValue: this.handleUserSlopeParameter(this.slopeLevel)
+    }
 
-    if (points.length > 5) {
-      Alert.alert("Too many points stored locally", "Please delete", [
-        { text: "OK" }
+    const storedData = await AsyncStorage.getItem(SAVE_DATA_LOCALLY)
+    if (storedData) {
+      const dataArray = JSON.parse(storedData)
+      dataArray.push(dataAddition)
+      Alert.alert("Save data", "Are you sure you want to save point", [
+        { text: "Cancel", style: "destructive" },
+        {
+          text: "OK",
+          onPress: async () => {
+            await AsyncStorage.setItem(
+              SAVE_DATA_LOCALLY,
+              JSON.stringify(dataArray)
+            )
+            NavigationServices.navigate(MAP_SCREEN, {})
+          }
+        }
       ])
     } else {
-      points.push(data)
-
-      await AsyncStorage.setItem("SAVED_POINTS", points)
+      const dataArray: object[] = []
+      dataArray.push(dataAddition)
+      Alert.alert("Save data", "Are you sure you want to save point", [
+        { text: "Cancel", style: "destructive" },
+        {
+          text: "OK",
+          onPress: async () => {
+            await AsyncStorage.setItem(
+              SAVE_DATA_LOCALLY,
+              JSON.stringify(dataArray)
+            )
+            NavigationServices.navigate(MAP_SCREEN, {})
+          }
+        }
+      ])
     }
   }
 }

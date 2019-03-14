@@ -22,9 +22,7 @@ import {
   THIRD
 } from "../../system-components/system-theme/theme"
 import { Store } from "./Store"
-import { MapToolBar } from "./components/MapToolBar"
 import { AnimatedMapMarker } from "./components/MapMarker"
-import { HeaderComponent } from "../../components/HeaderComponent"
 import BurgerIcon from "../../assets/BurgerIcon/BurgerIcon"
 import { IconPlus } from "../../assets/IconPlus/IconPlus"
 

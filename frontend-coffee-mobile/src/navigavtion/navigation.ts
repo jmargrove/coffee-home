@@ -9,31 +9,56 @@ import {
   SET_PARAMETERS_SCREEN,
   LOADING_SCREEN,
   MODEL_RESULTS_SCREEN,
-  DRAWER_CONTAINER
+  DRAWER_CONTAINER,
+  POINT_SCREEN,
+  CALCULATE_YIELD,
+  OPTIMIZE_SHADE
 } from "../utils/constants"
 import {
   PoweredWelcomeScreen,
   PoweredMapScreen,
-  PoweredSetParametersScreen,
   LoadingScreen,
-  PoweredModelResultsScreen
+  PoweredModelResultsScreen,
+  PoweredPointScreen
 } from "../screens"
 import { Dimensions } from "react-native"
 import { NavigationDrawerComponent } from "./NavigationDrawer/NavigationDrawer"
+import { PoweredSetParametersScreen } from "../screens/SetParametersScreen/SetParametersScreen"
+
+const calculateYeild = createStackNavigator(
+  {
+    [POINT_SCREEN]: PoweredPointScreen,
+    [LOADING_SCREEN]: {
+      screen: LoadingScreen
+    },
+    [MODEL_RESULTS_SCREEN]: { screen: PoweredModelResultsScreen }
+  },
+  { initialRouteName: POINT_SCREEN, headerMode: "none" }
+)
+
+const optimizeShade = createStackNavigator(
+  {
+    [POINT_SCREEN]: PoweredPointScreen,
+    [LOADING_SCREEN]: {
+      screen: LoadingScreen
+    },
+    [MODEL_RESULTS_SCREEN]: { screen: PoweredModelResultsScreen }
+  },
+  { initialRouteName: POINT_SCREEN, headerMode: "none" }
+)
 
 const DrawerNavigator = createDrawerNavigator(
   {
     [MAP_SCREEN]: {
       screen: PoweredMapScreen
     },
-    [SET_PARAMETERS_SCREEN]: {
-      screen: PoweredSetParametersScreen
-    },
-    [MODEL_RESULTS_SCREEN]: { screen: PoweredModelResultsScreen }
+    [CALCULATE_YIELD]: calculateYeild,
+    [OPTIMIZE_SHADE]: optimizeShade,
+    [SET_PARAMETERS_SCREEN]: PoweredSetParametersScreen
   },
   {
     drawerWidth: Dimensions.get("screen").width * 0.85,
-    initialRouteName: MAP_SCREEN,
+    initialRouteName: CALCULATE_YIELD,
     contentComponent: NavigationDrawerComponent
   }
 )

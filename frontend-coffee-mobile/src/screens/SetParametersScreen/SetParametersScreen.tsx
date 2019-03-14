@@ -45,14 +45,15 @@ const SetParametersScreen: FunctionComponent<{
     prevSlopeLevel,
     irrigation,
     isFormFilled,
-    isLoading
+    isLoading,
+    handleSaveData
   } = store
   if (isLoading) {
     return <LoadingScreen />
   } else {
     return (
       <Container>
-        <HeaderComponent>Set Parameters</HeaderComponent>
+        <HeaderComponent>Save location</HeaderComponent>
         <SystemContent>
           <SystemFlex align="center">
             <SystemSpace size={REGULAR} />
@@ -100,7 +101,7 @@ const SetParametersScreen: FunctionComponent<{
               colorBorder={PRIMARY}
               color={WHITE}
               textColor={BLACK}
-              onPress={handleSend}
+              onPress={handleSaveData}
             >
               Save point
             </SystemButtonLarge>
