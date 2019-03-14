@@ -18,27 +18,35 @@ import {
   ALPHA_PRIMARY
 } from "./theme"
 
-export interface ThemeInterface {
-  colors: {
-    [BLACK]: string
-    [WHITE]: string
-    [PRIMARY]: string
-    [ALPHA_PRIMARY]: string
-    [SECONDARY]: string
-    [THIRD]: string
-    [LIGHT_GREY]: string
-    [MEDIUM_GREY]: string
-    [HEAVY_GREY]: string
-  }
-  sizes: {
-    [ATOMIC]: number
-    [SMALL]: number
-    [REGULAR]: number
-    [MEDIUM]: number
-    [BIG]: number
-    [LARGE]: number
-    [MASSIVE]: number
-  }
+interface IColors {
+  [BLACK]: string
+  [WHITE]: string
+  [PRIMARY]: string
+  [ALPHA_PRIMARY]: string
+  [SECONDARY]: string
+  [THIRD]: string
+  [LIGHT_GREY]: string
+  [MEDIUM_GREY]: string
+  [HEAVY_GREY]: string
+}
+
+interface ISize {
+  [ATOMIC]: number
+  [SMALL]: number
+  [REGULAR]: number
+  [MEDIUM]: number
+  [BIG]: number
+  [LARGE]: number
+  [MASSIVE]: number
+}
+
+export interface ITheme {
+  colors: IColors
+  sizes: ISize
+}
+
+export interface IThemeTypes {
+  theme: ITheme
 }
 
 const {
@@ -47,8 +55,6 @@ const {
   createGlobalStyle,
   keyframes,
   ThemeProvider
-} = styledComponents as styledComponents.ThemedStyledComponentsModule<
-  ThemeInterface
->
+} = styledComponents as styledComponents.ThemedStyledComponentsModule<ITheme>
 export { css, createGlobalStyle, keyframes, ThemeProvider }
 export default styled

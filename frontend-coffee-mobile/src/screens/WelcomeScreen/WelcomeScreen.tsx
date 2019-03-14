@@ -13,12 +13,8 @@ import {
   SystemButtonLarge,
   SystemAbsolute
 } from "./../../system-components"
-import {
-  BIG,
-  BLACK,
-  PRIMARY,
-  WHITE
-} from "./../../system-components/system-theme/theme"
+import { BIG, theme } from "./../../system-components/system-theme/theme"
+import { selectBlack, selectWhite, selectPrimary } from "../../utils/selectors"
 
 export const WelcomeScreen: FunctionComponent<NavigationProps> = ({
   navigation
@@ -31,15 +27,15 @@ export const WelcomeScreen: FunctionComponent<NavigationProps> = ({
           <SystemSpace size={BIG} />
           <Image source={require("./../../assets/logo-yellow-large.png")} />
           <SystemSpace size={BIG} />
-          <SystemText size={24} center color={BLACK}>
+          <SystemText size={24} center>
             Get yield estimates for any location on the globe.
           </SystemText>
           <SystemSpace size={BIG} />
           <SystemAbsolute bottom={24}>
             <SystemButtonLarge
-              colorBorder={PRIMARY}
-              color={WHITE}
-              textColor={BLACK}
+              colorBorder={selectPrimary({ theme })}
+              color={selectWhite({ theme })}
+              textColor={selectBlack({ theme })}
               onPress={() => navigation.navigate(MAP_SCREEN)}
             >
               Get started

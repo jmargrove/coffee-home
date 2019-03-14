@@ -1,6 +1,10 @@
 import styled from "./system-theme/styled-components"
 import { View, Dimensions } from "react-native"
 import { System } from "./types"
+import {
+  selectPercentageHeight,
+  selectPercentageWidth
+} from "../utils/selectors"
 
 export const SystemAbsolute = styled(View)<System.AbsoluteProps & any>`
   position: absolute;
@@ -12,7 +16,9 @@ export const SystemAbsolute = styled(View)<System.AbsoluteProps & any>`
   ${({ height }) => height && `height: ${height}`};
   ${({ zIndex }) => zIndex && `z-index: ${zIndex}`};
   ${({ horizontal }) =>
-    horizontal && `left: ${(Dimensions.get("window").width - horizontal) / 2}`};
+    horizontal &&
+    `left: ${(selectPercentageWidth({ percent: 1 }) - horizontal) / 2}`};
   ${({ vertical }) =>
-    vertical && `top: ${(Dimensions.get("window").height - vertical) / 2}`};
+    vertical &&
+    `top: ${(selectPercentageHeight({ percent: 1 }) - vertical) / 2}`};
 `

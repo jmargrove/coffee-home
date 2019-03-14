@@ -1,8 +1,9 @@
 import { Text } from "react-native"
 import styled from "styled-components"
+import { StyleSelector, selectBlack } from "../utils/selectors"
 
 interface ISystemTextProps {
-  color?: string
+  color?: StyleSelector<string>
   uppercase?: boolean
   italic?: boolean
   center?: boolean
@@ -13,7 +14,7 @@ interface ISystemTextProps {
 export const SystemText = styled(Text)<ISystemTextProps>`
   font-size: 16;
   font-family: Roboto;
-  ${({ color, theme }) => color && `color: ${theme.colors[color]}`};
+  ${({ color, theme }) => (color ? color({ theme }) : selectBlack({ theme }))};
   ${({ uppercase }) => uppercase && `text-transform: uppercase`}
   ${({ italic }) => italic && `font-style: italic`}
   ${({ center }) => center && `text-align: center`}

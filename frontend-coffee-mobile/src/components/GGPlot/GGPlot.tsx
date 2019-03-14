@@ -5,15 +5,10 @@ import { SystemFlex } from "../../system-components"
 import { FunctionComponent } from "react"
 import { mapProps, compose } from "recompose"
 import GG from "./GG"
-import {
-  LIGHT_GREY,
-  theme,
-  BLACK,
-  WHITE,
-  MEDIUM_GREY
-} from "../../system-components/system-theme/theme"
+import { LIGHT_GREY, theme } from "../../system-components/system-theme/theme"
 import { IGGPlotProps, IGGPlot, IAbsolute } from "./types.d"
 import { StyleSheet } from "react-native"
+import { selectWhite } from "../../utils/selectors"
 
 const GGPlotContainer = styled(View)<{ width: number; height: number }>`
   ${({ width }) => width && `width: ${width}`}
@@ -27,7 +22,7 @@ export const BlankCorner = styled(View)<IAbsolute>`
   ${({ top }) => (top ? `top: ${top}` : `top: 0`)}
   ${({ right }) => (right ? `right: ${right}` : `right:  0`)}
   ${({ bottom }) => (bottom ? `bottom: ${bottom}` : `bottom:  0`)}
-  background-color: white;
+  background-color: ${selectWhite}
   z-index: 9
 `
 
@@ -47,7 +42,7 @@ export const BlankPanel = styled(View)<IAbsolute>`
   ${({ top }) => (top ? `top: ${top}` : `top: 0`)}
   ${({ right }) => (right ? `right: ${right}` : `right:  0`)}
   ${({ bottom }) => (bottom ? `bottom: ${bottom}` : `bottom:  0`)}
-  background-color: white;
+  background-color: ${selectWhite};
   z-index: 10
 `
 
@@ -64,7 +59,6 @@ const PlotCanvas: FunctionComponent<{
   }
   plotWidth: number
 }> = ({ children, left, right, top, bottom, yAxisTheme, plotWidth }) => {
-  const axisPadding = 30
   return (
     <BlankCenter left={left} right={right} top={top} bottom={bottom}>
       {yAxisTheme.yTickPosition.map((el, i) => {
@@ -73,7 +67,7 @@ const PlotCanvas: FunctionComponent<{
             key={i}
             style={{
               position: "absolute",
-              backgroundColor: theme.colors[WHITE],
+              backgroundColor: selectWhite({ theme }),
               width: plotWidth,
               height:
                 i % 2 !== 0
@@ -104,7 +98,6 @@ export const GGPlotDefault: FunctionComponent<IGGPlotProps> = ({
   const plotWidth = width - right - left
   const plotHeight = height - top - bottom
   const { pointVals, dataArray, yValues, xValues, yAxisTheme } = store
-  console.log("store", store)
 
   return (
     <SystemFlex noFlex>

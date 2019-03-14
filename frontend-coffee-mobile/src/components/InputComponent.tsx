@@ -2,7 +2,6 @@ import React, { FunctionComponent } from "react"
 import { SystemText, SystemSpace, SystemFlex } from "../system-components"
 import { PoweredSystemInput } from "../system-components/SystemInput/SystemInput"
 import {
-  BLACK,
   SMALL,
   theme,
   REGULAR,
@@ -11,6 +10,7 @@ import {
 import { SystemIconToggle } from "../system-components/SystemInput/SystemIconToggle"
 import { View } from "react-native"
 import { compose, shouldUpdate } from "recompose"
+import { selectBlack } from "../utils/selectors"
 
 interface ITextInputComponentProps {
   label: string
@@ -30,7 +30,7 @@ const TextInputComponent: FunctionComponent<ITextInputComponentProps> = ({
     <SystemFlex noFlex row>
       <SystemSpace size={REGULAR} />
       <SystemFlex>
-        <SystemText color={BLACK}>{label}</SystemText>
+        <SystemText>{label}</SystemText>
         <SystemSpace size={SMALL} />
         <SystemFlex row noFlex>
           <SystemSpace size={REGULAR} />

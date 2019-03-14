@@ -2,7 +2,6 @@ import React, { FunctionComponent } from "react"
 import { SystemText, SystemSpace, SystemFlex } from "../system-components"
 import { PoweredSystemInput } from "../system-components/SystemInput/SystemInput"
 import {
-  BLACK,
   SMALL,
   theme,
   REGULAR,
@@ -10,9 +9,7 @@ import {
 } from "../system-components/system-theme/theme"
 import { SystemIconToggle } from "../system-components/SystemInput/SystemIconToggle"
 import { View } from "react-native"
-import { observable, action } from "mobx"
-import { compose, withProps, shouldUpdate } from "recompose"
-import { observer } from "mobx-react"
+import { compose, shouldUpdate } from "recompose"
 
 interface ITextInputComponentProps {
   label: string
@@ -29,7 +26,7 @@ export const NumericInputComponent: FunctionComponent<
     <SystemFlex noFlex row>
       <SystemSpace size={REGULAR} />
       <SystemFlex>
-        <SystemText color={BLACK}>{label}</SystemText>
+        <SystemText>{label}</SystemText>
         <SystemSpace size={SMALL} />
         <SystemFlex row noFlex>
           <SystemSpace size={REGULAR} />

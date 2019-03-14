@@ -14,6 +14,7 @@ import {
 } from "../../system-components/system-theme/theme"
 import { SelectLocationTextComponent } from "../SetParametersScreen/components.ts/SelectedLocation/components/SelectedLocationTextComponent"
 import { Alert } from "react-native"
+import { selectPrimary } from "../../utils/selectors"
 
 const PointCardContainer = styled(View)`
   width: 300;
@@ -49,7 +50,7 @@ const PointCard: FunctionComponent<{ item: IDataAddition }> = ({ item }) => {
             <SystemSpace size={SMALL} />
             <SystemFlex>
               <SystemSpace size={SMALL} />
-              <SystemFlex color={theme.colors[PRIMARY]} />
+              <SystemFlex color={selectPrimary} />
               <SystemFlex row>
                 <SystemFlex>
                   <SelectLocationTextComponent

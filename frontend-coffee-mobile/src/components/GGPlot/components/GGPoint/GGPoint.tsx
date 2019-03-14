@@ -1,35 +1,37 @@
 import React, { FunctionComponent } from "react"
 import styled from "../../../../system-components/system-theme/styled-components"
 import { View, Animated } from "react-native"
-import {
-  PRIMARY,
-  theme
-} from "../../../../system-components/system-theme/theme"
+import { theme } from "../../../../system-components/system-theme/theme"
 import { alphaFunction } from "../../../../utils/alphaFunction"
+import { selectWhite, selectPrimary } from "../../../../utils/selectors"
 
-const PointStandard = styled(View)<any>`
+interface IPointStandard {
+  size: number
+  x: number
+  y: number
+}
+
+const PointStandard = styled(View)<IPointStandard>`
   position: absolute;
   z-index: 2;
   bottom: ${({ y }) => y && y};
   left: ${({ x }) => x && x};
-  background-color: white;
+  background-color: ${selectWhite};
   border-width: 0.8;
-  border-color: ${({ theme }) => theme && theme.colors[PRIMARY]}
+  border-color: ${selectPrimary}
   width: 20;
   height: 20;
   ${({ size }) => size && `border-radius: ${size}`};
-  ${({ width }) => width && `width: ${width * 2}`};
-  ${({ height }) => height && `height: ${height * 2}`};
   `
 
-const PointAnimated = styled(Animated.View)<any>`
+const PointAnimated = styled(Animated.View)<{}>`
   border-width: 0.8;
-  border-color: ${({ theme }) => theme && theme.colors[PRIMARY]}
+  border-color: ${selectPrimary}
   width: 20;
   height: 20;
 `
 
-const PointAnimatedContainer = styled(View)<any>`
+const PointAnimatedContainer = styled(View)<{ x: number; y: number }>`
   position: absolute;
   z-index: 1;
   bottom: ${({ y }) => y && y};
@@ -74,15 +76,15 @@ const CircleAnimation: FunctionComponent<{
         backgroundColor: animationValue.interpolate({
           inputRange: [0, 1],
           outputRange: [
-            alphaFunction(theme.colors[PRIMARY], 1),
-            alphaFunction(theme.colors[PRIMARY], 0)
+            alphaFunction(selectPrimary({ theme }), 1),
+            alphaFunction(selectPrimary({ theme }), 0)
           ]
         }),
         borderColor: animationValue.interpolate({
           inputRange: [0, 1],
           outputRange: [
-            alphaFunction(theme.colors[PRIMARY], 1),
-            alphaFunction(theme.colors[PRIMARY], 0)
+            alphaFunction(selectPrimary({ theme }), 1),
+            alphaFunction(selectPrimary({ theme }), 0)
           ]
         })
       }}
@@ -135,7 +137,7 @@ export const GGPoint: FunctionComponent<IGGPointProps> = ({
         if (i === focalPoint.index) {
           return (
             <React.Fragment key={i}>
-              <PointAnimatedContainer x={el.x - 25} y={el.y - 25} size={10}>
+              <PointAnimatedContainer x={el.x - 25} y={el.y - 25}>
                 <CircleAnimation animationValue={animatedCircle1} />
                 <CircleAnimation animationValue={animatedCircle2} />
                 <CircleAnimation animationValue={animatedCircle3} />

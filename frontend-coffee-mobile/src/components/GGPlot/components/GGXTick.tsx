@@ -4,6 +4,8 @@ import { View, Text, StyleSheet } from "react-native"
 import { IXYCoordinates } from "../types"
 import { IGGAxisTitleProps } from "./GGYTick"
 import { SystemFlex } from "../../../system-components"
+import { selectBlack } from "../../../utils/selectors"
+import { theme } from "../../../system-components/system-theme/theme"
 
 const XTickMajor = styled(View)<IXYCoordinates>`
   position: absolute;
@@ -11,7 +13,7 @@ const XTickMajor = styled(View)<IXYCoordinates>`
   top: ${({ y }) => y && y};
   width: ${StyleSheet.hairlineWidth}
   height: 8;
-  background-color: black;
+  background-color: ${selectBlack}
   z-index: 20;
 `
 
@@ -53,7 +55,7 @@ export const GGXTick: FunctionComponent<IGGTickProps> = ({
         style={{
           width: length,
           height: StyleSheet.hairlineWidth,
-          backgroundColor: "black",
+          backgroundColor: selectBlack({ theme }),
           top: 0,
           left: 0,
           zIndex: 20

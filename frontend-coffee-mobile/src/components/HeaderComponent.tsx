@@ -1,39 +1,32 @@
 import React, { FunctionComponent } from "react"
 import styled from "../system-components/system-theme/styled-components"
-import {
-  View,
-  Dimensions,
-  TouchableOpacity,
-  Image,
-  StatusBar
-} from "react-native"
-import {
-  PRIMARY,
-  LIGHT_GREY,
-  SMALL,
-  BLACK,
-  theme
-} from "../system-components/system-theme/theme"
+import { View, TouchableOpacity, Image, StatusBar } from "react-native"
+import { SMALL, theme } from "../system-components/system-theme/theme"
 import { SystemFlex, SystemSpace, SystemText } from "../system-components"
 import { BoundsBar } from "./BoundsBar"
 import { IconBack } from "../assets/IconBack/IconBack"
+import {
+  selectPrimary,
+  selectLightGrey,
+  selectPercentageWidth
+} from "../utils/selectors"
 
 const PhoneInfoBarr = styled(View)<any>`
   width: 100%;
   height: 24;
-  background-color: ${({ theme }) => theme && theme.colors[PRIMARY]};
+  background-color: ${selectPrimary};
 `
 
 const HeaderContainer = styled(View)<any>`
-  width: ${Dimensions.get("window").width};
+  width: ${selectPercentageWidth({ percent: 1 })};
   height: 80;
-  background-color: ${({ theme }) => theme && theme.colors[LIGHT_GREY]};
+  background-color: ${selectLightGrey};
 `
 
 const GreyLine = styled(View)<any>`
-  width: ${Dimensions.get("window").width};
+  width: ${selectPercentageWidth({ percent: 1 })};
   height: 1;
-  background-color: grey;
+  background-color: ${selectLightGrey};
 `
 export const HeaderComponent: FunctionComponent = ({ children }) => {
   return (
@@ -42,7 +35,7 @@ export const HeaderComponent: FunctionComponent = ({ children }) => {
         <PhoneInfoBarr />
         <StatusBar
           barStyle="dark-content"
-          backgroundColor={theme.colors[PRIMARY]}
+          backgroundColor={selectPrimary({ theme })}
         />
         <SystemFlex row align="center" justify="space-between">
           <TouchableOpacity>
@@ -52,7 +45,7 @@ export const HeaderComponent: FunctionComponent = ({ children }) => {
             </SystemFlex>
           </TouchableOpacity>
 
-          <SystemText color={BLACK} size={24} italic bold>
+          <SystemText size={24} blackItalic>
             {children}
           </SystemText>
           <SystemFlex row noFlex>
@@ -62,7 +55,7 @@ export const HeaderComponent: FunctionComponent = ({ children }) => {
         </SystemFlex>
 
         <SystemFlex noFlex>
-          <BoundsBar color={PRIMARY} />
+          <BoundsBar />
           <GreyLine />
         </SystemFlex>
       </SystemFlex>

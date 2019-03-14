@@ -5,14 +5,13 @@ import { View } from "react-native"
 import { SystemFlex } from "./SystemFlex"
 import { System } from "./types"
 import styled from "./system-theme/styled-components"
+import { WHITE, PRIMARY, theme } from "./system-theme/theme"
 import {
-  LIGHT_GREY,
-  HEAVY_GREY,
-  WHITE,
-  PRIMARY,
-  MEDIUM_GREY,
-  BLACK
-} from "./system-theme/theme"
+  selectHeavyGrey,
+  selectWhite,
+  selectLightGrey,
+  selectPrimary
+} from "../utils/selectors"
 
 const StyledButton = styled(View)<System.StyledButtonProps & any>`
   ${({ color, theme }) => color && `background-color: ${theme.colors[color]}`};
@@ -30,10 +29,13 @@ export const SystemButtonLarge: FunctionComponent<System.ButtonLargeProps> = ({
 }) => {
   if (isDisabled) {
     return (
-      <StyledButton color={WHITE} colorBorder={LIGHT_GREY}>
+      <StyledButton
+        color={selectWhite({ theme })}
+        colorBorder={selectLightGrey({ theme })}
+      >
         <SystemFlex noFlex>
           <Button large transparent block rounded onPress={onPress}>
-            <SystemText size={24} color={HEAVY_GREY}>
+            <SystemText size={24} color={selectHeavyGrey}>
               {children}
             </SystemText>
           </Button>
@@ -42,12 +44,13 @@ export const SystemButtonLarge: FunctionComponent<System.ButtonLargeProps> = ({
     )
   } else {
     return (
-      <StyledButton color={WHITE} colorBorder={PRIMARY}>
+      <StyledButton
+        color={selectWhite({ theme })}
+        colorBorder={selectPrimary({ theme })}
+      >
         <SystemFlex noFlex>
           <Button large transparent block rounded onPress={onPress}>
-            <SystemText size={24} color={BLACK}>
-              {children}
-            </SystemText>
+            <SystemText size={24}>{children}</SystemText>
           </Button>
         </SystemFlex>
       </StyledButton>

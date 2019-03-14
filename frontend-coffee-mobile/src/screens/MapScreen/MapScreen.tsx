@@ -13,18 +13,20 @@ import { SET_PARAMETERS_SCREEN } from "../../utils/constants"
 import { observer } from "mobx-react"
 import { toJS } from "mobx"
 import { compose, withProps } from "recompose"
-import { Dimensions, StatusBar, TouchableOpacity } from "react-native"
-import {
-  PRIMARY,
-  BLACK,
-  theme,
-  WHITE,
-  THIRD
-} from "../../system-components/system-theme/theme"
+import { StatusBar, TouchableOpacity } from "react-native"
+import { theme } from "../../system-components/system-theme/theme"
 import { Store } from "./Store"
 import { AnimatedMapMarker } from "./components/MapMarker"
 import BurgerIcon from "../../assets/BurgerIcon/BurgerIcon"
 import { IconPlus } from "../../assets/IconPlus/IconPlus"
+import {
+  selectPercentageHeight,
+  selectPercentageWidth,
+  selectPrimary,
+  selectThird,
+  selectBlack,
+  selectWhite
+} from "../../utils/selectors"
 
 const power = compose<any, any>(
   withNavigation,
@@ -42,9 +44,9 @@ const MapSelectLocationButton: FunctionComponent<{
       <SystemAbsolute bottom={32} horizontal={300}>
         <SystemAbsolute bottom={8}>
           <SystemButtonLarge
-            colorBorder={PRIMARY}
-            color={WHITE}
-            textColor={BLACK}
+            colorBorder={selectPrimary({ theme })}
+            color={selectWhite({ theme })}
+            textColor={selectBlack({ theme })}
             onPress={() => {
               navigation.navigate(SET_PARAMETERS_SCREEN, {
                 point: {
@@ -99,7 +101,7 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
           <Marker coordinate={toJS(userLocation)}>
             <AnimatedMapMarker
               maxDimention={80}
-              color={theme.colors[PRIMARY]}
+              color={selectPrimary({ theme })}
             />
           </Marker>
         </MapView>
@@ -108,14 +110,14 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
           <View
             style={{
               position: "relative",
-              left: Dimensions.get("window").width / 2,
-              bottom: Dimensions.get("window").height / 2
+              left: selectPercentageWidth({ percent: 0.5 }),
+              bottom: selectPercentageHeight({ percent: 0.5 })
             }}
           >
             <Marker zIndex={2} coordinate={toJS(pointLocation)}>
               <AnimatedMapMarker
                 maxDimention={80}
-                color={theme.colors[THIRD]}
+                color={selectThird({ theme })}
               />
             </Marker>
           </View>
@@ -125,7 +127,7 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
           <SystemAbsolute bottom={0} left={0}>
             <View
               style={{
-                width: Dimensions.get("screen").width,
+                width: selectPercentageWidth({ percent: 1 }),
                 height: 100
               }}
             >

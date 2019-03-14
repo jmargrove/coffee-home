@@ -3,13 +3,17 @@ import { View } from "native-base"
 import { SystemFlex } from "../../../system-components"
 import styled from "../../../system-components/system-theme/styled-components"
 import { Animated } from "react-native"
+import { selectWhite, StyleSelector } from "../../../utils/selectors"
+import { FunctionComponent } from "react"
+import { alphaFunction } from "../../../utils/alphaFunction"
+import { theme } from "../../../system-components/system-theme/theme"
 
 const MarkerCenter = styled(View)<any>`
   width: ${({ minDimention }) => minDimention && minDimention};
   height: ${({ minDimention }) => minDimention && minDimention};
   border-radius: ${({ minDimention }) => minDimention && minDimention / 2};
   border-width: 1.5;
-  border-color: white;
+  border-color: ${selectWhite}
   background-color: ${({ color }) => color && color};
 `
 const MarkerAnimated = styled(Animated.View)<any>`
@@ -28,17 +32,13 @@ const MarkerContainer = styled(View)<any>`
   background-color: ${({ color }) => color && color};
 `
 
-export const MapMarker = ({ maxDimention, color, store }: any) => {
+export const MapMarker: FunctionComponent<{
+  maxDimention: number
+  color: StyleSelector
+}> = ({ maxDimention, color }) => {
   const dimentions = new Animated.Value(0)
-
-  const colorAlpha = color
-    .replace(/[)]/g, ", 0.1)")
-    .replace(/rgb/g, "rgba")
-    .trim()
-  const colorAlphaBorder = color
-    .replace(/[)]/g, ", 0.2)")
-    .replace(/rgb/g, "rgba")
-    .trim()
+  const colorAlpha = alphaFunction(color({ theme }), 0.1)
+  const colorAlphaBorder = alphaFunction(color({ theme }), 0.2)
 
   Animated.loop(
     Animated.sequence([

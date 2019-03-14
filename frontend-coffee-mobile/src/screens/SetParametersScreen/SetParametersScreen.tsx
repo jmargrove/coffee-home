@@ -10,9 +10,7 @@ import {
 import {
   REGULAR,
   MEDIUM,
-  PRIMARY,
-  WHITE,
-  BLACK
+  theme
 } from "../../system-components/system-theme/theme"
 import { withNavigation } from "react-navigation"
 import { NavigationProps } from "../../types"
@@ -25,6 +23,7 @@ import NumericInputComponent from "../../components/NumericInputComponent"
 import CategorySelector from "../../components/CategorySelector/CategorySelector"
 import BinarySelector from "../../components/BinarySelector/BinarySelector"
 import { LoadingScreen } from "../"
+import { selectBlack, selectPrimary, selectWhite } from "../../utils/selectors"
 
 const SetParametersScreen: FunctionComponent<{
   store: ParametersStore
@@ -98,9 +97,9 @@ const SetParametersScreen: FunctionComponent<{
 
             <SystemButtonLarge
               isDisabled={!isFormFilled}
-              colorBorder={PRIMARY}
-              color={WHITE}
-              textColor={BLACK}
+              colorBorder={selectPrimary({ theme })}
+              color={selectWhite({ theme })}
+              textColor={selectBlack({ theme })}
               onPress={handleSaveData}
             >
               Save point

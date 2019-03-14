@@ -2,7 +2,7 @@ import React, { FunctionComponent } from "react"
 import styled from "../../../../system-components/system-theme/styled-components"
 import { View } from "react-native"
 import { DataArray } from "../../types"
-import { BLACK } from "../../../../system-components/system-theme/theme"
+import { selectBlack } from "../../../../utils/selectors"
 
 interface IStyledLine {
   hyp: number
@@ -16,7 +16,7 @@ const StyledLine = styled(View)<IStyledLine>`
   position: absolute;
   width: ${({ hyp }) => hyp && hyp};
   ${({ size }) => size && `height: ${size}`};
-  background-color: ${({ theme }) => theme.colors[BLACK]}
+  background-color: ${selectBlack}
   left: ${({ x }) => x && x};
   bottom: ${({ y }) => y && y};
   ${({ rotate }) => rotate && `transform: rotate(-${rotate}deg`} );

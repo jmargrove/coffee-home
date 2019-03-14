@@ -3,6 +3,8 @@ import styled from "../../../system-components/system-theme/styled-components"
 import { View, Text, StyleSheet } from "react-native"
 import { IXYCoordinates } from "../types.d"
 import { SystemFlex, SystemText } from "../../../system-components"
+import { selectBlack } from "../../../utils/selectors"
+import { theme } from "../../../system-components/system-theme/theme"
 
 const YTickMajor = styled(View)<IXYCoordinates>`
   position: absolute;
@@ -10,7 +12,7 @@ const YTickMajor = styled(View)<IXYCoordinates>`
   bottom: ${({ y }) => y && y};
   width: 8;
   height: ${StyleSheet.hairlineWidth}
-  background-color: black;
+  background-color: ${selectBlack}
   z-index: 20;
 `
 
@@ -47,7 +49,7 @@ export const GGYTick: FunctionComponent<GGYTickProps> = ({
           left: 60 - StyleSheet.hairlineWidth / 2,
           bottom: 0,
           zIndex: 20,
-          backgroundColor: "black"
+          backgroundColor: selectBlack({ theme })
         }}
       />
       {yTickPosition.map((el, i) => {

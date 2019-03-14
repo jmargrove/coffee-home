@@ -1,8 +1,8 @@
-import React from "react"
+import React, { FunctionComponent } from "react"
 import styled from "styled-components"
-import { PRIMARY } from "../../../system-components/system-theme/theme"
 import { Animated } from "react-native"
 import { SystemFlex } from "../../../system-components"
+import { selectPrimary } from "../../../utils/selectors"
 
 const alphaFunction = (color: string, alpha: number) => {
   return color
@@ -11,23 +11,23 @@ const alphaFunction = (color: string, alpha: number) => {
     .trim()
 }
 
-const SelectionGlow = styled(Animated.View)<any>`
+const SelectionGlow = styled(Animated.View)<{}>`
   width: 50;
   height: 50;
   border-radius: 25;
   background-color: ${({ theme }) =>
-    theme && alphaFunction(theme.colors[PRIMARY], 0.2)};
+    theme && alphaFunction(selectPrimary({ theme }), 0.2)};
 `
 
 const CenterCircle = styled(Animated.View)<any>`
   border-color: ${({ theme }) =>
-    theme && alphaFunction(theme.colors[PRIMARY], 0.5)}
+    theme && alphaFunction(selectPrimary({ theme }), 0.5)}
   border-width: 0.8;
   background-color: ${({ theme }) =>
-    theme && alphaFunction(theme.colors[PRIMARY], 0.2)}
+    theme && alphaFunction(selectPrimary({ theme }), 0.2)}
 `
 
-const CenterCircleAnimation = ({ children }: any) => {
+const CenterCircleAnimation: FunctionComponent = ({ children }) => {
   const diameter = new Animated.Value(20)
   const radius = new Animated.Value(10)
 

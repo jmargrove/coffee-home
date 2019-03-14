@@ -1,12 +1,14 @@
 import styled from "../system-components/system-theme/styled-components"
-import { View, Dimensions } from "react-native"
-import { PRIMARY } from "../system-components/system-theme/theme"
+import { View } from "react-native"
+
+import { selectPercentageWidth, selectPrimary } from "../utils/selectors"
 
 export const BoundsBar = styled(View)<any>`
   width: ${({ space, theme }) =>
     space
-      ? Dimensions.get("window").width - theme.sizes[space] * 2
-      : Dimensions.get("window").width};
+      ? selectPercentageWidth({ percent: 1 }) - theme.sizes[space] * 2
+      : selectPercentageWidth({ percent: 1 })};
   height: 2;
-  background-color: ${({ theme, color }) => theme && theme.colors[color]};
+  background-color: ${({ theme, color }) =>
+    color ? color({ theme }) : selectPrimary({ theme })};
 `

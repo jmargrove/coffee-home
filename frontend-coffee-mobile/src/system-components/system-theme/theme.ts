@@ -1,4 +1,4 @@
-import { ThemeInterface } from "./styled-components"
+import { ITheme } from "./styled-components"
 // Colors
 export const BLACK = `BLACK`
 export const WHITE = `WHITE`
@@ -20,7 +20,7 @@ export const MASSIVE = `MASSIVE`
 
 const base = 8
 
-export const theme: ThemeInterface = {
+export const theme: ITheme = {
   colors: {
     [BLACK]: "#4A4A4A",
     [WHITE]: "#FDFFFC",

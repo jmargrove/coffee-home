@@ -3,15 +3,16 @@ import { SystemAbsolute } from "../../../system-components/SystemAbsolute"
 import { TouchableOpacity } from "react-native"
 import { Image } from "react-native"
 import { SystemSpace, SystemFlex } from "../../../system-components"
-import {
-  theme,
-  PRIMARY,
-  MEDIUM,
-  THIRD
-} from "../../../system-components/system-theme/theme"
+import { MEDIUM, theme } from "../../../system-components/system-theme/theme"
 import { FunctionComponent } from "react"
 import { View } from "react-native"
 import styled from "../../../system-components/system-theme/styled-components"
+import {
+  selectWhite,
+  selectThird,
+  selectPrimary,
+  selectBlack
+} from "../../../utils/selectors"
 
 interface MapToolBarProps {
   viewUserLocaton: () => void
@@ -64,7 +65,7 @@ export const MapToolBar: FunctionComponent<MapToolBarProps> = ({
                 width: 4,
                 height: 4,
                 borderRadius: 2,
-                backgroundColor: "black"
+                backgroundColor: selectBlack({ theme })
               }}
             />
           </SystemFlex>
@@ -75,11 +76,11 @@ export const MapToolBar: FunctionComponent<MapToolBarProps> = ({
 }
 
 const RoundButton = styled(View)<any>`
-  background-color: white;
+  background-color: ${selectWhite};
   height: 48;
   width: 48;
   border-radius: 24;
   border-width: 2;
-  border-color: ${({ selected }) =>
-    selected ? theme.colors[THIRD] : theme.colors[PRIMARY]};
+  border-color: ${({ selected, theme }) =>
+    selected ? selectThird({ theme }) : selectPrimary({ theme })};
 `

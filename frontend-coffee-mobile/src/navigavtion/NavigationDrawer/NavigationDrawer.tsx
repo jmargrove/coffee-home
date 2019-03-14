@@ -1,33 +1,29 @@
 import React, { FunctionComponent } from "react"
-import { ScrollView, SafeAreaView, View, TouchableOpacity } from "react-native"
-import { withNavigation } from "react-navigation"
-import { NavigationProps } from "../../types"
-import { Dimensions } from "react-native"
-import { PRIMARY, BLACK } from "../../system-components/system-theme/theme"
+import { ScrollView, SafeAreaView, View } from "react-native"
 import styled from "../../system-components/system-theme/styled-components"
 import { SystemText, SystemFlex } from "../../system-components"
 import { ListItem } from "native-base"
 import { BeanLogoLarge } from "../../assets/BeanLogoLarge/BeenLogoLarge"
 import { MAP_SCREEN, POINT_SCREEN } from "../../utils/constants"
+import { selectPrimary, selectPercentageHeight } from "../../utils/selectors"
 
 const DrawerHeaderContianer = styled(View)`
   width: 100%;
-  height: ${(Dimensions.get("screen").height * 1) / 3};
-  background-color: ${({ theme }) => theme.colors[PRIMARY]};
+  height: ${selectPercentageHeight({ percent: 1 / 3 })};
+  background-color: ${selectPrimary};
 `
 
 export const NavigationDrawerComponent: FunctionComponent<any> = props => {
-  console.log("props", props)
   return (
     <ScrollView>
       <SafeAreaView>
         <DrawerHeaderContianer>
           <SystemFlex justify="space-around" align="center">
-            <SystemText blackItalic size={32} color={BLACK}>
+            <SystemText blackItalic size={32}>
               Coffee Engine
             </SystemText>
             <BeanLogoLarge size={64} />
-            <SystemText center color={BLACK}>
+            <SystemText center>
               Get yeild estimates from any{"\n"} location on the globe.
             </SystemText>
           </SystemFlex>

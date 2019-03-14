@@ -1,13 +1,8 @@
 import React, { FunctionComponent } from "react"
-import { SystemFlex, SystemAbsolute } from "../../../../../system-components"
-import styled from "../../../../../system-components/system-theme/styled-components"
-import { View } from "react-native"
-import {
-  PRIMARY,
-  theme
-} from "../../../../../system-components/system-theme/theme"
+import { SystemFlex } from "../../../../../system-components"
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps"
 import { AnimatedMapMarker } from "../../../../MapScreen/components/MapMarker"
+import { selectPrimary } from "../../../../../utils/selectors"
 
 export const MapFixed: FunctionComponent<{ point: any }> = ({ point }) => {
   return (
@@ -23,7 +18,7 @@ export const MapFixed: FunctionComponent<{ point: any }> = ({ point }) => {
         }}
       >
         <Marker coordinate={point}>
-          <AnimatedMapMarker maxDimention={60} color={theme.colors[PRIMARY]} />
+          <AnimatedMapMarker maxDimention={60} color={selectPrimary} />
         </Marker>
       </MapView>
     </SystemFlex>

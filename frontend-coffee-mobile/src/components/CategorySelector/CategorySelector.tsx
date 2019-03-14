@@ -2,12 +2,10 @@ import React, { FunctionComponent, ReactNode } from "react"
 import { SystemText, SystemFlex, SystemSpace } from "../../system-components"
 import styled from "styled-components"
 import { View } from "react-native"
-import { REGULAR, BLACK } from "../../system-components/system-theme/theme"
+import { REGULAR } from "../../system-components/system-theme/theme"
 import { AxisNode } from "./components/AxisNode"
 import uuid from "uuid/v4"
-import { observable, action } from "mobx"
 import { compose, shouldUpdate } from "recompose"
-import { observer } from "mobx-react"
 
 const CategorySelectionContainer = styled(View)<any>`
   height: 100
@@ -38,7 +36,7 @@ const CategorySelector: FunctionComponent<ICategorySelectorProps> = ({
       <SystemFlex noFlex row>
         <SystemSpace size={REGULAR} />
         <SystemFlex>
-          <SystemText color={BLACK}>{title}</SystemText>
+          <SystemText>{title}</SystemText>
           <SystemFlex justify="flex-end">
             <CategorySelectionContainer>
               <SystemFlex row>

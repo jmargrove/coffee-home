@@ -2,7 +2,7 @@ import React, { FunctionComponent, ReactNode } from "react"
 import { SystemText, SystemFlex, SystemSpace } from "../../system-components"
 import styled from "styled-components"
 import { View, TouchableOpacity } from "react-native"
-import { REGULAR, BLACK } from "../../system-components/system-theme/theme"
+import { REGULAR } from "../../system-components/system-theme/theme"
 import { compose, shouldUpdate } from "recompose"
 import { IconCross } from "../../assets/IconCross/IconCross"
 import { IconTick } from "../../assets/IconTick/IconTick"
@@ -35,7 +35,7 @@ const BinarySelector: FunctionComponent<IBinarySelectorProps> = ({
       <SystemFlex noFlex row>
         <SystemSpace size={REGULAR} />
         <SystemFlex>
-          <SystemText color={BLACK}>{title}</SystemText>
+          <SystemText>{title}</SystemText>
           <SystemFlex justify="flex-end">
             <CategorySelectionContainer>
               <SystemFlex row>

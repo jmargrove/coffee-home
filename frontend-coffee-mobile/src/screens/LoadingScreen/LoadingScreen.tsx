@@ -6,26 +6,25 @@ import { SystemText, SystemContent, SystemSpace } from "../../system-components"
 import {
   PRIMARY,
   SMALL,
-  HEAVY_GREY,
-  WHITE,
-  BLACK,
   REGULAR,
-  BIG,
   LARGE,
-  theme,
-  MEDIUM_GREY,
-  MEDIUM
+  theme
 } from "../../system-components/system-theme/theme"
 import { StyleSheet, Animated, View, StatusBar } from "react-native"
 import styled from "styled-components"
+import {
+  selectBlack,
+  selectWhite,
+  selectHeavyGrey
+} from "../../utils/selectors"
 
 const LoadingAnimationBox = styled(Animated.View)<any>`
   width: 80; 
   height: 24; 
   border-width: ${StyleSheet.hairlineWidth};
-  border-color: ${({ theme }) => theme && theme.colors[HEAVY_GREY]}
+  border-color: ${selectHeavyGrey}
   background-color: ${({ on, theme }) =>
-    on ? theme.colors[HEAVY_GREY] : theme.colors[WHITE]}
+    on ? selectHeavyGrey({ theme }) : selectWhite({ theme })}
 `
 interface ILoadingAnimationProps {
   rev?: boolean
@@ -95,8 +94,8 @@ const LoadingAnimation: FunctionComponent<ILoadingAnimationProps> = ({
                 <LoadingAnimationBox
                   style={{
                     backgroundColor: animatedColors({
-                      colorOn: theme.colors[BLACK],
-                      colorOff: theme.colors[WHITE],
+                      colorOn: selectBlack({ theme }),
+                      colorOff: selectWhite({ theme }),
                       n: 6,
                       i: i,
                       animatedValue
@@ -121,28 +120,20 @@ export const LoadingScreen: FunctionComponent = () => {
           <LoadingAnimation rev />
           <SystemSpace size={LARGE} />
 
-          <SystemText size={40} italic blackItalic color={BLACK}>
+          <SystemText size={40} italic blackItalic>
             Running
           </SystemText>
           <SystemSpace size={SMALL} />
-          <SystemText italic size={40} blackItalic color={BLACK}>
+          <SystemText italic size={40} blackItalic>
             Coffee Engine
           </SystemText>
           <SystemSpace size={REGULAR} />
           <BeanLogoLarge />
           <SystemSpace size={REGULAR} />
-          <SystemText color={BLACK} size={24}>
-            Retrieving climate data
-          </SystemText>
-          <SystemText color={BLACK} size={24}>
-            Paramiterising model
-          </SystemText>
-          <SystemText color={BLACK} size={24}>
-            Excecuting model
-          </SystemText>
-          <SystemText color={BLACK} size={24}>
-            Model compelete
-          </SystemText>
+          <SystemText size={24}>Retrieving climate data</SystemText>
+          <SystemText size={24}>Paramiterising model</SystemText>
+          <SystemText size={24}>Excecuting model</SystemText>
+          <SystemText size={24}>Model compelete</SystemText>
           <SystemSpace size={LARGE} />
           <LoadingAnimation />
         </SystemFlex>

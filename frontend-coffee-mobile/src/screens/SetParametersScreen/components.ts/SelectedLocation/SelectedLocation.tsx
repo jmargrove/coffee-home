@@ -8,8 +8,6 @@ import styled from "../../../../system-components/system-theme/styled-components
 import { View } from "react-native"
 import {
   REGULAR,
-  BLACK,
-  PRIMARY,
   SMALL
 } from "../../../../system-components/system-theme/theme"
 import { BoundsBar } from "../../../../components/BoundsBar"
@@ -33,11 +31,11 @@ export const SelectedLocation: FunctionComponent<{ point: ICoordinates }> = ({
       <SystemSpace size={REGULAR} />
       <SelectedLocationContainer>
         <SystemFlex>
-          <BoundsBar space={REGULAR} color={PRIMARY} />
+          <BoundsBar space={REGULAR} />
           <SystemFlex row>
             <SystemSpace size={REGULAR} />
             <SystemFlex>
-              <SystemText color={BLACK}>SelectedLocation</SystemText>
+              <SystemText>SelectedLocation</SystemText>
               <SystemSpace size={SMALL} />
               <SelectLocationTextComponent field="Country:" value="Malaysia" />
               <SelectLocationTextComponent field="Region:" value="Sandakan" />
@@ -53,7 +51,7 @@ export const SelectedLocation: FunctionComponent<{ point: ICoordinates }> = ({
             <MapFixed point={point} />
             <SystemSpace size={REGULAR} />
           </SystemFlex>
-          <BoundsBar space={REGULAR} color={PRIMARY} />
+          <BoundsBar space={REGULAR} />
         </SystemFlex>
       </SelectedLocationContainer>
       <SystemSpace size={REGULAR} />

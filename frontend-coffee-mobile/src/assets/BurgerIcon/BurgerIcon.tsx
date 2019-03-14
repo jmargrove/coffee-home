@@ -2,10 +2,10 @@ import React from "react"
 import { SystemFlex } from "../../system-components"
 import styled from "../../system-components/system-theme/styled-components"
 import { View, TouchableOpacity } from "react-native"
-import { PRIMARY } from "../../system-components/system-theme/theme"
 import { withNavigation } from "react-navigation"
 import { FunctionComponent } from "react"
 import { NavigationProps } from "../../types"
+import { selectPrimary } from "../../utils/selectors"
 
 const BurgerIconContainer = styled(View)`
   width: 40
@@ -15,7 +15,7 @@ const BurgerIconContainer = styled(View)`
 const BurgerIconLines = styled(View)`
   width: 40;
   height: 5;
-  background-color: ${({ theme }) => theme.colors[PRIMARY]};
+  background-color: ${selectPrimary};
 `
 
 const BurgerIcon: FunctionComponent<NavigationProps> = ({ navigation }) => {

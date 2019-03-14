@@ -4,14 +4,14 @@ import { TouchableOpacity } from "react-native"
 import { View } from "react-native"
 import {
   MEDIUM_GREY,
-  theme,
-  BLACK
+  theme
 } from "../../../system-components/system-theme/theme"
 import { SystemText } from "../../../system-components"
 import { YtickAnimated, YtickContainer } from "./YtickAnimated"
 import { SelectionGlowAnimated } from "./SelectionGlowAnimated"
 import { IconTick } from "../../../assets/IconTick/IconTick"
 import { IconCross } from "../../../assets/IconCross/IconCross"
+import { selectBlack, selectMediumGrey } from "../../../utils/selectors"
 
 interface ITickProps {
   handleFactorChange: (shade: string) => void
@@ -80,7 +80,9 @@ const LowerTick: FunctionComponent<ITickProps> = ({
   <TouchableOpacity onPress={() => handleFactorChange(label)}>
     <SystemFlex noFlex align="center">
       <YtickContainer />
-      <SystemText color={factorLevel === label ? BLACK : MEDIUM_GREY}>
+      <SystemText
+        color={factorLevel === label ? selectBlack : selectMediumGrey}
+      >
         {label}
       </SystemText>
     </SystemFlex>

@@ -1,12 +1,6 @@
 import React, { FunctionComponent } from "react"
 import { View, TouchableOpacity } from "react-native"
-import {
-  REGULAR,
-  PRIMARY,
-  BLACK,
-  WHITE,
-  SMALL
-} from "../system-components/system-theme/theme"
+import { REGULAR, SMALL } from "../system-components/system-theme/theme"
 import {
   SystemSpace,
   SystemFlex,
@@ -17,6 +11,7 @@ import styled from "../system-components/system-theme/styled-components"
 import { ConsoleLeftArrow } from "../assets/ConsoleLeftArrow/ConsoleLeftArrow"
 import { ConsoleRightArrow } from "../assets/ConsoleRightArrow/ConsoleRightArrow"
 import { DialOuterRing } from "../assets/DialOuterRing.png/DialOuterRing"
+import { selectWhite, selectBlack } from "../utils/selectors"
 
 const YieldDisplayContainer = styled(View)<{}>`
   position: relative;
@@ -29,15 +24,15 @@ const DialContainer = styled(View)<{}>`
   height: 155;
   border-radius: ${155 / 2};
   border-width: 10;
-  border-color: ${({ theme }) => theme && theme.colors[BLACK]};
-  background-color: white;
+  border-color: ${selectBlack};
+  background-color: ${selectWhite};
 `
 
 const DialOuterContainer = styled(View)<{}>`
   width: 180;
   height: 180;
   border-radius: 90;
-  background-color: white;
+  background-color: ${selectWhite};
 `
 
 const SystemRelative = styled(View)<{}>`
@@ -72,10 +67,10 @@ export const YieldDisplay: FunctionComponent<{
                 <DialContainer>
                   <SystemFlex justify="center" align="center">
                     <SystemAbsolute top={32} left={24} zIndex={55}>
-                      <SystemText color={BLACK}> year</SystemText>
+                      <SystemText> year</SystemText>
                     </SystemAbsolute>
 
-                    <SystemText size={32} color={BLACK} blackItalic={true}>
+                    <SystemText size={32} blackItalic={true}>
                       {focalPoint.year}
                     </SystemText>
                   </SystemFlex>
@@ -90,14 +85,12 @@ export const YieldDisplay: FunctionComponent<{
                 <DialContainer>
                   <SystemFlex justify="center" align="center">
                     <SystemAbsolute top={32} left={88} zIndex={55}>
-                      <SystemText color={BLACK}> t ha</SystemText>
+                      <SystemText> t ha</SystemText>
                     </SystemAbsolute>
                     <SystemAbsolute top={30} left={116}>
-                      <SystemText color={BLACK} size={8}>
-                        -1
-                      </SystemText>
+                      <SystemText size={8}>-1</SystemText>
                     </SystemAbsolute>
-                    <SystemText size={32} color={BLACK} blackItalic={true}>
+                    <SystemText size={32} blackItalic={true}>
                       {Math.round(focalPoint.yield * 100) / 100}
                     </SystemText>
                   </SystemFlex>

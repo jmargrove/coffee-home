@@ -5,19 +5,11 @@ import {
   SystemContent,
   SystemFlex,
   SystemSpace,
-  SystemButtonLarge,
   SystemText
 } from "../../system-components"
 import { ScatterPlot } from "./ScatterPlot"
 import { ScrollView } from "react-native"
-import {
-  SMALL,
-  BLACK,
-  PRIMARY,
-  WHITE,
-  REGULAR
-} from "../../system-components/system-theme/theme"
-import { SubHeader } from "../../components/SubHeaderComponent"
+import { REGULAR } from "../../system-components/system-theme/theme"
 import { YieldDisplay } from "../../components/YieldDisplay"
 import { compose, mapProps } from "recompose"
 import { observable } from "mobx"

@@ -1,10 +1,10 @@
 import { Text } from "react-native"
 import styled from "styled-components"
-import { BLACK } from "./system-theme/theme"
+import { selectBlack } from "../utils/selectors"
 
-export const SystemTitle = styled(Text)<any>`
+export const SystemTitle = styled(Text)<{}>`
   font-size: 48;
-  ${({ theme }) => theme && `color: ${theme.colors[BLACK]}`}
+  color: ${selectBlack}
   font-weight: bold;
   font-style: italic;
 `
