@@ -175,9 +175,9 @@ export class ParametersStore {
       lat: this.point.latitude,
       userCurrentYield: this.userCurrentYield,
       pointName: this.pointName,
-      userShadeValue: this.handleUserShadeParameter(this.shadeLevel),
-      userIrrValue: this.irrigation ? 1 : 0,
-      userSlopeValue: this.handleUserSlopeParameter(this.slopeLevel)
+      userShadeValue: this.shadeLevel,
+      userIrrValue: this.irrigation,
+      userSlopeValue: this.slopeLevel
     }
 
     const storedData = await AsyncStorage.getItem(SAVE_DATA_LOCALLY)

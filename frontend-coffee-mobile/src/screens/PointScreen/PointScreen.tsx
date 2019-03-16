@@ -1,25 +1,25 @@
 import React, { FunctionComponent } from "react"
 import { Container } from "native-base"
 import { HeaderComponent } from "../../components/HeaderComponent"
-import { SystemContent, SystemFlex, SystemSpace } from "../../system-components"
-import { ScrollView, AsyncStorage, View, TouchableOpacity } from "react-native"
+import {
+  SystemContent,
+  SystemFlex,
+  SystemText,
+  SystemSpace
+} from "../../system-components"
+import { ScrollView, AsyncStorage, View } from "react-native"
 import styled from "../../system-components/system-theme/styled-components"
 import { SAVE_DATA_LOCALLY } from "../../utils/constants"
 import { compose, lifecycle } from "recompose"
-import {
-  SMALL,
-  REGULAR,
-  theme,
-  PRIMARY
-} from "../../system-components/system-theme/theme"
-import { SelectLocationTextComponent } from "../SetParametersScreen/components.ts/SelectedLocation/components/SelectedLocationTextComponent"
-import { Alert } from "react-native"
-import { selectPrimary } from "../../utils/selectors"
+import { selectLightGrey } from "../../utils/selectors"
+import { REGULAR } from "../../system-components/system-theme/theme"
+
+import { PoweredPointCard } from "./components/PointCard"
 
 const PointCardContainer = styled(View)`
-  width: 300;
-  height: 150;
-  border-width: 1;
+  width: 100%;
+  height: 64;
+  background-color: ${selectLightGrey};
 `
 
 export interface IDataAddition {
@@ -30,72 +30,6 @@ export interface IDataAddition {
   userShadeValue: number
   userIrrValue: 1 | 0
   userSlopeValue: number
-}
-
-const PointCard: FunctionComponent<{ item: IDataAddition }> = ({ item }) => {
-  return (
-    <TouchableOpacity
-      onPress={() => {
-        Alert.alert("Modeling", "Run one of the two models below.", [
-          { text: "Yeild Calculation" },
-          { text: "Shade Optimization" },
-          { text: "Cancel" }
-        ])
-      }}
-    >
-      <SystemFlex noFlex>
-        <SystemSpace size={SMALL} />
-        <PointCardContainer>
-          <SystemFlex row>
-            <SystemSpace size={SMALL} />
-            <SystemFlex>
-              <SystemSpace size={SMALL} />
-              <SystemFlex color={selectPrimary} />
-              <SystemFlex row>
-                <SystemFlex>
-                  <SelectLocationTextComponent
-                    field="name"
-                    value={item.pointName}
-                  />
-                  <SelectLocationTextComponent
-                    field="yield"
-                    value={item.userCurrentYield.toString()}
-                  />
-                  <SelectLocationTextComponent
-                    field="latitude"
-                    value={item.lat.toString()}
-                  />
-                  <SelectLocationTextComponent
-                    field="longitude"
-                    value={item.lng.toString()}
-                  />
-                </SystemFlex>
-                <SystemSpace size={REGULAR} />
-                <SystemFlex>
-                  <SelectLocationTextComponent
-                    field="shade"
-                    value={item.userShadeValue.toString()}
-                  />
-                  <SelectLocationTextComponent
-                    field="irrigation"
-                    value={item.userIrrValue.toString()}
-                  />
-                  <SelectLocationTextComponent
-                    field="slope"
-                    value={item.userSlopeValue.toString()}
-                  />
-                  <SelectLocationTextComponent field="" value={""} />
-                </SystemFlex>
-              </SystemFlex>
-              <SystemSpace size={SMALL} />
-            </SystemFlex>
-            <SystemSpace size={SMALL} />
-          </SystemFlex>
-        </PointCardContainer>
-        <SystemSpace size={SMALL} />
-      </SystemFlex>
-    </TouchableOpacity>
-  )
 }
 
 const power = compose<any, any>(
@@ -118,10 +52,15 @@ const PointScreen: FunctionComponent<any> = ({ points }) => {
       <HeaderComponent>Point Locations </HeaderComponent>
       <SystemContent fill>
         <ScrollView>
+          <SystemSpace size={REGULAR} />
+          <SystemText center={true}>
+            ! Currently storing points locally.{"\n"} Maximum of 5 locations.
+          </SystemText>
+          <SystemSpace size={REGULAR} />
           <SystemFlex align="center">
             {points &&
               points.map((el: IDataAddition, i: number) => {
-                return <PointCard key={i} item={el} />
+                return <PoweredPointCard key={i} item={el} />
               })}
           </SystemFlex>
         </ScrollView>

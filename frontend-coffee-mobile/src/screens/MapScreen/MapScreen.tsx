@@ -99,10 +99,7 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
           // onRegionChangeComplete={handleRegionChange}
         >
           <Marker coordinate={toJS(userLocation)}>
-            <AnimatedMapMarker
-              maxDimention={80}
-              color={selectPrimary({ theme })}
-            />
+            <AnimatedMapMarker maxDimention={80} color={selectPrimary} />
           </Marker>
         </MapView>
 
@@ -115,10 +112,7 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
             }}
           >
             <Marker zIndex={2} coordinate={toJS(pointLocation)}>
-              <AnimatedMapMarker
-                maxDimention={80}
-                color={selectThird({ theme })}
-              />
+              <AnimatedMapMarker maxDimention={80} color={selectThird} />
             </Marker>
           </View>
         )}
