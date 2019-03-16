@@ -30,24 +30,24 @@ import { REACT_APP_SIMPLE_MODEL_REQUEST } from "react-native-dotenv"
 import { LoadingScreen } from "../LoadingScreen/LoadingScreen"
 import { handleUserShadeParameter } from "../../utils/handleShadeParameters"
 import { handleUserSlopeParameter } from "../../utils/handleSlopeParameters"
-import { IData } from "../../components/GGPlot/types"
+import { IElementData } from "../../components/GGPlot/types"
 
-export const response = [
-  { year: 0, yield: 0 },
-  { year: 1, yield: 0 },
-  { year: 2, yield: 0 },
-  { year: 3, yield: 0 },
-  { year: 4, yield: 0 },
-  { year: 5, yield: 0 }
-]
+// export const response = [
+//   { year: 0, yield: 0 },
+//   { year: 1, yield: 0 },
+//   { year: 2, yield: 0 },
+//   { year: 3, yield: 0 },
+//   { year: 4, yield: 0 },
+//   { year: 5, yield: 0 }
+// ]
 
 export const ModelResultsScreen: FunctionComponent<{
   store: ResultsScreenStore
   navigation: NavigationScreenProp<NavigationRoute>
-  response: IData
-}> = ({ store }) => {
+  response: IElementData[]
+}> = ({ store, response }) => {
   const { focalPoint, handleIncrement, handleDecrement } = store
-  console.log("respo in funcitonal", response)
+  console.log("respo in funcitonal", typeof response[0].year)
 
   return (
     <Container>
@@ -131,9 +131,12 @@ const power = compose<
   withProps({
     isLoading: true
   }),
-  lifecycle<{}, { navigation: NavigationScreenProp<NavigationRoute> }, any>({
+  lifecycle<any, { navigation: NavigationScreenProp<NavigationRoute> }, any>({
     async componentDidMount() {
-      this.setState({ isLoading: true })
+      console.log(
+        "this is it is is here ",
+        this.props.navigation.getParam("point")
+      )
       const {
         lng,
         lat,
@@ -161,14 +164,20 @@ const power = compose<
       }
 
       const response = await handleSend()
-      this.setState({ response, isLoading: false })
+      const res = response.map(el => {
+        return {
+          yield: el.yield,
+          year: el.year - 1
+        }
+      })
+      this.setState({ response: res, isLoading: false })
     }
   }),
   branch(
-    ({ isLoading }: { isLoading: boolean }) => false, //isLoading,
+    ({ isLoading }: { isLoading: boolean }) => isLoading,
     renderComponent(LoadingScreen)
   ),
-  mapProps(({ ...rest }: any) => ({
+  mapProps(({ response, ...rest }: any) => ({
     store: new ResultsScreenStore({ response }),
     response,
     ...rest

@@ -1,7 +1,8 @@
 import {
   createStackNavigator,
   createAppContainer,
-  createDrawerNavigator
+  createDrawerNavigator,
+  createSwitchNavigator
 } from "react-navigation"
 import {
   WELCOME_SCREEN,
@@ -25,7 +26,7 @@ import { Dimensions } from "react-native"
 import { NavigationDrawerComponent } from "./NavigationDrawer/NavigationDrawer"
 import { PoweredSetParametersScreen } from "../screens/SetParametersScreen/SetParametersScreen"
 
-const calculateYeild = createStackNavigator(
+const calculateYeild = createSwitchNavigator(
   {
     [POINT_SCREEN]: PoweredPointScreen,
     [LOADING_SCREEN]: {
@@ -58,7 +59,7 @@ const DrawerNavigator = createDrawerNavigator(
   },
   {
     drawerWidth: Dimensions.get("screen").width * 0.85,
-    initialRouteName: CALCULATE_YIELD,
+    initialRouteName: MAP_SCREEN,
     contentComponent: NavigationDrawerComponent
   }
 )

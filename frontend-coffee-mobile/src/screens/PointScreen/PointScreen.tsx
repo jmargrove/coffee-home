@@ -1,17 +1,10 @@
 import React, { FunctionComponent } from "react"
 import { Container } from "native-base"
 import { HeaderComponent } from "../../components/HeaderComponent"
-import {
-  SystemContent,
-  SystemFlex,
-  SystemText,
-  SystemSpace
-} from "../../system-components"
-import { ScrollView, AsyncStorage, View } from "react-native"
-import styled from "../../system-components/system-theme/styled-components"
+import { SystemContent, SystemText, SystemSpace } from "../../system-components"
+import { ScrollView, AsyncStorage } from "react-native"
 import { SAVE_DATA_LOCALLY } from "../../utils/constants"
 import { compose, lifecycle } from "recompose"
-import { selectLightGrey } from "../../utils/selectors"
 import { REGULAR } from "../../system-components/system-theme/theme"
 import { PointCard } from "./components/PointCard"
 
