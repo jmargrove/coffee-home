@@ -55,8 +55,6 @@ const SetParametersScreen: FunctionComponent<{
         <SystemContent>
           <SystemFlex align="center">
             <SystemSpace size={REGULAR} />
-            <SelectedLocation point={point} />
-            <SystemSpace size={MEDIUM} />
             <TextInputComponent
               value={pointName}
               label="Enter point Name"

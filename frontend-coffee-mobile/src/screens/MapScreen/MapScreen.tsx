@@ -19,13 +19,12 @@ import { Store } from "./Store"
 import { AnimatedMapMarker } from "./components/MapMarker"
 import BurgerIcon from "../../assets/BurgerIcon/BurgerIcon"
 import { IconPlus } from "../../assets/IconPlus/IconPlus"
+import { MapSelectLocationButton } from "./components/MapSelectLocationButton"
 import {
   selectPercentageHeight,
   selectPercentageWidth,
   selectPrimary,
-  selectThird,
-  selectBlack,
-  selectWhite
+  selectSecondary
 } from "../../utils/selectors"
 
 const power = compose<any, any>(
@@ -34,50 +33,13 @@ const power = compose<any, any>(
   observer
 )
 
-const MapSelectLocationButton: FunctionComponent<{
-  mapExtent: any
-  navigation: any
-  isActive: boolean
-}> = ({ mapExtent, navigation, isActive }) => {
-  if (isActive) {
-    return (
-      <SystemAbsolute bottom={32} horizontal={300}>
-        <SystemAbsolute bottom={8}>
-          <SystemButtonLarge
-            colorBorder={selectPrimary({ theme })}
-            color={selectWhite({ theme })}
-            textColor={selectBlack({ theme })}
-            onPress={() => {
-              navigation.navigate(SET_PARAMETERS_SCREEN, {
-                point: {
-                  latitude: mapExtent.latitude,
-                  longitude: mapExtent.longitude
-                }
-              })
-            }}
-          >
-            Select location
-          </SystemButtonLarge>
-        </SystemAbsolute>
-      </SystemAbsolute>
-    )
-  } else {
-    return null
-  }
-}
-
 export const MapScreen: FunctionComponent<NavigationProps & any> = ({
   navigation,
   store
 }) => {
   const {
-    viewUserLocaton,
-    handleZoomIn,
-    handleZoomOut,
-    handlePointDrop,
-    userLocation,
+    handlePointLocation,
     mapExtent,
-    handleRegionChange,
     pointLocation,
     isSelectingPoint
   } = store
@@ -86,34 +48,28 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
   return (
     <Container>
       <StatusBar backgroundColor="transparent" />
-      {/* <HeaderComponent>Select location</HeaderComponent> */}
       <SystemContent fill>
-        <SystemAbsolute top={32} left={32} zIndex={32}>
-          <BurgerIcon />
-        </SystemAbsolute>
+        <BurgerIcon />
+
         <MapView
-          mapType="satellite"
+          showsUserLocation={true}
+          mapType="hybrid"
+          showsCompass={true}
+          showsScale={true}
           provider={PROVIDER_GOOGLE}
           style={{ width: "100%", height: "100%" }}
-          // region={toJS(mapExtent)}
-          // onRegionChangeComplete={handleRegionChange}
-        >
-          <Marker coordinate={toJS(userLocation)}>
-            <AnimatedMapMarker maxDimention={80} color={selectPrimary} />
-          </Marker>
-        </MapView>
-
+          onRegionChange={handlePointLocation}
+        />
+        <Marker zIndex={2} coordinate={toJS(pointLocation)} />
         {selectPoint && (
           <View
             style={{
-              position: "relative",
-              left: selectPercentageWidth({ percent: 0.5 }),
-              bottom: selectPercentageHeight({ percent: 0.5 })
+              position: "absolute",
+              left: selectPercentageWidth({ percent: 0.5 }) - 40,
+              bottom: selectPercentageHeight({ percent: 0.5 }) - 40
             }}
           >
-            <Marker zIndex={2} coordinate={toJS(pointLocation)}>
-              <AnimatedMapMarker maxDimention={80} color={selectThird} />
-            </Marker>
+            <AnimatedMapMarker maxDimention={80} color={selectPrimary} />
           </View>
         )}
 
@@ -130,8 +86,8 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
                   onPress={() => {
                     navigation.navigate(SET_PARAMETERS_SCREEN, {
                       point: {
-                        latitude: mapExtent.latitude,
-                        longitude: mapExtent.longitude
+                        latitude: pointLocation.latitude,
+                        longitude: pointLocation.longitude
                       }
                     })
                   }}

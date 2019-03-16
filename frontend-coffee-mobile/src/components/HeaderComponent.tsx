@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react"
+import React, { FunctionComponent, ReactNode } from "react"
 import styled from "../system-components/system-theme/styled-components"
 import { View, TouchableOpacity, Image, StatusBar } from "react-native"
 import { SMALL, theme } from "../system-components/system-theme/theme"
@@ -28,7 +28,10 @@ const GreyLine = styled(View)<any>`
   height: 1;
   background-color: ${selectLightGrey};
 `
-export const HeaderComponent: FunctionComponent = ({ children, LeftIcon }) => {
+export const HeaderComponent: FunctionComponent<{ LeftIcon?: ReactNode }> = ({
+  children,
+  LeftIcon
+}) => {
   return (
     <HeaderContainer>
       <SystemFlex justify="space-between">

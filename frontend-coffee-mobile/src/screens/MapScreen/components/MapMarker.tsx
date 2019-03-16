@@ -9,11 +9,14 @@ import { alphaFunction } from "../../../utils/alphaFunction"
 import { theme } from "../../../system-components/system-theme/theme"
 
 const MarkerCenter = styled(View)<any>`
+  position: absolute;
+  top: 32;
+  left: 32;
   width: ${({ minDimention }) => minDimention && minDimention};
   height: ${({ minDimention }) => minDimention && minDimention};
   border-radius: ${({ minDimention }) => minDimention && minDimention / 2};
   border-width: 1.5;
-  border-color: ${selectWhite}
+  border-color: ${selectWhite};
   background-color: ${({ color }) => color && color};
 `
 const MarkerAnimated = styled(Animated.View)<any>`
@@ -26,9 +29,11 @@ const MarkerAnimated = styled(Animated.View)<any>`
 `
 
 const MarkerContainer = styled(View)<any>`
+  position: relative;
   width: ${({ maxDimention }) => maxDimention && maxDimention};
   height: ${({ maxDimention }) => maxDimention && maxDimention};
   border-radius: ${({ maxDimention }) => maxDimention && maxDimention / 2};
+
   background-color: ${({ color }) => color && color};
 `
 
@@ -55,31 +60,35 @@ export const MapMarker: FunctionComponent<{
 
   return (
     <MarkerContainer maxDimention={maxDimention} color={colorAlpha}>
-      <SystemFlex justify="center" align="center">
-        <MarkerAnimated
-          midDimention={20}
-          style={{
-            width: dimentions.interpolate({
-              inputRange: [0, 1],
-              outputRange: [20, 50]
-            }),
-            height: dimentions.interpolate({
-              inputRange: [0, 1],
-              outputRange: [20, 50]
-            }),
-            borderRadius: dimentions.interpolate({
-              inputRange: [0, 1],
-              outputRange: [12.5, 25]
-            })
-          }}
-          color={colorAlpha}
-          colorBorder={colorAlphaBorder}
-        >
-          <SystemFlex justify="center" align="center">
-            <MarkerCenter minDimention={20} color={color} />
-          </SystemFlex>
-        </MarkerAnimated>
-      </SystemFlex>
+      <MarkerAnimated
+        midDimention={16}
+        style={{
+          possition: "absolute",
+          top: dimentions.interpolate({
+            inputRange: [0, 1],
+            outputRange: [40 - 17.5 / 2, 17.5]
+          }),
+          left: dimentions.interpolate({
+            inputRange: [0, 1],
+            outputRange: [40 - 17.5 / 2, 17.5]
+          }),
+          width: dimentions.interpolate({
+            inputRange: [0, 1],
+            outputRange: [17.5, 50]
+          }),
+          height: dimentions.interpolate({
+            inputRange: [0, 1],
+            outputRange: [17.5, 50]
+          }),
+          borderRadius: dimentions.interpolate({
+            inputRange: [0, 1],
+            outputRange: [17.5 / 2, 25]
+          })
+        }}
+        color={colorAlpha}
+        colorBorder={colorAlphaBorder}
+      />
+      <MarkerCenter minDimention={16} color={color} />
     </MarkerContainer>
   )
 }

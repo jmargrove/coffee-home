@@ -29,32 +29,28 @@ export const SelectedLocation: FunctionComponent<{ point: ICoordinates }> = ({
   return (
     <SystemFlex row noFlex>
       <SystemSpace size={REGULAR} />
-      <SelectedLocationContainer>
-        <SystemFlex>
-          <BoundsBar space={REGULAR} />
-          <SystemFlex row>
-            <SystemSpace size={REGULAR} />
-            <SystemFlex>
-              <SystemText>SelectedLocation</SystemText>
-              <SystemSpace size={SMALL} />
-              <SelectLocationTextComponent field="Country:" value="Malaysia" />
-              <SelectLocationTextComponent field="Region:" value="Sandakan" />
-              <SelectLocationTextComponent
-                field="Latitude:"
-                value={`${Math.round(point.latitude * 1000) / 1000}°`}
-              />
-              <SelectLocationTextComponent
-                field="Longitude:"
-                value={`${Math.round(point.longitude * 1000) / 1000}°`}
-              />
-            </SystemFlex>
-            <MapFixed point={point} />
-            <SystemSpace size={REGULAR} />
+      <SystemFlex>
+        <BoundsBar space={REGULAR} />
+        <SystemFlex row>
+          <SystemSpace size={REGULAR} />
+          <SystemFlex>
+            <SystemText>SelectedLocation</SystemText>
+            <SystemSpace size={SMALL} />
+            <SelectLocationTextComponent
+              field="Latitude:"
+              value={`${Math.round(point.latitude * 1000) / 1000}°`}
+            />
+            <SelectLocationTextComponent
+              field="Longitude:"
+              value={`${Math.round(point.longitude * 1000) / 1000}°`}
+            />
           </SystemFlex>
-          <BoundsBar space={REGULAR} />
+          {/* <MapFixed point={point} /> */}
+          <SystemSpace size={REGULAR} />
         </SystemFlex>
-      </SelectedLocationContainer>
-      <SystemSpace size={REGULAR} />
+        <BoundsBar space={REGULAR} />
+        <SystemSpace size={REGULAR} />
+      </SystemFlex>
     </SystemFlex>
   )
 }

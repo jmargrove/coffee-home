@@ -7,6 +7,7 @@ import { SAVE_DATA_LOCALLY } from "../../utils/constants"
 import { compose, lifecycle } from "recompose"
 import { REGULAR } from "../../system-components/system-theme/theme"
 import { PointCard } from "./components/PointCard"
+import { GlobeIcon } from "../../assets/GlobeIcon/GlobeIcon"
 
 export interface IDataAddition {
   lng: number
@@ -35,7 +36,7 @@ const PointScreen: FunctionComponent<any> = ({ points }) => {
   console.log("points", points)
   return (
     <Container>
-      <HeaderComponent>Point Locations </HeaderComponent>
+      <HeaderComponent LeftIcon={GlobeIcon}>Point Locations </HeaderComponent>
       <SystemContent fill>
         <ScrollView>
           <SystemSpace size={REGULAR} />

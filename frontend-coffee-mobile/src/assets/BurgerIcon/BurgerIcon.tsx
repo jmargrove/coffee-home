@@ -6,6 +6,7 @@ import { withNavigation } from "react-navigation"
 import { FunctionComponent } from "react"
 import { NavigationProps } from "../../types"
 import { selectPrimary } from "../../utils/selectors"
+import { SystemAbsolute } from "../../system-components/SystemAbsolute"
 
 const BurgerIconContainer = styled(View)`
   width: 40
@@ -20,15 +21,20 @@ const BurgerIconLines = styled(View)`
 
 const BurgerIcon: FunctionComponent<NavigationProps> = ({ navigation }) => {
   return (
-    <TouchableOpacity onPress={() => navigation.openDrawer()}>
-      <BurgerIconContainer>
-        <SystemFlex justify="space-between">
-          <BurgerIconLines />
-          <BurgerIconLines />
-          <BurgerIconLines />
-        </SystemFlex>
-      </BurgerIconContainer>
-    </TouchableOpacity>
+    <SystemAbsolute top={48} left={32} zIndex={32}>
+      <TouchableOpacity
+        onPress={() => navigation.openDrawer()}
+        hitSlop={{ left: 10, right: 10, top: 10, bottom: 10 }}
+      >
+        <BurgerIconContainer>
+          <SystemFlex justify="space-between">
+            <BurgerIconLines />
+            <BurgerIconLines />
+            <BurgerIconLines />
+          </SystemFlex>
+        </BurgerIconContainer>
+      </TouchableOpacity>
+    </SystemAbsolute>
   )
 }
 
