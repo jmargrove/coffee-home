@@ -128,7 +128,7 @@ export const LoadingScreen: FunctionComponent = () => {
             Coffee Engine
           </SystemText>
           <SystemSpace size={REGULAR} />
-          <BeanLogoLarge />
+          <BeanLogoLarge size={100} />
           <SystemSpace size={REGULAR} />
           <SystemText size={24}>Retrieving climate data</SystemText>
           <SystemText size={24}>Paramiterising model</SystemText>

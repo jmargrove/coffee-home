@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from "react"
-import { response } from "./ModelResultsScreen"
 import {
   GGPlot,
   GGYTick,
@@ -10,7 +9,8 @@ import {
 
 export const ScatterPlot: FunctionComponent<{
   focalPoint: { index: number; yield: number; year: number }
-}> = ({ focalPoint }) => {
+  response: any
+}> = ({ focalPoint, response }) => {
   return (
     <GGPlot
       data={response}
