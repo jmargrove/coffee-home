@@ -1,7 +1,6 @@
 import { observable, action, computed } from "mobx"
 import { NavigationProps } from "../../types.d"
 import { REACT_APP_SIMPLE_MODEL_REQUEST } from "react-native-dotenv"
-import { NavigationScreenProp, NavigationRoute } from "react-navigation"
 import { SAVE_DATA_LOCALLY, MAP_SCREEN } from "../../utils/constants"
 import { AsyncStorage } from "react-native"
 import { Alert } from "react-native"
@@ -151,13 +150,7 @@ export class ParametersStore {
 
   public point: ICoordinates = { latitude: 0, longitude: 0 }
 
-  constructor({
-    point,
-    navigation
-  }: {
-    point: ICoordinates
-    navigation: NavigationScreenProp<NavigationRoute>
-  }) {
+  constructor({ point }: { point: ICoordinates }) {
     this.point = point
   }
 

@@ -35,7 +35,6 @@ const SetParametersScreen: FunctionComponent<{
     handleShadeChange,
     handleSlopeChange,
     handleIrrigationChange,
-    handleSend,
     pointName,
     userCurrentYield,
     shadeLevel,
@@ -116,8 +115,7 @@ const power = compose<any, any>(
   withNavigation,
   mapProps(({ navigation }: NavigationProps) => ({
     store: new ParametersStore({
-      point: navigation.getParam("point"),
-      navigation
+      point: navigation.getParam("point")
     })
   })),
   observer

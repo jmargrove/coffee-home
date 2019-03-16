@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react"
+import React, { FunctionComponent, ReactNode } from "react"
 import { SystemText, SystemSpace, SystemFlex } from "../system-components"
 import { PoweredSystemInput } from "../system-components/SystemInput/SystemInput"
 import {
@@ -17,6 +17,9 @@ interface ITextInputComponentProps {
   value: string
   handleChange: any
   units: string
+  IconToggle?: boolean | ReactNode
+  editable?: boolean
+  selectTextOnFocus?: boolean
 }
 
 export const NumericInputComponent: FunctionComponent<
@@ -90,7 +93,7 @@ const InputTray = () => {
       />
       <View
         style={{
-          width: 224,
+          flexGrow: 1,
           height: 2,
           backgroundColor: theme.colors[MEDIUM_GREY]
         }}

@@ -13,14 +13,7 @@ import { SAVE_DATA_LOCALLY } from "../../utils/constants"
 import { compose, lifecycle } from "recompose"
 import { selectLightGrey } from "../../utils/selectors"
 import { REGULAR } from "../../system-components/system-theme/theme"
-
-import { PoweredPointCard } from "./components/PointCard"
-
-const PointCardContainer = styled(View)`
-  width: 100%;
-  height: 64;
-  background-color: ${selectLightGrey};
-`
+import { PointCard } from "./components/PointCard"
 
 export interface IDataAddition {
   lng: number
@@ -57,12 +50,11 @@ const PointScreen: FunctionComponent<any> = ({ points }) => {
             ! Currently storing points locally.{"\n"} Maximum of 5 locations.
           </SystemText>
           <SystemSpace size={REGULAR} />
-          <SystemFlex align="center">
-            {points &&
-              points.map((el: IDataAddition, i: number) => {
-                return <PoweredPointCard key={i} item={el} />
-              })}
-          </SystemFlex>
+
+          {points &&
+            points.map((el: IDataAddition, i: number) => {
+              return <PointCard item={el} key={i} />
+            })}
         </ScrollView>
       </SystemContent>
     </Container>

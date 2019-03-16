@@ -14,6 +14,11 @@ import { YieldDisplay } from "../../components/YieldDisplay"
 import { compose, mapProps } from "recompose"
 import { observable } from "mobx"
 import { observer } from "mobx-react"
+import {
+  withNavigation,
+  NavigationScreenProps,
+  NavigationRoute
+} from "react-navigation"
 
 export const response = [
   { year: 0, yield: 0 },
@@ -26,8 +31,10 @@ export const response = [
 
 export const ModelResultsScreen: FunctionComponent<{
   store: ResultsScreenStore
-}> = ({ store }) => {
-  console.log("store", store)
+  navigation: NavigationScreenProps<NavigationRoute>
+}> = ({ store, navigation }) => {
+  console.log("navigatin", navigation.getParam("point"))
+
   const { focalPoint, handleIncrement, handleDecrement } = store
   return (
     <Container>
@@ -105,6 +112,7 @@ const power = compose<any, any>(
       ...rest
     }
   }),
+  withNavigation,
   observer
 )
 

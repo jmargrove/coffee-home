@@ -58,7 +58,7 @@ const DrawerNavigator = createDrawerNavigator(
   },
   {
     drawerWidth: Dimensions.get("screen").width * 0.85,
-    initialRouteName: MAP_SCREEN,
+    initialRouteName: CALCULATE_YIELD,
     contentComponent: NavigationDrawerComponent
   }
 )
