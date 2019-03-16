@@ -80,7 +80,15 @@ class SecondaryState {
   }
 }
 
-const power = compose<any, any>(
+interface ISecondaryTextProps {
+  label: string
+}
+
+interface ISecondaryTextAddProps extends ISecondaryTextProps {
+  state: SecondaryState
+}
+
+const power = compose<ISecondaryTextAddProps, ISecondaryTextProps>(
   withProps({
     state: new SecondaryState()
   }),
