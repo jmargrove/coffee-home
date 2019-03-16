@@ -37,7 +37,7 @@ export const GGYTick: FunctionComponent<GGYTickProps> = ({
   length,
   yAxisTheme
 }) => {
-  const { yLabValues, yTickPosition, axisEndPadding } = yAxisTheme
+  const { yLabValues, yTickPosition } = yAxisTheme
 
   return (
     <>
@@ -56,7 +56,7 @@ export const GGYTick: FunctionComponent<GGYTickProps> = ({
         return (
           <React.Fragment key={i}>
             <YTickMajor key={i} y={el - StyleSheet.hairlineWidth / 2} x={0} />
-            <YLabMajor y={el - 5} x={12}>
+            <YLabMajor y={el - 7} x={12}>
               {i % 2 !== 0 ? yLabValues[i] : ""}
             </YLabMajor>
           </React.Fragment>
@@ -69,7 +69,7 @@ export const GGYTick: FunctionComponent<GGYTickProps> = ({
           bottom: 0,
           left: 0,
           rigth: 0,
-          width: 50
+          width: 40
         }}
       >
         <SystemFlex justify="center" align="center">

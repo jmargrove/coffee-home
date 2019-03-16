@@ -33,7 +33,7 @@ const calculateYeild = createStackNavigator(
     },
     [MODEL_RESULTS_SCREEN]: { screen: PoweredModelResultsScreen }
   },
-  { initialRouteName: POINT_SCREEN, headerMode: "none" }
+  { initialRouteName: MODEL_RESULTS_SCREEN, headerMode: "none" }
 )
 
 const optimizeShade = createStackNavigator(
@@ -44,7 +44,7 @@ const optimizeShade = createStackNavigator(
     },
     [MODEL_RESULTS_SCREEN]: { screen: PoweredModelResultsScreen }
   },
-  { initialRouteName: POINT_SCREEN, headerMode: "none" }
+  { initialRouteName: MODEL_RESULTS_SCREEN, headerMode: "none" }
 )
 
 const DrawerNavigator = createDrawerNavigator(

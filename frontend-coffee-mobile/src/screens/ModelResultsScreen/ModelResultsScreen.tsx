@@ -36,9 +36,9 @@ export const response = [
   { year: 0, yield: 0 },
   { year: 1, yield: 0 },
   { year: 2, yield: 0 },
-  { year: 3, yield: 1.14 },
-  { year: 4, yield: 4.14 },
-  { year: 5, yield: 4.14 }
+  { year: 3, yield: 0 },
+  { year: 4, yield: 0 },
+  { year: 5, yield: 0 }
 ]
 
 export const ModelResultsScreen: FunctionComponent<{
@@ -165,10 +165,10 @@ const power = compose<
     }
   }),
   branch(
-    ({ isLoading }: { isLoading: boolean }) => isLoading,
+    ({ isLoading }: { isLoading: boolean }) => false, //isLoading,
     renderComponent(LoadingScreen)
   ),
-  mapProps(({ response, ...rest }: any) => ({
+  mapProps(({ ...rest }: any) => ({
     store: new ResultsScreenStore({ response }),
     response,
     ...rest
