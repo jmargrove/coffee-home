@@ -31,6 +31,7 @@ import { LoadingScreen } from "../LoadingScreen/LoadingScreen"
 import { handleUserShadeParameter } from "../../utils/handleShadeParameters"
 import { handleUserSlopeParameter } from "../../utils/handleSlopeParameters"
 import { IElementData } from "../../components/GGPlot/types"
+import { GlobeIcon } from "../../assets/GlobeIcon/GlobeIcon"
 
 // export const response = [
 //   { year: 0, yield: 0 },
@@ -51,7 +52,7 @@ export const ModelResultsScreen: FunctionComponent<{
 
   return (
     <Container>
-      <HeaderComponent>Model results</HeaderComponent>
+      <HeaderComponent LeftIcon={GlobeIcon}>Model results</HeaderComponent>
       <SystemContent fill>
         <ScrollView>
           <SystemFlex align="center">
@@ -133,10 +134,6 @@ const power = compose<
   }),
   lifecycle<any, { navigation: NavigationScreenProp<NavigationRoute> }, any>({
     async componentDidMount() {
-      console.log(
-        "this is it is is here ",
-        this.props.navigation.getParam("point")
-      )
       const {
         lng,
         lat,

@@ -28,7 +28,7 @@ const GreyLine = styled(View)<any>`
   height: 1;
   background-color: ${selectLightGrey};
 `
-export const HeaderComponent: FunctionComponent = ({ children }) => {
+export const HeaderComponent: FunctionComponent = ({ children, LeftIcon }) => {
   return (
     <HeaderContainer>
       <SystemFlex justify="space-between">
@@ -38,12 +38,16 @@ export const HeaderComponent: FunctionComponent = ({ children }) => {
           backgroundColor={selectPrimary({ theme })}
         />
         <SystemFlex row align="center" justify="space-between">
-          <TouchableOpacity>
-            <SystemFlex row noFlex>
-              <SystemSpace size={SMALL} />
-              <IconBack />
-            </SystemFlex>
-          </TouchableOpacity>
+          {LeftIcon ? (
+            <LeftIcon />
+          ) : (
+            <TouchableOpacity>
+              <SystemFlex row noFlex>
+                <SystemSpace size={SMALL} />
+                <IconBack />
+              </SystemFlex>
+            </TouchableOpacity>
+          )}
 
           <SystemText size={24} blackItalic>
             {children}
