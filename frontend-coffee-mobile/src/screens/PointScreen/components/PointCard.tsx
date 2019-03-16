@@ -14,6 +14,7 @@ import { ArrowDownBlack, ArrowUpPrimary } from "../../../assets"
 import { observable, action } from "mobx"
 import { observer } from "mobx-react"
 import { PoweredSecondaryText } from "./SecondaryText"
+import uuid from "uuid/v4"
 
 const PointCardContainer = styled(View)`
   width: 100%;
@@ -93,10 +94,14 @@ const PointCard: FunctionComponent<{
           <SystemFlex row>
             <SystemSpace size={MEDIUM} />
             <SystemFlex color={selectWhite({ theme })}>
-              <PoweredSecondaryText label="Location" key={1} />
-              <PoweredSecondaryText label="Point information" key={2} />
-              <PoweredSecondaryText label="Model options" key={3} />
-              <PoweredSecondaryText label="Point options" key={4} />
+              {[
+                "Location",
+                "Point infromation",
+                "Model options",
+                "Point options"
+              ].map(el => {
+                return <PoweredSecondaryText label={el} key={uuid()} />
+              })}
             </SystemFlex>
             <SystemSpace size={MEDIUM} />
           </SystemFlex>

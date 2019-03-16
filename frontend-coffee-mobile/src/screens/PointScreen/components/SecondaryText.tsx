@@ -12,6 +12,7 @@ import { SMALL, REGULAR } from "../../../system-components/system-theme/theme"
 import { ArrowDownBlack, ArrowUpPrimary } from "../../../assets"
 import { observable, action } from "mobx"
 import { observer } from "mobx-react"
+import uuid from "uuid/v4"
 
 export interface IDataAddition {
   lng: number
@@ -36,7 +37,7 @@ export const SecondaryText: React.FC<{
 }> = ({ label, state }) => {
   const { handleSecondaryFalse, handleSecondaryTrue, secondaryOpen } = state
   return (
-    <>
+    <SystemFlex noFlex key={uuid()}>
       <SystemSpace size={SMALL} />
       <SystemFlex row justify="space-between" align="center">
         <SystemFlex noFlex row align="center" justify="center">
@@ -48,11 +49,11 @@ export const SecondaryText: React.FC<{
 
         <SystemFlex noFlex row justify="center">
           {secondaryOpen ? (
-            <TouchableOpacity onPress={handleSecondaryFalse}>
+            <TouchableOpacity onPress={handleSecondaryFalse} key={uuid()}>
               <ArrowUpPrimary />
             </TouchableOpacity>
           ) : (
-            <TouchableOpacity onPress={handleSecondaryTrue}>
+            <TouchableOpacity onPress={handleSecondaryTrue} key={uuid()}>
               <ArrowDownBlack />
             </TouchableOpacity>
           )}
@@ -60,7 +61,7 @@ export const SecondaryText: React.FC<{
         </SystemFlex>
       </SystemFlex>
       <SystemSpace size={SMALL} />
-    </>
+    </SystemFlex>
   )
 }
 
