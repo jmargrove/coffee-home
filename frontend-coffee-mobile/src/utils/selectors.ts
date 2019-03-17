@@ -6,7 +6,7 @@ export type StyleSelector<Type = string> = ({ theme }: IThemeTypes) => Type
 export const selectPrimary: StyleSelector = ({ theme }) => theme.colors.PRIMARY
 export const selectSecondary: StyleSelector = ({ theme }) =>
   theme.colors.SECONDARY
-export const selectThird: StyleSelector = ({ theme }) => theme.colors.SECONDARY
+export const selectThird: StyleSelector = ({ theme }) => theme.colors.THIRD
 export const selectBlack: StyleSelector = ({ theme }) => theme.colors.BLACK
 export const selectWhite: StyleSelector = ({ theme }) => theme.colors.WHITE
 export const selectLightGrey: StyleSelector = ({ theme }) =>

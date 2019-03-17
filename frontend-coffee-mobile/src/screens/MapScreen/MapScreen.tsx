@@ -5,14 +5,13 @@ import { NavigationProps } from "../../types"
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps"
 import {
   SystemContent,
-  SystemButtonLarge,
   SystemAbsolute,
   SystemFlex
 } from "../../system-components"
 import { SET_PARAMETERS_SCREEN } from "../../utils/constants"
 import { observer } from "mobx-react"
 import { toJS } from "mobx"
-import { compose, withProps } from "recompose"
+import { compose, withProps, lifecycle } from "recompose"
 import { StatusBar, TouchableOpacity } from "react-native"
 import { Store } from "./Store"
 import { AnimatedMapMarker } from "./components/MapMarker"
@@ -22,19 +21,34 @@ import { MapSelectLocationButton } from "./components/MapSelectLocationButton"
 import {
   selectPercentageHeight,
   selectPercentageWidth,
-  selectPrimary
+  selectPrimary,
+  selectThird
 } from "../../utils/selectors"
 import { CloseIcon } from "../../assets/"
+import { SAVE_DATA_LOCALLY } from "../../utils/constants"
+import { AsyncStorage, Alert } from "react-native"
+import { theme } from "../../system-components/system-theme/theme"
 
 const power = compose<any, any>(
   withNavigation,
+  lifecycle({
+    async componentDidMount() {
+      const getPoints = async () => {
+        return await AsyncStorage.getItem(SAVE_DATA_LOCALLY)
+      }
+
+      const savedPoints = await getPoints()
+      this.setState({ savedPoints: JSON.parse(savedPoints!) })
+    }
+  }),
   withProps({ store: new Store() }),
   observer
 )
 
 export const MapScreen: FunctionComponent<NavigationProps & any> = ({
   navigation,
-  store
+  store,
+  savedPoints
 }) => {
   const {
     handlePointLocation,
@@ -43,7 +57,10 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
     isSelectingPoint
   } = store
 
+  console.log("the points", savedPoints)
+
   const selectPoint = navigation.getParam("selectPoint")
+
   return (
     <Container>
       <StatusBar backgroundColor="transparent" />
@@ -59,8 +76,38 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
           provider={PROVIDER_GOOGLE}
           style={{ width: "100%", height: "100%" }}
           onRegionChange={handlePointLocation}
-        />
-        <Marker zIndex={2} coordinate={toJS(pointLocation)} />
+        >
+          {savedPoints &&
+            savedPoints.map((el, i) => {
+              console.log(el)
+
+              return (
+                <Marker
+                  key={i}
+                  zIndex={99}
+                  coordinate={{ latitude: el.lat, longitude: el.lng }}
+                  onPress={() => {
+                    Alert.alert(el.pointName, " would you like to...", [
+                      { text: "Calculate yield" },
+                      { text: "Optimize shade" }
+                    ])
+                  }}
+                >
+                  <View
+                    style={{
+                      backgroundColor: selectThird({ theme: theme }),
+                      width: 16,
+                      height: 16,
+                      borderRadius: 8,
+                      borderWidth: 1.5,
+                      borderColor: "white"
+                    }}
+                  />
+                </Marker>
+              )
+            })}
+        </MapView>
+
         {selectPoint && (
           <View
             style={{
