@@ -14,7 +14,6 @@ import { observer } from "mobx-react"
 import { toJS } from "mobx"
 import { compose, withProps } from "recompose"
 import { StatusBar, TouchableOpacity } from "react-native"
-import { theme } from "../../system-components/system-theme/theme"
 import { Store } from "./Store"
 import { AnimatedMapMarker } from "./components/MapMarker"
 import BurgerIcon from "../../assets/BurgerIcon/BurgerIcon"
@@ -23,9 +22,9 @@ import { MapSelectLocationButton } from "./components/MapSelectLocationButton"
 import {
   selectPercentageHeight,
   selectPercentageWidth,
-  selectPrimary,
-  selectSecondary
+  selectPrimary
 } from "../../utils/selectors"
+import { CloseIcon } from "../../assets/"
 
 const power = compose<any, any>(
   withNavigation,
@@ -49,7 +48,8 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
     <Container>
       <StatusBar backgroundColor="transparent" />
       <SystemContent fill>
-        <BurgerIcon />
+        {!selectPoint && <BurgerIcon />}
+        {selectPoint && <CloseIcon />}
 
         <MapView
           showsUserLocation={true}
