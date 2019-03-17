@@ -26,21 +26,15 @@ import {
 } from "recompose"
 import { observable } from "mobx"
 import { observer } from "mobx-react"
-import { REACT_APP_SIMPLE_MODEL_REQUEST } from "react-native-dotenv"
+import {
+  REACT_APP_SIMPLE_MODEL_REQUEST,
+  REACT_APP_OPTIMIZE_SHADE_REQUEST
+} from "react-native-dotenv"
 import { LoadingScreen } from "../LoadingScreen/LoadingScreen"
 import { handleUserShadeParameter } from "../../utils/handleShadeParameters"
 import { handleUserSlopeParameter } from "../../utils/handleSlopeParameters"
 import { IElementData } from "../../components/GGPlot/types"
 import { GlobeIcon } from "../../assets/GlobeIcon/GlobeIcon"
-
-// export const response = [
-//   { year: 0, yield: 0 },
-//   { year: 1, yield: 0 },
-//   { year: 2, yield: 0 },
-//   { year: 3, yield: 0 },
-//   { year: 4, yield: 0 },
-//   { year: 5, yield: 0 }
-// ]
 
 export const ModelResultsScreen: FunctionComponent<{
   store: ResultsScreenStore
@@ -48,7 +42,7 @@ export const ModelResultsScreen: FunctionComponent<{
   response: IElementData[]
 }> = ({ store, response }) => {
   const { focalPoint, handleIncrement, handleDecrement } = store
-  console.log("respo in funcitonal", typeof response[0].year)
+  console.log("respo in funcitonal", response)
 
   return (
     <Container>
@@ -142,6 +136,9 @@ const power = compose<
         userSlopeValue
       } = this.props.navigation.getParam("point")
 
+      const type = this.props.navigation.getParam("type")
+      console.log("type", type)
+
       const handleSend = async () => {
         const data = {
           lng,
@@ -151,7 +148,16 @@ const power = compose<
           userSlopeValue: handleUserSlopeParameter(userSlopeValue)
         }
 
-        const response = await fetch(REACT_APP_SIMPLE_MODEL_REQUEST, {
+        const getEndPoint = ({ type }: { type: string }) => {
+          switch (type) {
+            case "yield":
+              return REACT_APP_SIMPLE_MODEL_REQUEST
+            case "optimize":
+              return REACT_APP_OPTIMIZE_SHADE_REQUEST
+          }
+        }
+
+        const response = await fetch(getEndPoint({ type }), {
           body: JSON.stringify(data),
           headers: { "Content-Type": "application/json" },
           method: "POST"

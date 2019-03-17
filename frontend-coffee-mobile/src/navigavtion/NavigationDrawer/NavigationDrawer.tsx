@@ -68,7 +68,6 @@ export const NavigationDrawerComponent: FunctionComponent<any> = props => {
         <ListItem
           onPress={async () => {
             props.navigation.closeDrawer()
-            props.navigation.navigate(MAP_SCREEN, { selectPoint: false })
             const getPoints = async () => {
               return await AsyncStorage.getItem(SAVE_DATA_LOCALLY)
             }
@@ -79,7 +78,8 @@ export const NavigationDrawerComponent: FunctionComponent<any> = props => {
                 text: point.pointName,
                 onPress: () => {
                   props.navigation.navigate(MODEL_RESULTS_SCREEN, {
-                    point
+                    point,
+                    type: "yield"
                   })
                 }
               }
@@ -91,9 +91,26 @@ export const NavigationDrawerComponent: FunctionComponent<any> = props => {
           <SystemText>Calculate Yield</SystemText>
         </ListItem>
         <ListItem
-          onPress={() => {
+          onPress={async () => {
             props.navigation.closeDrawer()
-            props.navigation.navigate(POINT_SCREEN, { screen: "optimize" })
+            const getPoints = async () => {
+              return await AsyncStorage.getItem(SAVE_DATA_LOCALLY)
+            }
+            const points = await getPoints()
+            console.log(JSON.parse(points!))
+            const alertValues = JSON.parse(points!).map(point => {
+              return {
+                text: point.pointName,
+                onPress: () => {
+                  props.navigation.navigate(MODEL_RESULTS_SCREEN, {
+                    point,
+                    type: "optimize"
+                  })
+                }
+              }
+            })
+
+            Alert.alert("Chose a point", "select points below", alertValues)
           }}
         >
           <SystemText>Optimize Shade</SystemText>
