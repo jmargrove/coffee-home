@@ -1,10 +1,21 @@
 import React, { FunctionComponent } from "react"
-import { ScrollView, SafeAreaView, View } from "react-native"
+import {
+  ScrollView,
+  SafeAreaView,
+  View,
+  Alert,
+  AsyncStorage
+} from "react-native"
 import styled from "../../system-components/system-theme/styled-components"
 import { SystemText, SystemFlex } from "../../system-components"
 import { ListItem } from "native-base"
 import { BeanLogoLarge } from "../../assets/BeanLogoLarge/BeenLogoLarge"
-import { MAP_SCREEN, POINT_SCREEN } from "../../utils/constants"
+import {
+  MAP_SCREEN,
+  POINT_SCREEN,
+  SAVE_DATA_LOCALLY,
+  MODEL_RESULTS_SCREEN
+} from "../../utils/constants"
 import { selectPrimary, selectPercentageHeight } from "../../utils/selectors"
 
 const DrawerHeaderContianer = styled(View)`
@@ -55,9 +66,26 @@ export const NavigationDrawerComponent: FunctionComponent<any> = props => {
           <SystemText>Locations </SystemText>
         </ListItem>
         <ListItem
-          onPress={() => {
+          onPress={async () => {
             props.navigation.closeDrawer()
-            props.navigation.navigate(POINT_SCREEN, { screen: "yield" })
+            props.navigation.navigate(MAP_SCREEN, { selectPoint: false })
+            const getPoints = async () => {
+              return await AsyncStorage.getItem(SAVE_DATA_LOCALLY)
+            }
+            const points = await getPoints()
+            console.log(JSON.parse(points!))
+            const alertValues = JSON.parse(points!).map(point => {
+              return {
+                text: point.pointName,
+                onPress: () => {
+                  props.navigation.navigate(MODEL_RESULTS_SCREEN, {
+                    point
+                  })
+                }
+              }
+            })
+
+            Alert.alert("Chose a point", "select points below", alertValues)
           }}
         >
           <SystemText>Calculate Yield</SystemText>

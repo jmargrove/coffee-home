@@ -1,5 +1,4 @@
-import { observable, action, computed } from "mobx"
-import { mapTheme } from "./mapTheme/mapTheme"
+import { observable, action } from "mobx"
 
 interface ICoordinate {
   latitude: number

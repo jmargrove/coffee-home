@@ -34,27 +34,26 @@ const calculateYeild = createSwitchNavigator(
     },
     [MODEL_RESULTS_SCREEN]: { screen: PoweredModelResultsScreen }
   },
-  { initialRouteName: MODEL_RESULTS_SCREEN, headerMode: "none" }
+  { initialRouteName: MODEL_RESULTS_SCREEN }
 )
 
-const optimizeShade = createStackNavigator(
-  {
-    [POINT_SCREEN]: PoweredPointScreen,
-    [LOADING_SCREEN]: {
-      screen: LoadingScreen
-    },
-    [MODEL_RESULTS_SCREEN]: { screen: PoweredModelResultsScreen }
-  },
-  { initialRouteName: MODEL_RESULTS_SCREEN, headerMode: "none" }
-)
+// const optimizeShade = createStackNavigator(
+//   {
+//     [POINT_SCREEN]: PoweredPointScreen,
+//     [LOADING_SCREEN]: {
+//       screen: LoadingScreen
+//     },
+//     [MODEL_RESULTS_SCREEN]: { screen: PoweredModelResultsScreen }
+//   },
+//   { initialRouteName: MODEL_RESULTS_SCREEN, headerMode: "none" }
+// )
 
 const DrawerNavigator = createDrawerNavigator(
   {
     [MAP_SCREEN]: {
       screen: PoweredMapScreen
     },
-    [CALCULATE_YIELD]: calculateYeild,
-    [OPTIMIZE_SHADE]: optimizeShade,
+    [POINT_SCREEN]: PoweredPointScreen,
     [SET_PARAMETERS_SCREEN]: PoweredSetParametersScreen
   },
   {
@@ -74,7 +73,8 @@ export const AppNavigation = createStackNavigator(
     },
     [LOADING_SCREEN]: {
       screen: LoadingScreen
-    }
+    },
+    [MODEL_RESULTS_SCREEN]: { screen: PoweredModelResultsScreen }
   },
   {
     initialRouteName: DRAWER_CONTAINER,
