@@ -47,7 +47,7 @@ export const YieldDisplay: FunctionComponent<{
   handleIncrement: () => void
   handleDecrement: () => void
 
-  focalPoint: { index: number; yield: number; year: number }
+  focalPoint: { index: number; y: number; x: number }
 }> = ({ children, handleDecrement, handleIncrement, focalPoint }) => {
   return (
     <SystemFlex noFlex>
@@ -71,7 +71,7 @@ export const YieldDisplay: FunctionComponent<{
                     </SystemAbsolute>
 
                     <SystemText size={32} blackItalic={true}>
-                      {focalPoint.year}
+                      {focalPoint.x}
                     </SystemText>
                   </SystemFlex>
                 </DialContainer>
@@ -91,7 +91,7 @@ export const YieldDisplay: FunctionComponent<{
                       <SystemText size={8}>-1</SystemText>
                     </SystemAbsolute>
                     <SystemText size={32} blackItalic={true}>
-                      {Math.round(focalPoint.yield * 100) / 100}
+                      {Math.round(focalPoint.y * 100) / 100}
                     </SystemText>
                   </SystemFlex>
                 </DialContainer>

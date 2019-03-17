@@ -55,10 +55,10 @@ export class GGLineStore {
   }
 
   public calcPointValues({ data, yMax, xMax, width, height, yAxisScale }: any) {
-    return data.map((pointRaw: { year: number; yield: number }) => {
+    return data.map((pointRaw: { x: number; y: number }) => {
       return {
-        x: (width / xMax) * pointRaw.year,
-        y: yAxisScale * pointRaw.yield
+        x: (width / xMax) * pointRaw.y,
+        y: yAxisScale * pointRaw.y
       }
     })
   }

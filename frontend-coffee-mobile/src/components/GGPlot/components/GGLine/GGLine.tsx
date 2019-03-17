@@ -19,7 +19,7 @@ const StyledLine = styled(View)<IStyledLine>`
   background-color: ${selectBlack}
   left: ${({ x }) => x && x};
   bottom: ${({ y }) => y && y};
-  ${({ rotate }) => rotate && `transform: rotate(-${rotate}deg`} );
+  ${({ rotate }) => rotate && `transform: rotate(${-1 * rotate}deg`} );
 `
 
 export const GGLine: FunctionComponent<{

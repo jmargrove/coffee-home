@@ -35,7 +35,6 @@ export const GGXTick: FunctionComponent<IGGTickProps> = ({
   tickNumber,
   xValues
 }) => {
-  console.log(length, tickNumber, xValues)
   const axisEndPadding = 30
   const tickSpaces = tickNumber - 1
   const xTickPosition = Array(tickNumber)

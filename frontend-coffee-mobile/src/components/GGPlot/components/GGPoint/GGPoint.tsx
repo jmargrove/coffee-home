@@ -19,10 +19,10 @@ const PointStandard = styled(View)<IPointStandard>`
   background-color: ${selectWhite};
   border-width: 0.8;
   border-color: ${selectPrimary}
-  width: 20;
-  height: 20;
-  ${({ size }) => size && `border-radius: ${size}`};
-  `
+    ${({ size }) => size && `border-radius: ${size}`};
+  ${({ size }) => size && `width: ${size * 2}`};
+  ${({ size }) => size && `height: ${size * 2}`};
+`
 
 const PointAnimated = styled(Animated.View)<{}>`
   border-width: 0.8;
@@ -41,7 +41,7 @@ const PointAnimatedContainer = styled(View)<{ x: number; y: number }>`
 `
 
 export interface IGGPointProps {
-  focalPoint: { index: number; yield: number; year: number }
+  focalPoint: { index: number; y: number; x: number }
   data: { x: number; y: number }[]
   size: number
 }
@@ -143,12 +143,17 @@ export const GGPoint: FunctionComponent<IGGPointProps> = ({
                 <CircleAnimation animationValue={animatedCircle3} />
                 <CircleAnimation animationValue={animatedCircle4} />
               </PointAnimatedContainer>
-              <PointStandard x={el.x - 10} y={el.y - 10} size={10} />
+              <PointStandard x={el.x - size} y={el.y - size} size={size} />
             </React.Fragment>
           )
         } else {
           return (
-            <PointStandard key={i} x={el.x - size} y={el.y - size} size={10} />
+            <PointStandard
+              key={i}
+              x={el.x - size}
+              y={el.y - size}
+              size={size}
+            />
           )
         }
       })}

@@ -7,8 +7,8 @@ export interface IXYCoordinates {
 }
 
 interface IElementData {
-  year: number
-  yield: number
+  x: number
+  y: number
 }
 export interface IData {
   data: IElementData[]
@@ -47,7 +47,7 @@ export interface IGGPlot {
     }>
     props: {
       size: number
-      focalPoint: { index: number; year: number; yield: number }
+      focalPoint: { index: number; x: number; y: number }
     }
   }
   outerDimensions: { width: number; height: number }
@@ -61,8 +61,8 @@ interface ISize {
 
 interface IFocalPoint {
   index: number
-  year: number
-  yield: number
+  x: number
+  y: number
 }
 
 export interface IGGPlotProps extends IGGPlot {
@@ -70,8 +70,8 @@ export interface IGGPlotProps extends IGGPlot {
 }
 
 interface IDimensions {
-  year: number
-  yield: number
+  x: number
+  y: number
 }
 
 export interface IAbsolute {

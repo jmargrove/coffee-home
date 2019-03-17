@@ -35,22 +35,40 @@ import { handleUserShadeParameter } from "../../utils/handleShadeParameters"
 import { handleUserSlopeParameter } from "../../utils/handleSlopeParameters"
 import { IElementData } from "../../components/GGPlot/types"
 import { GlobeIcon } from "../../assets/GlobeIcon/GlobeIcon"
+import { type } from "../../components/GGPlot/types.d"
+
+type ModelType = "optimize" | "yield"
 
 export const ModelResultsScreen: FunctionComponent<{
   store: ResultsScreenStore
   navigation: NavigationScreenProp<NavigationRoute>
   response: IElementData[]
-}> = ({ store, response }) => {
+  type: ModelType
+}> = ({ store, response, type }) => {
   const { focalPoint, handleIncrement, handleDecrement } = store
-  console.log("respo in funcitonal", response)
-
+  console.log("type", type)
+  console.log("response", response)
   return (
     <Container>
       <HeaderComponent LeftIcon={GlobeIcon}>Model results</HeaderComponent>
       <SystemContent fill>
         <ScrollView>
           <SystemFlex align="center">
-            <ScatterPlot focalPoint={focalPoint} response={response} />
+            {type === "yield" && (
+              <ScatterPlot
+                focalPoint={focalPoint}
+                response={response}
+                pointSize={10}
+              />
+            )}
+
+            {type === "optimize" && (
+              <ScatterPlot
+                focalPoint={focalPoint}
+                response={response}
+                pointSize={4}
+              />
+            )}
 
             <YieldDisplay
               focalPoint={focalPoint}
@@ -62,7 +80,7 @@ export const ModelResultsScreen: FunctionComponent<{
               <SystemSpace size={REGULAR} />
               <SystemFlex>
                 <SystemText>
-                  During year {focalPoint.year} we expect that the coffee yeild
+                  During year {focalPoint.x} we expect that the coffee yeild
                   will be {focalPoint.yield} tones per hactar.
                 </SystemText>
               </SystemFlex>
@@ -81,14 +99,17 @@ class ResultsScreenStore {
   public isLoading = true
 
   @observable
-  focalPoint: { index: number; yield: number; year: number }
+  focalPoint: { index: number; y: number; x: number }
 
   @observable
-  data: { yield: number; year: number }[]
+  data: { y: number; x: number }[]
 
-  constructor({ response }: { response: { yield: number; year: number }[] }) {
+  constructor({ response }: { response: { y: number; x: number }[] }) {
     this.data = response
-    this.focalPoint = { index: 4, ...response[4] }
+    this.focalPoint = {
+      index: 4,
+      ...response[4]
+    }
   }
 
   handleLoadingTrue = () => {
@@ -100,7 +121,7 @@ class ResultsScreenStore {
   }
 
   handleIncrement = () => {
-    if (this.focalPoint.index < 5) {
+    if (this.focalPoint.index < this.data.length - 1) {
       this.focalPoint = {
         index: this.focalPoint.index + 1,
         ...this.data[this.focalPoint.index + 1]
@@ -136,7 +157,7 @@ const power = compose<
         userSlopeValue
       } = this.props.navigation.getParam("point")
 
-      const type = this.props.navigation.getParam("type")
+      const type: "yield" | "optimize" = this.props.navigation.getParam("type")
       console.log("type", type)
 
       const handleSend = async () => {
@@ -167,13 +188,27 @@ const power = compose<
       }
 
       const response = await handleSend()
-      const res = response.map(el => {
-        return {
-          yield: el.yield,
-          year: el.year - 1
-        }
-      })
-      this.setState({ response: res, isLoading: false })
+
+      if (type === "yield") {
+        const res = response.map(el => {
+          return {
+            y: el.yield,
+            x: el.year - 1
+          }
+        })
+
+        this.setState({ response: res, isLoading: false, type })
+      }
+
+      if (type === "optimize") {
+        const res = response.map(el => {
+          return {
+            x: el.shade,
+            y: el.yieldIrrFALSE
+          }
+        })
+        this.setState({ response: res, isLoading: false, type })
+      }
     }
   }),
   branch(

@@ -27,12 +27,17 @@ class GG extends GGDefaultData implements GGLineStore, GGPointStore {
   calcPointValues!: BaseCalculationFunction
 
   private calcYTickPosition: CalcYTickPosition = (length, yMax) => {
+    console.log("y max", yMax)
+
+    let increments = 0.5
+    if (yMax < 2) increments = 0.2
+    if (yMax === 0) increments = 0.5
+
     let tickNumber = 0
     let tickSpaces = 0
     let tickSpaceDistance = 0
     let yRound = 0
     let axisEndPadding = 40
-    const increments = 0.5
 
     if (yMax === 0) {
       yRound = 2
@@ -40,7 +45,7 @@ class GG extends GGDefaultData implements GGLineStore, GGPointStore {
       tickSpaces = tickNumber - 1
       tickSpaceDistance = (length - axisEndPadding) / tickSpaces
     } else {
-      yRound = Math.round(yMax) // 4
+      yRound = Math.ceil(yMax) // 4
       tickNumber = yRound / increments
       tickSpaces = tickNumber - 1
       tickSpaceDistance = (length - axisEndPadding) / tickSpaces

@@ -18,13 +18,13 @@ export class GGDefaultData {
 
   public extractXValues: ExtractAxisValues = data => {
     return data.map(el => {
-      return el.year
+      return el.x
     })
   }
 
   public extractYValues: ExtractAxisValues = data => {
     return data.map(el => {
-      return el.yield
+      return el.y
     })
   }
 }

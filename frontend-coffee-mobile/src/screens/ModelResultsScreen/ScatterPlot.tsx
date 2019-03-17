@@ -10,7 +10,8 @@ import {
 export const ScatterPlot: FunctionComponent<{
   focalPoint: { index: number; yield: number; year: number }
   response: any
-}> = ({ focalPoint, response }) => {
+  pointSize: number
+}> = ({ focalPoint, response, pointSize }) => {
   return (
     <GGPlot
       data={response}
@@ -19,7 +20,7 @@ export const ScatterPlot: FunctionComponent<{
       GeomYTick={{ GGYTick, props: { tickNumber: 5 } }}
       GeomXTick={{ GGXTick, props: { tickNumber: 6 } }}
       GeomLine={{ GGLine, props: { size: 1 } }}
-      GeomPoint={{ GGPoint, props: { size: 10, focalPoint } }}
+      GeomPoint={{ GGPoint, props: { size: pointSize, focalPoint } }}
     />
   )
 }
