@@ -6,16 +6,6 @@ import { selectBlack } from "../../../utils/selectors"
 import { SMALL, REGULAR } from "../../../system-components/system-theme/theme"
 import { ArrowDownBlack, ArrowUpPrimary } from "../../../assets"
 
-export interface IDataAddition {
-  lng: number
-  lat: number
-  userCurrentYield: number
-  pointName: string
-  userShadeValue: number
-  userIrrValue: 1 | 0
-  userSlopeValue: number
-}
-
 const Bullet = styled(View)<{ size: number }>`
   width: ${({ size }) => size && size};
   height: ${({ size }) => size && size};

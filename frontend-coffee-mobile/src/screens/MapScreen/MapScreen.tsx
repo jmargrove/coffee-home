@@ -8,7 +8,12 @@ import {
   SystemAbsolute,
   SystemFlex
 } from "../../system-components"
-import { SET_PARAMETERS_SCREEN } from "../../utils/constants"
+import {
+  SET_PARAMETERS_SCREEN,
+  YIELD,
+  MODEL_RESULTS_SCREEN,
+  OPTIMIZE
+} from "../../utils/constants"
 import { observer } from "mobx-react"
 import { toJS } from "mobx"
 import { compose, withProps, lifecycle } from "recompose"
@@ -28,6 +33,9 @@ import { CloseIcon } from "../../assets/"
 import { SAVE_DATA_LOCALLY } from "../../utils/constants"
 import { AsyncStorage, Alert } from "react-native"
 import { theme } from "../../system-components/system-theme/theme"
+import NavigationServices from "../../utils/NavigationServices"
+import { IDataAddition } from "../PointScreen/components/SecondaryText"
+import { demoStore } from "../../store/demoStore"
 
 const power = compose<any, any>(
   withNavigation,
@@ -57,8 +65,6 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
     isSelectingPoint
   } = store
 
-  console.log("the points", savedPoints)
-
   const selectPoint = navigation.getParam("selectPoint")
 
   return (
@@ -77,19 +83,32 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
           style={{ width: "100%", height: "100%" }}
           onRegionChange={handlePointLocation}
         >
-          {savedPoints &&
-            savedPoints.map((el, i) => {
-              console.log(el)
-
+          {demoStore.savedPoints &&
+            demoStore.savedPoints.map((point: IDataAddition, i: number) => {
               return (
                 <Marker
                   key={i}
                   zIndex={99}
-                  coordinate={{ latitude: el.lat, longitude: el.lng }}
+                  coordinate={{ latitude: point.lat, longitude: point.lng }}
                   onPress={() => {
-                    Alert.alert(el.pointName, " would you like to...", [
-                      { text: "Calculate yield" },
-                      { text: "Optimize shade" }
+                    Alert.alert(point.pointName, " would you like to...", [
+                      {
+                        text: "Calculate yield",
+                        onPress: () =>
+                          NavigationServices.navigate(MODEL_RESULTS_SCREEN, {
+                            point,
+                            type: YIELD
+                          })
+                      },
+                      {
+                        text: "Optimize shade",
+                        onPress: () =>
+                          NavigationServices.navigate(MODEL_RESULTS_SCREEN, {
+                            point,
+                            type: OPTIMIZE
+                          })
+                      },
+                      { text: "Cancel", style: "destructive" }
                     ])
                   }}
                 >
@@ -131,12 +150,13 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
               <SystemFlex justify="center" align="center">
                 <TouchableOpacity
                   onPress={() => {
-                    navigation.navigate(SET_PARAMETERS_SCREEN, {
-                      point: {
-                        latitude: pointLocation.latitude,
-                        longitude: pointLocation.longitude
+                    demoStore.handleUpdateCoordinates({
+                      coordinates: {
+                        lat: pointLocation.latitude,
+                        lng: pointLocation.longitude
                       }
                     })
+                    navigation.navigate(SET_PARAMETERS_SCREEN)
                   }}
                 >
                   <IconPlus />

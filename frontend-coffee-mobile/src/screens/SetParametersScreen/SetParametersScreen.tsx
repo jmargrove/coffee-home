@@ -12,41 +12,17 @@ import {
   MEDIUM,
   theme
 } from "../../system-components/system-theme/theme"
-import { withNavigation } from "react-navigation"
-import { NavigationProps } from "../../types"
-import { compose, mapProps } from "recompose"
 import { observer } from "mobx-react"
 import TextInputComponent from "../../components/InputComponent"
-import { SelectedLocation } from "./components.ts/SelectedLocation/SelectedLocation"
-import { ParametersStore } from "./ParametersStore"
 import NumericInputComponent from "../../components/NumericInputComponent"
 import CategorySelector from "../../components/CategorySelector/CategorySelector"
 import BinarySelector from "../../components/BinarySelector/BinarySelector"
 import { LoadingScreen } from "../"
 import { selectBlack, selectPrimary, selectWhite } from "../../utils/selectors"
+import { demoStore } from "../../store/demoStore"
 
-const SetParametersScreen: FunctionComponent<{
-  store: ParametersStore
-}> = ({ store }) => {
-  const {
-    point,
-    handleNameChange,
-    handleYieldChange,
-    handleShadeChange,
-    handleSlopeChange,
-    handleIrrigationChange,
-    pointName,
-    userCurrentYield,
-    shadeLevel,
-    prevShadeLevel,
-    slopeLevel,
-    prevSlopeLevel,
-    irrigation,
-    isFormFilled,
-    isLoading,
-    handleSaveData
-  } = store
-  if (isLoading) {
+const SetParametersScreen: FunctionComponent = () => {
+  if (demoStore.isLoading) {
     return <LoadingScreen />
   } else {
     return (
@@ -56,48 +32,48 @@ const SetParametersScreen: FunctionComponent<{
           <SystemFlex align="center">
             <SystemSpace size={REGULAR} />
             <TextInputComponent
-              value={pointName}
+              value={demoStore.pointName}
               label="Enter point Name"
               autoFocus={false}
-              handleChange={handleNameChange}
+              handleChange={demoStore.handleNameChange}
             />
             <SystemSpace size={MEDIUM} />
             <NumericInputComponent
               units="tones of coffee per hectar"
               label="Your current yield"
               autoFocus={false}
-              value={userCurrentYield}
-              handleChange={handleYieldChange}
+              value={demoStore.userCurrentYield}
+              handleChange={demoStore.handleYieldChange}
             />
             <SystemSpace size={MEDIUM} />
             <CategorySelector
               title="What is your shade level"
               levels={["none", "low", "medium", "high"]}
-              handleChange={handleShadeChange}
-              factorLevel={shadeLevel}
-              prevFactorLevel={prevShadeLevel}
+              handleChange={demoStore.handleShadeChange}
+              factorLevel={demoStore.shadeLevel}
+              prevFactorLevel={demoStore.prevShadeLevel}
             />
             <SystemSpace size={MEDIUM} />
             <CategorySelector
               title="What is your slope incline?"
               levels={["flat", "slight", "gradual", "steep"]}
-              handleChange={handleSlopeChange}
-              factorLevel={slopeLevel}
-              prevFactorLevel={prevSlopeLevel}
+              handleChange={demoStore.handleSlopeChange}
+              factorLevel={demoStore.slopeLevel}
+              prevFactorLevel={demoStore.prevSlopeLevel}
             />
             <SystemSpace size={MEDIUM} />
             <BinarySelector
               title="Is your site irrigated?"
-              value={irrigation}
-              handleChange={handleIrrigationChange}
+              value={demoStore.irrigation}
+              handleChange={demoStore.handleIrrigationChange}
             />
 
             <SystemButtonLarge
-              isDisabled={!isFormFilled}
+              isDisabled={demoStore.isFormFilled}
               colorBorder={selectPrimary({ theme })}
               color={selectWhite({ theme })}
               textColor={selectBlack({ theme })}
-              onPress={handleSaveData}
+              onPress={demoStore.handleSaveData}
             >
               Save point
             </SystemButtonLarge>
@@ -109,14 +85,4 @@ const SetParametersScreen: FunctionComponent<{
   }
 }
 
-const power = compose<any, any>(
-  withNavigation,
-  mapProps(({ navigation }: NavigationProps) => ({
-    store: new ParametersStore({
-      point: navigation.getParam("point")
-    })
-  })),
-  observer
-)
-
-export const PoweredSetParametersScreen = power(SetParametersScreen)
+export const PoweredSetParametersScreen = observer(SetParametersScreen)

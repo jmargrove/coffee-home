@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { SystemFlex, SystemText, SystemSpace } from "../../../system-components"
-import { View, TouchableOpacity, Alert } from "react-native"
+import { View, TouchableOpacity, Alert, AsyncStorage } from "react-native"
 import styled from "../../../system-components/system-theme/styled-components"
 import { selectLightGrey, selectWhite } from "../../../utils/selectors"
 import {
@@ -17,23 +17,14 @@ import { LocationCard } from "./LocationCard"
 import { PointInformationCard } from "./PointInformationCard"
 import { ModelOptionsCard } from "./ModelOptions"
 import { PointOptions } from "./PointOptions"
-import { MODEL_RESULTS_SCREEN } from "../../../utils/constants"
+import { MODEL_RESULTS_SCREEN, YIELD, OPTIMIZE } from "../../../utils/constants"
 import NavigationServices from "../../../utils/NavigationServices"
+import { demoStore, IDataAddition } from "../../../store/demoStore"
 
 const PointCardContainer = styled(View)`
   width: 100%;
   background-color: ${selectLightGrey};
 `
-
-export interface IDataAddition {
-  lng: number
-  lat: number
-  userCurrentYield: number
-  pointName: string
-  userShadeValue: number
-  userIrrValue: 1 | 0
-  userSlopeValue: number
-}
 
 export class PointCard extends Component<
   { item: IDataAddition },
@@ -133,6 +124,7 @@ export class PointCard extends Component<
           text: "Yes",
           onPress: () =>
             NavigationServices.navigate(MODEL_RESULTS_SCREEN, {
+              type: YIELD,
               point: this.props.item
             })
         },
@@ -146,22 +138,19 @@ export class PointCard extends Component<
       "Shade optimization estimate",
       "Retreive shade optimization estimate for this location",
       [
-        { text: "Yes", onPress: () => console.log("go") },
+        {
+          text: "Yes",
+          onPress: () =>
+            NavigationServices.navigate(MODEL_RESULTS_SCREEN, {
+              type: OPTIMIZE,
+              point: this.props.item
+            })
+        },
         { text: "No", style: "cancel" }
       ]
     )
   }
 
-  handleDeletePoint = () => {
-    Alert.alert("Delete point.", "Are you sure you want to delete this point", [
-      {
-        text: "Yes",
-        style: "destructive",
-        onPress: () => console.log("deleting point")
-      },
-      { text: "No" }
-    ])
-  }
   render() {
     const {
       primaryActive,
@@ -182,8 +171,7 @@ export class PointCard extends Component<
       handlePointOptionsFalse,
       handlePointOptionsTrue,
       handleCalculateYield,
-      handleOptimizeShade,
-      handleDeletePoint
+      handleOptimizeShade
     } = this
 
     const { item } = this.props
@@ -261,7 +249,11 @@ export class PointCard extends Component<
                     handleClose={handlePointOptionsFalse}
                     open={pointOptionsActive}
                   >
-                    <PointOptions handleDeletePoint={handleDeletePoint} />
+                    <PointOptions
+                      handleDeletePoint={() =>
+                        demoStore.handleDeletePoint(item)
+                      }
+                    />
                   </SecondaryText>
                 </SystemFlex>
 

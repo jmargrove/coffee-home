@@ -12,3 +12,6 @@ export const CALCULATE_YIELD = "CALCULATE_YIELD"
 export const OPTIMIZE_SHADE = "OPTIMIZE_SHADE"
 
 export const SAVE_DATA_LOCALLY = "SAVE_DATA_LOCALLY"
+
+export const YIELD = `YIELD`
+export const OPTIMIZE = `OPTIMIZE`

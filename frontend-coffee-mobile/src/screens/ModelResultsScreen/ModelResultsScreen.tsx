@@ -26,18 +26,17 @@ import {
 } from "recompose"
 import { observable } from "mobx"
 import { observer } from "mobx-react"
-import {
-  REACT_APP_SIMPLE_MODEL_REQUEST,
-  REACT_APP_OPTIMIZE_SHADE_REQUEST
-} from "react-native-dotenv"
 import { LoadingScreen } from "../LoadingScreen/LoadingScreen"
 import { handleUserShadeParameter } from "../../utils/handleShadeParameters"
 import { handleUserSlopeParameter } from "../../utils/handleSlopeParameters"
 import { IElementData } from "../../components/GGPlot/types"
 import { GlobeIcon } from "../../assets/GlobeIcon/GlobeIcon"
-import { type } from "../../components/GGPlot/types.d"
+import { getEndPoint } from "../../utils/getEndPoint"
+import { OPTIMIZE, YIELD } from "../../utils/constants"
 
-type ModelType = "optimize" | "yield"
+type OPTIMIZE = "OPTIMIZE"
+type YIELD = "YIELD"
+type ModelType = OPTIMIZE | YIELD
 
 export const ModelResultsScreen: FunctionComponent<{
   store: ResultsScreenStore
@@ -46,15 +45,14 @@ export const ModelResultsScreen: FunctionComponent<{
   type: ModelType
 }> = ({ store, response, type }) => {
   const { focalPoint, handleIncrement, handleDecrement } = store
-  console.log("type", type)
-  console.log("response", response)
+
   return (
     <Container>
       <HeaderComponent LeftIcon={GlobeIcon}>Model results</HeaderComponent>
       <SystemContent fill>
         <ScrollView>
           <SystemFlex align="center">
-            {type === "yield" && (
+            {type === YIELD && (
               <ScatterPlot
                 focalPoint={focalPoint}
                 response={response}
@@ -62,7 +60,7 @@ export const ModelResultsScreen: FunctionComponent<{
               />
             )}
 
-            {type === "optimize" && (
+            {type === OPTIMIZE && (
               <ScatterPlot
                 focalPoint={focalPoint}
                 response={response}
@@ -81,7 +79,7 @@ export const ModelResultsScreen: FunctionComponent<{
               <SystemFlex>
                 <SystemText>
                   During year {focalPoint.x} we expect that the coffee yeild
-                  will be {focalPoint.yield} tones per hactar.
+                  will be {focalPoint.y} tones per hactar.
                 </SystemText>
               </SystemFlex>
 
@@ -156,9 +154,14 @@ const power = compose<
         userIrrValue,
         userSlopeValue
       } = this.props.navigation.getParam("point")
-
-      const type: "yield" | "optimize" = this.props.navigation.getParam("type")
-      console.log("type", type)
+      console.log({
+        lng,
+        lat,
+        userShadeValue: handleUserShadeParameter(userShadeValue),
+        userIrrValue: userIrrValue ? 1 : 0,
+        userSlopeValue: handleUserSlopeParameter(userSlopeValue)
+      })
+      const type: ModelType = this.props.navigation.getParam("type")
 
       const handleSend = async () => {
         const data = {
@@ -167,15 +170,6 @@ const power = compose<
           userShadeValue: handleUserShadeParameter(userShadeValue),
           userIrrValue: userIrrValue ? 1 : 0,
           userSlopeValue: handleUserSlopeParameter(userSlopeValue)
-        }
-
-        const getEndPoint = ({ type }: { type: string }) => {
-          switch (type) {
-            case "yield":
-              return REACT_APP_SIMPLE_MODEL_REQUEST
-            case "optimize":
-              return REACT_APP_OPTIMIZE_SHADE_REQUEST
-          }
         }
 
         const response = await fetch(getEndPoint({ type }), {
@@ -188,9 +182,10 @@ const power = compose<
       }
 
       const response = await handleSend()
+      console.log(response)
 
-      if (type === "yield") {
-        const res = response.map(el => {
+      if (type === YIELD) {
+        const res = response.map((el: { [x: string]: number }) => {
           return {
             y: el.yield,
             x: el.year - 1
@@ -200,8 +195,8 @@ const power = compose<
         this.setState({ response: res, isLoading: false, type })
       }
 
-      if (type === "optimize") {
-        const res = response.map(el => {
+      if (type === OPTIMIZE) {
+        const res = response.map((el: { [x: string]: number }) => {
           return {
             x: el.shade,
             y: el.yieldIrrFALSE

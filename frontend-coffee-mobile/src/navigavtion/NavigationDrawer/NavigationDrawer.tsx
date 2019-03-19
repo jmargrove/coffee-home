@@ -14,17 +14,30 @@ import {
   MAP_SCREEN,
   POINT_SCREEN,
   SAVE_DATA_LOCALLY,
-  MODEL_RESULTS_SCREEN
+  MODEL_RESULTS_SCREEN,
+  OPTIMIZE,
+  YIELD
 } from "../../utils/constants"
-import { selectPrimary, selectPercentageHeight } from "../../utils/selectors"
+import {
+  selectPrimary,
+  selectPercentageHeight,
+  selectLightGrey,
+  selectBlack
+} from "../../utils/selectors"
+import { demoStore } from "../../store/demoStore"
+import { theme } from "../../system-components/system-theme/theme"
+import NavigationServices from "../../utils/NavigationServices"
+import { noPointsAlert } from "../../utils/alerts"
 
 const DrawerHeaderContianer = styled(View)`
   width: 100%;
-  height: ${selectPercentageHeight({ percent: 1 / 3 })};
+  height: ${selectPercentageHeight({ percent: 2 / 5 })};
   background-color: ${selectPrimary};
 `
 
 export const NavigationDrawerComponent: FunctionComponent<any> = props => {
+  const isSavedPoints = demoStore.savedPoints.length > 0
+  console.log("saved", isSavedPoints)
   return (
     <ScrollView>
       <SafeAreaView>
@@ -59,61 +72,85 @@ export const NavigationDrawerComponent: FunctionComponent<any> = props => {
         </ListItem>
         <ListItem
           onPress={() => {
-            props.navigation.closeDrawer()
-            props.navigation.navigate(POINT_SCREEN, { screen: "points" })
+            if (isSavedPoints) {
+              props.navigation.closeDrawer()
+              props.navigation.navigate(POINT_SCREEN, { screen: "points" })
+            } else {
+              noPointsAlert()
+              props.navigation.closeDrawer()
+            }
           }}
         >
-          <SystemText>Locations </SystemText>
+          <SystemText color={isSavedPoints ? selectBlack : selectLightGrey}>
+            Locations
+          </SystemText>
         </ListItem>
         <ListItem
           onPress={async () => {
-            props.navigation.closeDrawer()
-            const getPoints = async () => {
-              return await AsyncStorage.getItem(SAVE_DATA_LOCALLY)
-            }
-            const points = await getPoints()
-            console.log(JSON.parse(points!))
-            const alertValues = JSON.parse(points!).map(point => {
-              return {
-                text: point.pointName,
-                onPress: () => {
-                  props.navigation.navigate(MODEL_RESULTS_SCREEN, {
-                    point,
-                    type: "yield"
-                  })
-                }
+            if (isSavedPoints) {
+              props.navigation.closeDrawer()
+              const getPoints = async () => {
+                return await AsyncStorage.getItem(SAVE_DATA_LOCALLY)
               }
-            })
+              const points = await getPoints()
 
-            Alert.alert("Chose a point", "select points below", alertValues)
+              const alertValues = JSON.parse(points!).map(point => {
+                return {
+                  text: point.pointName,
+                  onPress: () => {
+                    props.navigation.navigate(MODEL_RESULTS_SCREEN, {
+                      point,
+                      type: YIELD
+                    })
+                  }
+                }
+              })
+
+              Alert.alert("Chose a point", "select points below", alertValues)
+            } else {
+              noPointsAlert()
+              props.navigation.closeDrawer()
+            }
           }}
         >
-          <SystemText>Calculate Yield</SystemText>
+          <SystemText color={isSavedPoints ? selectBlack : selectLightGrey}>
+            Calculate Yield
+          </SystemText>
         </ListItem>
         <ListItem
           onPress={async () => {
-            props.navigation.closeDrawer()
-            const getPoints = async () => {
-              return await AsyncStorage.getItem(SAVE_DATA_LOCALLY)
-            }
-            const points = await getPoints()
-            console.log(JSON.parse(points!))
-            const alertValues = JSON.parse(points!).map(point => {
-              return {
-                text: point.pointName,
-                onPress: () => {
-                  props.navigation.navigate(MODEL_RESULTS_SCREEN, {
-                    point,
-                    type: "optimize"
-                  })
-                }
+            if (isSavedPoints) {
+              props.navigation.closeDrawer()
+              const getPoints = async () => {
+                return await AsyncStorage.getItem(SAVE_DATA_LOCALLY)
               }
-            })
 
-            Alert.alert("Chose a point", "select points below", alertValues)
+              const points = await getPoints()
+
+              const alertValues = JSON.parse(points!).map(
+                (point: { [y: string]: number }) => {
+                  return {
+                    text: point.pointName,
+                    onPress: () => {
+                      props.navigation.navigate(MODEL_RESULTS_SCREEN, {
+                        point,
+                        type: OPTIMIZE
+                      })
+                    }
+                  }
+                }
+              )
+
+              Alert.alert("Chose a point", "select points below", alertValues)
+            } else {
+              noPointsAlert()
+              props.navigation.closeDrawer()
+            }
           }}
         >
-          <SystemText>Optimize Shade</SystemText>
+          <SystemText color={isSavedPoints ? selectBlack : selectLightGrey}>
+            Optimize Shade
+          </SystemText>
         </ListItem>
       </SafeAreaView>
     </ScrollView>
