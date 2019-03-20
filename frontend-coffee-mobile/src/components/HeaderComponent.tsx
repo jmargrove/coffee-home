@@ -29,10 +29,10 @@ const GreyLine = styled(View)<any>`
   height: 1;
   background-color: ${selectLightGrey};
 `
-export const HeaderComponent: FunctionComponent<{ LeftIcon?: ReactNode }> = ({
-  children,
-  LeftIcon
-}) => {
+export const HeaderComponent: FunctionComponent<{
+  LeftIcon?: ReactNode
+  RightIcon?: ReactNode
+}> = ({ children, LeftIcon, RightIcon }) => {
   return (
     <HeaderContainer>
       <SystemFlex justify="space-between">
@@ -57,7 +57,7 @@ export const HeaderComponent: FunctionComponent<{ LeftIcon?: ReactNode }> = ({
             {children}
           </SystemText>
           <SystemFlex row noFlex>
-            <SettingsIcon />
+            {RightIcon ? <RightIcon /> : <SettingsIcon />}
             <SystemSpace size={SMALL} />
           </SystemFlex>
         </SystemFlex>

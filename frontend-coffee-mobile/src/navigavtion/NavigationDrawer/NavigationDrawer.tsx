@@ -16,7 +16,8 @@ import {
   SAVE_DATA_LOCALLY,
   MODEL_RESULTS_SCREEN,
   OPTIMIZE,
-  YIELD
+  YIELD,
+  SETTINGS_SCREEN
 } from "../../utils/constants"
 import { selectPrimary, selectPercentageHeight } from "../../utils/selectors"
 import { demoStore } from "../../store/demoStore"
@@ -144,6 +145,13 @@ export const NavigationDrawerComponent: FunctionComponent<any> = props => {
           }}
         >
           <SystemText>Optimize Shade</SystemText>
+        </ListItem>
+        <ListItem
+          onPress={() => {
+            props.navigation.navigate(SETTINGS_SCREEN, { screen: "points" })
+          }}
+        >
+          <SystemText>Settings</SystemText>
         </ListItem>
       </SafeAreaView>
     </ScrollView>
