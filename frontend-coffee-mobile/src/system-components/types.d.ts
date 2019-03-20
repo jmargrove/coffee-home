@@ -36,6 +36,8 @@ export declare namespace System {
   }
 
   interface SpaceProps {
+    v?: boolean
+    h?: boolean
     size:
       | "ATOMIC"
       | "SMALL"

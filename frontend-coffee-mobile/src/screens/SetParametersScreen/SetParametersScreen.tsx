@@ -5,12 +5,16 @@ import {
   SystemContent,
   SystemSpace,
   SystemButtonLarge,
-  SystemFlex
+  SystemFlex,
+  SystemText
 } from "../../system-components"
 import {
   REGULAR,
   MEDIUM,
-  theme
+  theme,
+  SMALL,
+  LARGE,
+  BIG
 } from "../../system-components/system-theme/theme"
 import { observer } from "mobx-react"
 import TextInputComponent from "../../components/InputComponent"
@@ -20,6 +24,7 @@ import BinarySelector from "../../components/BinarySelector/BinarySelector"
 import { LoadingScreen } from "../"
 import { selectBlack, selectPrimary, selectWhite } from "../../utils/selectors"
 import { demoStore } from "../../store/demoStore"
+import { roundCoordinates } from "../../utils/roundCoordinates"
 
 const SetParametersScreen: FunctionComponent = () => {
   if (demoStore.isLoading) {
@@ -29,6 +34,29 @@ const SetParametersScreen: FunctionComponent = () => {
       <Container>
         <HeaderComponent>Save location</HeaderComponent>
         <SystemContent>
+          <SystemSpace size={REGULAR} />
+          <SystemFlex noFlex>
+            <SystemFlex row noFlex>
+              <SystemSpace size={BIG} h />
+              <SystemFlex row justify="space-between">
+                <SystemText>latitude:</SystemText>
+                <SystemText>
+                  {roundCoordinates(demoStore.coordinates.lat)}
+                </SystemText>
+              </SystemFlex>
+              <SystemSpace size={BIG} h />
+            </SystemFlex>
+            <SystemFlex row noFlex>
+              <SystemSpace size={BIG} h />
+              <SystemFlex row justify="space-between">
+                <SystemText>longitude:</SystemText>
+                <SystemText>
+                  {roundCoordinates(demoStore.coordinates.lng)}
+                </SystemText>
+              </SystemFlex>
+              <SystemSpace size={BIG} h />
+            </SystemFlex>
+          </SystemFlex>
           <SystemFlex align="center">
             <SystemSpace size={REGULAR} />
             <TextInputComponent

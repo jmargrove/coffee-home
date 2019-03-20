@@ -11,12 +11,10 @@ import {
   LOADING_SCREEN,
   MODEL_RESULTS_SCREEN,
   DRAWER_CONTAINER,
-  POINT_SCREEN,
-  CALCULATE_YIELD,
-  OPTIMIZE_SHADE
+  POINT_SCREEN
 } from "../utils/constants"
 import {
-  PoweredWelcomeScreen,
+  WelcomeScreen,
   PoweredMapScreen,
   LoadingScreen,
   PoweredModelResultsScreen,
@@ -25,18 +23,6 @@ import {
 import { Dimensions } from "react-native"
 import { NavigationDrawerComponent } from "./NavigationDrawer/NavigationDrawer"
 import { PoweredSetParametersScreen } from "../screens/SetParametersScreen/SetParametersScreen"
-import { WelcomeScreen } from "../screens/WelcomeScreen/WelcomeScreen"
-
-const calculateYeild = createSwitchNavigator(
-  {
-    [POINT_SCREEN]: PoweredPointScreen,
-    [LOADING_SCREEN]: {
-      screen: LoadingScreen
-    },
-    [MODEL_RESULTS_SCREEN]: { screen: PoweredModelResultsScreen }
-  },
-  { initialRouteName: MODEL_RESULTS_SCREEN }
-)
 
 const DrawerNavigator = createDrawerNavigator(
   {

@@ -3,8 +3,8 @@ import { System } from "./types"
 import styled from "styled-components"
 
 export const SystemSpace = styled(View)<System.SpaceProps>`
-  max-width: ${({ theme, size }) => size && theme.sizes[size]};
-  min-width: ${({ theme, size }) => size && theme.sizes[size]};
-  max-height: ${({ theme, size }) => size && theme.sizes[size]};
-  min-height: ${({ theme, size }) => size && theme.sizes[size]};
+  ${({ theme, size, h }) => !h && `max-height: ${theme.sizes[size]}`};
+  ${({ theme, size, h }) => !h && `min-height: ${theme.sizes[size]}`};
+  ${({ theme, size, v }) => !v && `max-width: ${theme.sizes[size]}`};
+  ${({ theme, size, v }) => !v && `min-width: ${theme.sizes[size]}`};
 `

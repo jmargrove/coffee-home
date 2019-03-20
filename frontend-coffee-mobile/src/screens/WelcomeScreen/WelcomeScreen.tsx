@@ -13,13 +13,13 @@ import {
   SystemButtonLarge,
   SystemAbsolute
 } from "./../../system-components"
-import { BIG, theme } from "./../../system-components/system-theme/theme"
-import { selectBlack, selectWhite, selectPrimary } from "../../utils/selectors"
+import { BIG } from "./../../system-components/system-theme/theme"
 import NavigationServices from "../../utils/NavigationServices"
 
 export const WelcomeScreen: FunctionComponent<NavigationProps> = ({
   navigation
 }) => {
+  const goToMapScreen = () => NavigationServices.navigate(MAP_SCREEN, {})
   return (
     <Container>
       <SystemContent fill={true}>
@@ -33,12 +33,7 @@ export const WelcomeScreen: FunctionComponent<NavigationProps> = ({
           </SystemText>
           <SystemSpace size={BIG} />
           <SystemAbsolute bottom={24}>
-            <SystemButtonLarge
-              colorBorder={selectPrimary({ theme })}
-              color={selectWhite({ theme })}
-              textColor={selectBlack({ theme })}
-              onPress={() => NavigationServices.navigate(MAP_SCREEN, {})}
-            >
+            <SystemButtonLarge onPress={goToMapScreen}>
               Get started
             </SystemButtonLarge>
           </SystemAbsolute>

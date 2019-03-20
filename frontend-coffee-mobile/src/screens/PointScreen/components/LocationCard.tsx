@@ -3,10 +3,8 @@ import { SystemText } from "../../../system-components/SystemText"
 import { SystemFlex } from "../../../system-components/SystemFlex"
 import { SystemSpace } from "../../../system-components/SystemSpace"
 import { MEDIUM } from "../../../system-components/system-theme/theme"
+import { roundCoordinates } from "../../../utils/roundCoordinates"
 
-const roundCoordinates = (coord: number) => {
-  return `${Math.round(coord * 1000) / 1000}°`
-}
 export const LocationCard: React.FC<{ lat: number; lng: number }> = ({
   lat,
   lng
