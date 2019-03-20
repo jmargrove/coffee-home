@@ -15,6 +15,9 @@ import { SystemTouch } from "../../system-components/SystemTouch"
 import { ArrowUpPrimary, ArrowDownBlack } from "../../assets"
 import { selectLightGrey } from "../../utils/selectors"
 
+import { observable, action } from "mobx"
+import { observer } from "mobx-react"
+
 const SelectedLocationBox = styled(View)`
 width: 20
 height: 20
@@ -25,7 +28,22 @@ const PointCardContainer = styled(View)`
   background-color: ${selectLightGrey};
 `
 
-const SettingsTag = ({ title, primaryActive }) => {
+class SettingsTagStore {
+  @observable
+  primaryActive = false
+
+  @action
+  handlePrimaryTrue = () => {
+    this.primaryActive = true
+  }
+
+  @action
+  handlePrimaryFalse = () => {
+    this.primaryActive = false
+  }
+}
+
+const SettingsTag: FunctionComponent<{ title: string }> = ({ title }) => {
   return (
     <PointCardContainer>
       <SystemSpace size={REGULAR} />
@@ -36,15 +54,15 @@ const SettingsTag = ({ title, primaryActive }) => {
         </SystemFlex>
 
         <SystemFlex noFlex row align="center">
-          {primaryActive ? (
-            <SystemTouch onPress={() => true}>
+          {/* {primaryActive ? (
+            <SystemTouch onPress={handlePrimaryFalse}>
               <ArrowUpPrimary />
             </SystemTouch>
           ) : (
-            <SystemTouch onPress={() => true}>
+            <SystemTouch onPress={handlePrimaryTrue}>
               <ArrowDownBlack />
             </SystemTouch>
-          )}
+          )} */}
 
           <SystemSpace size={MEDIUM} />
         </SystemFlex>
