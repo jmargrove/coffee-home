@@ -15,6 +15,7 @@ import {
 } from "./../../system-components"
 import { BIG, theme } from "./../../system-components/system-theme/theme"
 import { selectBlack, selectWhite, selectPrimary } from "../../utils/selectors"
+import NavigationServices from "../../utils/NavigationServices"
 
 export const WelcomeScreen: FunctionComponent<NavigationProps> = ({
   navigation
@@ -36,7 +37,7 @@ export const WelcomeScreen: FunctionComponent<NavigationProps> = ({
               colorBorder={selectPrimary({ theme })}
               color={selectWhite({ theme })}
               textColor={selectBlack({ theme })}
-              onPress={() => navigation.navigate(MAP_SCREEN)}
+              onPress={() => NavigationServices.navigate(MAP_SCREEN, {})}
             >
               Get started
             </SystemButtonLarge>
@@ -46,5 +47,3 @@ export const WelcomeScreen: FunctionComponent<NavigationProps> = ({
     </Container>
   )
 }
-
-export const PoweredWelcomeScreen = withNavigation(WelcomeScreen)

@@ -18,15 +18,8 @@ import {
   OPTIMIZE,
   YIELD
 } from "../../utils/constants"
-import {
-  selectPrimary,
-  selectPercentageHeight,
-  selectLightGrey,
-  selectBlack
-} from "../../utils/selectors"
+import { selectPrimary, selectPercentageHeight } from "../../utils/selectors"
 import { demoStore } from "../../store/demoStore"
-import { theme } from "../../system-components/system-theme/theme"
-import NavigationServices from "../../utils/NavigationServices"
 import { noPointsAlert } from "../../utils/alerts"
 
 const DrawerHeaderContianer = styled(View)`
@@ -81,9 +74,7 @@ export const NavigationDrawerComponent: FunctionComponent<any> = props => {
             }
           }}
         >
-          <SystemText color={isSavedPoints ? selectBlack : selectLightGrey}>
-            Locations
-          </SystemText>
+          <SystemText>Locations</SystemText>
         </ListItem>
         <ListItem
           onPress={async () => {
@@ -106,16 +97,17 @@ export const NavigationDrawerComponent: FunctionComponent<any> = props => {
                 }
               })
 
-              Alert.alert("Chose a point", "select points below", alertValues)
+              Alert.alert("Chose a point", "select points below", [
+                ...alertValues,
+                { text: "Back" }
+              ])
             } else {
               noPointsAlert()
               props.navigation.closeDrawer()
             }
           }}
         >
-          <SystemText color={isSavedPoints ? selectBlack : selectLightGrey}>
-            Calculate Yield
-          </SystemText>
+          <SystemText>Calculate Yield</SystemText>
         </ListItem>
         <ListItem
           onPress={async () => {
@@ -141,16 +133,17 @@ export const NavigationDrawerComponent: FunctionComponent<any> = props => {
                 }
               )
 
-              Alert.alert("Chose a point", "select points below", alertValues)
+              Alert.alert("Chose a point", "select points below", [
+                ...alertValues,
+                { text: "Back" }
+              ])
             } else {
               noPointsAlert()
               props.navigation.closeDrawer()
             }
           }}
         >
-          <SystemText color={isSavedPoints ? selectBlack : selectLightGrey}>
-            Optimize Shade
-          </SystemText>
+          <SystemText>Optimize Shade</SystemText>
         </ListItem>
       </SafeAreaView>
     </ScrollView>

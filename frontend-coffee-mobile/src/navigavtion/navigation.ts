@@ -25,6 +25,7 @@ import {
 import { Dimensions } from "react-native"
 import { NavigationDrawerComponent } from "./NavigationDrawer/NavigationDrawer"
 import { PoweredSetParametersScreen } from "../screens/SetParametersScreen/SetParametersScreen"
+import { WelcomeScreen } from "../screens/WelcomeScreen/WelcomeScreen"
 
 const calculateYeild = createSwitchNavigator(
   {
@@ -36,17 +37,6 @@ const calculateYeild = createSwitchNavigator(
   },
   { initialRouteName: MODEL_RESULTS_SCREEN }
 )
-
-// const optimizeShade = createStackNavigator(
-//   {
-//     [POINT_SCREEN]: PoweredPointScreen,
-//     [LOADING_SCREEN]: {
-//       screen: LoadingScreen
-//     },
-//     [MODEL_RESULTS_SCREEN]: { screen: PoweredModelResultsScreen }
-//   },
-//   { initialRouteName: MODEL_RESULTS_SCREEN, headerMode: "none" }
-// )
 
 const DrawerNavigator = createDrawerNavigator(
   {
@@ -66,7 +56,7 @@ const DrawerNavigator = createDrawerNavigator(
 export const AppNavigation = createStackNavigator(
   {
     [WELCOME_SCREEN]: {
-      screen: PoweredWelcomeScreen
+      screen: WelcomeScreen
     },
     [DRAWER_CONTAINER]: {
       screen: DrawerNavigator
@@ -77,7 +67,7 @@ export const AppNavigation = createStackNavigator(
     [MODEL_RESULTS_SCREEN]: { screen: PoweredModelResultsScreen }
   },
   {
-    initialRouteName: DRAWER_CONTAINER,
+    initialRouteName: WELCOME_SCREEN,
     headerMode: "none",
     transitionConfig: () => ({
       transitionSpec: {

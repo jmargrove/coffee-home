@@ -35,6 +35,15 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+
+   // Set loadingView to the LaunchScreen.xib view too
+	// explicitly set all frames this way, the screen is
+  // continuous, no flashes or loaders
+	UIView *launchScreenView = [[[NSBundle mainBundle] loadNibNamed:@"LaunchScreen" owner:self options:nil] firstObject];
+	rootView.frame = self.window.bounds;
+	launchScreenView.frame = self.window.bounds;
+	rootView.loadingView = launchScreenView;
+
   return YES;
 }
 

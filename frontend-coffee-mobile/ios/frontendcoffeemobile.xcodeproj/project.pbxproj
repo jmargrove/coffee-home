@@ -45,6 +45,7 @@
 		59269059C0154BDC91661761 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DBFDE24A42574077892BC393 /* AntDesign.ttf */; };
 		5C1DBF1A2226035D00F58761 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C1DBF192226035D00F58761 /* Launch Screen.storyboard */; };
 		5C9F1AB0F1BF4D15831CD97E /* Roboto-Condensed.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 15B45DB29BE7464BA5B42D6F /* Roboto-Condensed.ttf */; };
+		5CBAE8012242EDB2006C9314 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CBAE8002242EDB2006C9314 /* LaunchScreen.xib */; };
 		5D8BAC7EBA6641C0964FEFA4 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F12E6914F6043F9B73D19D1 /* Entypo.ttf */; };
 		608E99F5F7784028AB163615 /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F529E0920FBE482882477728 /* FontAwesome5_Brands.ttf */; };
 		682ADE3A21804BFD8C33D29A /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CECE6DA7E29248AC9B85A14D /* MaterialIcons.ttf */; };
@@ -388,6 +389,7 @@
 		40738701EE8A4CD6A6E34F4F /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/native-base/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
 		46D3CCE566D248728B59A580 /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-MediumItalic.ttf"; path = "../src/assets/fonts/Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
 		5C1DBF192226035D00F58761 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		5CBAE8002242EDB2006C9314 /* LaunchScreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		5FAEA27BDA0943D4A419737D /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-ThinItalic.ttf"; path = "../src/assets/fonts/Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
 		5FEB2DB53E664B478215362B /* Roboto_medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto_medium.ttf; path = "../node_modules/native-base/Fonts/Roboto_medium.ttf"; sourceTree = "<group>"; };
@@ -569,6 +571,7 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				5C1DBF192226035D00F58761 /* Launch Screen.storyboard */,
+				5CBAE8002242EDB2006C9314 /* LaunchScreen.xib */,
 			);
 			name = frontendcoffeemobile;
 			sourceTree = "<group>";
@@ -835,6 +838,7 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 7646STF3L3;
+						LastSwiftMigration = 1010;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -1209,6 +1213,7 @@
 				D0B7AEE1872742D7A1547BF9 /* Roboto_medium.ttf in Resources */,
 				CC76D5D667D44624B23FB82D /* Roboto.ttf in Resources */,
 				9B60700C1FFB469D99C881C8 /* rubicon-icon-font.ttf in Resources */,
+				5CBAE8012242EDB2006C9314 /* LaunchScreen.xib in Resources */,
 				91F856F968884B069D3C0464 /* SimpleLineIcons.ttf in Resources */,
 				C12D897C6E454F49A4785237 /* Zocial.ttf in Resources */,
 				D355C75695E247ECA3793CFF /* DroidSans-Bold.ttf in Resources */,
@@ -1432,6 +1437,7 @@
 			baseConfigurationReference = 77F335061A5589B6712C5237 /* Pods-frontendcoffeemobile.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 7646STF3L3;
@@ -1444,6 +1450,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.frontendcoffeemobile;
 				PRODUCT_NAME = frontendcoffeemobile;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1454,6 +1462,7 @@
 			baseConfigurationReference = CC1B7436F0FF40613CBD16AB /* Pods-frontendcoffeemobile.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7646STF3L3;
 				INFOPLIST_FILE = frontendcoffeemobile/Info.plist;
@@ -1465,6 +1474,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.frontendcoffeemobile;
 				PRODUCT_NAME = frontendcoffeemobile;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

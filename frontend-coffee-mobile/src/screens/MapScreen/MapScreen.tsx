@@ -34,7 +34,6 @@ import { SAVE_DATA_LOCALLY } from "../../utils/constants"
 import { AsyncStorage, Alert } from "react-native"
 import { theme } from "../../system-components/system-theme/theme"
 import NavigationServices from "../../utils/NavigationServices"
-import { IDataAddition } from "../PointScreen/components/SecondaryText"
 import { demoStore } from "../../store/demoStore"
 
 const power = compose<any, any>(
@@ -55,8 +54,7 @@ const power = compose<any, any>(
 
 export const MapScreen: FunctionComponent<NavigationProps & any> = ({
   navigation,
-  store,
-  savedPoints
+  store
 }) => {
   const {
     handlePointLocation,
