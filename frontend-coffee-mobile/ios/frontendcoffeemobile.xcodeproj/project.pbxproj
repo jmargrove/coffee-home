@@ -43,7 +43,6 @@
 		49955F9E43D4448AABB404B5 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CC739FC5714E4D07A7DB7B3E /* Foundation.ttf */; };
 		5288DBD40EF142E4962ECC66 /* Roboto-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D8BE4B8B244B49AE8FE6F44B /* Roboto-LightItalic.ttf */; };
 		59269059C0154BDC91661761 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DBFDE24A42574077892BC393 /* AntDesign.ttf */; };
-		5C1DBF1A2226035D00F58761 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C1DBF192226035D00F58761 /* Launch Screen.storyboard */; };
 		5C9F1AB0F1BF4D15831CD97E /* Roboto-Condensed.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 15B45DB29BE7464BA5B42D6F /* Roboto-Condensed.ttf */; };
 		5CBAE8012242EDB2006C9314 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CBAE8002242EDB2006C9314 /* LaunchScreen.xib */; };
 		5D8BAC7EBA6641C0964FEFA4 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F12E6914F6043F9B73D19D1 /* Entypo.ttf */; };
@@ -388,7 +387,6 @@
 		3C888E18804954908B67AD2D /* Pods-frontendcoffeemobileTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-frontendcoffeemobileTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-frontendcoffeemobileTests/Pods-frontendcoffeemobileTests.release.xcconfig"; sourceTree = "<group>"; };
 		40738701EE8A4CD6A6E34F4F /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/native-base/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
 		46D3CCE566D248728B59A580 /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-MediumItalic.ttf"; path = "../src/assets/fonts/Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
-		5C1DBF192226035D00F58761 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		5CBAE8002242EDB2006C9314 /* LaunchScreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		5FAEA27BDA0943D4A419737D /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-ThinItalic.ttf"; path = "../src/assets/fonts/Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
@@ -570,7 +568,6 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
-				5C1DBF192226035D00F58761 /* Launch Screen.storyboard */,
 				5CBAE8002242EDB2006C9314 /* LaunchScreen.xib */,
 			);
 			name = frontendcoffeemobile;
@@ -1217,7 +1214,6 @@
 				91F856F968884B069D3C0464 /* SimpleLineIcons.ttf in Resources */,
 				C12D897C6E454F49A4785237 /* Zocial.ttf in Resources */,
 				D355C75695E247ECA3793CFF /* DroidSans-Bold.ttf in Resources */,
-				5C1DBF1A2226035D00F58761 /* Launch Screen.storyboard in Resources */,
 				D25A3A387CD048D2A68F41FB /* Roboto-Black.ttf in Resources */,
 				C5C86216A92F4827B80C6CFB /* Roboto-BlackItalic.ttf in Resources */,
 				D77E2401C1554E46B797CD17 /* Roboto-BoldCondensed.ttf in Resources */,
