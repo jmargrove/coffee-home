@@ -10,6 +10,7 @@ import {
   selectLightGrey,
   selectPercentageWidth
 } from "../utils/selectors"
+import { SettingsIcon } from "../assets/SettingsIcon/SettingsIcon"
 
 const PhoneInfoBarr = styled(View)<any>`
   width: 100%;
@@ -56,7 +57,7 @@ export const HeaderComponent: FunctionComponent<{ LeftIcon?: ReactNode }> = ({
             {children}
           </SystemText>
           <SystemFlex row noFlex>
-            <Image source={require("./../assets/settings.png")} />
+            <SettingsIcon />
             <SystemSpace size={SMALL} />
           </SystemFlex>
         </SystemFlex>

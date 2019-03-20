@@ -12,8 +12,6 @@ import {
   REGULAR,
   MEDIUM,
   theme,
-  SMALL,
-  LARGE,
   BIG
 } from "../../system-components/system-theme/theme"
 import { observer } from "mobx-react"

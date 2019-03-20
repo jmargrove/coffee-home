@@ -11,7 +11,8 @@ import {
   LOADING_SCREEN,
   MODEL_RESULTS_SCREEN,
   DRAWER_CONTAINER,
-  POINT_SCREEN
+  POINT_SCREEN,
+  SETTINGS_SCREEN
 } from "../utils/constants"
 import {
   WelcomeScreen,
@@ -23,6 +24,7 @@ import {
 import { Dimensions } from "react-native"
 import { NavigationDrawerComponent } from "./NavigationDrawer/NavigationDrawer"
 import { PoweredSetParametersScreen } from "../screens/SetParametersScreen/SetParametersScreen"
+import { SettingsScreen } from "../screens/SettingsScreen/SettingsScreen"
 
 const DrawerNavigator = createDrawerNavigator(
   {
@@ -50,7 +52,8 @@ export const AppNavigation = createStackNavigator(
     [LOADING_SCREEN]: {
       screen: LoadingScreen
     },
-    [MODEL_RESULTS_SCREEN]: { screen: PoweredModelResultsScreen }
+    [MODEL_RESULTS_SCREEN]: { screen: PoweredModelResultsScreen },
+    [SETTINGS_SCREEN]: { screen: SettingsScreen }
   },
   {
     initialRouteName: WELCOME_SCREEN,
