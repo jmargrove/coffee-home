@@ -6,8 +6,7 @@ import {
   SystemFlex,
   SystemSpace,
   SystemText,
-  SystemPadding,
-  SystemAbsolute
+  SystemPadding
 } from "../../system-components"
 import {
   withNavigation,
@@ -16,7 +15,7 @@ import {
 } from "react-navigation"
 import { ScatterPlot } from "./ScatterPlot"
 import { ScrollView } from "react-native"
-import { REGULAR, SMALL } from "../../system-components/system-theme/theme"
+import { REGULAR } from "../../system-components/system-theme/theme"
 import { YieldDisplay } from "../../components/YieldDisplay"
 import {
   compose,
@@ -34,11 +33,13 @@ import { handleUserSlopeParameter } from "../../utils/handleSlopeParameters"
 import { IElementData } from "../../components/GGPlot/types"
 import { GlobeIcon } from "../../assets/GlobeIcon/GlobeIcon"
 import { getEndPoint } from "../../utils/getEndPoint"
-import { OPTIMIZE, YIELD } from "../../utils/constants"
+import { OPTIMIZE, YIELD, MAP_SCREEN } from "../../utils/constants"
 import { Coordinates } from "../SetParametersScreen/SetParametersScreen"
 import { View } from "react-native"
 import { PointInformationCard } from "../PointScreen/components/PointInformationCard"
-import { IDataAddition } from "../../store/demoStore"
+import { IDataAddition, demoStore } from "../../store/demoStore"
+import { Alert } from "react-native"
+import NavigationServices from "../../utils/NavigationServices"
 
 type OPTIMIZE = "OPTIMIZE"
 type YIELD = "YIELD"
@@ -197,28 +198,45 @@ const power = compose<
         return response.json()
       }
 
-      const response = await handleSend()
+      try {
+        const response = await handleSend()
+        if (type === YIELD) {
+          const res = response.map((el: { [x: string]: number }) => {
+            return {
+              y: el.yield,
+              x: el.year - 1
+            }
+          })
 
-      if (type === YIELD) {
-        const res = response.map((el: { [x: string]: number }) => {
-          return {
-            y: el.yield,
-            x: el.year - 1
+          this.setState({ response: res, isLoading: false, type, point })
+        }
+
+        if (type === OPTIMIZE) {
+          const res = response.map((el: { [x: string]: number }) => {
+            return {
+              x: el.shade,
+              y: el.yieldIrrFALSE
+            }
+          })
+
+          this.setState({ response: res, isLoading: false, type, point })
+        }
+      } catch (e) {
+        Alert.alert("Server Error", "Issue with point", [
+          {
+            text: "Delete",
+            onPress: () => {
+              demoStore.handleDeletePoint(point)
+              NavigationServices.navigate(MAP_SCREEN, {})
+            }
+          },
+          {
+            text: "Back",
+            onPress: () => {
+              NavigationServices.navigate(MAP_SCREEN, {})
+            }
           }
-        })
-
-        this.setState({ response: res, isLoading: false, type, point })
-      }
-
-      if (type === OPTIMIZE) {
-        const res = response.map((el: { [x: string]: number }) => {
-          return {
-            x: el.shade,
-            y: el.yieldIrrFALSE
-          }
-        })
-
-        this.setState({ response: res, isLoading: false, type, point })
+        ])
       }
     }
   }),
