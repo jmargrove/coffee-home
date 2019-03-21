@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react"
+import React, { FunctionComponent, useState } from "react"
 import { HeaderComponent } from "../../components/HeaderComponent"
 import { Container } from "native-base"
 import {
@@ -15,35 +15,13 @@ import { SystemTouch } from "../../system-components/SystemTouch"
 import { ArrowUpPrimary, ArrowDownBlack } from "../../assets"
 import { selectLightGrey } from "../../utils/selectors"
 
-import { observable, action } from "mobx"
-import { observer } from "mobx-react"
-
-const SelectedLocationBox = styled(View)`
-width: 20
-height: 20
-`
-
 const PointCardContainer = styled(View)`
   width: 100%;
   background-color: ${selectLightGrey};
 `
 
-class SettingsTagStore {
-  @observable
-  primaryActive = false
-
-  @action
-  handlePrimaryTrue = () => {
-    this.primaryActive = true
-  }
-
-  @action
-  handlePrimaryFalse = () => {
-    this.primaryActive = false
-  }
-}
-
 const SettingsTag: FunctionComponent<{ title: string }> = ({ title }) => {
+  const [primaryActive, setPrimaryActive] = useState(false)
   return (
     <PointCardContainer>
       <SystemSpace size={REGULAR} />
@@ -54,15 +32,15 @@ const SettingsTag: FunctionComponent<{ title: string }> = ({ title }) => {
         </SystemFlex>
 
         <SystemFlex noFlex row align="center">
-          {/* {primaryActive ? (
-            <SystemTouch onPress={handlePrimaryFalse}>
+          {primaryActive ? (
+            <SystemTouch onPress={() => setPrimaryActive(false)}>
               <ArrowUpPrimary />
             </SystemTouch>
           ) : (
-            <SystemTouch onPress={handlePrimaryTrue}>
+            <SystemTouch onPress={() => setPrimaryActive(true)}>
               <ArrowDownBlack />
             </SystemTouch>
-          )} */}
+          )}
 
           <SystemSpace size={MEDIUM} />
         </SystemFlex>
@@ -80,11 +58,11 @@ export const SettingsScreen: FunctionComponent = () => {
         <ScrollView>
           <SystemFlex>
             <SystemSpace size={REGULAR} />
-            <SettingsTag title="Private policy" primaryActive={true} />
+            <SettingsTag title="Private policy" />
             <SystemSpace size={REGULAR} />
-            <SettingsTag title="Model usage" primaryActive={true} />
+            <SettingsTag title="Model usage" />
             <SystemSpace size={REGULAR} />
-            <SettingsTag title="Contact" primaryActive={true} />
+            <SettingsTag title="Contact" />
             <SystemSpace size={REGULAR} />
           </SystemFlex>
         </ScrollView>

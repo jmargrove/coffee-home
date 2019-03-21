@@ -12,8 +12,8 @@
     "mobx": "3.2.2",
     "mobx-react": "4.2.2",
     "native-base": "^2.11.0",
-    "react": "16.6.3",
-    "react-native": "0.58.3",
+    "react": "16.8.3",
+    "react-native": "0.59.1",
     "react-native-gesture-handler": "^1.0.15",
     "react-native-maps": "^0.23.0",
     "react-navigation": "^3.0.9",
@@ -29,13 +29,14 @@
     "@types/react-test-renderer": "^16.0.3",
     "@types/recompose": "^0.30.3",
     "@types/styled-components": "^4.1.7",
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-jest": "24.0.0",
-    "jest": "24.0.0",
-    "metro-react-native-babel-preset": "0.51.1",
     "react-native-dotenv": "^0.2.0",
-    "react-test-renderer": "16.6.3",
-    "typescript": "^3.3.1"
+    "typescript": "^3.3.1",
+    "@babel/core": "^7.3.4",
+    "@babel/runtime": "^7.3.4",
+    "babel-jest": "^24.5.0",
+    "jest": "^24.5.0",
+    "metro-react-native-babel-preset": "^0.53.1",
+    "react-test-renderer": "16.8.3"
   },
   "jest": {
     "preset": "react-native"
