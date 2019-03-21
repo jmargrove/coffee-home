@@ -55,7 +55,7 @@ export const AppNavigation = createStackNavigator(
     [SETTINGS_SCREEN]: { screen: SettingsScreen }
   },
   {
-    initialRouteName: SETTINGS_SCREEN,
+    initialRouteName: WELCOME_SCREEN,
     headerMode: "none",
     transitionConfig: () => ({
       transitionSpec: {
