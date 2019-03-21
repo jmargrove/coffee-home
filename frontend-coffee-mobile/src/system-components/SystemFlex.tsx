@@ -8,5 +8,6 @@ export const SystemFlex = styled(View)<System.FlexProps & any>`
   ${({ alignContent }) => alignContent && `align-content: ${alignContent}`};
   ${({ align }) => align && `align-items: ${align}`};
   ${({ row }) => row && `flex-direction: row`};
-  ${({ color }) => color && `background-color: ${color}`};
+  background-color: ${({ color, theme }) =>
+    color ? color({ theme }) : "transparent"};
 `

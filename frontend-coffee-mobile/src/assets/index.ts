@@ -1,4 +1,5 @@
 export { ArrowDownBlack } from "./ArrowDownBlack/ArrowDownBlack"
+export { LogoYelloLarge } from "./LogoYellowLarge/LogoYellowLarge"
 export { CloseIcon } from "./CloseIcon/CloseIcon"
 export { GlobeIcon } from "./GlobeIcon/GlobeIcon"
 export { ArrowUpPrimary } from "./ArrowUpPrimary/ArrowUpPrimary"

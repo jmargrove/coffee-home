@@ -1,9 +1,6 @@
 import React, { FunctionComponent } from "react"
 import { Container } from "native-base"
-import { Image } from "react-native"
-import { withNavigation } from "react-navigation"
 import { MAP_SCREEN } from "./../../utils/constants"
-import { NavigationProps } from "./../../types.d"
 import {
   SystemContent,
   SystemFlex,
@@ -15,10 +12,9 @@ import {
 } from "./../../system-components"
 import { BIG } from "./../../system-components/system-theme/theme"
 import NavigationServices from "../../utils/NavigationServices"
+import { LogoYelloLarge } from "../../assets"
 
-export const WelcomeScreen: FunctionComponent<NavigationProps> = ({
-  navigation
-}) => {
+export const WelcomeScreen: FunctionComponent = () => {
   const goToMapScreen = () => NavigationServices.navigate(MAP_SCREEN, {})
   return (
     <Container>
@@ -26,7 +22,7 @@ export const WelcomeScreen: FunctionComponent<NavigationProps> = ({
         <SystemFlex justify="center" align="center">
           <SystemTitle>Coffee Engine</SystemTitle>
           <SystemSpace size={BIG} />
-          <Image source={require("./../../assets/logo-yellow-large.png")} />
+          <LogoYelloLarge size={50} />
           <SystemSpace size={BIG} />
           <SystemText size={24} center>
             Get yield estimates for any location on the globe.

@@ -1,4 +1,5 @@
 export { SystemAbsolute } from "./SystemAbsolute"
+export { SystemPadding } from "./SystemPadding"
 export { SystemSpace } from "./SystemSpace"
 export { SystemButtonLarge } from "./SystemButtonLarge"
 export { SystemText } from "./SystemText"
