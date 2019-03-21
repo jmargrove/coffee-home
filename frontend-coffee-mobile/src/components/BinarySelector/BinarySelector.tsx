@@ -1,7 +1,7 @@
 import React, { FunctionComponent, ReactNode } from "react"
 import { SystemText, SystemFlex, SystemSpace } from "../../system-components"
 import styled from "styled-components"
-import { View, TouchableOpacity } from "react-native"
+import { View } from "react-native"
 import { REGULAR } from "../../system-components/system-theme/theme"
 import { compose, shouldUpdate } from "recompose"
 import { IconCross } from "../../assets/IconCross/IconCross"
@@ -47,9 +47,7 @@ const BinarySelector: FunctionComponent<IBinarySelectorProps> = ({
                       prevFactorLevel={!value}
                     >
                       <SystemFlex justify="center" align="center">
-                        <TouchableOpacity onPress={handleChange}>
-                          <IconCross />
-                        </TouchableOpacity>
+                        <IconCross onPress={handleChange} />
                       </SystemFlex>
                     </SelectionGlowAnimated>
                   </SystemFlex>
@@ -62,9 +60,7 @@ const BinarySelector: FunctionComponent<IBinarySelectorProps> = ({
                       prevFactorLevel={!value}
                     >
                       <SystemFlex justify="center" align="center">
-                        <TouchableOpacity onPress={handleChange}>
-                          <IconTick />
-                        </TouchableOpacity>
+                        <IconTick onPress={handleChange} />
                       </SystemFlex>
                     </SelectionGlowAnimated>
                   </SystemFlex>

@@ -1,8 +1,13 @@
 import React, { FunctionComponent, ReactNode } from "react"
 import styled from "../system-components/system-theme/styled-components"
-import { View, TouchableOpacity, Image, StatusBar } from "react-native"
+import { View, StatusBar } from "react-native"
 import { SMALL, theme } from "../system-components/system-theme/theme"
-import { SystemFlex, SystemSpace, SystemText } from "../system-components"
+import {
+  SystemFlex,
+  SystemSpace,
+  SystemText,
+  SystemTouch
+} from "../system-components"
 import { BoundsBar } from "./BoundsBar"
 import { IconBack } from "../assets/IconBack/IconBack"
 import {
@@ -45,12 +50,12 @@ export const HeaderComponent: FunctionComponent<{
           {LeftIcon ? (
             <LeftIcon />
           ) : (
-            <TouchableOpacity>
+            <SystemTouch>
               <SystemFlex row noFlex>
                 <SystemSpace size={SMALL} />
                 <IconBack />
               </SystemFlex>
-            </TouchableOpacity>
+            </SystemTouch>
           )}
 
           <SystemText size={24} blackItalic>

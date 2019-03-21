@@ -1,12 +1,11 @@
 import React, { FunctionComponent } from "react"
 import { SystemFlex } from "../../../system-components/SystemFlex"
-import { TouchableOpacity } from "react-native"
 import { View } from "react-native"
 import {
   MEDIUM_GREY,
   theme
 } from "../../../system-components/system-theme/theme"
-import { SystemText } from "../../../system-components"
+import { SystemText, SystemTouch } from "../../../system-components"
 import { YtickAnimated, YtickContainer } from "./YtickAnimated"
 import { SelectionGlowAnimated } from "./SelectionGlowAnimated"
 import { IconTick } from "../../../assets/IconTick/IconTick"
@@ -26,7 +25,7 @@ const GreaterTick: FunctionComponent<ITickProps> = ({
   prevFactorLevel,
   label
 }) => (
-  <TouchableOpacity onPress={() => handleFactorChange(label)}>
+  <SystemTouch onPress={() => handleFactorChange(label)}>
     <SystemFlex noFlex align="center">
       <SelectionGlowAnimated
         label={label}
@@ -43,7 +42,7 @@ const GreaterTick: FunctionComponent<ITickProps> = ({
         prevFactorLevel={prevFactorLevel}
       />
     </SystemFlex>
-  </TouchableOpacity>
+  </SystemTouch>
 )
 
 const Xaxis = ({ left, right }: any) => (
@@ -77,7 +76,7 @@ const LowerTick: FunctionComponent<ITickProps> = ({
   handleFactorChange,
   factorLevel
 }) => (
-  <TouchableOpacity onPress={() => handleFactorChange(label)}>
+  <SystemTouch onPress={() => handleFactorChange(label)}>
     <SystemFlex noFlex align="center">
       <YtickContainer />
       <SystemText
@@ -86,7 +85,7 @@ const LowerTick: FunctionComponent<ITickProps> = ({
         {label}
       </SystemText>
     </SystemFlex>
-  </TouchableOpacity>
+  </SystemTouch>
 )
 
 interface IAxisNode {

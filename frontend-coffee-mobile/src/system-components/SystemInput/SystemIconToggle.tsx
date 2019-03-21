@@ -1,8 +1,9 @@
 import React from "react"
-import { Image, TouchableOpacity } from "react-native"
+import { Image } from "react-native"
 import { SystemFlex } from "../SystemFlex"
 import { SystemSpace } from "../SystemSpace"
 import { ATOMIC } from "../system-theme/theme"
+import { SystemTouch } from "../SystemTouch"
 
 export const SystemIconToggle = ({
   showEdit,
@@ -12,14 +13,14 @@ export const SystemIconToggle = ({
   <SystemFlex justify="flex-end" noFlex>
     <SystemFlex justify="flex-end">
       {showEdit && (
-        <TouchableOpacity onPress={handleFocus}>
+        <SystemTouch onPress={handleFocus}>
           <Image source={require("../../assets/edit-text.png")} />
-        </TouchableOpacity>
+        </SystemTouch>
       )}
       {!showEdit && (
-        <TouchableOpacity onPress={clearInput}>
+        <SystemTouch onPress={clearInput}>
           <Image source={require("../../assets/clear-text.png")} />
-        </TouchableOpacity>
+        </SystemTouch>
       )}
       <SystemSpace size={ATOMIC} />
     </SystemFlex>

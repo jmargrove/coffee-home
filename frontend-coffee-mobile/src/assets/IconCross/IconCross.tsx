@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from "react"
 import { Image, View } from "react-native"
 import styled from "../../system-components/system-theme/styled-components"
-import { SystemFlex } from "../../system-components"
+import { SystemFlex, SystemTouch } from "../../system-components"
 import { selectWhite, selectPrimary } from "../../utils/selectors"
 const source = require("./cross.png")
 
@@ -14,12 +14,16 @@ const IconContainer = styled(View)<{}>`
   background-color: ${selectWhite};
 `
 
-export const IconCross: FunctionComponent<{}> = () => {
+export const IconCross: FunctionComponent<{ onPress?: () => void }> = ({
+  onPress
+}) => {
   return (
-    <IconContainer>
-      <SystemFlex justify="center" align="center">
-        <Image source={source} />
-      </SystemFlex>
-    </IconContainer>
+    <SystemTouch onPress={onPress ? onPress : () => {}} disabled={!onPress}>
+      <IconContainer>
+        <SystemFlex justify="center" align="center">
+          <Image source={source} />
+        </SystemFlex>
+      </IconContainer>
+    </SystemTouch>
   )
 }

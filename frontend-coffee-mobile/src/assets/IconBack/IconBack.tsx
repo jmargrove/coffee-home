@@ -1,16 +1,17 @@
 import React, { FunctionComponent } from "react"
-import { Image, TouchableOpacity } from "react-native"
+import { Image } from "react-native"
 import { withNavigation } from "react-navigation"
 import { NavigationProps } from "../../types"
+import { SystemTouch } from "../../system-components"
 const source = require("./back.png")
 
 const IconBackDefault: FunctionComponent<NavigationProps> = ({
   navigation
 }) => {
   return (
-    <TouchableOpacity onPress={() => navigation.goBack()}>
+    <SystemTouch onPress={() => navigation.goBack()}>
       <Image source={source} />
-    </TouchableOpacity>
+    </SystemTouch>
   )
 }
 

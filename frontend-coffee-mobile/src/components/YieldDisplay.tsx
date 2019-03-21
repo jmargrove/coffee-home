@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react"
-import { View, TouchableOpacity } from "react-native"
+import { View } from "react-native"
 import { REGULAR, SMALL } from "../system-components/system-theme/theme"
 import {
   SystemSpace,
@@ -54,11 +54,8 @@ export const YieldDisplay: FunctionComponent<{
       <SystemSpace size={SMALL} />
       <YieldDisplayContainer>
         <SystemRelative>
-          {/* <SystemFlex justify="center" row align="center" color="purple"> */}
           <SystemAbsolute left={0} top={50} zIndex={0}>
-            <TouchableOpacity onPress={handleDecrement}>
-              <ConsoleLeftArrow />
-            </TouchableOpacity>
+            <ConsoleLeftArrow onPress={handleDecrement} />
           </SystemAbsolute>
           <SystemAbsolute top={0} left={28} zIndex={2}>
             <DialOuterContainer>
@@ -100,9 +97,7 @@ export const YieldDisplay: FunctionComponent<{
           </SystemAbsolute>
 
           <SystemAbsolute top={116} right={0} zIndex={0}>
-            <TouchableOpacity onPress={handleIncrement}>
-              <ConsoleRightArrow />
-            </TouchableOpacity>
+            <ConsoleRightArrow onPress={handleIncrement} />
           </SystemAbsolute>
         </SystemRelative>
       </YieldDisplayContainer>

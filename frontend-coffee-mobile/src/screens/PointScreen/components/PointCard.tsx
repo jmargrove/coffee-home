@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { SystemFlex, SystemText, SystemSpace } from "../../../system-components"
-import { View, TouchableOpacity, Alert, AsyncStorage } from "react-native"
+import { View, Alert } from "react-native"
 import styled from "../../../system-components/system-theme/styled-components"
 import { selectLightGrey, selectWhite } from "../../../utils/selectors"
 import {

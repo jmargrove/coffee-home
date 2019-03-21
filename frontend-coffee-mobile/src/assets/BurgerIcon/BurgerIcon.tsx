@@ -1,12 +1,13 @@
 import React from "react"
 import { SystemFlex } from "../../system-components"
 import styled from "../../system-components/system-theme/styled-components"
-import { View, TouchableOpacity } from "react-native"
+import { View } from "react-native"
 import { withNavigation } from "react-navigation"
 import { FunctionComponent } from "react"
 import { NavigationProps } from "../../types"
 import { selectPrimary } from "../../utils/selectors"
 import { SystemAbsolute } from "../../system-components/SystemAbsolute"
+import { SystemTouch } from "../../system-components/SystemTouch"
 
 const BurgerIconContainer = styled(View)`
   width: 40
@@ -26,10 +27,7 @@ const BurgerIcon: FunctionComponent<NavigationProps & { enable: boolean }> = ({
   if (enable) {
     return (
       <SystemAbsolute top={48} left={32} zIndex={32}>
-        <TouchableOpacity
-          onPress={() => navigation.openDrawer()}
-          hitSlop={{ left: 10, right: 10, top: 10, bottom: 10 }}
-        >
+        <SystemTouch onPress={() => navigation.openDrawer()}>
           <BurgerIconContainer>
             <SystemFlex justify="space-between">
               <BurgerIconLines />
@@ -37,7 +35,7 @@ const BurgerIcon: FunctionComponent<NavigationProps & { enable: boolean }> = ({
               <BurgerIconLines />
             </SystemFlex>
           </BurgerIconContainer>
-        </TouchableOpacity>
+        </SystemTouch>
       </SystemAbsolute>
     )
   } else {
