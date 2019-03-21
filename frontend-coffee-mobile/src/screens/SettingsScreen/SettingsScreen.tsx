@@ -38,13 +38,9 @@ const SettingsTag: FunctionComponent<{ title: string; disable?: boolean }> = ({
         <SystemFlex noFlex row align="center">
           {!disable &&
             (primaryActive ? (
-              <SystemTouch onPress={() => setPrimaryActive(false)}>
-                <ArrowUpPrimary />
-              </SystemTouch>
+              <ArrowUpPrimary onPress={() => setPrimaryActive(false)} />
             ) : (
-              <SystemTouch onPress={() => setPrimaryActive(true)}>
-                <ArrowDownBlack />
-              </SystemTouch>
+              <ArrowDownBlack onPress={() => setPrimaryActive(true)} />
             ))}
           <SystemSpace size={MEDIUM} />
         </SystemFlex>

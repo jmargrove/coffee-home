@@ -191,13 +191,9 @@ export class PointCard extends Component<
 
             <SystemFlex noFlex row align="center">
               {primaryActive ? (
-                <TouchableOpacity onPress={handlePrimaryActiveFalse}>
-                  <ArrowUpPrimary />
-                </TouchableOpacity>
+                <ArrowUpPrimary onPress={handlePrimaryActiveFalse} />
               ) : (
-                <TouchableOpacity onPress={handlePrimaryActiveTrue}>
-                  <ArrowDownBlack />
-                </TouchableOpacity>
+                <ArrowDownBlack onPress={handlePrimaryActiveTrue} />
               )}
 
               <SystemSpace size={MEDIUM} />
