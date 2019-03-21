@@ -41,6 +41,7 @@ export const NumericInputComponent: FunctionComponent<
               autoFocus={autoFocus}
               onChangeText={handleChange}
               IconToggle={SystemIconToggle}
+              maxLength={3}
               {...rest}
             />
           </SystemFlex>
