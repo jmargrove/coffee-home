@@ -196,6 +196,8 @@ class Store {
               JSON.stringify(this.savedPoints)
             )
 
+            this.resetValues(this.savedPoints.length)
+
             NavigationServices.navigate(MAP_SCREEN, { selectPoint: false })
           }
         }

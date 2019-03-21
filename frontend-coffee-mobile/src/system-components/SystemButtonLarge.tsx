@@ -29,7 +29,7 @@ export const SystemButtonLarge: FunctionComponent<System.ButtonLargeProps> = ({
     return (
       <StyledButton color={selectWhite} colorBorder={selectLightGrey}>
         <SystemFlex noFlex>
-          <Button large transparent block rounded onPress={onPress}>
+          <Button large transparent block rounded>
             <SystemText size={24} color={selectHeavyGrey}>
               {children}
             </SystemText>

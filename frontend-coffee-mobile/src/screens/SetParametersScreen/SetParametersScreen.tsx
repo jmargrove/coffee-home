@@ -95,7 +95,7 @@ const SetParametersScreen: FunctionComponent = () => {
             />
 
             <SystemButtonLarge
-              isDisabled={demoStore.isFormFilled}
+              isDisabled={!demoStore.isFormFilled}
               colorBorder={selectPrimary({ theme })}
               color={selectWhite({ theme })}
               textColor={selectBlack({ theme })}
