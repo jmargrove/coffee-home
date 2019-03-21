@@ -26,3 +26,17 @@ export const selectPercentageHeight: PercentSelector = ({ percent }) =>
   Dimensions.get("window").height * percent
 export const selectPercentageWidth: PercentSelector = ({ percent }) =>
   Dimensions.get("window").width * percent
+
+export const selectAtomic: StyleSelector<number> = ({ theme }) =>
+  theme.sizes.ATOMIC
+export const selectSmall: StyleSelector<number> = ({ theme }) =>
+  theme.sizes.SMALL
+export const selectRegular: StyleSelector<number> = ({ theme }) =>
+  theme.sizes.REGULAR
+export const selectMedium: StyleSelector<number> = ({ theme }) =>
+  theme.sizes.MEDIUM
+export const selectBig: StyleSelector<number> = ({ theme }) => theme.sizes.BIG
+export const selectLarge: StyleSelector<number> = ({ theme }) =>
+  theme.sizes.LARGE
+export const selectMassive: StyleSelector<number> = ({ theme }) =>
+  theme.sizes.MASSIVE
