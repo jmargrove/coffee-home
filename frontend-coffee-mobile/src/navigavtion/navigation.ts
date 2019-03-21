@@ -47,11 +47,17 @@ export const AppNavigation = createStackNavigator(
     [DRAWER_CONTAINER]: {
       screen: DrawerNavigator
     },
-    [LOADING_SCREEN]: {
-      screen: LoadingScreen
-    },
     [SET_PARAMETERS_SCREEN]: PoweredSetParametersScreen,
-    [MODEL_RESULTS_SCREEN]: { screen: PoweredModelResultsScreen },
+    [MODEL_RESULTS_SCREEN]: {
+      screen: PoweredModelResultsScreen,
+      navigationOptions: {
+        transitionConfig: () => ({
+          transitionSpec: {
+            duration: 0
+          }
+        })
+      }
+    },
     [SETTINGS_SCREEN]: { screen: SettingsScreen }
   },
   {
@@ -59,7 +65,7 @@ export const AppNavigation = createStackNavigator(
     headerMode: "none",
     transitionConfig: () => ({
       transitionSpec: {
-        duration: 250
+        duration: 0
       }
     })
   }

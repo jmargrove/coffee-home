@@ -154,13 +154,6 @@ const power = compose<
         userIrrValue,
         userSlopeValue
       } = this.props.navigation.getParam("point")
-      console.log({
-        lng,
-        lat,
-        userShadeValue: handleUserShadeParameter(userShadeValue),
-        userIrrValue: userIrrValue ? 1 : 0,
-        userSlopeValue: handleUserSlopeParameter(userSlopeValue)
-      })
       const type: ModelType = this.props.navigation.getParam("type")
 
       const handleSend = async () => {
@@ -182,7 +175,6 @@ const power = compose<
       }
 
       const response = await handleSend()
-      console.log(response)
 
       if (type === YIELD) {
         const res = response.map((el: { [x: string]: number }) => {
