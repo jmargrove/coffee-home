@@ -24,6 +24,31 @@ import { selectBlack, selectPrimary, selectWhite } from "../../utils/selectors"
 import { demoStore } from "../../store/demoStore"
 import { roundCoordinates } from "../../utils/roundCoordinates"
 
+export const Coordinates: React.FC<{
+  coordinates: { lat: number; lng: number }
+}> = ({ coordinates }) => {
+  return (
+    <SystemFlex noFlex>
+      <SystemFlex row noFlex>
+        <SystemSpace size={BIG} h />
+        <SystemFlex row justify="space-between">
+          <SystemText>latitude:</SystemText>
+          <SystemText>{roundCoordinates(coordinates.lat)}</SystemText>
+        </SystemFlex>
+        <SystemSpace size={BIG} h />
+      </SystemFlex>
+      <SystemFlex row noFlex>
+        <SystemSpace size={BIG} h />
+        <SystemFlex row justify="space-between">
+          <SystemText>longitude:</SystemText>
+          <SystemText>{roundCoordinates(coordinates.lng)}</SystemText>
+        </SystemFlex>
+        <SystemSpace size={BIG} h />
+      </SystemFlex>
+    </SystemFlex>
+  )
+}
+
 const SetParametersScreen: FunctionComponent = () => {
   if (demoStore.isLoading) {
     return <LoadingScreen />
@@ -33,28 +58,7 @@ const SetParametersScreen: FunctionComponent = () => {
         <HeaderComponent>Save location</HeaderComponent>
         <SystemContent>
           <SystemSpace size={REGULAR} />
-          <SystemFlex noFlex>
-            <SystemFlex row noFlex>
-              <SystemSpace size={BIG} h />
-              <SystemFlex row justify="space-between">
-                <SystemText>latitude:</SystemText>
-                <SystemText>
-                  {roundCoordinates(demoStore.coordinates.lat)}
-                </SystemText>
-              </SystemFlex>
-              <SystemSpace size={BIG} h />
-            </SystemFlex>
-            <SystemFlex row noFlex>
-              <SystemSpace size={BIG} h />
-              <SystemFlex row justify="space-between">
-                <SystemText>longitude:</SystemText>
-                <SystemText>
-                  {roundCoordinates(demoStore.coordinates.lng)}
-                </SystemText>
-              </SystemFlex>
-              <SystemSpace size={BIG} h />
-            </SystemFlex>
-          </SystemFlex>
+          <Coordinates coordinates={demoStore.coordinates} />
           <SystemFlex align="center">
             <SystemSpace size={REGULAR} />
             <TextInputComponent

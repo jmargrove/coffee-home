@@ -7,7 +7,7 @@ import CategorySelector from "../../../components/CategorySelector/CategorySelec
 import BinarySelector from "../../../components/BinarySelector/BinarySelector"
 
 export const PointInformationCard: React.FC<{
-  pointYield: string
+  pointYield?: string
   pointShade: string
   pointSlope: string
   pointIrrigated: boolean
@@ -15,16 +15,18 @@ export const PointInformationCard: React.FC<{
   return (
     <SystemFlex row>
       <SystemFlex>
-        <NumericInputComponent
-          value={pointYield}
-          handleChange={() => undefined}
-          label="Point Yield"
-          units="tones per ha"
-          autoFocus={false}
-          IconToggle={false}
-          editable={false}
-          selectTextOnFocus={false}
-        />
+        {pointYield && (
+          <NumericInputComponent
+            value={pointYield}
+            handleChange={() => undefined}
+            label="Point Yield"
+            units="tones per ha"
+            autoFocus={false}
+            IconToggle={false}
+            editable={false}
+            selectTextOnFocus={false}
+          />
+        )}
         <SystemSpace size={MEDIUM} />
         <CategorySelector
           title="What is your shade level"

@@ -5,7 +5,9 @@ import {
   SystemContent,
   SystemFlex,
   SystemSpace,
-  SystemText
+  SystemText,
+  SystemPadding,
+  SystemAbsolute
 } from "../../system-components"
 import {
   withNavigation,
@@ -14,7 +16,7 @@ import {
 } from "react-navigation"
 import { ScatterPlot } from "./ScatterPlot"
 import { ScrollView } from "react-native"
-import { REGULAR } from "../../system-components/system-theme/theme"
+import { REGULAR, SMALL } from "../../system-components/system-theme/theme"
 import { YieldDisplay } from "../../components/YieldDisplay"
 import {
   compose,
@@ -33,6 +35,10 @@ import { IElementData } from "../../components/GGPlot/types"
 import { GlobeIcon } from "../../assets/GlobeIcon/GlobeIcon"
 import { getEndPoint } from "../../utils/getEndPoint"
 import { OPTIMIZE, YIELD } from "../../utils/constants"
+import { Coordinates } from "../SetParametersScreen/SetParametersScreen"
+import { View } from "react-native"
+import { PointInformationCard } from "../PointScreen/components/PointInformationCard"
+import { IDataAddition } from "../../store/demoStore"
 
 type OPTIMIZE = "OPTIMIZE"
 type YIELD = "YIELD"
@@ -43,14 +49,30 @@ export const ModelResultsScreen: FunctionComponent<{
   navigation: NavigationScreenProp<NavigationRoute>
   response: IElementData[]
   type: ModelType
-}> = ({ store, response, type }) => {
+  point: IDataAddition
+}> = ({ store, response, type, point }) => {
   const { focalPoint, handleIncrement, handleDecrement } = store
 
   return (
     <Container>
-      <HeaderComponent LeftIcon={GlobeIcon}>Model results</HeaderComponent>
+      <HeaderComponent LeftIcon={GlobeIcon} RightIcon={View}>
+        Model results
+      </HeaderComponent>
       <SystemContent fill>
         <ScrollView>
+          <SystemSpace size={REGULAR} />
+          <SystemFlex align="center">
+            <SystemText size={24}>{point.pointName}</SystemText>
+          </SystemFlex>
+          <Coordinates coordinates={{ lat: point.lat, lng: point.lng }} />
+
+          <SystemPadding size={REGULAR}>
+            <SystemText size={12} center>
+              During year {focalPoint.x} we expect that the{"\n"}coffee yield
+              will be {focalPoint.y} tones per hectar.
+            </SystemText>
+          </SystemPadding>
+
           <SystemFlex align="center">
             {type === YIELD && (
               <ScatterPlot
@@ -73,19 +95,25 @@ export const ModelResultsScreen: FunctionComponent<{
               handleIncrement={handleIncrement}
               handleDecrement={handleDecrement}
             />
-
-            <SystemFlex row={true} noFlex>
-              <SystemSpace size={REGULAR} />
-              <SystemFlex>
-                <SystemText>
-                  During year {focalPoint.x} we expect that the coffee yeild
-                  will be {focalPoint.y} tones per hactar.
-                </SystemText>
-              </SystemFlex>
-
-              <SystemSpace size={REGULAR} />
-            </SystemFlex>
+            <SystemPadding size={REGULAR}>
+              <SystemText center>
+                Your coffee yield currently is {point.userCurrentYield} tons per
+                hectar. Our model suggest that it is possible to grow a
+                approximatly {response[5].y} tons per ha.
+              </SystemText>
+            </SystemPadding>
           </SystemFlex>
+          <SystemSpace size={REGULAR} />
+          <SystemText size={24} center>
+            Parameters
+          </SystemText>
+          <SystemPadding size={REGULAR}>
+            <PointInformationCard
+              pointShade={point.userShadeValue.toString()}
+              pointIrrigated={!!point.userIrrValue}
+              pointSlope={point.userSlopeValue.toString()}
+            />
+          </SystemPadding>
         </ScrollView>
       </SystemContent>
     </Container>
@@ -147,13 +175,8 @@ const power = compose<
   }),
   lifecycle<any, { navigation: NavigationScreenProp<NavigationRoute> }, any>({
     async componentDidMount() {
-      const {
-        lng,
-        lat,
-        userShadeValue,
-        userIrrValue,
-        userSlopeValue
-      } = this.props.navigation.getParam("point")
+      const point = this.props.navigation.getParam("point")
+      const { lng, lat, userShadeValue, userIrrValue, userSlopeValue } = point
       const type: ModelType = this.props.navigation.getParam("type")
 
       const handleSend = async () => {
@@ -184,7 +207,7 @@ const power = compose<
           }
         })
 
-        this.setState({ response: res, isLoading: false, type })
+        this.setState({ response: res, isLoading: false, type, point })
       }
 
       if (type === OPTIMIZE) {
@@ -194,7 +217,8 @@ const power = compose<
             y: el.yieldIrrFALSE
           }
         })
-        this.setState({ response: res, isLoading: false, type })
+
+        this.setState({ response: res, isLoading: false, type, point })
       }
     }
   }),
