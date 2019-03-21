@@ -96,47 +96,58 @@ export const ModelResultsScreen: FunctionComponent<{
               handleIncrement={handleIncrement}
               handleDecrement={handleDecrement}
             />
-            <SystemPadding size={REGULAR}>
-              <SystemText center>
-                Your coffee yield currently is {point.userCurrentYield} tons per
-                hectar. Our model suggest that it is possible to grow a
-                approximatly {response[5].y} tons per ha.
-              </SystemText>
-            </SystemPadding>
           </SystemFlex>
-          <SystemSpace size={REGULAR} />
-          <SystemText size={24} center>
-            Parameters
-          </SystemText>
-          <SystemPadding size={REGULAR}>
-            <PointInformationCard
-              pointShade={point.userShadeValue.toString()}
-              pointIrrigated={!!point.userIrrValue}
-              pointSlope={point.userSlopeValue.toString()}
-            />
-          </SystemPadding>
+          {type === YIELD && (
+            <>
+              <SystemPadding size={REGULAR}>
+                <SystemText center>
+                  Your coffee yield currently is {point.userCurrentYield} tons
+                  per hectar. Our model suggest that it is possible to grow a
+                  approximatly {response[5].y} tons per ha.
+                </SystemText>
+              </SystemPadding>
+              <SystemSpace size={REGULAR} />
+              <SystemText size={24} center>
+                Parameters
+              </SystemText>
+              <SystemPadding size={REGULAR}>
+                <PointInformationCard
+                  pointShade={point.userShadeValue.toString()}
+                  pointIrrigated={!!point.userIrrValue}
+                  pointSlope={point.userSlopeValue.toString()}
+                />
+              </SystemPadding>
+            </>
+          )}
         </ScrollView>
       </SystemContent>
     </Container>
   )
 }
 
+type FocalPoint = { index: number; y: number; x: number }
 class ResultsScreenStore {
   @observable
   public isLoading = true
 
   @observable
-  focalPoint: { index: number; y: number; x: number }
+  focalPoint: FocalPoint
 
   @observable
   data: { y: number; x: number }[]
 
   constructor({ response }: { response: { y: number; x: number }[] }) {
     this.data = response
-    this.focalPoint = {
-      index: 4,
-      ...response[4]
-    }
+    this.focalPoint = this.data.reduce(
+      (acc: FocalPoint, el, index) => {
+        if (el.y > acc.y) {
+          return { index, ...el }
+        } else {
+          return acc
+        }
+      },
+      { index: 0, x: 0, y: 0 }
+    )
   }
 
   handleLoadingTrue = () => {
