@@ -1,6 +1,5 @@
 import React from "react"
 import { View } from "native-base"
-import { SystemFlex } from "../../../system-components"
 import styled from "../../../system-components/system-theme/styled-components"
 import { Animated } from "react-native"
 import { selectWhite, StyleSelector } from "../../../utils/selectors"
