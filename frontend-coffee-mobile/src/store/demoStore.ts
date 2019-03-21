@@ -55,14 +55,13 @@ class Store {
   public prevSlopeLevel = ""
   @observable
   public irrigation: boolean = false
+  @observable
+  public savedPoints: IDataAddition[] = []
 
   async init(callback: () => any) {
     await callback.bind(this)()
     this.pointName = `Field-${this.savedPoints.length + 1}`
   }
-
-  @observable
-  public savedPoints: IDataAddition[] = []
 
   @action
   handleUpdateCoordinates = ({
@@ -126,6 +125,7 @@ class Store {
     this.irrigation = false
   }
 
+  @action
   handleSaveData = async () => {
     const dataAddition = {
       lng: this.coordinates.lng,
@@ -172,7 +172,7 @@ class Store {
         {
           text: "OK",
           onPress: async () => {
-            this.savedPoints.push(dataAddition)
+            this.savedPoints = [...this.savedPoints, dataAddition]
 
             await AsyncStorage.setItem(
               SAVE_DATA_LOCALLY,
@@ -185,8 +185,7 @@ class Store {
         }
       ])
     } else {
-      const dataArray: object[] = []
-      dataArray.push(dataAddition)
+      this.savedPoints.push(dataAddition)
       Alert.alert("Save data", "Are you sure you want to save point", [
         { text: "Cancel", style: "destructive" },
         {
@@ -194,7 +193,7 @@ class Store {
           onPress: async () => {
             await AsyncStorage.setItem(
               SAVE_DATA_LOCALLY,
-              JSON.stringify(dataArray)
+              JSON.stringify(this.savedPoints)
             )
 
             NavigationServices.navigate(MAP_SCREEN, { selectPoint: false })

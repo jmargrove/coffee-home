@@ -20,7 +20,7 @@ import {
   SETTINGS_SCREEN
 } from "../../utils/constants"
 import { selectPrimary, selectPercentageHeight } from "../../utils/selectors"
-import { demoStore } from "../../store/demoStore"
+import { demoStore, IDataAddition } from "../../store/demoStore"
 import { noPointsAlert } from "../../utils/alerts"
 
 const DrawerHeaderContianer = styled(View)`
@@ -31,7 +31,7 @@ const DrawerHeaderContianer = styled(View)`
 
 export const NavigationDrawerComponent: FunctionComponent<any> = props => {
   const isSavedPoints = demoStore.savedPoints.length > 0
-  console.log("saved", isSavedPoints)
+
   return (
     <ScrollView>
       <SafeAreaView>
@@ -86,17 +86,19 @@ export const NavigationDrawerComponent: FunctionComponent<any> = props => {
               }
               const points = await getPoints()
 
-              const alertValues = JSON.parse(points!).map(point => {
-                return {
-                  text: point.pointName,
-                  onPress: () => {
-                    props.navigation.navigate(MODEL_RESULTS_SCREEN, {
-                      point,
-                      type: YIELD
-                    })
+              const alertValues = JSON.parse(points!).map(
+                (point: IDataAddition) => {
+                  return {
+                    text: point.pointName,
+                    onPress: () => {
+                      props.navigation.navigate(MODEL_RESULTS_SCREEN, {
+                        point,
+                        type: YIELD
+                      })
+                    }
                   }
                 }
-              })
+              )
 
               Alert.alert("Chose a point", "select points below", [
                 ...alertValues,

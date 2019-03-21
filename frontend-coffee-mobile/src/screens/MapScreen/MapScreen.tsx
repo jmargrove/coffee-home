@@ -15,7 +15,6 @@ import {
   OPTIMIZE
 } from "../../utils/constants"
 import { observer } from "mobx-react"
-import { toJS } from "mobx"
 import { compose, withProps, lifecycle } from "recompose"
 import { StatusBar, TouchableOpacity } from "react-native"
 import { Store } from "./Store"
@@ -35,6 +34,7 @@ import { AsyncStorage, Alert } from "react-native"
 import { theme } from "../../system-components/system-theme/theme"
 import NavigationServices from "../../utils/NavigationServices"
 import { demoStore } from "../../store/demoStore"
+import { toJS } from "mobx"
 
 const power = compose<any, any>(
   withNavigation,
@@ -64,7 +64,7 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
   } = store
 
   const selectPoint = navigation.getParam("selectPoint")
-
+  console.log("demo Store", toJS(demoStore.savedPoints))
   return (
     <Container>
       <StatusBar backgroundColor="transparent" />
@@ -81,48 +81,47 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
           style={{ width: "100%", height: "100%" }}
           onRegionChange={handlePointLocation}
         >
-          {demoStore.savedPoints &&
-            demoStore.savedPoints.map((point: IDataAddition, i: number) => {
-              return (
-                <Marker
-                  key={i}
-                  zIndex={99}
-                  coordinate={{ latitude: point.lat, longitude: point.lng }}
-                  onPress={() => {
-                    Alert.alert(point.pointName, " would you like to...", [
-                      {
-                        text: "Calculate yield",
-                        onPress: () =>
-                          NavigationServices.navigate(MODEL_RESULTS_SCREEN, {
-                            point,
-                            type: YIELD
-                          })
-                      },
-                      {
-                        text: "Optimize shade",
-                        onPress: () =>
-                          NavigationServices.navigate(MODEL_RESULTS_SCREEN, {
-                            point,
-                            type: OPTIMIZE
-                          })
-                      },
-                      { text: "Cancel", style: "destructive" }
-                    ])
+          {demoStore.savedPoints.map((point: IDataAddition, i: number) => {
+            return (
+              <Marker
+                key={i}
+                zIndex={99}
+                coordinate={{ latitude: point.lat, longitude: point.lng }}
+                onPress={() => {
+                  Alert.alert(point.pointName, " would you like to...", [
+                    {
+                      text: "Calculate yield",
+                      onPress: () =>
+                        NavigationServices.navigate(MODEL_RESULTS_SCREEN, {
+                          point,
+                          type: YIELD
+                        })
+                    },
+                    {
+                      text: "Optimize shade",
+                      onPress: () =>
+                        NavigationServices.navigate(MODEL_RESULTS_SCREEN, {
+                          point,
+                          type: OPTIMIZE
+                        })
+                    },
+                    { text: "Cancel", style: "destructive" }
+                  ])
+                }}
+              >
+                <View
+                  style={{
+                    backgroundColor: selectThird({ theme: theme }),
+                    width: 16,
+                    height: 16,
+                    borderRadius: 8,
+                    borderWidth: 1.5,
+                    borderColor: "white"
                   }}
-                >
-                  <View
-                    style={{
-                      backgroundColor: selectThird({ theme: theme }),
-                      width: 16,
-                      height: 16,
-                      borderRadius: 8,
-                      borderWidth: 1.5,
-                      borderColor: "white"
-                    }}
-                  />
-                </Marker>
-              )
-            })}
+                />
+              </Marker>
+            )
+          })}
         </MapView>
 
         {selectPoint && (
