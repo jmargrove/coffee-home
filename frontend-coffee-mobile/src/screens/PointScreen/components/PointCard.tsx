@@ -210,7 +210,7 @@ export class PointCard extends Component<
               <SystemFlex row>
                 <SystemSpace size={MEDIUM} />
 
-                <SystemFlex color={selectWhite({ theme })}>
+                <SystemFlex color={selectWhite}>
                   <SecondaryText
                     label={"Location"}
                     handleOpen={handleLocationTrue}
