@@ -15,7 +15,7 @@ import {
 } from "../utils/constants"
 import {
   WelcomeScreen,
-  PoweredMapScreen,
+  MapScreen,
   LoadingScreen,
   PoweredModelResultsScreen,
   PoweredPointScreen
@@ -28,7 +28,7 @@ import { SettingsScreen } from "../screens/SettingsScreen/SettingsScreen"
 const DrawerNavigator = createDrawerNavigator(
   {
     [MAP_SCREEN]: {
-      screen: PoweredMapScreen
+      screen: MapScreen
     }
   },
   {

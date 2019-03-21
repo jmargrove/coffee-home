@@ -1,4 +1,4 @@
-export { PoweredMapScreen } from "./MapScreen/MapScreen"
+export { MapScreen } from "./MapScreen/MapScreen"
 export { PoweredPointScreen } from "./PointScreen/PointScreen"
 export { WelcomeScreen } from "./WelcomeScreen/WelcomeScreen"
 export {

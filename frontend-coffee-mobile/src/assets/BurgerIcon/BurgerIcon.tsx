@@ -19,23 +19,30 @@ const BurgerIconLines = styled(View)`
   background-color: ${selectPrimary};
 `
 
-const BurgerIcon: FunctionComponent<NavigationProps> = ({ navigation }) => {
-  return (
-    <SystemAbsolute top={48} left={32} zIndex={32}>
-      <TouchableOpacity
-        onPress={() => navigation.openDrawer()}
-        hitSlop={{ left: 10, right: 10, top: 10, bottom: 10 }}
-      >
-        <BurgerIconContainer>
-          <SystemFlex justify="space-between">
-            <BurgerIconLines />
-            <BurgerIconLines />
-            <BurgerIconLines />
-          </SystemFlex>
-        </BurgerIconContainer>
-      </TouchableOpacity>
-    </SystemAbsolute>
-  )
+const BurgerIcon: FunctionComponent<NavigationProps & { enable: boolean }> = ({
+  navigation,
+  enable
+}) => {
+  if (enable) {
+    return (
+      <SystemAbsolute top={48} left={32} zIndex={32}>
+        <TouchableOpacity
+          onPress={() => navigation.openDrawer()}
+          hitSlop={{ left: 10, right: 10, top: 10, bottom: 10 }}
+        >
+          <BurgerIconContainer>
+            <SystemFlex justify="space-between">
+              <BurgerIconLines />
+              <BurgerIconLines />
+              <BurgerIconLines />
+            </SystemFlex>
+          </BurgerIconContainer>
+        </TouchableOpacity>
+      </SystemAbsolute>
+    )
+  } else {
+    return null
+  }
 }
 
 export default withNavigation(BurgerIcon)
