@@ -19,9 +19,6 @@ const MarkerCenter = styled(View)<any>`
   background-color: ${({ color }) => color && color};
 `
 const MarkerAnimated = styled(Animated.View)<any>`
-  width: ${({ midDimention }) => midDimention && midDimention};
-  height: ${({ midDimention }) => midDimention && midDimention};
-  border-radius: ${({ midDimention }) => midDimention && midDimention / 2};
   border-width: 1.5;
   border-color: ${({ colorBorder }) => colorBorder && colorBorder};
   background-color: ${({ color }) => color && color};
@@ -32,7 +29,6 @@ const MarkerContainer = styled(View)<any>`
   width: ${({ maxDimention }) => maxDimention && maxDimention};
   height: ${({ maxDimention }) => maxDimention && maxDimention};
   border-radius: ${({ maxDimention }) => maxDimention && maxDimention / 2};
-
   background-color: ${({ color }) => color && color};
 `
 
@@ -57,19 +53,21 @@ export const MapMarker: FunctionComponent<{
     ])
   ).start()
 
+  const min = 16
+  const max = 40
+
   return (
     <MarkerContainer maxDimention={maxDimention} color={colorAlpha}>
       <MarkerAnimated
-        midDimention={16}
         style={{
           possition: "absolute",
           top: dimentions.interpolate({
             inputRange: [0, 1],
-            outputRange: [40 - 17.5 / 2, 17.5]
+            outputRange: [40 - 17.5 / 2, 15]
           }),
           left: dimentions.interpolate({
             inputRange: [0, 1],
-            outputRange: [40 - 17.5 / 2, 17.5]
+            outputRange: [40 - 17.5 / 2, 15]
           }),
           width: dimentions.interpolate({
             inputRange: [0, 1],
