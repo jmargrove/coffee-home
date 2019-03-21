@@ -29,9 +29,7 @@ const DrawerNavigator = createDrawerNavigator(
   {
     [MAP_SCREEN]: {
       screen: PoweredMapScreen
-    },
-    [POINT_SCREEN]: PoweredPointScreen,
-    [SET_PARAMETERS_SCREEN]: PoweredSetParametersScreen
+    }
   },
   {
     drawerWidth: Dimensions.get("screen").width * 0.85,
@@ -45,12 +43,14 @@ export const AppNavigation = createStackNavigator(
     [WELCOME_SCREEN]: {
       screen: WelcomeScreen
     },
+    [POINT_SCREEN]: PoweredPointScreen,
     [DRAWER_CONTAINER]: {
       screen: DrawerNavigator
     },
     [LOADING_SCREEN]: {
       screen: LoadingScreen
     },
+    [SET_PARAMETERS_SCREEN]: PoweredSetParametersScreen,
     [MODEL_RESULTS_SCREEN]: { screen: PoweredModelResultsScreen },
     [SETTINGS_SCREEN]: { screen: SettingsScreen }
   },
