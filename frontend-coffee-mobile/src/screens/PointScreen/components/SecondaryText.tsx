@@ -1,6 +1,6 @@
-import React, { Component } from "react"
+import React from "react"
 import { SystemFlex, SystemText, SystemSpace } from "../../../system-components"
-import { View, TouchableOpacity } from "react-native"
+import { View } from "react-native"
 import styled from "../../../system-components/system-theme/styled-components"
 import { selectBlack } from "../../../utils/selectors"
 import { SMALL, REGULAR } from "../../../system-components/system-theme/theme"
@@ -33,13 +33,9 @@ export const SecondaryText: React.FC<{
 
         <SystemFlex noFlex row justify="center">
           {open ? (
-            <TouchableOpacity onPress={handleClose}>
-              <ArrowUpPrimary />
-            </TouchableOpacity>
+            <ArrowUpPrimary onPress={handleClose} />
           ) : (
-            <TouchableOpacity onPress={handleOpen}>
-              <ArrowDownBlack />
-            </TouchableOpacity>
+            <ArrowDownBlack onPress={handleOpen} />
           )}
           <SystemSpace size={REGULAR} />
         </SystemFlex>
