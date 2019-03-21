@@ -7,13 +7,10 @@ import {
   SystemTitle,
   SystemText,
   SystemSpace,
-  SystemButtonLarge,
-  SystemAbsolute
+  SystemButtonLarge
 } from "./../../system-components"
 import {
-  BIG,
   MEDIUM,
-  SMALL,
   REGULAR,
   LARGE
 } from "./../../system-components/system-theme/theme"
