@@ -20,7 +20,14 @@ import NumericInputComponent from "../../components/NumericInputComponent"
 import CategorySelector from "../../components/CategorySelector/CategorySelector"
 import BinarySelector from "../../components/BinarySelector/BinarySelector"
 import { LoadingScreen } from "../"
-import { selectBlack, selectPrimary, selectWhite } from "../../utils/selectors"
+import {
+  selectBlack,
+  selectPrimary,
+  selectWhite,
+  selectBig,
+  selectMedium,
+  selectRegular
+} from "../../utils/selectors"
 import { demoStore } from "../../store/demoStore"
 import { roundCoordinates } from "../../utils/roundCoordinates"
 
@@ -30,20 +37,20 @@ export const Coordinates: React.FC<{
   return (
     <SystemFlex noFlex>
       <SystemFlex row noFlex>
-        <SystemSpace size={BIG} h />
+        <SystemSpace size={selectBig} h />
         <SystemFlex row justify="space-between">
           <SystemText>latitude:</SystemText>
           <SystemText>{roundCoordinates(coordinates.lat)}</SystemText>
         </SystemFlex>
-        <SystemSpace size={BIG} h />
+        <SystemSpace size={selectBig} h />
       </SystemFlex>
       <SystemFlex row noFlex>
-        <SystemSpace size={BIG} h />
+        <SystemSpace size={selectBig} h />
         <SystemFlex row justify="space-between">
           <SystemText>longitude:</SystemText>
           <SystemText>{roundCoordinates(coordinates.lng)}</SystemText>
         </SystemFlex>
-        <SystemSpace size={BIG} h />
+        <SystemSpace size={selectBig} h />
       </SystemFlex>
     </SystemFlex>
   )
@@ -57,17 +64,17 @@ const SetParametersScreen: FunctionComponent = () => {
       <Container>
         <HeaderComponent>Save location</HeaderComponent>
         <SystemContent>
-          <SystemSpace size={REGULAR} />
+          <SystemSpace size={selectRegular} />
           <Coordinates coordinates={demoStore.coordinates} />
           <SystemFlex align="center">
-            <SystemSpace size={REGULAR} />
+            <SystemSpace size={selectRegular} />
             <TextInputComponent
               value={demoStore.pointName}
               label="Enter point Name"
               autoFocus={false}
               handleChange={demoStore.handleNameChange}
             />
-            <SystemSpace size={MEDIUM} />
+            <SystemSpace size={selectMedium} />
             <NumericInputComponent
               units="tones of coffee per hectar"
               label="Your current yield"
@@ -75,7 +82,7 @@ const SetParametersScreen: FunctionComponent = () => {
               value={demoStore.userCurrentYield}
               handleChange={demoStore.handleYieldChange}
             />
-            <SystemSpace size={MEDIUM} />
+            <SystemSpace size={selectMedium} />
             <CategorySelector
               title="What is your shade level"
               levels={["none", "low", "medium", "high"]}
@@ -83,7 +90,7 @@ const SetParametersScreen: FunctionComponent = () => {
               factorLevel={demoStore.shadeLevel}
               prevFactorLevel={demoStore.prevShadeLevel}
             />
-            <SystemSpace size={MEDIUM} />
+            <SystemSpace size={selectMedium} />
             <CategorySelector
               title="What is your slope incline?"
               levels={["flat", "slight", "gradual", "steep"]}
@@ -91,7 +98,7 @@ const SetParametersScreen: FunctionComponent = () => {
               factorLevel={demoStore.slopeLevel}
               prevFactorLevel={demoStore.prevSlopeLevel}
             />
-            <SystemSpace size={MEDIUM} />
+            <SystemSpace size={selectMedium} />
             <BinarySelector
               title="Is your site irrigated?"
               value={demoStore.irrigation}
@@ -107,7 +114,7 @@ const SetParametersScreen: FunctionComponent = () => {
             >
               Save point
             </SystemButtonLarge>
-            <SystemSpace size={MEDIUM} />
+            <SystemSpace size={selectMedium} />
           </SystemFlex>
         </SystemContent>
       </Container>

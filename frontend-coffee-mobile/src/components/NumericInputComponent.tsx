@@ -1,15 +1,15 @@
 import React, { FunctionComponent, ReactNode } from "react"
 import { SystemText, SystemSpace, SystemFlex } from "../system-components"
 import { PoweredSystemInput } from "../system-components/SystemInput/SystemInput"
-import {
-  SMALL,
-  theme,
-  REGULAR,
-  MEDIUM_GREY
-} from "../system-components/system-theme/theme"
+import { theme } from "../system-components/system-theme/theme"
 import { SystemIconToggle } from "../system-components/SystemInput/SystemIconToggle"
 import { View } from "react-native"
 import { compose, shouldUpdate } from "recompose"
+import {
+  selectRegular,
+  selectSmall,
+  selectMediumGrey
+} from "../utils/selectors"
 
 interface ITextInputComponentProps {
   label: string
@@ -27,12 +27,12 @@ export const NumericInputComponent: FunctionComponent<
 > = ({ label, autoFocus, units, value, handleChange, ...rest }) => {
   return (
     <SystemFlex noFlex row>
-      <SystemSpace size={REGULAR} />
+      <SystemSpace size={selectRegular} />
       <SystemFlex>
         <SystemText>{label}</SystemText>
-        <SystemSpace size={SMALL} />
+        <SystemSpace size={selectSmall} />
         <SystemFlex row noFlex>
-          <SystemSpace size={REGULAR} />
+          <SystemSpace size={selectRegular} />
           <SystemFlex>
             <PoweredSystemInput
               keyboardType="numeric"
@@ -45,11 +45,11 @@ export const NumericInputComponent: FunctionComponent<
               {...rest}
             />
           </SystemFlex>
-          <SystemSpace size={REGULAR} />
+          <SystemSpace size={selectRegular} />
         </SystemFlex>
         <InputTray />
       </SystemFlex>
-      <SystemSpace size={REGULAR} />
+      <SystemSpace size={selectRegular} />
     </SystemFlex>
   )
 }
@@ -75,35 +75,35 @@ const InputTray = () => {
         style={{
           height: 8,
           width: 2,
-          backgroundColor: theme.colors[MEDIUM_GREY]
+          backgroundColor: selectMediumGrey({ theme })
         }}
       />
       <View
         style={{
           width: 74,
           height: 2,
-          backgroundColor: theme.colors[MEDIUM_GREY]
+          backgroundColor: selectMediumGrey({ theme })
         }}
       />
       <View
         style={{
           height: 8,
           width: 2,
-          backgroundColor: theme.colors[MEDIUM_GREY]
+          backgroundColor: selectMediumGrey({ theme })
         }}
       />
       <View
         style={{
           flexGrow: 1,
           height: 2,
-          backgroundColor: theme.colors[MEDIUM_GREY]
+          backgroundColor: selectMediumGrey({ theme })
         }}
       />
       <View
         style={{
           height: 8,
           width: 2,
-          backgroundColor: theme.colors[MEDIUM_GREY]
+          backgroundColor: selectMediumGrey({ theme })
         }}
       />
     </SystemFlex>

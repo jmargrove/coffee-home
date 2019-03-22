@@ -15,7 +15,10 @@ import styled from "styled-components"
 import {
   selectBlack,
   selectWhite,
-  selectHeavyGrey
+  selectHeavyGrey,
+  selectLarge,
+  selectSmall,
+  selectRegular
 } from "../../utils/selectors"
 
 const LoadingAnimationBox = styled(Animated.View)<any>`
@@ -102,7 +105,7 @@ const LoadingAnimation: FunctionComponent<ILoadingAnimationProps> = ({
                     })
                   }}
                 />
-                <SystemSpace size={REGULAR} />
+                <SystemSpace size={selectRegular} />
               </React.Fragment>
             )
           })}
@@ -118,23 +121,23 @@ export const LoadingScreen: FunctionComponent = () => {
       <SystemContent color={PRIMARY} fill={true}>
         <SystemFlex justify="center" align="center">
           <LoadingAnimation rev />
-          <SystemSpace size={LARGE} />
+          <SystemSpace size={selectLarge} />
 
           <SystemText size={40} italic blackItalic>
             Running
           </SystemText>
-          <SystemSpace size={SMALL} />
+          <SystemSpace size={selectSmall} />
           <SystemText italic size={40} blackItalic>
             Coffee Engine
           </SystemText>
-          <SystemSpace size={REGULAR} />
+          <SystemSpace size={selectRegular} />
           <BeanLogoLarge size={100} />
-          <SystemSpace size={REGULAR} />
+          <SystemSpace size={selectRegular} />
           <SystemText size={24}>Retrieving climate data</SystemText>
           <SystemText size={24}>Paramiterising model</SystemText>
           <SystemText size={24}>Excecuting model</SystemText>
           <SystemText size={24}>Model compelete</SystemText>
-          <SystemSpace size={LARGE} />
+          <SystemSpace size={selectLarge} />
           <LoadingAnimation />
         </SystemFlex>
       </SystemContent>

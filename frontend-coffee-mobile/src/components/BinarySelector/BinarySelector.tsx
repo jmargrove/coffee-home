@@ -2,11 +2,11 @@ import React, { FunctionComponent, ReactNode } from "react"
 import { SystemText, SystemFlex, SystemSpace } from "../../system-components"
 import styled from "styled-components"
 import { View } from "react-native"
-import { REGULAR } from "../../system-components/system-theme/theme"
 import { compose, shouldUpdate } from "recompose"
 import { IconCross } from "../../assets/IconCross/IconCross"
 import { IconTick } from "../../assets/IconTick/IconTick"
 import { SelectionGlowAnimated } from "../CategorySelector/components/SelectionGlowAnimated"
+import { selectRegular } from "../../utils/selectors"
 
 const CategorySelectionContainer = styled(View)<any>`
   height: 100
@@ -33,7 +33,7 @@ const BinarySelector: FunctionComponent<IBinarySelectorProps> = ({
   return (
     <>
       <SystemFlex noFlex row>
-        <SystemSpace size={REGULAR} />
+        <SystemSpace size={selectRegular} />
         <SystemFlex>
           <SystemText>{title}</SystemText>
           <SystemFlex justify="flex-end">
@@ -69,7 +69,7 @@ const BinarySelector: FunctionComponent<IBinarySelectorProps> = ({
             </CategorySelectionContainer>
           </SystemFlex>
         </SystemFlex>
-        <SystemSpace size={REGULAR} />
+        <SystemSpace size={selectRegular} />
       </SystemFlex>
     </>
   )

@@ -4,6 +4,7 @@ import { SystemFlex } from "../SystemFlex"
 import { SystemSpace } from "../SystemSpace"
 import { ATOMIC } from "../system-theme/theme"
 import { SystemTouch } from "../SystemTouch"
+import { selectAtomic } from "../../utils/selectors"
 
 export const SystemIconToggle = ({
   showEdit,
@@ -22,7 +23,7 @@ export const SystemIconToggle = ({
           <Image source={require("../../assets/clear-text.png")} />
         </SystemTouch>
       )}
-      <SystemSpace size={ATOMIC} />
+      <SystemSpace size={selectAtomic} />
     </SystemFlex>
   </SystemFlex>
 )

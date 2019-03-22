@@ -40,6 +40,7 @@ import { PointInformationCard } from "../PointScreen/components/PointInformation
 import { IDataAddition, demoStore } from "../../store/demoStore"
 import { Alert } from "react-native"
 import NavigationServices from "../../utils/NavigationServices"
+import { selectRegular } from "../../utils/selectors"
 
 type OPTIMIZE = "OPTIMIZE"
 type YIELD = "YIELD"
@@ -61,13 +62,13 @@ export const ModelResultsScreen: FunctionComponent<{
       </HeaderComponent>
       <SystemContent fill>
         <ScrollView>
-          <SystemSpace size={REGULAR} />
+          <SystemSpace size={selectRegular} />
           <SystemFlex align="center">
             <SystemText size={24}>{point.pointName}</SystemText>
           </SystemFlex>
           <Coordinates coordinates={{ lat: point.lat, lng: point.lng }} />
 
-          <SystemPadding size={REGULAR}>
+          <SystemPadding size={selectRegular}>
             <SystemText size={12} center>
               During year {focalPoint.x} we expect that the{"\n"}coffee yield
               will be {focalPoint.y} tones per hectar.
@@ -99,18 +100,18 @@ export const ModelResultsScreen: FunctionComponent<{
           </SystemFlex>
           {type === YIELD && (
             <>
-              <SystemPadding size={REGULAR}>
+              <SystemPadding size={selectRegular}>
                 <SystemText center>
                   Your coffee yield currently is {point.userCurrentYield} tons
                   per hectar. Our model suggest that it is possible to grow a
                   approximatly {response[5].y} tons per ha.
                 </SystemText>
               </SystemPadding>
-              <SystemSpace size={REGULAR} />
+              <SystemSpace size={selectRegular} />
               <SystemText size={24} center>
                 Parameters
               </SystemText>
-              <SystemPadding size={REGULAR}>
+              <SystemPadding size={selectRegular}>
                 <PointInformationCard
                   pointShade={point.userShadeValue.toString()}
                   pointIrrigated={!!point.userIrrValue}

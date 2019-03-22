@@ -10,7 +10,7 @@ import {
 import { SystemIconToggle } from "../system-components/SystemInput/SystemIconToggle"
 import { View } from "react-native"
 import { compose, shouldUpdate } from "recompose"
-import { selectBlack } from "../utils/selectors"
+import { selectBlack, selectSmall, selectRegular } from "../utils/selectors"
 
 interface ITextInputComponentProps {
   label: string
@@ -28,12 +28,12 @@ const TextInputComponent: FunctionComponent<ITextInputComponentProps> = ({
 }) => {
   return (
     <SystemFlex noFlex row>
-      <SystemSpace size={REGULAR} />
+      <SystemSpace size={selectRegular} />
       <SystemFlex>
         <SystemText>{label}</SystemText>
-        <SystemSpace size={SMALL} />
+        <SystemSpace size={selectSmall} />
         <SystemFlex row noFlex>
-          <SystemSpace size={REGULAR} />
+          <SystemSpace size={selectRegular} />
           <SystemFlex>
             <PoweredSystemInput
               value={value}
@@ -44,11 +44,11 @@ const TextInputComponent: FunctionComponent<ITextInputComponentProps> = ({
             />
           </SystemFlex>
 
-          <SystemSpace size={REGULAR} />
+          <SystemSpace size={selectRegular} />
         </SystemFlex>
         <InputTray />
       </SystemFlex>
-      <SystemSpace size={REGULAR} />
+      <SystemSpace size={selectRegular} />
     </SystemFlex>
   )
 }

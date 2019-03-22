@@ -1,10 +1,10 @@
 import React from "react"
 import { SystemSpace } from "./SystemSpace"
 import { SystemFlex } from "./SystemFlex"
-import { System } from "./types"
+import { StyleSelector } from "../utils/selectors"
 
 export const SystemPadding: React.FC<{
-  size: System.Size
+  size: StyleSelector<number>
   noFlex?: boolean
 }> = ({ children, size, noFlex }) => {
   return (

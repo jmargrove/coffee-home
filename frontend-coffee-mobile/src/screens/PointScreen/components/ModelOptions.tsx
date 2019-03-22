@@ -1,7 +1,7 @@
 import React from "react"
 import { SystemFlex } from "../../../system-components/SystemFlex"
 import { SystemText } from "../../../system-components/SystemText"
-import { selectBlack } from "../../../utils/selectors"
+import { selectBlack, selectMedium } from "../../../utils/selectors"
 import { MEDIUM } from "../../../system-components/system-theme/theme"
 import { SystemSpace } from "../../../system-components/SystemSpace"
 import { SystemTouch } from "../../../system-components"
@@ -14,7 +14,7 @@ export const ModelOptionsCard: React.FC<{
     <SystemFlex>
       <SystemTouch onPress={handleCalculateYield}>
         <SystemFlex row noFlex>
-          <SystemSpace size={MEDIUM} />
+          <SystemSpace size={selectMedium} />
           <SystemText size={20} color={selectBlack}>
             • Calculate yield
           </SystemText>
@@ -22,7 +22,7 @@ export const ModelOptionsCard: React.FC<{
       </SystemTouch>
       <SystemTouch onPress={handleOptimizeShade}>
         <SystemFlex row noFlex>
-          <SystemSpace size={MEDIUM} />
+          <SystemSpace size={selectMedium} />
           <SystemText size={20} color={selectBlack}>
             • Optimize shade
           </SystemText>

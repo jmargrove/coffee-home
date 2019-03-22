@@ -2,8 +2,11 @@ import React from "react"
 import { SystemFlex, SystemText, SystemSpace } from "../../../system-components"
 import { View } from "react-native"
 import styled from "../../../system-components/system-theme/styled-components"
-import { selectBlack } from "../../../utils/selectors"
-import { SMALL, REGULAR } from "../../../system-components/system-theme/theme"
+import {
+  selectBlack,
+  selectRegular,
+  selectSmall
+} from "../../../utils/selectors"
 import { ArrowDownBlack, ArrowUpPrimary } from "../../../assets"
 
 const Bullet = styled(View)<{ size: number }>`
@@ -21,12 +24,12 @@ export const SecondaryText: React.FC<{
 }> = ({ label, handleOpen, handleClose, open, children }) => {
   return (
     <SystemFlex>
-      <SystemSpace size={SMALL} />
+      <SystemSpace size={selectSmall} />
       <SystemFlex row justify="space-between" align="center">
         <SystemFlex noFlex row align="center" justify="center">
-          <SystemSpace size={SMALL} />
+          <SystemSpace size={selectSmall} />
           <Bullet size={8} />
-          <SystemSpace size={SMALL} />
+          <SystemSpace size={selectSmall} />
 
           <SystemText size={20}>{label}</SystemText>
         </SystemFlex>
@@ -37,10 +40,10 @@ export const SecondaryText: React.FC<{
           ) : (
             <ArrowDownBlack onPress={handleOpen} />
           )}
-          <SystemSpace size={REGULAR} />
+          <SystemSpace size={selectRegular} />
         </SystemFlex>
       </SystemFlex>
-      <SystemSpace size={SMALL} />
+      <SystemSpace size={selectSmall} />
       {open && children}
     </SystemFlex>
   )

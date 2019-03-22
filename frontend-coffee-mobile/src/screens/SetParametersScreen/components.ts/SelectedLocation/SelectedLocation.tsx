@@ -13,6 +13,7 @@ import {
 import { BoundsBar } from "../../../../components/BoundsBar"
 import { MapFixed } from "./components/MapFixed"
 import { SelectLocationTextComponent } from "./components/SelectedLocationTextComponent"
+import { selectRegular, selectSmall } from "../../../../utils/selectors"
 
 const SelectedLocationContainer = styled(View)<any>`
   height: 132;
@@ -28,14 +29,14 @@ export const SelectedLocation: FunctionComponent<{ point: ICoordinates }> = ({
 }) => {
   return (
     <SystemFlex row noFlex>
-      <SystemSpace size={REGULAR} />
+      <SystemSpace size={selectRegular} />
       <SystemFlex>
         <BoundsBar space={REGULAR} />
         <SystemFlex row>
-          <SystemSpace size={REGULAR} />
+          <SystemSpace size={selectRegular} />
           <SystemFlex>
             <SystemText>SelectedLocation</SystemText>
-            <SystemSpace size={SMALL} />
+            <SystemSpace size={selectSmall} />
             <SelectLocationTextComponent
               field="Latitude:"
               value={`${Math.round(point.latitude * 1000) / 1000}°`}
@@ -46,10 +47,10 @@ export const SelectedLocation: FunctionComponent<{ point: ICoordinates }> = ({
             />
           </SystemFlex>
           {/* <MapFixed point={point} /> */}
-          <SystemSpace size={REGULAR} />
+          <SystemSpace size={selectRegular} />
         </SystemFlex>
         <BoundsBar space={REGULAR} />
-        <SystemSpace size={REGULAR} />
+        <SystemSpace size={selectRegular} />
       </SystemFlex>
     </SystemFlex>
   )

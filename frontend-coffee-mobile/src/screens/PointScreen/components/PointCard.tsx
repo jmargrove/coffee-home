@@ -2,16 +2,14 @@ import React, { Component } from "react"
 import { SystemFlex, SystemText, SystemSpace } from "../../../system-components"
 import { View, Alert } from "react-native"
 import styled from "../../../system-components/system-theme/styled-components"
-import { selectLightGrey, selectWhite } from "../../../utils/selectors"
 import {
-  MEDIUM,
-  REGULAR,
-  theme,
-  SMALL
-} from "../../../system-components/system-theme/theme"
+  selectLightGrey,
+  selectWhite,
+  selectRegular,
+  selectMedium,
+  selectSmall
+} from "../../../utils/selectors"
 import { ArrowDownBlack, ArrowUpPrimary } from "../../../assets"
-import { observable, action } from "mobx"
-import { observer } from "mobx-react"
 import { SecondaryText } from "./SecondaryText"
 import { LocationCard } from "./LocationCard"
 import { PointInformationCard } from "./PointInformationCard"
@@ -178,12 +176,12 @@ export class PointCard extends Component<
 
     return (
       <SystemFlex>
-        <SystemSpace size={REGULAR} />
+        <SystemSpace size={selectRegular} />
         <PointCardContainer>
-          <SystemSpace size={REGULAR} />
+          <SystemSpace size={selectRegular} />
           <SystemFlex row={true} align="center" justify="space-between">
             <SystemFlex noFlex row>
-              <SystemSpace size={MEDIUM} />
+              <SystemSpace size={selectMedium} />
               <SystemText blackItalic={true} size={24}>
                 {item.pointName}
               </SystemText>
@@ -196,15 +194,15 @@ export class PointCard extends Component<
                 <ArrowDownBlack onPress={handlePrimaryActiveTrue} />
               )}
 
-              <SystemSpace size={MEDIUM} />
+              <SystemSpace size={selectMedium} />
             </SystemFlex>
           </SystemFlex>
 
           {primaryActive && (
             <SystemFlex noFlex>
-              <SystemSpace size={SMALL} />
+              <SystemSpace size={selectSmall} />
               <SystemFlex row>
-                <SystemSpace size={MEDIUM} />
+                <SystemSpace size={selectMedium} />
 
                 <SystemFlex color={selectWhite}>
                   <SecondaryText
@@ -253,14 +251,14 @@ export class PointCard extends Component<
                   </SecondaryText>
                 </SystemFlex>
 
-                <SystemSpace size={MEDIUM} />
+                <SystemSpace size={selectMedium} />
               </SystemFlex>
             </SystemFlex>
           )}
 
-          <SystemSpace size={REGULAR} />
+          <SystemSpace size={selectRegular} />
         </PointCardContainer>
-        <SystemSpace size={REGULAR} />
+        <SystemSpace size={selectRegular} />
       </SystemFlex>
     )
   }

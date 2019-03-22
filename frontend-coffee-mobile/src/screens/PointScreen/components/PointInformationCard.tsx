@@ -5,6 +5,7 @@ import { SystemSpace } from "../../../system-components/SystemSpace"
 import { NumericInputComponent } from "../../../components/NumericInputComponent"
 import CategorySelector from "../../../components/CategorySelector/CategorySelector"
 import BinarySelector from "../../../components/BinarySelector/BinarySelector"
+import { selectMedium } from "../../../utils/selectors"
 
 export const PointInformationCard: React.FC<{
   pointYield?: string
@@ -27,7 +28,7 @@ export const PointInformationCard: React.FC<{
             selectTextOnFocus={false}
           />
         )}
-        <SystemSpace size={MEDIUM} />
+        <SystemSpace size={selectMedium} />
         <CategorySelector
           title="What is your shade level"
           levels={["none", "low", "medium", "high"]}
@@ -35,7 +36,7 @@ export const PointInformationCard: React.FC<{
           factorLevel={pointShade}
           prevFactorLevel={pointShade}
         />
-        <SystemSpace size={MEDIUM} />
+        <SystemSpace size={selectMedium} />
         <CategorySelector
           title="What is your slope incline?"
           levels={["flat", "slight", "gradual", "steep"]}
@@ -43,7 +44,7 @@ export const PointInformationCard: React.FC<{
           factorLevel={pointSlope}
           prevFactorLevel={pointSlope}
         />
-        <SystemSpace size={MEDIUM} />
+        <SystemSpace size={selectMedium} />
         <BinarySelector
           title="Is your site irrigated?"
           value={pointIrrigated}

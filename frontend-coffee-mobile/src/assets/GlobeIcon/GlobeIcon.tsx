@@ -5,8 +5,8 @@ import { NavigationProps } from "../../types"
 import { MAP_SCREEN } from "../../utils/constants"
 import { SystemFlex } from "../../system-components/SystemFlex"
 import { SystemSpace } from "../../system-components/SystemSpace"
-import { SMALL } from "../../system-components/system-theme/theme"
 import { SystemTouch } from "../../system-components"
+import { selectSmall } from "../../utils/selectors"
 const source = require("./globe-icon.png")
 
 const GlobeIconDefault: FunctionComponent<NavigationProps> = ({
@@ -14,7 +14,7 @@ const GlobeIconDefault: FunctionComponent<NavigationProps> = ({
 }) => {
   return (
     <SystemFlex row noFlex>
-      <SystemSpace size={SMALL} />
+      <SystemSpace size={selectSmall} />
       <SystemTouch onPress={() => navigation.navigate(MAP_SCREEN)}>
         <Image source={source} />
       </SystemTouch>

@@ -10,14 +10,15 @@ import {
 } from "../../system-components"
 import { View } from "react-native"
 import { ScrollView } from "react-native"
-import {
-  REGULAR,
-  MEDIUM,
-  SMALL
-} from "../../system-components/system-theme/theme"
 import { SystemTouch } from "../../system-components/SystemTouch"
 import { ArrowUpPrimary, ArrowDownBlack, LogoYelloLarge } from "../../assets"
-import { selectLightGrey, selectWhite } from "../../utils/selectors"
+import {
+  selectLightGrey,
+  selectWhite,
+  selectMedium,
+  selectRegular,
+  selectSmall
+} from "../../utils/selectors"
 import { Linking } from "react-native"
 
 const SettingsTag: FunctionComponent<{ title: string; disable?: boolean }> = ({
@@ -28,10 +29,10 @@ const SettingsTag: FunctionComponent<{ title: string; disable?: boolean }> = ({
   const [primaryActive, setPrimaryActive] = useState(false)
   return (
     <SystemFlex color={selectLightGrey}>
-      <SystemSpace size={REGULAR} />
+      <SystemSpace size={selectRegular} />
       <SystemFlex row={true} align="center" justify="space-between">
         <SystemFlex noFlex row>
-          <SystemSpace size={MEDIUM} />
+          <SystemSpace size={selectMedium} />
           <SystemText size={20}>{title}</SystemText>
         </SystemFlex>
 
@@ -42,15 +43,15 @@ const SettingsTag: FunctionComponent<{ title: string; disable?: boolean }> = ({
             ) : (
               <ArrowDownBlack onPress={() => setPrimaryActive(true)} />
             ))}
-          <SystemSpace size={MEDIUM} />
+          <SystemSpace size={selectMedium} />
         </SystemFlex>
       </SystemFlex>
       {primaryActive && !disable && (
-        <SystemPadding size={REGULAR}>
+        <SystemPadding size={selectRegular}>
           <SystemFlex color={selectWhite}>{children}</SystemFlex>
         </SystemPadding>
       )}
-      <SystemSpace size={REGULAR} />
+      <SystemSpace size={selectRegular} />
     </SystemFlex>
   )
 }
@@ -61,10 +62,10 @@ export const SettingsScreen: FunctionComponent = () => {
       <HeaderComponent RightIcon={View}>Settings</HeaderComponent>
       <SystemContent fill>
         <ScrollView>
-          <SystemSpace size={REGULAR} />
+          <SystemSpace size={selectRegular} />
           <SystemFlex>
             <SettingsTag title="Legal disclamer">
-              <SystemPadding size={SMALL}>
+              <SystemPadding size={selectSmall}>
                 <SystemText>
                   Coffee Engine has made every attempt to ensure the accuracy
                   and reliability of the information provided on this
@@ -83,7 +84,7 @@ export const SettingsScreen: FunctionComponent = () => {
                 </SystemText>
               </SystemPadding>
             </SettingsTag>
-            <SystemSpace size={REGULAR} />
+            <SystemSpace size={selectRegular} />
             <SystemFlex>
               <SystemTouch
                 onPress={() =>
@@ -94,7 +95,7 @@ export const SettingsScreen: FunctionComponent = () => {
               >
                 <SettingsTag title="Contact" disable />
               </SystemTouch>
-              <SystemSpace size={REGULAR} />
+              <SystemSpace size={selectRegular} />
             </SystemFlex>
 
             <SystemFlex
@@ -102,21 +103,21 @@ export const SettingsScreen: FunctionComponent = () => {
               align="center"
               justify="space-around"
             >
-              <SystemSpace size={MEDIUM} />
+              <SystemSpace size={selectMedium} />
               <SystemText blackItalic size={32}>
                 Coffee Engine
               </SystemText>
-              <SystemSpace size={MEDIUM} />
+              <SystemSpace size={selectMedium} />
               <LogoYelloLarge size={100} />
               <SystemText center>
                 Get yeild estimates from any {"\n"}
                 location on the globe.
               </SystemText>
-              <SystemSpace size={MEDIUM} />
+              <SystemSpace size={selectMedium} />
               <SystemText size={12}>
                 copyright @ 2019 Coffee Engine. All rights reserved.
               </SystemText>
-              <SystemSpace size={MEDIUM} />
+              <SystemSpace size={selectMedium} />
             </SystemFlex>
           </SystemFlex>
         </ScrollView>

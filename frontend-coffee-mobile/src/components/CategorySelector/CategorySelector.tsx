@@ -2,10 +2,10 @@ import React, { FunctionComponent, ReactNode } from "react"
 import { SystemText, SystemFlex, SystemSpace } from "../../system-components"
 import styled from "styled-components"
 import { View } from "react-native"
-import { REGULAR } from "../../system-components/system-theme/theme"
 import { AxisNode } from "./components/AxisNode"
 import uuid from "uuid/v4"
 import { compose, shouldUpdate } from "recompose"
+import { selectRegular } from "../../utils/selectors"
 
 const CategorySelectionContainer = styled(View)<any>`
   height: 100
@@ -34,7 +34,7 @@ const CategorySelector: FunctionComponent<ICategorySelectorProps> = ({
   return (
     <>
       <SystemFlex noFlex row>
-        <SystemSpace size={REGULAR} />
+        <SystemSpace size={selectRegular} />
         <SystemFlex>
           <SystemText>{title}</SystemText>
           <SystemFlex justify="flex-end">
@@ -58,7 +58,7 @@ const CategorySelector: FunctionComponent<ICategorySelectorProps> = ({
             </CategorySelectionContainer>
           </SystemFlex>
         </SystemFlex>
-        <SystemSpace size={REGULAR} />
+        <SystemSpace size={selectRegular} />
       </SystemFlex>
     </>
   )

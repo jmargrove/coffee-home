@@ -1,7 +1,7 @@
 import React, { FunctionComponent, ReactNode } from "react"
 import styled from "../system-components/system-theme/styled-components"
 import { View, StatusBar } from "react-native"
-import { SMALL, theme } from "../system-components/system-theme/theme"
+import { theme } from "../system-components/system-theme/theme"
 import {
   SystemFlex,
   SystemSpace,
@@ -13,7 +13,8 @@ import { IconBack } from "../assets/IconBack/IconBack"
 import {
   selectPrimary,
   selectLightGrey,
-  selectPercentageWidth
+  selectPercentageWidth,
+  selectSmall
 } from "../utils/selectors"
 import { SettingsIcon } from "../assets/SettingsIcon/SettingsIcon"
 
@@ -52,7 +53,7 @@ export const HeaderComponent: FunctionComponent<{
           ) : (
             <SystemTouch>
               <SystemFlex row noFlex>
-                <SystemSpace size={SMALL} />
+                <SystemSpace size={selectSmall} />
                 <IconBack />
               </SystemFlex>
             </SystemTouch>
@@ -63,7 +64,7 @@ export const HeaderComponent: FunctionComponent<{
           </SystemText>
           <SystemFlex row noFlex>
             {RightIcon ? <RightIcon /> : <SettingsIcon />}
-            <SystemSpace size={SMALL} />
+            <SystemSpace size={selectSmall} />
           </SystemFlex>
         </SystemFlex>
 

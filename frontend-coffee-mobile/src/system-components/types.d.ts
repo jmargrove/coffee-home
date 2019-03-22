@@ -1,4 +1,5 @@
 import { ReactNode } from "react"
+import { StyleSelector } from "../utils/selectors"
 
 export declare namespace System {
   interface ButtonLargeProps {
@@ -13,8 +14,9 @@ export declare namespace System {
     children: ReactNode
   }
 
+  type PRIMARY = "PRIMARY"
   interface ContentProps {
-    color?: "PRIMARY"
+    color?: PRIMARY
     children: ReactNode
     fill?: boolean
   }
@@ -46,18 +48,10 @@ export declare namespace System {
     row?: boolean
   }
 
-  export type Size =
-    | "ATOMIC"
-    | "SMALL"
-    | "REGULAR"
-    | "MEDIUM"
-    | "BIG"
-    | "LARGE"
-    | "MASSIVE"
   interface SpaceProps {
     v?: boolean
     h?: boolean
-    size: Size
+    size: StyleSelector<number>
   }
   interface Text {}
   interface Title {}

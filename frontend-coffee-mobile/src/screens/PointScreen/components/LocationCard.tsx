@@ -2,8 +2,8 @@ import React from "react"
 import { SystemText } from "../../../system-components/SystemText"
 import { SystemFlex } from "../../../system-components/SystemFlex"
 import { SystemSpace } from "../../../system-components/SystemSpace"
-import { MEDIUM } from "../../../system-components/system-theme/theme"
 import { roundCoordinates } from "../../../utils/roundCoordinates"
+import { selectMedium, selectRegular } from "../../../utils/selectors"
 
 export const LocationCard: React.FC<{ lat: number; lng: number }> = ({
   lat,
@@ -11,24 +11,24 @@ export const LocationCard: React.FC<{ lat: number; lng: number }> = ({
 }) => {
   return (
     <SystemFlex row>
-      <SystemSpace size={MEDIUM} />
+      <SystemSpace size={selectMedium} />
       <SystemFlex>
         <SystemFlex row justify="space-between">
           <SystemFlex noFlex>
             <SystemText>Latitude:</SystemText>
-            <SystemSpace size={"REGULAR"} />
+            <SystemSpace size={selectRegular} />
           </SystemFlex>
           <SystemText>{roundCoordinates(lat)}</SystemText>
         </SystemFlex>
         <SystemFlex row justify="space-between">
           <SystemFlex noFlex>
             <SystemText>Longitude:</SystemText>
-            <SystemSpace size={"REGULAR"} />
+            <SystemSpace size={selectRegular} />
           </SystemFlex>
           <SystemText>{roundCoordinates(lng)}</SystemText>
         </SystemFlex>
       </SystemFlex>
-      <SystemSpace size={"REGULAR"} />
+      <SystemSpace size={selectRegular} />
     </SystemFlex>
   )
 }

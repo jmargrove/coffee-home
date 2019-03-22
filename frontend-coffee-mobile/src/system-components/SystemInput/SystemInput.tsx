@@ -6,7 +6,7 @@ import { SystemFlex } from "../SystemFlex"
 import { HEAVY_GREY, SMALL, REGULAR, MEDIUM_GREY } from "../system-theme/theme"
 import { SystemText } from "../SystemText"
 import { SystemSpace } from "../SystemSpace"
-import { selectMediumGrey } from "../../utils/selectors"
+import { selectMediumGrey, selectRegular } from "../../utils/selectors"
 
 const StyledInput = styled(
   React.forwardRef((props: any, ref: any) => {
@@ -43,7 +43,7 @@ const SystemInput: FunctionComponent<any> = ({
       {keyboardType === "numeric" && (
         <>
           <SystemText color={selectMediumGrey}>{units}</SystemText>
-          <SystemSpace size={REGULAR} />
+          <SystemSpace size={selectRegular} />
         </>
       )}
 

@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from "react"
 import { View } from "react-native"
-import { REGULAR, SMALL } from "../system-components/system-theme/theme"
 import {
   SystemSpace,
   SystemFlex,
@@ -11,7 +10,12 @@ import styled from "../system-components/system-theme/styled-components"
 import { ConsoleLeftArrow } from "../assets/ConsoleLeftArrow/ConsoleLeftArrow"
 import { ConsoleRightArrow } from "../assets/ConsoleRightArrow/ConsoleRightArrow"
 import { DialOuterRing } from "../assets/DialOuterRing.png/DialOuterRing"
-import { selectWhite, selectBlack } from "../utils/selectors"
+import {
+  selectWhite,
+  selectBlack,
+  selectSmall,
+  selectRegular
+} from "../utils/selectors"
 
 const YieldDisplayContainer = styled(View)<{}>`
   position: relative;
@@ -51,7 +55,7 @@ export const YieldDisplay: FunctionComponent<{
 }> = ({ children, handleDecrement, handleIncrement, focalPoint }) => {
   return (
     <SystemFlex noFlex>
-      <SystemSpace size={SMALL} />
+      <SystemSpace size={selectSmall} />
       <YieldDisplayContainer>
         <SystemRelative>
           <SystemAbsolute left={0} top={50} zIndex={0}>
@@ -101,7 +105,7 @@ export const YieldDisplay: FunctionComponent<{
           </SystemAbsolute>
         </SystemRelative>
       </YieldDisplayContainer>
-      <SystemSpace size={REGULAR} />
+      <SystemSpace size={selectRegular} />
     </SystemFlex>
   )
 }
