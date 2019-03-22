@@ -75,7 +75,7 @@ export const ModelResultsScreen: FunctionComponent<{
             <SystemFlex align="center">
               <SystemText size={selectTextRegular} center>
                 During year {maxOptimize.x} we expect that the{"\n"}coffee yield
-                will be {maxOptimize.y} tones per hectar.
+                will be {maxOptimize.y} tones per hectare
               </SystemText>
             </SystemFlex>
           ) : (
@@ -83,7 +83,7 @@ export const ModelResultsScreen: FunctionComponent<{
               <SystemText size={selectTextRegular} center>
                 Our model suggests this location would{"\n"}optimally produce{" "}
                 {focalPoint.y} tons of coffee{"\n "}per hectare, with shade tree
-                converage of {focalPoint.x}%.
+                coverage of {focalPoint.x}%.
               </SystemText>
             </SystemFlex>
           )}
@@ -121,9 +121,9 @@ export const ModelResultsScreen: FunctionComponent<{
             <>
               <SystemPadding size={selectRegular}>
                 <SystemText center>
-                  Your coffee yield currently is {point.userCurrentYield} tons
+                  Your coffee yield is currently {point.userCurrentYield} tons
                   per{"\n"}hectar. Our model suggest that it is possible to
-                  {"\n"}grow a approximatly {response[5].y} tons per ha.
+                  {"\n"}grow a approximately {response[5].y} tons per hectare.
                 </SystemText>
               </SystemPadding>
               <SystemSpace size={selectRegular} />
