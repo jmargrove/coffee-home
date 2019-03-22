@@ -26,6 +26,7 @@ import {
 import { demoStore } from "../../store/demoStore"
 import { roundCoordinates } from "../../utils/roundCoordinates"
 import { LoadingScreen } from "../LoadingScreen/LoadingScreen"
+import { View } from "react-native"
 
 export const Coordinates: React.FC<{
   coordinates: { lat: number; lng: number }
@@ -58,7 +59,7 @@ const SetParametersScreen: FunctionComponent = () => {
   } else {
     return (
       <Container>
-        <HeaderComponent>Save location</HeaderComponent>
+        <HeaderComponent RightIcon={View}>Save location</HeaderComponent>
         <SystemContent>
           <SystemSpace size={selectRegular} />
           <Coordinates coordinates={demoStore.coordinates} />

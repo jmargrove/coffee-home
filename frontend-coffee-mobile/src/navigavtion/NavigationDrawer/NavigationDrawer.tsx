@@ -92,10 +92,11 @@ export const NavigationDrawerComponent: FunctionComponent<any> = props => {
                 }
               )
 
-              Alert.alert("Chose a point", "Select points below", [
-                ...alertValues,
-                { text: "Back" }
-              ])
+              Alert.alert(
+                "Choose a location.",
+                "Select a location to get yield estimate.",
+                [...alertValues, { text: "Back" }]
+              )
             } else {
               noPointsAlert()
               props.navigation.closeDrawer()
@@ -121,10 +122,11 @@ export const NavigationDrawerComponent: FunctionComponent<any> = props => {
                 }
               )
 
-              Alert.alert("Chose a point", "select points below", [
-                ...alertValues,
-                { text: "Back" }
-              ])
+              Alert.alert(
+                "Choose a location.",
+                "Select a location to determine the optimal shade conditions.",
+                [...alertValues, { text: "Back" }]
+              )
             } else {
               noPointsAlert()
               props.navigation.closeDrawer()

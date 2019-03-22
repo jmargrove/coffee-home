@@ -8,11 +8,14 @@ import { GlobeIcon } from "../../assets/GlobeIcon/GlobeIcon"
 import { demoStore, IDataAddition } from "../../store/demoStore"
 import { observer } from "mobx-react"
 import { selectRegular } from "../../utils/selectors"
+import { View } from "react-native"
 
 const PointScreen: FunctionComponent<any> = () => {
   return (
     <Container>
-      <HeaderComponent LeftIcon={GlobeIcon}>Point Locations </HeaderComponent>
+      <HeaderComponent LeftIcon={GlobeIcon} RightIcon={View}>
+        Point Locations{" "}
+      </HeaderComponent>
       <SystemContent fill>
         <ScrollView>
           <SystemSpace size={selectRegular} />
