@@ -18,10 +18,11 @@ export const PointInformationCard: React.FC<{
       <SystemFlex>
         {pointYield && (
           <NumericInputComponent
+            textSize={14}
             value={pointYield}
             handleChange={() => undefined}
-            label="Point Yield"
-            units="tones per ha"
+            label="Location's current Yield:"
+            units="tons of coffee per hectare"
             autoFocus={false}
             IconToggle={false}
             editable={false}
@@ -30,7 +31,7 @@ export const PointInformationCard: React.FC<{
         )}
         <SystemSpace size={selectMedium} />
         <CategorySelector
-          title="What is your shade level"
+          title="Location's shade level:"
           levels={["none", "low", "medium", "high"]}
           handleChange={() => undefined}
           factorLevel={pointShade}
@@ -38,7 +39,7 @@ export const PointInformationCard: React.FC<{
         />
         <SystemSpace size={selectMedium} />
         <CategorySelector
-          title="What is your slope incline?"
+          title="Location's slope:"
           levels={["flat", "slight", "gradual", "steep"]}
           handleChange={() => undefined}
           factorLevel={pointSlope}
@@ -46,7 +47,7 @@ export const PointInformationCard: React.FC<{
         />
         <SystemSpace size={selectMedium} />
         <BinarySelector
-          title="Is your site irrigated?"
+          title="Location irrigated:"
           value={pointIrrigated}
           handleChange={() => undefined}
         />

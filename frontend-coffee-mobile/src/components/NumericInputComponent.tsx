@@ -20,11 +20,12 @@ interface ITextInputComponentProps {
   IconToggle?: boolean | ReactNode
   editable?: boolean
   selectTextOnFocus?: boolean
+  textSize?: number
 }
 
 export const NumericInputComponent: FunctionComponent<
   ITextInputComponentProps
-> = ({ label, autoFocus, units, value, handleChange, ...rest }) => {
+> = ({ label, autoFocus, units, value, handleChange, textSize, ...rest }) => {
   return (
     <SystemFlex noFlex row>
       <SystemSpace size={selectRegular} />
@@ -35,6 +36,7 @@ export const NumericInputComponent: FunctionComponent<
           <SystemSpace size={selectRegular} />
           <SystemFlex>
             <PoweredSystemInput
+              textSize={textSize}
               keyboardType="numeric"
               units={units}
               value={value}
@@ -68,7 +70,7 @@ const power = compose<ITextInputComponentProps, ITextInputComponentProps>(
 
 export default power(NumericInputComponent)
 
-const InputTray = () => {
+const InputTray: React.FC = () => {
   return (
     <SystemFlex noFlex row align="flex-end">
       <View

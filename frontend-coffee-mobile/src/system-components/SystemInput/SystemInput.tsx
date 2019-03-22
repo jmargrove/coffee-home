@@ -25,6 +25,7 @@ const SystemInput: FunctionComponent<any> = ({
   store,
   units,
   keyboardType,
+  textSize,
   ...rest
 }) => {
   const { ref, handleFocus, handleEndEditing, isEditing, clearInput } = store
@@ -42,7 +43,9 @@ const SystemInput: FunctionComponent<any> = ({
 
       {keyboardType === "numeric" && (
         <>
-          <SystemText color={selectMediumGrey}>{units}</SystemText>
+          <SystemText color={selectMediumGrey} size={textSize}>
+            {units}
+          </SystemText>
           <SystemSpace size={selectRegular} />
         </>
       )}

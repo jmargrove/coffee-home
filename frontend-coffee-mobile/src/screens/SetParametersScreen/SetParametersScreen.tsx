@@ -70,13 +70,13 @@ const SetParametersScreen: FunctionComponent = () => {
             <SystemSpace size={selectRegular} />
             <TextInputComponent
               value={demoStore.pointName}
-              label="Enter point Name"
+              label="Give your point a name."
               autoFocus={false}
               handleChange={demoStore.handleNameChange}
             />
             <SystemSpace size={selectMedium} />
             <NumericInputComponent
-              units="tones of coffee per hectar"
+              units="tons of coffee per hectare"
               label="Your current yield"
               autoFocus={false}
               value={demoStore.userCurrentYield}
@@ -84,7 +84,7 @@ const SetParametersScreen: FunctionComponent = () => {
             />
             <SystemSpace size={selectMedium} />
             <CategorySelector
-              title="What is your shade level"
+              title="What is your shade level?"
               levels={["none", "low", "medium", "high"]}
               handleChange={demoStore.handleShadeChange}
               factorLevel={demoStore.shadeLevel}
