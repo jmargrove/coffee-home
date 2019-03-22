@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from "react"
 import { Animated } from "react-native"
-import { verticalScale } from "react-native-size-matters"
+import { scale } from "react-native-size-matters"
 const source = require("./dial-outer-ring.png")
 
 export const DialOuterRing: FunctionComponent = ({ children }) => {
@@ -16,8 +16,8 @@ export const DialOuterRing: FunctionComponent = ({ children }) => {
       source={source}
       style={{
         position: "absolute",
-        width: verticalScale(170),
-        height: verticalScale(170),
+        width: scale(170),
+        height: scale(170),
         transform: [
           {
             rotate: animatedValue.interpolate({

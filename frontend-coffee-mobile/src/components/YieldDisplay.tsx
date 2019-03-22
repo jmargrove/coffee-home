@@ -18,27 +18,27 @@ import {
   selectTextLarge,
   selectTextAtomic
 } from "../utils/selectors"
-import { verticalScale } from "react-native-size-matters"
+import { scale } from "react-native-size-matters"
 
 const YieldDisplayContainer = styled(View)<{}>`
   position: relative;
-  width: ${verticalScale(328)};
-  height: ${verticalScale(260)};
+  width: ${scale(328)};
+  height: ${scale(260)};
 `
 
 const DialContainer = styled(View)<{}>`
-  width: ${verticalScale(155)};
-  height: ${verticalScale(155)};
-  border-radius: ${verticalScale(155) / 2};
-  border-width: ${verticalScale(10)};
+  width: ${scale(155)};
+  height: ${scale(155)};
+  border-radius: ${scale(155) / 2};
+  border-width: ${scale(10)};
   border-color: ${selectBlack};
   background-color: ${selectWhite};
 `
 
 const DialOuterContainer = styled(View)<{}>`
-  width: ${verticalScale(180)};
-  height: ${verticalScale(180)};
-  border-radius: ${verticalScale(90)};
+  width: ${scale(180)};
+  height: ${scale(180)};
+  border-radius: ${scale(90)};
   background-color: ${selectWhite};
 `
 
@@ -61,18 +61,18 @@ export const YieldDisplay: FunctionComponent<{
       <SystemSpace size={selectSmall} />
       <YieldDisplayContainer>
         <SystemRelative>
-          <SystemAbsolute left={0} top={verticalScale(54)} zIndex={0}>
+          <SystemAbsolute left={0} top={scale(54)} zIndex={0}>
             <ConsoleLeftArrow onPress={handleDecrement} />
           </SystemAbsolute>
-          <SystemAbsolute top={0} left={verticalScale(28)} zIndex={2}>
+          <SystemAbsolute top={0} left={scale(28)} zIndex={2}>
             <DialOuterContainer>
               <SystemFlex justify="center" align="center">
                 <DialOuterRing />
                 <DialContainer>
                   <SystemFlex justify="center" align="center">
                     <SystemAbsolute
-                      top={verticalScale(32)}
-                      left={verticalScale(24)}
+                      top={scale(32)}
+                      left={scale(24)}
                       zIndex={55}
                     >
                       <SystemText> {ylab}</SystemText>
@@ -86,27 +86,20 @@ export const YieldDisplay: FunctionComponent<{
               </SystemFlex>
             </DialOuterContainer>
           </SystemAbsolute>
-          <SystemAbsolute
-            top={verticalScale(64)}
-            right={verticalScale(28)}
-            zIndex={3}
-          >
+          <SystemAbsolute top={scale(64)} right={scale(28)} zIndex={3}>
             <DialOuterContainer>
               <SystemFlex justify="center" align="center">
                 <DialOuterRing />
                 <DialContainer>
                   <SystemFlex justify="center" align="center">
                     <SystemAbsolute
-                      top={verticalScale(32)}
-                      left={verticalScale(88)}
+                      top={scale(32)}
+                      left={scale(88)}
                       zIndex={55}
                     >
                       <SystemText> t ha</SystemText>
                     </SystemAbsolute>
-                    <SystemAbsolute
-                      top={verticalScale(30)}
-                      left={verticalScale(116)}
-                    >
+                    <SystemAbsolute top={scale(30)} left={scale(116)}>
                       <SystemText size={selectTextAtomic}>-1</SystemText>
                     </SystemAbsolute>
                     <SystemText size={selectTextLarge} blackItalic={true}>
@@ -118,7 +111,7 @@ export const YieldDisplay: FunctionComponent<{
             </DialOuterContainer>
           </SystemAbsolute>
 
-          <SystemAbsolute top={verticalScale(116)} right={0} zIndex={0}>
+          <SystemAbsolute top={scale(116)} right={0} zIndex={0}>
             <ConsoleRightArrow onPress={handleIncrement} />
           </SystemAbsolute>
         </SystemRelative>
