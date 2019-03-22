@@ -7,7 +7,7 @@ import BurgerIcon from "../../assets/BurgerIcon/BurgerIcon"
 import { CloseIcon } from "../../assets/"
 import { Map } from "./components/Map"
 import { MapAddPointButton } from "./components/MapAddPointButton"
-import { selectLightGrey } from "../../utils/selectors"
+import { selectWhite } from "../../utils/selectors"
 import { theme } from "../../system-components/system-theme/theme"
 
 export const MapScreen: FunctionComponent<NavigationProps & any> = ({
@@ -21,7 +21,7 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
         barStyle="dark-content"
         backgroundColor={Platform.select({
           ios: "transparent",
-          android: "white"
+          android: selectWhite({ theme })
         })}
       />
       <SystemContent fill>

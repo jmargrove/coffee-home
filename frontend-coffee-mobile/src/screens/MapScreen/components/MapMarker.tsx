@@ -53,9 +53,6 @@ export const MapMarker: FunctionComponent<{
     ])
   ).start()
 
-  const min = 16
-  const max = 40
-
   return (
     <MarkerContainer maxDimention={maxDimention} color={colorAlpha}>
       <MarkerAnimated
