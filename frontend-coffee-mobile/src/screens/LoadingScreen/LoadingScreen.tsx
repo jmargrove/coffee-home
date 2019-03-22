@@ -125,20 +125,20 @@ export const LoadingScreen: FunctionComponent = () => {
           <LoadingAnimation rev />
           <SystemSpace size={selectLarge} />
 
-          <SystemText size={selectTextMassive} italic blackItalic>
+          <SystemText size={selectTextMassive} italic>
             Running
           </SystemText>
           <SystemSpace size={selectSmall} />
-          <SystemText italic size={selectTextMassive} blackItalic>
+          <SystemText italic size={selectTextMassive}>
             Coffee Engine
           </SystemText>
           <SystemSpace size={selectRegular} />
           <BeanLogoLarge size={100} />
           <SystemSpace size={selectRegular} />
           <SystemText size={selectTextBig}>Retrieving climate data</SystemText>
-          <SystemText size={selectTextBig}>Paramiterising model</SystemText>
-          <SystemText size={selectTextBig}>Excecuting model</SystemText>
-          <SystemText size={selectTextBig}>Model compelete</SystemText>
+          <SystemText size={selectTextBig}>Parameterizing model</SystemText>
+          <SystemText size={selectTextBig}>Executing model</SystemText>
+          <SystemText size={selectTextBig}>Model complete</SystemText>
           <SystemSpace size={selectLarge} />
           <LoadingAnimation />
         </SystemFlex>
