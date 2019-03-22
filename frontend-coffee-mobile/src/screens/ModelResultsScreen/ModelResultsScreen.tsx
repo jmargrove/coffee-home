@@ -15,7 +15,6 @@ import {
 } from "react-navigation"
 import { ScatterPlot } from "./ScatterPlot"
 import { ScrollView } from "react-native"
-import { REGULAR } from "../../system-components/system-theme/theme"
 import { YieldDisplay } from "../../components/YieldDisplay"
 import {
   compose,
@@ -97,7 +96,7 @@ export const ModelResultsScreen: FunctionComponent<{
                 focalPoint={focalPoint}
                 response={response}
                 pointSize={10}
-                tickNumber={5}
+                tickNumber={6}
               />
             )}
 
@@ -113,7 +112,7 @@ export const ModelResultsScreen: FunctionComponent<{
             )}
 
             <YieldDisplay
-              ylab="Shade %"
+              ylab={type === YIELD ? "Year" : "Shade %"}
               focalPoint={focalPoint}
               handleIncrement={handleIncrement}
               handleDecrement={handleDecrement}
