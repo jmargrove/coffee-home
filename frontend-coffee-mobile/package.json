@@ -8,6 +8,7 @@
     "clean": "watchman watch-del-all && rm -rf node_modules && rm yarn.lock && rm -rf tmp/metro-bundler-cache-* && rm -rf tmp/haste-map-react-native-packager-* && yarn"
   },
   "dependencies": {
+    "@react-native-community/async-storage": "^1.2.1",
     "@types/uuid": "^3.4.4",
     "mobx": "3.2.2",
     "mobx-react": "4.2.2",
@@ -22,21 +23,21 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.3.4",
     "@babel/plugin-proposal-decorators": "^7.3.0",
+    "@babel/runtime": "^7.3.4",
     "@types/jest": "^23.3.13",
     "@types/react": "^16.8.0",
     "@types/react-native": "^0.57.33",
     "@types/react-test-renderer": "^16.0.3",
     "@types/recompose": "^0.30.3",
     "@types/styled-components": "^4.1.7",
-    "react-native-dotenv": "^0.2.0",
-    "typescript": "^3.3.1",
-    "@babel/core": "^7.3.4",
-    "@babel/runtime": "^7.3.4",
     "babel-jest": "^24.5.0",
     "jest": "^24.5.0",
     "metro-react-native-babel-preset": "^0.53.1",
-    "react-test-renderer": "16.8.3"
+    "react-native-dotenv": "^0.2.0",
+    "react-test-renderer": "16.8.3",
+    "typescript": "^3.3.1"
   },
   "jest": {
     "preset": "react-native"

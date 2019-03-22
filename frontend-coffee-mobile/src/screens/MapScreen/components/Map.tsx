@@ -9,12 +9,36 @@ import {
   OPTIMIZE
 } from "../../../utils/constants"
 import { IconPlus } from "../../../assets/IconPlus/IconPlus"
-import { selectPercentageWidth, selectThird } from "../../../utils/selectors"
+import { selectPercentageWidth } from "../../../utils/selectors"
 import { Alert } from "react-native"
-import { theme } from "../../../system-components/system-theme/theme"
 import NavigationServices from "../../../utils/NavigationServices"
 import { demoStore, IDataAddition } from "../../../store/demoStore"
 import { SystemTouch } from "../../../system-components/SystemTouch"
+import { SavedLocationMarker } from "./SavedLocationMarker"
+
+type AlertPointAction = (args: { point: IDataAddition }) => void
+
+const alertPointAction: AlertPointAction = ({ point }) => {
+  Alert.alert(point.pointName, " would you like to...", [
+    {
+      text: "Calculate yield",
+      onPress: () =>
+        NavigationServices.navigate(MODEL_RESULTS_SCREEN, {
+          point,
+          type: YIELD
+        })
+    },
+    {
+      text: "Optimize shade",
+      onPress: () =>
+        NavigationServices.navigate(MODEL_RESULTS_SCREEN, {
+          point,
+          type: OPTIMIZE
+        })
+    },
+    { text: "Cancel", style: "destructive" }
+  ])
+}
 
 export const Map: React.FC<{ selectPoint: boolean }> = ({ selectPoint }) => {
   const [pointLocation, setPointLocation] = useState({
@@ -41,38 +65,9 @@ export const Map: React.FC<{ selectPoint: boolean }> = ({ selectPoint }) => {
               key={i}
               zIndex={99}
               coordinate={{ latitude: point.lat, longitude: point.lng }}
-              onPress={() => {
-                Alert.alert(point.pointName, " would you like to...", [
-                  {
-                    text: "Calculate yield",
-                    onPress: () =>
-                      NavigationServices.navigate(MODEL_RESULTS_SCREEN, {
-                        point,
-                        type: YIELD
-                      })
-                  },
-                  {
-                    text: "Optimize shade",
-                    onPress: () =>
-                      NavigationServices.navigate(MODEL_RESULTS_SCREEN, {
-                        point,
-                        type: OPTIMIZE
-                      })
-                  },
-                  { text: "Cancel", style: "destructive" }
-                ])
-              }}
+              onPress={() => alertPointAction({ point })}
             >
-              <View
-                style={{
-                  backgroundColor: selectThird({ theme: theme }),
-                  width: 16,
-                  height: 16,
-                  borderRadius: 8,
-                  borderWidth: 1.5,
-                  borderColor: "white"
-                }}
-              />
+              <SavedLocationMarker />
             </Marker>
           )
         })}

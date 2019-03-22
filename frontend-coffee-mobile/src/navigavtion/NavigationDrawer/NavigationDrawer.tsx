@@ -1,11 +1,5 @@
 import React, { FunctionComponent } from "react"
-import {
-  ScrollView,
-  SafeAreaView,
-  View,
-  Alert,
-  AsyncStorage
-} from "react-native"
+import { ScrollView, SafeAreaView, View, Alert } from "react-native"
 import styled from "../../system-components/system-theme/styled-components"
 import { SystemText, SystemFlex } from "../../system-components"
 import { ListItem } from "native-base"
@@ -13,7 +7,6 @@ import { BeanLogoLarge } from "../../assets/BeanLogoLarge/BeenLogoLarge"
 import {
   MAP_SCREEN,
   POINT_SCREEN,
-  SAVE_DATA_LOCALLY,
   MODEL_RESULTS_SCREEN,
   OPTIMIZE,
   YIELD,
@@ -79,14 +72,9 @@ export const NavigationDrawerComponent: FunctionComponent<any> = props => {
         </ListItem>
         <ListItem
           onPress={async () => {
-            if (isSavedPoints) {
+            if (demoStore.savedPoints.length > 0) {
               props.navigation.closeDrawer()
-              const getPoints = async () => {
-                return await AsyncStorage.getItem(SAVE_DATA_LOCALLY)
-              }
-              const points = await getPoints()
-
-              const alertValues = JSON.parse(points!).map(
+              const alertValues = demoStore.savedPoints.map(
                 (point: IDataAddition) => {
                   return {
                     text: point.pointName,
@@ -114,16 +102,9 @@ export const NavigationDrawerComponent: FunctionComponent<any> = props => {
         </ListItem>
         <ListItem
           onPress={async () => {
-            if (isSavedPoints) {
-              props.navigation.closeDrawer()
-              const getPoints = async () => {
-                return await AsyncStorage.getItem(SAVE_DATA_LOCALLY)
-              }
-
-              const points = await getPoints()
-
-              const alertValues = JSON.parse(points!).map(
-                (point: { [y: string]: number }) => {
+            if (demoStore.savedPoints.length > 0) {
+              const alertValues = demoStore.savedPoints.map(
+                (point: IDataAddition) => {
                   return {
                     text: point.pointName,
                     onPress: () => {

@@ -1,5 +1,5 @@
 import { SAVE_DATA_LOCALLY, MAP_SCREEN, POINT_SCREEN } from "../utils/constants"
-import { AsyncStorage } from "react-native"
+import AsyncStorage from "@react-native-community/async-storage"
 import { Alert } from "react-native"
 import NavigationServices from "../utils/NavigationServices"
 import uuid from "uuid/v4"
