@@ -12,7 +12,11 @@ import {
   YIELD,
   SETTINGS_SCREEN
 } from "../../utils/constants"
-import { selectPrimary, selectPercentageHeight } from "../../utils/selectors"
+import {
+  selectPrimary,
+  selectPercentageHeight,
+  selectTextLarge
+} from "../../utils/selectors"
 import { demoStore, IDataAddition } from "../../store/demoStore"
 import { noPointsAlert } from "../../utils/alerts"
 
@@ -30,7 +34,7 @@ export const NavigationDrawerComponent: FunctionComponent<any> = props => {
       <SafeAreaView>
         <DrawerHeaderContianer>
           <SystemFlex justify="space-around" align="center">
-            <SystemText blackItalic size={32}>
+            <SystemText blackItalic size={selectTextLarge}>
               Coffee Engine
             </SystemText>
             <BeanLogoLarge size={64} />

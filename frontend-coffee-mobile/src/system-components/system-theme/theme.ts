@@ -1,4 +1,5 @@
 import { ITheme } from "./styled-components"
+import { verticalScale } from "react-native-size-matters"
 // Colors
 export const BLACK = `BLACK`
 export const WHITE = `WHITE`
@@ -17,8 +18,17 @@ export const MEDIUM = `MEDIUM`
 export const BIG = `BIG`
 export const LARGE = `LARGE`
 export const MASSIVE = `MASSIVE`
+//`Size`
+export const VERTICAL_ATOMIC = `VERTICAL_ATOMIC`
+export const VERTICAL_SMALL = `VERTICAL_SMALL`
+export const VERTICAL_REGULAR = `VERTICAL_REGULAR`
+export const VERTICAL_MEDIUM = `VERTICAL_MEDIUM`
+export const VERTICAL_BIG = `VERTICAL_BIG`
+export const VERTICAL_LARGE = `VERTICAL_LARGE`
+export const VERTICAL_MASSIVE = `VERTICAL_MASSIVE`
 
-const base = 8
+const spaceBase = 8
+const verticalBase = verticalScale(8)
 
 export const theme: ITheme = {
   colors: {
@@ -33,12 +43,30 @@ export const theme: ITheme = {
     [HEAVY_GREY]: "black"
   },
   sizes: {
-    [ATOMIC]: 0.5 * base,
-    [SMALL]: 1 * base,
-    [REGULAR]: 2 * base,
-    [MEDIUM]: 4 * base,
-    [BIG]: 8 * base,
-    [LARGE]: 16 * base,
-    [MASSIVE]: 32 * base
+    [ATOMIC]: 0.5 * spaceBase,
+    [SMALL]: 1 * spaceBase,
+    [REGULAR]: 2 * spaceBase,
+    [MEDIUM]: 4 * spaceBase,
+    [BIG]: 8 * spaceBase,
+    [LARGE]: 16 * spaceBase,
+    [MASSIVE]: 32 * spaceBase
+  },
+  verticalSizes: {
+    [VERTICAL_ATOMIC]: 0.5 * verticalBase,
+    [VERTICAL_SMALL]: 1 * verticalBase,
+    [VERTICAL_REGULAR]: 2 * verticalBase,
+    [VERTICAL_MEDIUM]: 4 * verticalBase,
+    [VERTICAL_BIG]: 8 * verticalBase,
+    [VERTICAL_LARGE]: 16 * verticalBase,
+    [VERTICAL_MASSIVE]: 32 * verticalBase
+  },
+  textSizes: {
+    [ATOMIC]: 1 * verticalBase, // 8
+    [SMALL]: 1.5 * verticalBase, // 12
+    [REGULAR]: 2 * verticalBase, // 16
+    [MEDIUM]: 2.5 * verticalBase, // 20
+    [BIG]: 3 * verticalBase, //24
+    [LARGE]: 4 * verticalBase, // 32
+    [MASSIVE]: 5 * verticalBase
   }
 }

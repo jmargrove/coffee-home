@@ -4,7 +4,7 @@ import { BoundsBar } from "./BoundsBar"
 import { REGULAR } from "../system-components/system-theme/theme"
 import { SystemSpace, SystemFlex, SystemText } from "../system-components"
 import styled from "../system-components/system-theme/styled-components"
-import { selectSmall } from "../utils/selectors"
+import { selectSmall, selectTextBig } from "../utils/selectors"
 
 const SubHeaderContainer = styled(View)`
   width: 328;
@@ -20,7 +20,7 @@ export const SubHeader: FunctionComponent = ({ children }) => {
       <SubHeaderContainer>
         <SystemFlex row align="center">
           <SystemSpace size={selectSmall} />
-          <SystemText size={24}>{children}</SystemText>
+          <SystemText size={selectTextBig}>{children}</SystemText>
         </SystemFlex>
       </SubHeaderContainer>
       <SystemSpace size={selectSmall} />

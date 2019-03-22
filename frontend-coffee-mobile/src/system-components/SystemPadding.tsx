@@ -6,16 +6,17 @@ import { StyleSelector } from "../utils/selectors"
 export const SystemPadding: React.FC<{
   size: StyleSelector<number>
   noFlex?: boolean
-}> = ({ children, size, noFlex }) => {
+  horizontalOnly?: boolean
+}> = ({ children, size, noFlex, horizontalOnly }) => {
   return (
-    <SystemFlex row={true} noFlex={noFlex}>
-      <SystemSpace size={size} />
-      <SystemFlex noFlex={noFlex}>
+    <SystemFlex noFlex={noFlex}>
+      {!horizontalOnly && <SystemSpace size={size} />}
+      <SystemFlex row={true} noFlex={noFlex}>
         <SystemSpace size={size} />
         {children}
         <SystemSpace size={size} />
       </SystemFlex>
-      <SystemSpace size={size} />
+      {!horizontalOnly && <SystemSpace size={size} />}
     </SystemFlex>
   )
 }

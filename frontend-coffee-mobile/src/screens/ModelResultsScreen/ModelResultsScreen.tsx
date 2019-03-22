@@ -40,7 +40,11 @@ import { PointInformationCard } from "../PointScreen/components/PointInformation
 import { IDataAddition, demoStore } from "../../store/demoStore"
 import { Alert } from "react-native"
 import NavigationServices from "../../utils/NavigationServices"
-import { selectRegular } from "../../utils/selectors"
+import {
+  selectRegular,
+  selectTextSmall,
+  selectTextBig
+} from "../../utils/selectors"
 
 type OPTIMIZE = "OPTIMIZE"
 type YIELD = "YIELD"
@@ -64,12 +68,12 @@ export const ModelResultsScreen: FunctionComponent<{
         <ScrollView>
           <SystemSpace size={selectRegular} />
           <SystemFlex align="center">
-            <SystemText size={24}>{point.pointName}</SystemText>
+            <SystemText size={selectTextBig}>{point.pointName}</SystemText>
           </SystemFlex>
           <Coordinates coordinates={{ lat: point.lat, lng: point.lng }} />
 
           <SystemPadding size={selectRegular}>
-            <SystemText size={12} center>
+            <SystemText size={selectTextSmall} center>
               During year {focalPoint.x} we expect that the{"\n"}coffee yield
               will be {focalPoint.y} tones per hectar.
             </SystemText>
@@ -108,7 +112,7 @@ export const ModelResultsScreen: FunctionComponent<{
                 </SystemText>
               </SystemPadding>
               <SystemSpace size={selectRegular} />
-              <SystemText size={24} center>
+              <SystemText size={selectTextBig} center>
                 Parameters
               </SystemText>
               <SystemPadding size={selectRegular}>

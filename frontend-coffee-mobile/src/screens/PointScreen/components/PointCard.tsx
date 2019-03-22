@@ -7,7 +7,8 @@ import {
   selectWhite,
   selectRegular,
   selectMedium,
-  selectSmall
+  selectSmall,
+  selectTextBig
 } from "../../../utils/selectors"
 import { ArrowDownBlack, ArrowUpPrimary } from "../../../assets"
 import { SecondaryText } from "./SecondaryText"
@@ -182,7 +183,7 @@ export class PointCard extends Component<
           <SystemFlex row={true} align="center" justify="space-between">
             <SystemFlex noFlex row>
               <SystemSpace size={selectMedium} />
-              <SystemText blackItalic={true} size={24}>
+              <SystemText blackItalic={true} size={selectTextBig}>
                 {item.pointName}
               </SystemText>
             </SystemFlex>

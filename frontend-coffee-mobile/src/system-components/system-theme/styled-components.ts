@@ -15,7 +15,14 @@ import {
   LARGE,
   MASSIVE,
   ATOMIC,
-  ALPHA_PRIMARY
+  ALPHA_PRIMARY,
+  VERTICAL_ATOMIC,
+  VERTICAL_SMALL,
+  VERTICAL_REGULAR,
+  VERTICAL_MEDIUM,
+  VERTICAL_BIG,
+  VERTICAL_LARGE,
+  VERTICAL_MASSIVE
 } from "./theme"
 
 interface IColors {
@@ -39,10 +46,31 @@ interface ISize {
   [LARGE]: number
   [MASSIVE]: number
 }
+interface ITextSizes {
+  [ATOMIC]: number
+  [SMALL]: number
+  [REGULAR]: number
+  [MEDIUM]: number
+  [BIG]: number
+  [LARGE]: number
+  [MASSIVE]: number
+}
+
+interface IVertivalSizes {
+  [VERTICAL_ATOMIC]: number
+  [VERTICAL_SMALL]: number
+  [VERTICAL_REGULAR]: number
+  [VERTICAL_MEDIUM]: number
+  [VERTICAL_BIG]: number
+  [VERTICAL_LARGE]: number
+  [VERTICAL_MASSIVE]: number
+}
 
 export interface ITheme {
   colors: IColors
   sizes: ISize
+  textSizes: ITextSizes
+  verticalSizes: IVertivalSizes
 }
 
 export interface IThemeTypes {

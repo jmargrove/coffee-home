@@ -6,7 +6,8 @@ import {
   SystemSpace,
   SystemButtonLarge,
   SystemFlex,
-  SystemText
+  SystemText,
+  SystemPadding
 } from "../../system-components"
 import { theme } from "../../system-components/system-theme/theme"
 import { observer } from "mobx-react"
@@ -99,18 +100,22 @@ const SetParametersScreen: FunctionComponent = () => {
               value={demoStore.irrigation}
               handleChange={demoStore.handleIrrigationChange}
             />
-
-            <SystemButtonLarge
-              isDisabled={!demoStore.isFormFilled}
-              colorBorder={selectPrimary({ theme })}
-              color={selectWhite({ theme })}
-              textColor={selectBlack({ theme })}
-              onPress={demoStore.handleSaveData}
-            >
-              Save point
-            </SystemButtonLarge>
-            <SystemSpace size={selectMedium} />
           </SystemFlex>
+          <SystemPadding size={selectRegular}>
+            <SystemFlex>
+              <SystemButtonLarge
+                isDisabled={!demoStore.isFormFilled}
+                colorBorder={selectPrimary({ theme })}
+                color={selectWhite({ theme })}
+                textColor={selectBlack({ theme })}
+                onPress={demoStore.handleSaveData}
+              >
+                Save point
+              </SystemButtonLarge>
+            </SystemFlex>
+          </SystemPadding>
+
+          <SystemSpace size={selectMedium} />
         </SystemContent>
       </Container>
     )

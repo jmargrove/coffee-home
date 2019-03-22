@@ -14,7 +14,9 @@ import {
   selectWhite,
   selectBlack,
   selectSmall,
-  selectRegular
+  selectRegular,
+  selectTextLarge,
+  selectTextAtomic
 } from "../utils/selectors"
 
 const YieldDisplayContainer = styled(View)<{}>`
@@ -71,7 +73,7 @@ export const YieldDisplay: FunctionComponent<{
                       <SystemText> year</SystemText>
                     </SystemAbsolute>
 
-                    <SystemText size={32} blackItalic={true}>
+                    <SystemText size={selectTextLarge} blackItalic={true}>
                       {focalPoint.x}
                     </SystemText>
                   </SystemFlex>
@@ -89,9 +91,9 @@ export const YieldDisplay: FunctionComponent<{
                       <SystemText> t ha</SystemText>
                     </SystemAbsolute>
                     <SystemAbsolute top={30} left={116}>
-                      <SystemText size={8}>-1</SystemText>
+                      <SystemText size={selectTextAtomic}>-1</SystemText>
                     </SystemAbsolute>
-                    <SystemText size={32} blackItalic={true}>
+                    <SystemText size={selectTextLarge} blackItalic={true}>
                       {Math.round(focalPoint.y * 100) / 100}
                     </SystemText>
                   </SystemFlex>

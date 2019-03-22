@@ -17,7 +17,10 @@ import {
   selectWhite,
   selectMedium,
   selectRegular,
-  selectSmall
+  selectSmall,
+  selectTextMedium,
+  selectTextSmall,
+  selectTextLarge
 } from "../../utils/selectors"
 import { Linking } from "react-native"
 
@@ -33,7 +36,7 @@ const SettingsTag: FunctionComponent<{ title: string; disable?: boolean }> = ({
       <SystemFlex row={true} align="center" justify="space-between">
         <SystemFlex noFlex row>
           <SystemSpace size={selectMedium} />
-          <SystemText size={20}>{title}</SystemText>
+          <SystemText size={selectTextMedium}>{title}</SystemText>
         </SystemFlex>
 
         <SystemFlex noFlex row align="center">
@@ -104,7 +107,7 @@ export const SettingsScreen: FunctionComponent = () => {
               justify="space-around"
             >
               <SystemSpace size={selectMedium} />
-              <SystemText blackItalic size={32}>
+              <SystemText blackItalic size={selectTextLarge}>
                 Coffee Engine
               </SystemText>
               <SystemSpace size={selectMedium} />
@@ -114,7 +117,7 @@ export const SettingsScreen: FunctionComponent = () => {
                 location on the globe.
               </SystemText>
               <SystemSpace size={selectMedium} />
-              <SystemText size={12}>
+              <SystemText size={selectTextSmall}>
                 copyright @ 2019 Coffee Engine. All rights reserved.
               </SystemText>
               <SystemSpace size={selectMedium} />

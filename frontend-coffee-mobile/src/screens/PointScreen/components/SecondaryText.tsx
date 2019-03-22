@@ -5,7 +5,9 @@ import styled from "../../../system-components/system-theme/styled-components"
 import {
   selectBlack,
   selectRegular,
-  selectSmall
+  selectSmall,
+  selectTextMedium,
+  selectTextSmall
 } from "../../../utils/selectors"
 import { ArrowDownBlack, ArrowUpPrimary } from "../../../assets"
 
@@ -31,7 +33,7 @@ export const SecondaryText: React.FC<{
           <Bullet size={8} />
           <SystemSpace size={selectSmall} />
 
-          <SystemText size={20}>{label}</SystemText>
+          <SystemText size={selectTextMedium}>{label}</SystemText>
         </SystemFlex>
 
         <SystemFlex noFlex row justify="center">

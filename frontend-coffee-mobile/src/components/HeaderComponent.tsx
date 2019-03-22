@@ -14,16 +14,11 @@ import {
   selectPrimary,
   selectLightGrey,
   selectPercentageWidth,
-  selectSmall
+  selectSmall,
+  selectTextBig
 } from "../utils/selectors"
 import { SettingsIcon } from "../assets/SettingsIcon/SettingsIcon"
 import { Header } from "native-base"
-
-const PhoneInfoBarr = styled(View)<any>`
-  width: 100%;
-  height: 24;
-  background-color: ${selectPrimary};
-`
 
 const HeaderContainer = styled(Header)<any>`
   width: ${selectPercentageWidth({ percent: 1 })};
@@ -62,7 +57,7 @@ export const HeaderComponent: FunctionComponent<{
             </SystemTouch>
           )}
 
-          <SystemText size={24}>{children}</SystemText>
+          <SystemText size={selectTextBig}>{children}</SystemText>
           <SystemFlex row noFlex>
             {RightIcon ? <RightIcon /> : <SettingsIcon />}
             <SystemSpace size={selectSmall} />

@@ -52,6 +52,7 @@ export declare namespace System {
     v?: boolean
     h?: boolean
     size: StyleSelector<number>
+    vertical?: boolean
   }
   interface Text {}
   interface Title {}

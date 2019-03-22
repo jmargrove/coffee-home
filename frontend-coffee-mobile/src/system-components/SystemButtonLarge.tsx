@@ -9,14 +9,14 @@ import {
   selectHeavyGrey,
   selectWhite,
   selectLightGrey,
-  selectPrimary
+  selectPrimary,
+  selectTextBig
 } from "../utils/selectors"
 
 const StyledButton = styled(View)<System.StyledButtonProps & any>`
   background-color: ${({ color }) => color};
   border-width: 2;
    border-color: ${({ colorBorder }) => colorBorder}
-  width: 300;
   height: 64;
 `
 
@@ -30,7 +30,7 @@ export const SystemButtonLarge: FunctionComponent<System.ButtonLargeProps> = ({
       <StyledButton color={selectWhite} colorBorder={selectLightGrey}>
         <SystemFlex noFlex>
           <Button large transparent block rounded>
-            <SystemText size={24} color={selectHeavyGrey}>
+            <SystemText size={selectTextBig} color={selectHeavyGrey}>
               {children}
             </SystemText>
           </Button>
@@ -42,7 +42,7 @@ export const SystemButtonLarge: FunctionComponent<System.ButtonLargeProps> = ({
       <StyledButton color={selectWhite} colorBorder={selectPrimary}>
         <SystemFlex noFlex>
           <Button large transparent block rounded onPress={onPress}>
-            <SystemText size={24}>{children}</SystemText>
+            <SystemText size={selectTextBig}>{children}</SystemText>
           </Button>
         </SystemFlex>
       </StyledButton>
