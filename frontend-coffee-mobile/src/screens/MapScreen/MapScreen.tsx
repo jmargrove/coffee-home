@@ -2,11 +2,13 @@ import React, { FunctionComponent } from "react"
 import { Container } from "native-base"
 import { NavigationProps } from "../../types"
 import { SystemContent } from "../../system-components"
-import { StatusBar } from "react-native"
+import { StatusBar, Platform } from "react-native"
 import BurgerIcon from "../../assets/BurgerIcon/BurgerIcon"
 import { CloseIcon } from "../../assets/"
 import { Map } from "./components/Map"
 import { MapAddPointButton } from "./components/MapAddPointButton"
+import { selectLightGrey } from "../../utils/selectors"
+import { theme } from "../../system-components/system-theme/theme"
 
 export const MapScreen: FunctionComponent<NavigationProps & any> = ({
   navigation
@@ -15,7 +17,13 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
 
   return (
     <Container>
-      <StatusBar backgroundColor="transparent" />
+      <StatusBar
+        barStyle="dark-content"
+        backgroundColor={Platform.select({
+          ios: "transparent",
+          android: selectLightGrey({ theme })
+        })}
+      />
       <SystemContent fill>
         <BurgerIcon enable={!selectPoint} />
         <CloseIcon enable={selectPoint} />

@@ -43,7 +43,7 @@ export const HeaderComponent: FunctionComponent<{
         {/* <PhoneInfoBarr /> */}
         <StatusBar
           barStyle="dark-content"
-          backgroundColor={selectPrimary({ theme })}
+          backgroundColor={selectLightGrey({ theme })}
         />
         <SystemFlex row align="center" justify="space-between">
           {LeftIcon ? (

@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react"
-import { TextInput } from "react-native"
+import { TextInput, Platform } from "react-native"
 import { powerSystemInput } from "./powerSystemInput"
 import styled from "../system-theme/styled-components"
 import { SystemFlex } from "../SystemFlex"
@@ -18,8 +18,10 @@ const StyledInput = styled(
   })
 )<any>`
   flex: 1;
-  height: ${({ theme, height, multiline }: any) => (multiline ? height : 24)};
+  ${({ height, multiline }: any) => multiline && `height: ${height}`};
   font-size: ${selectTextBig};
+  padding-top: ${Platform.select({ ios: 4, android: 0 })};
+  padding-bottom: ${Platform.select({ ios: 4, android: 0 })};
 `
 
 const SystemInput: FunctionComponent<any> = ({

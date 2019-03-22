@@ -51,8 +51,6 @@ export const Map: React.FC<{ selectPoint: boolean }> = ({ selectPoint }) => {
       <MapView
         showsUserLocation={true}
         mapType="hybrid"
-        showsCompass={true}
-        showsScale={true}
         provider={PROVIDER_GOOGLE}
         style={{ width: "100%", height: "100%" }}
         onRegionChange={({ longitude, latitude }) =>
