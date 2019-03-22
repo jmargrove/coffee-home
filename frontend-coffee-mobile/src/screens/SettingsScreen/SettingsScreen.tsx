@@ -107,14 +107,13 @@ export const SettingsScreen: FunctionComponent = () => {
               justify="space-around"
             >
               <SystemSpace size={selectMedium} />
-              <SystemText blackItalic size={selectTextLarge}>
+              <SystemText italic bold size={selectTextLarge}>
                 Coffee Engine
               </SystemText>
               <SystemSpace size={selectMedium} />
               <LogoYelloLarge size={100} />
               <SystemText center>
-                Get yeild estimates from any {"\n"}
-                location on the globe.
+                Get yield estimates from any {"\n"}location on the globe.
               </SystemText>
               <SystemSpace size={selectMedium} />
               <SystemText size={selectTextSmall}>

@@ -8,7 +8,4 @@ export { LoadingScreen } from "./LoadingScreen/LoadingScreen"
 export {
   PoweredModelResultsScreen
 } from "./ModelResultsScreen/ModelResultsScreen"
-export {
-  ShadeOptimizedScreen
-} from "./ShadeOptimizedScreen/ShadeOptimizedScreen"
 export { SettingsScreen } from "./SettingsScreen/SettingsScreen"

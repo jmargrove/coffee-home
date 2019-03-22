@@ -27,8 +27,6 @@ class GG extends GGDefaultData implements GGLineStore, GGPointStore {
   calcPointValues!: BaseCalculationFunction
 
   private calcYTickPosition: CalcYTickPosition = (length, yMax) => {
-    console.log("y max", yMax)
-
     let increments = 0.5
     if (yMax < 2) increments = 0.2
     if (yMax === 0) increments = 0.5

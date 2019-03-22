@@ -78,7 +78,7 @@ export const YieldDisplay: FunctionComponent<{
                       <SystemText> {ylab}</SystemText>
                     </SystemAbsolute>
 
-                    <SystemText size={selectTextLarge} blackItalic={true}>
+                    <SystemText size={selectTextLarge} bold italic>
                       {focalPoint.x}
                     </SystemText>
                   </SystemFlex>
@@ -102,7 +102,7 @@ export const YieldDisplay: FunctionComponent<{
                     <SystemAbsolute top={scale(30)} left={scale(116)}>
                       <SystemText size={selectTextAtomic}>-1</SystemText>
                     </SystemAbsolute>
-                    <SystemText size={selectTextLarge} blackItalic={true}>
+                    <SystemText size={selectTextLarge} bold italic>
                       {Math.round(focalPoint.y * 100) / 100}
                     </SystemText>
                   </SystemFlex>

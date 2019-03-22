@@ -1,12 +1,4 @@
-import {
-  OppVals,
-  HypVals,
-  PointVals,
-  RotateVals,
-  LinePosition,
-  DataArray,
-  Merge
-} from "../../types"
+import { OppVals, HypVals, RotateVals, LinePosition } from "../../types"
 
 interface MergeArgs {
   hypotenuseValues: HypVals

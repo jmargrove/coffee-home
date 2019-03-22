@@ -1,16 +1,11 @@
 import React, { FunctionComponent } from "react"
 import { SystemText, SystemSpace, SystemFlex } from "../system-components"
 import { PoweredSystemInput } from "../system-components/SystemInput/SystemInput"
-import {
-  SMALL,
-  theme,
-  REGULAR,
-  MEDIUM_GREY
-} from "../system-components/system-theme/theme"
+import { theme, MEDIUM_GREY } from "../system-components/system-theme/theme"
 import { SystemIconToggle } from "../system-components/SystemInput/SystemIconToggle"
 import { View } from "react-native"
 import { compose, shouldUpdate } from "recompose"
-import { selectBlack, selectSmall, selectRegular } from "../utils/selectors"
+import { selectSmall, selectRegular } from "../utils/selectors"
 
 interface ITextInputComponentProps {
   label: string
