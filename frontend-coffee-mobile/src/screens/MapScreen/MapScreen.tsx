@@ -21,7 +21,7 @@ export const MapScreen: FunctionComponent<NavigationProps & any> = ({
         barStyle="dark-content"
         backgroundColor={Platform.select({
           ios: "transparent",
-          android: selectLightGrey({ theme })
+          android: "white"
         })}
       />
       <SystemContent fill>

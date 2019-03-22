@@ -92,7 +92,7 @@ export const SettingsScreen: FunctionComponent = () => {
               <SystemTouch
                 onPress={() =>
                   Linking.openURL(
-                    "mailto:grovejam@gmail.com?subject=Coffee Engine Info"
+                    "mailto:coffeeinfoengine@gmail.com?subject=Coffee Engine Info"
                   )
                 }
               >

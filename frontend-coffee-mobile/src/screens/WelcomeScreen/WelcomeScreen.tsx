@@ -18,11 +18,19 @@ import {
   selectTextBig,
   selectBig
 } from "../../utils/selectors"
+import { Platform, StatusBar } from "react-native"
 
 export const WelcomeScreen: FunctionComponent = () => {
   const goToMapScreen = () => NavigationServices.navigate(MAP_SCREEN, {})
   return (
     <Container>
+      <StatusBar
+        barStyle="dark-content"
+        backgroundColor={Platform.select({
+          ios: "transparent",
+          android: "white"
+        })}
+      />
       <SystemContent fill={true}>
         <SystemPadding size={selectRegular}>
           <SystemFlex justify="center" align="center">

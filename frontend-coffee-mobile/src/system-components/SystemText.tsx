@@ -12,7 +12,7 @@ interface ISystemTextProps {
   italic?: boolean
   center?: boolean
   size?: StyleSelector<number>
-  blackItalic?: boolean
+  bold?: boolean
 }
 
 export const SystemText = styled(Text)<ISystemTextProps>`
@@ -20,7 +20,7 @@ export const SystemText = styled(Text)<ISystemTextProps>`
    size ? size({ theme }) : selectTextRegular({ theme })};
   ${({ uppercase }) => uppercase && `text-transform: uppercase`}
   ${({ italic }) => italic && `font-style: italic`}
-  ${({ blackItalic }) => blackItalic && `font-weight: 500`};
+  ${({ bold }) => bold && `font-weight: 500`};
   color: ${({ color, theme }) =>
     color ? color({ theme }) : selectBlack({ theme })};
   ${({ center }) => center && `text-align: center`}

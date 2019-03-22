@@ -1,7 +1,6 @@
 import React, { FunctionComponent, ReactNode } from "react"
 import styled from "../system-components/system-theme/styled-components"
 import { View, StatusBar } from "react-native"
-import { theme } from "../system-components/system-theme/theme"
 import {
   SystemFlex,
   SystemSpace,
@@ -11,19 +10,24 @@ import {
 import { BoundsBar } from "./BoundsBar"
 import { IconBack } from "../assets/IconBack/IconBack"
 import {
-  selectPrimary,
   selectLightGrey,
   selectPercentageWidth,
   selectSmall,
-  selectTextBig
+  selectTextBig,
+  selectWhite
 } from "../utils/selectors"
 import { SettingsIcon } from "../assets/SettingsIcon/SettingsIcon"
 import { Header } from "native-base"
+import { Platform } from "react-native"
 
 const HeaderContainer = styled(Header)<any>`
   width: ${selectPercentageWidth({ percent: 1 })};
   height: 80;
-  background-color: ${selectLightGrey};
+  background-color: ${({ theme }) =>
+    Platform.select({
+      ios: selectLightGrey({ theme }),
+      android: selectWhite({ theme })
+    })};
   padding-left: 0;
   padding-right: 0;
 `
@@ -40,10 +44,12 @@ export const HeaderComponent: FunctionComponent<{
   return (
     <HeaderContainer>
       <SystemFlex justify="space-between">
-        {/* <PhoneInfoBarr /> */}
         <StatusBar
           barStyle="dark-content"
-          backgroundColor={selectLightGrey({ theme })}
+          backgroundColor={Platform.select({
+            ios: "transparent",
+            android: "white"
+          })}
         />
         <SystemFlex row align="center" justify="space-between">
           {LeftIcon ? (
@@ -57,7 +63,9 @@ export const HeaderComponent: FunctionComponent<{
             </SystemTouch>
           )}
 
-          <SystemText size={selectTextBig}>{children}</SystemText>
+          <SystemText size={selectTextBig} bold>
+            {children}
+          </SystemText>
           <SystemFlex row noFlex>
             {RightIcon ? <RightIcon /> : <SettingsIcon />}
             <SystemSpace size={selectSmall} />

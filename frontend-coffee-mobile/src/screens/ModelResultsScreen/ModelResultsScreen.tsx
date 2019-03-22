@@ -41,7 +41,6 @@ import { Alert } from "react-native"
 import NavigationServices from "../../utils/NavigationServices"
 import {
   selectRegular,
-  selectTextSmall,
   selectTextBig,
   selectTextRegular
 } from "../../utils/selectors"
