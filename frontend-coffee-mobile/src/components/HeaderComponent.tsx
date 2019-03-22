@@ -17,6 +17,7 @@ import {
   selectSmall
 } from "../utils/selectors"
 import { SettingsIcon } from "../assets/SettingsIcon/SettingsIcon"
+import { Header } from "native-base"
 
 const PhoneInfoBarr = styled(View)<any>`
   width: 100%;
@@ -24,10 +25,12 @@ const PhoneInfoBarr = styled(View)<any>`
   background-color: ${selectPrimary};
 `
 
-const HeaderContainer = styled(View)<any>`
+const HeaderContainer = styled(Header)<any>`
   width: ${selectPercentageWidth({ percent: 1 })};
   height: 80;
   background-color: ${selectLightGrey};
+  padding-left: 0;
+  padding-right: 0;
 `
 
 const GreyLine = styled(View)<any>`
@@ -42,7 +45,7 @@ export const HeaderComponent: FunctionComponent<{
   return (
     <HeaderContainer>
       <SystemFlex justify="space-between">
-        <PhoneInfoBarr />
+        {/* <PhoneInfoBarr /> */}
         <StatusBar
           barStyle="dark-content"
           backgroundColor={selectPrimary({ theme })}
@@ -59,9 +62,7 @@ export const HeaderComponent: FunctionComponent<{
             </SystemTouch>
           )}
 
-          <SystemText size={24} blackItalic>
-            {children}
-          </SystemText>
+          <SystemText size={24}>{children}</SystemText>
           <SystemFlex row noFlex>
             {RightIcon ? <RightIcon /> : <SettingsIcon />}
             <SystemSpace size={selectSmall} />

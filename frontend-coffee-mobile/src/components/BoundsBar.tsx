@@ -7,7 +7,7 @@ export const BoundsBar = styled(View)<any>`
   width: ${({ space, theme }) =>
     space
       ? selectPercentageWidth({ percent: 1 }) - theme.sizes[space] * 2
-      : selectPercentageWidth({ percent: 1 })};
+      : "100%"};
   height: 2;
   background-color: ${({ theme, color }) =>
     color ? color({ theme }) : selectPrimary({ theme })};
