@@ -34,12 +34,12 @@ export const NavigationDrawerComponent: FunctionComponent<any> = props => {
       <SafeAreaView>
         <DrawerHeaderContianer>
           <SystemFlex justify="space-around" align="center">
-            <SystemText blackItalic size={selectTextLarge}>
+            <SystemText bold italic size={selectTextLarge}>
               Coffee Engine
             </SystemText>
             <BeanLogoLarge size={64} />
             <SystemText center>
-              Get yeild estimates from any{"\n"} location on the globe.
+              Get yield estimates from any{"\n"} location on the globe.
             </SystemText>
           </SystemFlex>
         </DrawerHeaderContianer>
@@ -50,7 +50,7 @@ export const NavigationDrawerComponent: FunctionComponent<any> = props => {
             props.navigation.navigate(MAP_SCREEN, { selectPoint: false })
           }}
         >
-          <SystemText>Map Screen</SystemText>
+          <SystemText>Map screen</SystemText>
         </ListItem>
 
         <ListItem
@@ -59,7 +59,7 @@ export const NavigationDrawerComponent: FunctionComponent<any> = props => {
             props.navigation.navigate(MAP_SCREEN, { selectPoint: true })
           }}
         >
-          <SystemText>Add a location</SystemText>
+          <SystemText>Add location</SystemText>
         </ListItem>
         <ListItem
           onPress={() => {
@@ -92,7 +92,7 @@ export const NavigationDrawerComponent: FunctionComponent<any> = props => {
                 }
               )
 
-              Alert.alert("Chose a point", "select points below", [
+              Alert.alert("Chose a point", "Select points below", [
                 ...alertValues,
                 { text: "Back" }
               ])
