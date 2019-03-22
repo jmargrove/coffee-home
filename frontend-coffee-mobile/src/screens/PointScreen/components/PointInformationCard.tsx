@@ -21,7 +21,7 @@ export const PointInformationCard: React.FC<{
             textSize={selectTextSmall}
             value={pointYield}
             handleChange={() => undefined}
-            label="Location's current Yield:"
+            label="Location's current yield:"
             units="tons of coffee per hectare"
             autoFocus={false}
             IconToggle={false}

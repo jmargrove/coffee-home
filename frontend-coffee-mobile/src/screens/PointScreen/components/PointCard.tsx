@@ -183,7 +183,7 @@ export class PointCard extends Component<
           <SystemFlex row={true} align="center" justify="space-between">
             <SystemFlex noFlex row>
               <SystemSpace size={selectMedium} />
-              <SystemText blackItalic={true} size={selectTextBig}>
+              <SystemText italic size={selectTextBig}>
                 {item.pointName}
               </SystemText>
             </SystemFlex>
