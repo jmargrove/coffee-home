@@ -76,8 +76,8 @@ export const NavigationDrawerComponent: FunctionComponent<any> = props => {
         </ListItem>
         <ListItem
           onPress={async () => {
+            props.navigation.closeDrawer()
             if (demoStore.savedPoints.length > 0) {
-              props.navigation.closeDrawer()
               const alertValues = demoStore.savedPoints.map(
                 (point: IDataAddition) => {
                   return {
@@ -95,7 +95,12 @@ export const NavigationDrawerComponent: FunctionComponent<any> = props => {
               Alert.alert(
                 "Choose a location.",
                 "Select a location to get yield estimate.",
-                [...alertValues, { text: "Back" }]
+                [
+                  ...alertValues,
+                  {
+                    text: "Back"
+                  }
+                ]
               )
             } else {
               noPointsAlert()
@@ -107,6 +112,7 @@ export const NavigationDrawerComponent: FunctionComponent<any> = props => {
         </ListItem>
         <ListItem
           onPress={async () => {
+            props.navigation.closeDrawer()
             if (demoStore.savedPoints.length > 0) {
               const alertValues = demoStore.savedPoints.map(
                 (point: IDataAddition) => {
@@ -125,7 +131,12 @@ export const NavigationDrawerComponent: FunctionComponent<any> = props => {
               Alert.alert(
                 "Choose a location.",
                 "Select a location to determine the optimal shade conditions.",
-                [...alertValues, { text: "Back" }]
+                [
+                  ...alertValues,
+                  {
+                    text: "Back"
+                  }
+                ]
               )
             } else {
               noPointsAlert()
