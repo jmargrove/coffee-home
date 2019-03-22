@@ -1,12 +1,16 @@
 import React, { FunctionComponent } from "react"
-import { TextInput, View } from "react-native"
+import { TextInput } from "react-native"
 import { powerSystemInput } from "./powerSystemInput"
 import styled from "../system-theme/styled-components"
 import { SystemFlex } from "../SystemFlex"
-import { HEAVY_GREY, SMALL, REGULAR, MEDIUM_GREY } from "../system-theme/theme"
 import { SystemText } from "../SystemText"
 import { SystemSpace } from "../SystemSpace"
-import { selectMediumGrey, selectRegular } from "../../utils/selectors"
+import {
+  selectMediumGrey,
+  selectRegular,
+  selectTextBig,
+  selectSmall
+} from "../../utils/selectors"
 
 const StyledInput = styled(
   React.forwardRef((props: any, ref: any) => {
@@ -15,7 +19,7 @@ const StyledInput = styled(
 )<any>`
   flex: 1;
   height: ${({ theme, height, multiline }: any) => (multiline ? height : 24)};
-  font-size: 24;
+  font-size: ${selectTextBig};
 `
 
 const SystemInput: FunctionComponent<any> = ({
@@ -46,7 +50,7 @@ const SystemInput: FunctionComponent<any> = ({
           <SystemText color={selectMediumGrey} size={textSize}>
             {units}
           </SystemText>
-          <SystemSpace size={selectRegular} />
+          <SystemSpace size={selectSmall} />
         </>
       )}
 

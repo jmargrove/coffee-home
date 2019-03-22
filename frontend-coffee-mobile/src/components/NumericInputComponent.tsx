@@ -8,7 +8,8 @@ import { compose, shouldUpdate } from "recompose"
 import {
   selectRegular,
   selectSmall,
-  selectMediumGrey
+  selectMediumGrey,
+  StyleSelector
 } from "../utils/selectors"
 
 interface ITextInputComponentProps {
@@ -20,7 +21,7 @@ interface ITextInputComponentProps {
   IconToggle?: boolean | ReactNode
   editable?: boolean
   selectTextOnFocus?: boolean
-  textSize?: number
+  textSize?: StyleSelector<number>
 }
 
 export const NumericInputComponent: FunctionComponent<

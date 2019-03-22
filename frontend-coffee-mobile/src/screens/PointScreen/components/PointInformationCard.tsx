@@ -5,7 +5,7 @@ import { SystemSpace } from "../../../system-components/SystemSpace"
 import { NumericInputComponent } from "../../../components/NumericInputComponent"
 import CategorySelector from "../../../components/CategorySelector/CategorySelector"
 import BinarySelector from "../../../components/BinarySelector/BinarySelector"
-import { selectMedium } from "../../../utils/selectors"
+import { selectMedium, selectTextSmall } from "../../../utils/selectors"
 
 export const PointInformationCard: React.FC<{
   pointYield?: string
@@ -18,7 +18,7 @@ export const PointInformationCard: React.FC<{
       <SystemFlex>
         {pointYield && (
           <NumericInputComponent
-            textSize={14}
+            textSize={selectTextSmall}
             value={pointYield}
             handleChange={() => undefined}
             label="Location's current Yield:"

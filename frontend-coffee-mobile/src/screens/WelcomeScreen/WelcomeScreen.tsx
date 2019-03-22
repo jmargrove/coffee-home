@@ -24,7 +24,7 @@ export const WelcomeScreen: FunctionComponent = () => {
   return (
     <Container>
       <SystemContent fill={true}>
-        <SystemPadding size={selectRegular} horizontalOnly>
+        <SystemPadding size={selectRegular}>
           <SystemFlex justify="center" align="center">
             <SystemFlex>
               <SystemSpace size={selectBig} vertical />

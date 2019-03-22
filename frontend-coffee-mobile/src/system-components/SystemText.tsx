@@ -20,7 +20,6 @@ export const SystemText = styled(Text)<ISystemTextProps>`
    size ? size({ theme }) : selectTextRegular({ theme })};
   ${({ uppercase }) => uppercase && `text-transform: uppercase`}
   ${({ italic }) => italic && `font-style: italic`}
-  ${({ size }) => size && `font-size: ${size}`}
   ${({ blackItalic }) => blackItalic && `font-weight: 500`};
   color: ${({ color, theme }) =>
     color ? color({ theme }) : selectBlack({ theme })};

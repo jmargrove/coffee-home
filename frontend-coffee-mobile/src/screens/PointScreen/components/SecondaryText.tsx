@@ -6,8 +6,7 @@ import {
   selectBlack,
   selectRegular,
   selectSmall,
-  selectTextMedium,
-  selectTextSmall
+  selectTextMedium
 } from "../../../utils/selectors"
 import { ArrowDownBlack, ArrowUpPrimary } from "../../../assets"
 
