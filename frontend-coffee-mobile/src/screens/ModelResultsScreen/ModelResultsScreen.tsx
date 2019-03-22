@@ -58,7 +58,7 @@ export const ModelResultsScreen: FunctionComponent<{
   type: ModelType
   point: IDataAddition
 }> = ({ store, response, type, point }) => {
-  const { focalPoint, handleIncrement, handleDecrement } = store
+  const { focalPoint, handleIncrement, handleDecrement, maxOptimize } = store
 
   return (
     <Container>
@@ -72,33 +72,48 @@ export const ModelResultsScreen: FunctionComponent<{
             <SystemText size={selectTextBig}>{point.pointName}</SystemText>
           </SystemFlex>
           <Coordinates coordinates={{ lat: point.lat, lng: point.lng }} />
-
           <SystemSpace size={selectRegular} />
-          <SystemFlex align="center">
-            <SystemText size={selectTextRegular} center>
-              During year {focalPoint.x} we expect that the{"\n"}coffee yield
-              will be {focalPoint.y} tones per hectar.
-            </SystemText>
-          </SystemFlex>
-
+          {type === YIELD ? (
+            <SystemFlex align="center">
+              <SystemText size={selectTextRegular} center>
+                During year {maxOptimize.x} we expect that the{"\n"}coffee yield
+                will be {maxOptimize.y} tones per hectar.
+              </SystemText>
+            </SystemFlex>
+          ) : (
+            <SystemFlex align="center">
+              <SystemText size={selectTextRegular} center>
+                Our model suggests this location would{"\n"}optimally produce{" "}
+                {focalPoint.y} tons of coffee {"\n "}per hectare, with a light
+                infultration of {focalPoint.x}%.
+              </SystemText>
+            </SystemFlex>
+          )}
           <SystemFlex align="center">
             {type === YIELD && (
               <ScatterPlot
+                xlab="Year"
+                ylab="Yield"
                 focalPoint={focalPoint}
                 response={response}
                 pointSize={10}
+                tickNumber={5}
               />
             )}
 
             {type === OPTIMIZE && (
               <ScatterPlot
+                xlab="Shade %"
+                ylab="Yield"
                 focalPoint={focalPoint}
                 response={response}
                 pointSize={4}
+                tickNumber={10}
               />
             )}
 
             <YieldDisplay
+              ylab="Shade %"
               focalPoint={focalPoint}
               handleIncrement={handleIncrement}
               handleDecrement={handleDecrement}
@@ -143,9 +158,22 @@ class ResultsScreenStore {
   @observable
   data: { y: number; x: number }[]
 
+  @observable
+  maxOptimize!: FocalPoint
+
   constructor({ response }: { response: { y: number; x: number }[] }) {
     this.data = response
     this.focalPoint = this.data.reduce(
+      (acc: FocalPoint, el, index) => {
+        if (el.y > acc.y) {
+          return { index, ...el }
+        } else {
+          return acc
+        }
+      },
+      { index: 0, x: 0, y: 0 }
+    )
+    this.maxOptimize = this.data.reduce(
       (acc: FocalPoint, el, index) => {
         if (el.y > acc.y) {
           return { index, ...el }
@@ -232,7 +260,7 @@ const power = compose<
         if (type === OPTIMIZE) {
           const res = response.map((el: { [x: string]: number }) => {
             return {
-              x: el.shade,
+              x: el.shade * 10,
               y: el.yieldIrrFALSE
             }
           })

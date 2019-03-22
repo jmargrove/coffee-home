@@ -91,7 +91,9 @@ export const GGPlotDefault: FunctionComponent<IGGPlotProps> = ({
   GeomPoint,
   padding,
   outerDimensions,
-  store
+  store,
+  xlab,
+  ylab
 }) => {
   const { width, height } = outerDimensions
   const { left, right, top, bottom } = padding
@@ -105,6 +107,7 @@ export const GGPlotDefault: FunctionComponent<IGGPlotProps> = ({
         <BlankPanel left={0} top={top} right={width - left} bottom={bottom}>
           {GeomYTick && (
             <GeomYTick.GGYTick
+              ylab={ylab}
               yAxisTheme={yAxisTheme}
               yValues={yValues}
               length={plotHeight}
@@ -116,6 +119,7 @@ export const GGPlotDefault: FunctionComponent<IGGPlotProps> = ({
         <BlankPanel left={left} top={height - bottom} right={right} bottom={0}>
           {GeomXTick && (
             <GeomXTick.GGXTick
+              xlab={xlab}
               xValues={xValues}
               length={plotWidth}
               {...GeomXTick.props}

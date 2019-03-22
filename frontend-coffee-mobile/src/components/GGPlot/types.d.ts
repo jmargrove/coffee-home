@@ -15,6 +15,8 @@ export interface IData {
 }
 
 export interface IGGPlot {
+  xlab: string
+  ylab: string
   GeomYTick: {
     GGYTick: FunctionComponent<{
       tickNumber: number
@@ -22,7 +24,7 @@ export interface IGGPlot {
       yValues: number[]
       yAxisTheme: { yTickPosition: number[]; yLabValues: number[] }
     }>
-    props: { tickNumber: number }
+    props: { tickNumber: number; ylab: string }
   }
   GeomXTick: {
     GGXTick: FunctionComponent<{
@@ -30,7 +32,7 @@ export interface IGGPlot {
       length: number
       xValues: number[]
     }>
-    props: { tickNumber: number }
+    props: { tickNumber: number; xlab: string }
   }
   GeomLine: {
     GGLine: FunctionComponent<{

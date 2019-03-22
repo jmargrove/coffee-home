@@ -28,10 +28,12 @@ interface IGGTickProps {
   length: number
   tickNumber: number
   xValues: number[]
+  xlab: string
 }
 
 export const GGXTick: FunctionComponent<IGGTickProps> = ({
   length,
+  xlab,
   tickNumber,
   xValues
 }) => {
@@ -83,7 +85,7 @@ export const GGXTick: FunctionComponent<IGGTickProps> = ({
         }}
       >
         <SystemFlex justify="center" align="center">
-          <GGXAxisTitle>Year</GGXAxisTitle>
+          <GGXAxisTitle>{xlab}</GGXAxisTitle>
         </SystemFlex>
       </View>
     </>

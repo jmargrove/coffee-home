@@ -2,7 +2,7 @@ import React, { FunctionComponent } from "react"
 import styled from "../../../system-components/system-theme/styled-components"
 import { View, Text, StyleSheet } from "react-native"
 import { IXYCoordinates } from "../types.d"
-import { SystemFlex, SystemText } from "../../../system-components"
+import { SystemFlex } from "../../../system-components"
 import { selectBlack } from "../../../utils/selectors"
 import { theme } from "../../../system-components/system-theme/theme"
 
@@ -31,9 +31,11 @@ interface GGYTickProps {
     yLabValues: number[]
     axisEndPadding: number
   }
+  ylab: string
 }
 
 export const GGYTick: FunctionComponent<GGYTickProps> = ({
+  ylab,
   length,
   yAxisTheme
 }) => {
@@ -73,7 +75,7 @@ export const GGYTick: FunctionComponent<GGYTickProps> = ({
         }}
       >
         <SystemFlex justify="center" align="center">
-          <GGYAxisTitle>Yield</GGYAxisTitle>
+          <GGYAxisTitle>{ylab}</GGYAxisTitle>
         </SystemFlex>
       </View>
     </>

@@ -53,15 +53,15 @@ const SystemRelative = styled(View)<{}>`
 export const YieldDisplay: FunctionComponent<{
   handleIncrement: () => void
   handleDecrement: () => void
-
   focalPoint: { index: number; y: number; x: number }
-}> = ({ children, handleDecrement, handleIncrement, focalPoint }) => {
+  ylab: string
+}> = ({ handleDecrement, handleIncrement, focalPoint, ylab }) => {
   return (
     <SystemFlex noFlex>
       <SystemSpace size={selectSmall} />
       <YieldDisplayContainer>
         <SystemRelative>
-          <SystemAbsolute left={0} top={verticalScale(50)} zIndex={0}>
+          <SystemAbsolute left={0} top={verticalScale(54)} zIndex={0}>
             <ConsoleLeftArrow onPress={handleDecrement} />
           </SystemAbsolute>
           <SystemAbsolute top={0} left={verticalScale(28)} zIndex={2}>
@@ -75,7 +75,7 @@ export const YieldDisplay: FunctionComponent<{
                       left={verticalScale(24)}
                       zIndex={55}
                     >
-                      <SystemText> year</SystemText>
+                      <SystemText> {ylab}</SystemText>
                     </SystemAbsolute>
 
                     <SystemText size={selectTextLarge} blackItalic={true}>
