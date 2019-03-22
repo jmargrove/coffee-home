@@ -43,7 +43,8 @@ import NavigationServices from "../../utils/NavigationServices"
 import {
   selectRegular,
   selectTextSmall,
-  selectTextBig
+  selectTextBig,
+  selectTextRegular
 } from "../../utils/selectors"
 
 type OPTIMIZE = "OPTIMIZE"
@@ -72,12 +73,13 @@ export const ModelResultsScreen: FunctionComponent<{
           </SystemFlex>
           <Coordinates coordinates={{ lat: point.lat, lng: point.lng }} />
 
-          <SystemPadding size={selectRegular}>
-            <SystemText size={selectTextSmall} center>
+          <SystemSpace size={selectRegular} />
+          <SystemFlex align="center">
+            <SystemText size={selectTextRegular} center>
               During year {focalPoint.x} we expect that the{"\n"}coffee yield
               will be {focalPoint.y} tones per hectar.
             </SystemText>
-          </SystemPadding>
+          </SystemFlex>
 
           <SystemFlex align="center">
             {type === YIELD && (
@@ -107,8 +109,8 @@ export const ModelResultsScreen: FunctionComponent<{
               <SystemPadding size={selectRegular}>
                 <SystemText center>
                   Your coffee yield currently is {point.userCurrentYield} tons
-                  per hectar. Our model suggest that it is possible to grow a
-                  approximatly {response[5].y} tons per ha.
+                  per{"\n"}hectar. Our model suggest that it is possible to
+                  {"\n"}grow a approximatly {response[5].y} tons per ha.
                 </SystemText>
               </SystemPadding>
               <SystemSpace size={selectRegular} />
