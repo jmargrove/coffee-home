@@ -82,9 +82,8 @@ export const ModelResultsScreen: FunctionComponent<{
             <SystemFlex align="center">
               <SystemText size={selectTextRegular} center>
                 Our model suggests this location would{"\n"}optimally produce{" "}
-                {focalPoint.y} tons of coffee {"\n "}per hectare, with shade
-                tree converage of
-                {focalPoint.x}%.
+                {focalPoint.y} tons of coffee{"\n "}per hectare, with shade tree
+                converage of {focalPoint.x}%.
               </SystemText>
             </SystemFlex>
           )}
