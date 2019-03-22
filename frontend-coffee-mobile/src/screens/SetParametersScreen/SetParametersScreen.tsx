@@ -8,18 +8,12 @@ import {
   SystemFlex,
   SystemText
 } from "../../system-components"
-import {
-  REGULAR,
-  MEDIUM,
-  theme,
-  BIG
-} from "../../system-components/system-theme/theme"
+import { theme } from "../../system-components/system-theme/theme"
 import { observer } from "mobx-react"
 import TextInputComponent from "../../components/InputComponent"
 import NumericInputComponent from "../../components/NumericInputComponent"
 import CategorySelector from "../../components/CategorySelector/CategorySelector"
 import BinarySelector from "../../components/BinarySelector/BinarySelector"
-import { LoadingScreen } from "../"
 import {
   selectBlack,
   selectPrimary,
@@ -30,6 +24,7 @@ import {
 } from "../../utils/selectors"
 import { demoStore } from "../../store/demoStore"
 import { roundCoordinates } from "../../utils/roundCoordinates"
+import { LoadingScreen } from "../LoadingScreen/LoadingScreen"
 
 export const Coordinates: React.FC<{
   coordinates: { lat: number; lng: number }
