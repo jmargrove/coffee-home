@@ -105,8 +105,8 @@ android {
         applicationId "com.frontendcoffeemobile"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode 10001
+        versionName "1.0.1"
     }
     splits {
         abi {
@@ -120,6 +120,7 @@ android {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            resValue 'string', "api_key", GoogleMapsAPIKey
         }
        debug{
             resValue 'string', "api_key", GoogleMapsAPIKey

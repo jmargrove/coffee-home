@@ -102,7 +102,7 @@ class Store {
   @computed
   get isFormFilled() {
     if (
-      this.pointName.length > 3 &&
+      this.pointName.length > 1 &&
       this.userCurrentYield.length > 1 &&
       this.shadeLevel !== "" &&
       this.slopeLevel !== ""
