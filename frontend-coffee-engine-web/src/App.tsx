@@ -153,7 +153,7 @@ class App extends Component {
                 fontWeight: 400
               }}
             >
-              copyright @ 2019 James Margrove. All rights reserved.{" "}
+              copyright @ 2019 James Margrove. All rights reserved.
             </h3>
           </CenterContainer>
         </div>
