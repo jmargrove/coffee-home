@@ -32,14 +32,15 @@ const SystemSpace = styled.div<{ size: number }>`
   min-height: ${({ size }) => size && `${size}px`};
 `
 
+const Body = styled.body`
+  width: 100vw;
+  height: 100vh;
+`
+
 class App extends Component {
   render() {
     return (
-      <body
-        style={{
-          width: "100vw",
-          height: "100vh"
-        }}
+      <Body
       >
         <HeaderContainer>
           <CenterContainer>
@@ -157,7 +158,7 @@ class App extends Component {
             </h3>
           </CenterContainer>
         </div>
-      </body>
+      </Body>
     )
   }
 }
