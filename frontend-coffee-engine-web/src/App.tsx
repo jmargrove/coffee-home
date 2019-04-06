@@ -37,31 +37,32 @@ const Body = styled.body`
   height: 100vh;
 `
 
+const SystemImage = styled.img`
+  height: 50px;
+  display: flex;
+`
+
+const SystemHeader = styled.h2`
+font-family: Roboto;
+font-size: 24;
+font-style: italic;
+color: #F0F0F0;
+font-weight: 800
+display: flex
+`
 class App extends Component {
   render() {
     return (
-      <Body
-      >
+      <Body>
         <HeaderContainer>
           <CenterContainer>
-            <img
+            <SystemImage
               src={require("./assets/logo-white-small@3x.png")}
               style={{ height: 50, display: "flex" }}
             />
 
             <SystemSpace size={32} />
-            <h2
-              style={{
-                fontFamily: "Roboto",
-                fontSize: 24,
-                fontStyle: "italic",
-                color: "#F0F0F0",
-                fontWeight: 800,
-                display: "flex"
-              }}
-            >
-              Coffee Engine
-            </h2>
+            <SystemHeader>Coffee Engine</SystemHeader>
           </CenterContainer>
         </HeaderContainer>
 
