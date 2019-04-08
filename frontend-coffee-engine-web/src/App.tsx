@@ -42,7 +42,7 @@ const SystemImage = styled.img`
   display: flex;
 `
 
-const SystemHeader = styled.h2`
+const SystemH2 = styled.h2`
 font-family: Roboto;
 font-size: 24;
 font-style: italic;
@@ -50,6 +50,16 @@ color: #F0F0F0;
 font-weight: 800
 display: flex
 `
+
+const SystemH1 = styled.h1`
+  font-family: Roboto;
+  font-size: 48;
+  font-style: italic;
+  color: #4a4a4a;
+  font-weight: 800;
+  text-align: center;
+`
+
 class App extends Component {
   render() {
     return (
@@ -62,7 +72,7 @@ class App extends Component {
             />
 
             <SystemSpace size={32} />
-            <SystemHeader>Coffee Engine</SystemHeader>
+            <SystemH2>Coffee Engine</SystemH2>
           </CenterContainer>
         </HeaderContainer>
 
@@ -83,18 +93,7 @@ class App extends Component {
                 alignItems: "center"
               }}
             >
-              <h1
-                style={{
-                  fontFamily: "Roboto",
-                  fontSize: 48,
-                  fontStyle: "italic",
-                  color: "#4a4a4a",
-                  fontWeight: 800,
-                  textAlign: "center"
-                }}
-              >
-                Coffee Engine
-              </h1>
+              <SystemH1>Coffee Engine</SystemH1>
               <SystemSpace size={56} />
               <img
                 src={require("./assets/logo-white-large@3x.png")}
